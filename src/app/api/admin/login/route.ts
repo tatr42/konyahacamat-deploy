@@ -3,27 +3,24 @@ import { cookies } from "next/headers";
 
 export async function POST(req: Request) {
   try {
-    const { password } = await req.json();
+    const body: any = await req.json();
+    const password = body.password;
 
-    // Şifre kontrolü
     if (password === "Eb@Hac2027#Net") {
-      const response = NextResponse.json({ success: true });
-      
-      // Cookie ayarı - Versiyon uyumluluğu için await ekledik
-      const cookieStore = await cookies();
+      const cookieStore: any = await cookies();
       cookieStore.set("admin_session", "active", {
         httpOnly: true,
         secure: true,
         sameSite: "lax",
-        maxAge: 60 * 60 * 24, // 1 gün
+        maxAge: 86400,
         path: "/",
       });
 
-      return response;
+      return NextResponse.json({ success: true });
     }
 
-    return NextResponse.json({ error: "Şifre Yanlış" }, { status: 401 });
+    return NextResponse.json({ error: "Unauthorized" }, { status: 401 });
   } catch (err) {
-    return NextResponse.json({ error: "Sunucu Hatası" }, { status: 500 });
+    return NextResponse.json({ error: "Server Error" }, { status: 500 });
   }
 }
