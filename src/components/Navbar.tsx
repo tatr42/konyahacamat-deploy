@@ -3,7 +3,7 @@ import { useState, useEffect } from 'react';
 import Link from 'next/link';
 import Image from 'next/image';
 import { usePathname } from 'next/navigation';
-import { ChevronDown, Calendar, Home, Newspaper, Building2, Stethoscope } from 'lucide-react';
+import { ChevronDown, Calendar, Home, Newspaper, Building2, Stethoscope, X } from 'lucide-react';
 
 const navLinks = [
   { name: 'Ana Sayfa', href: '/' },
@@ -39,7 +39,7 @@ const navLinks = [
 const bottomNav = [
   { name: 'Takvim', href: '/takvim', icon: Calendar },
   {
-    name: 'Hizmetler', icon: Stethoscope, dropAlign: 'left' as const,
+    name: 'Hizmetler', icon: Stethoscope,
     dropdown: [
       { name: 'Hacamat', href: '/hizmetler/hacamat' },
       { name: 'Sülük', href: '/hizmetler/suluk' },
@@ -48,7 +48,7 @@ const bottomNav = [
   },
   { name: 'Ana Sayfa', href: '/', icon: Home, center: true },
   {
-    name: 'Medya', icon: Newspaper, dropAlign: 'right-medya' as const,
+    name: 'Medya', icon: Newspaper,
     dropdown: [
       { name: 'Blog', href: '/blog' },
       { name: 'Basın', href: '/basin' },
@@ -56,7 +56,7 @@ const bottomNav = [
     ]
   },
   {
-    name: 'Kurumsal', icon: Building2, dropAlign: 'right' as const,
+    name: 'Kurumsal', icon: Building2,
     dropdown: [
       { name: 'Hakkımızda', href: '/hakkimizda' },
       { name: 'İletişim', href: '/iletisim' },
@@ -75,15 +75,7 @@ export default function Navbar() {
     return () => window.removeEventListener('scroll', handleScroll);
   }, []);
 
-  // Sayfa değişince dropdown kapat
   useEffect(() => { setMobileOpen(null); }, [pathname]);
-
-  // Dışarı tıklayınca kapat
-  useEffect(() => {
-    const close = () => setMobileOpen(null);
-    if (mobileOpen) document.addEventListener('click', close);
-    return () => document.removeEventListener('click', close);
-  }, [mobileOpen]);
 
   return (
     <>
@@ -92,8 +84,6 @@ export default function Navbar() {
         scrolled ? 'bg-anthracite-dark/95 backdrop-blur-md py-3 shadow-2xl' : 'bg-transparent py-3 lg:py-6'
       }`}>
         <div className="container-site flex justify-between items-end lg:items-center">
-
-          {/* LOGO */}
           <Link href="/" className="flex items-center gap-2 group shrink-0">
             <Image src="/fav.webp" alt="Konya Hacamat" width={40} height={40} className="w-8 h-8 lg:w-10 lg:h-10 rounded-lg object-contain transition-transform group-hover:scale-110" />
             <div className="flex flex-col text-left">
@@ -106,7 +96,6 @@ export default function Navbar() {
             </div>
           </Link>
 
-          {/* MASAÜSTÜ MENÜ */}
           <div className="hidden lg:flex items-center gap-5">
             {navLinks.map((link) => (
               <div key={link.name} className="relative group/item">
@@ -136,7 +125,6 @@ export default function Navbar() {
             ))}
           </div>
 
-          {/* RANDEVU BUTONU */}
           <Link href="/takvim"
             className="bg-teal text-anthracite-dark px-4 py-2.5 lg:px-7 lg:py-3 rounded-full font-black text-[10px] lg:text-[11px] uppercase tracking-widest hover:scale-105 hover:shadow-[0_0_25px_rgba(20,184,166,0.4)] active:scale-95 transition-all duration-300 flex items-center gap-1.5 whitespace-nowrap shrink-0">
             <Calendar size={14} className="shrink-0" /> Randevu Al
@@ -146,98 +134,72 @@ export default function Navbar() {
 
       {/* ── MOBİL ALT NAV ── */}
       <div className="lg:hidden fixed bottom-0 left-0 right-0 z-[200]">
-
-        {/* Dropdown overlay — tıklayınca kapat */}
-        {mobileOpen && (
-          <div className="fixed inset-0 z-[199]" onClick={() => setMobileOpen(null)} />
-        )}
-
-        {/* Dropdown paneller — YUKARI açılır, butona hizalı */}
+        
+        {/* Dropdown Paneller - WHATSAPP ÜSTÜNE ÇIKARILDI (z-[1001]) */}
         {bottomNav.map(item => {
           if (!item.dropdown || mobileOpen !== item.name) return null;
-          const posClass =
-            item.dropAlign === 'right' ? 'right-2' :
-            item.dropAlign === 'right-medya' ? 'right-[20%]' :
-            'left-[20%]';
           return (
-            <div key={item.name}
-              className={`absolute bottom-[72px] w-44 ${posClass} bg-anthracite-dark border border-white/10 rounded-2xl shadow-2xl overflow-hidden z-[201]`}
-              onClick={e => e.stopPropagation()}>
-              <div className="p-2">
-                {item.dropdown.map(sub => (
-                  <Link key={sub.href} href={sub.href}
-                    onClick={() => setMobileOpen(null)}
-                    className="flex items-center gap-3 px-4 py-3 rounded-xl hover:bg-white/5 active:bg-white/10 transition-colors">
-                    <span className="text-white font-bold text-sm">{sub.name}</span>
-                  </Link>
-                ))}
-              </div>
+            <div key={item.name} className="fixed inset-0 z-[1001] bg-black/60 backdrop-blur-sm animate-in fade-in duration-200">
+                <div className="absolute bottom-[80px] left-4 right-4 bg-anthracite-dark border border-white/10 rounded-3xl shadow-2xl overflow-hidden animate-in slide-in-from-bottom-4 duration-300">
+                    <div className="flex items-center justify-between p-5 border-b border-white/5">
+                        <span className="text-teal font-black uppercase tracking-widest text-xs">{item.name}</span>
+                        <button onClick={() => setMobileOpen(null)} className="p-2 bg-white/5 rounded-full text-white/50">
+                            <X size={20} />
+                        </button>
+                    </div>
+                    <div className="p-2 grid grid-cols-1 gap-1">
+                        {item.dropdown.map(sub => (
+                            <Link key={sub.href} href={sub.href}
+                                onClick={() => setMobileOpen(null)}
+                                className="flex items-center justify-between px-5 py-4 rounded-2xl hover:bg-white/5 active:bg-teal/10 transition-all group">
+                                <span className="text-white font-bold group-active:text-teal">{sub.name}</span>
+                                <ChevronDown size={16} className="text-white/20 -rotate-90" />
+                            </Link>
+                        ))}
+                    </div>
+                </div>
+                {/* Dışarıya tıklayınca kapatma alanı */}
+                <div className="absolute inset-0 -z-10" onClick={() => setMobileOpen(null)} />
             </div>
           );
         })}
 
-        {/* Alt bar */}
-        <div className="flex items-end bg-anthracite-dark/98 border-t border-white/10 backdrop-blur-xl"
+        {/* Alt Bar */}
+        <div className="flex items-end bg-anthracite-dark/98 border-t border-white/10 backdrop-blur-xl relative z-[202]"
           style={{ paddingBottom: 'env(safe-area-inset-bottom, 8px)' }}>
           {bottomNav.map((item) => {
             const Icon = item.icon;
             const isCenter = item.center;
-            const isActive = item.href
-              ? (pathname === item.href)
-              : item.dropdown?.some(d => pathname === d.href);
+            const isActive = item.href ? (pathname === item.href) : item.dropdown?.some(d => pathname === d.href);
             const isDropOpen = mobileOpen === item.name;
 
             if (isCenter) {
               return (
-                <Link key={item.name} href={item.href!}
-                  className="flex-1 flex flex-col items-center justify-center pb-2">
+                <Link key={item.name} href={item.href!} className="flex-1 flex flex-col items-center justify-center pb-2">
                   <div className={`w-14 h-14 rounded-2xl flex items-center justify-center shadow-lg -mt-4 transition-all ${
-                    isActive
-                      ? 'bg-teal shadow-teal/40 scale-105'
-                      : 'bg-teal/90 shadow-teal/20 active:scale-95'
+                    isActive ? 'bg-teal shadow-teal/40 scale-105' : 'bg-teal/90 shadow-teal/20 active:scale-95'
                   }`}>
                     <Image src="/fav.webp" alt="Ana Sayfa" width={36} height={36} className="w-9 h-9 rounded-xl object-contain" />
                   </div>
-                  <span className="text-[9px] font-black uppercase tracking-widest mt-1.5 text-white/50">
-                    {item.name}
-                  </span>
-                </Link>
-              );
-            }
-
-            // Dropdown olanlar button, link olanlar Link
-            if (item.href && !item.dropdown) {
-              return (
-                <Link key={item.name} href={item.href}
-                  className="flex-1 flex flex-col items-center justify-center py-3 gap-1 active:bg-white/5 transition-colors">
-                  <div className={`transition-all ${isActive ? 'scale-110' : ''}`}>
-                    <Icon size={20} className={isActive ? 'text-teal' : 'text-white/50'} />
-                  </div>
-                  <span className={`text-[9px] font-black uppercase tracking-widest ${isActive ? 'text-teal' : 'text-white/50'}`}>
-                    {item.name}
-                  </span>
+                  <span className="text-[9px] font-black uppercase tracking-widest mt-1.5 text-white/50">{item.name}</span>
                 </Link>
               );
             }
 
             return (
               <button key={item.name}
-                aria-label={item.name}
-                aria-expanded={isDropOpen}
                 onClick={(e) => {
-                  e.stopPropagation();
-                  setMobileOpen(isDropOpen ? null : item.name);
+                  if (item.href && !item.dropdown) {
+                    window.location.href = item.href;
+                  } else {
+                    setMobileOpen(isDropOpen ? null : item.name);
+                  }
                 }}
                 className="flex-1 flex flex-col items-center justify-center py-3 gap-1 active:bg-white/5 transition-colors">
                 <div className={`relative transition-all ${isActive || isDropOpen ? 'scale-110' : ''}`}>
                   <Icon size={20} className={isActive || isDropOpen ? 'text-teal' : 'text-white/50'} />
-                  {isDropOpen && (
-                    <span className="absolute -top-0.5 -right-0.5 w-2 h-2 bg-teal rounded-full" />
-                  )}
                 </div>
-                <span className={`text-[9px] font-black uppercase tracking-widest ${
-                  isActive || isDropOpen ? 'text-teal' : 'text-white/50'
-                }`}>
+                <span className={`text-[9px] font-black uppercase tracking-widest ${isActive || isDropOpen ? 'text-teal' : 'text-white/50'}`}>
                   {item.name}
                 </span>
               </button>
@@ -245,7 +207,6 @@ export default function Navbar() {
           })}
         </div>
       </div>
-
     </>
   );
 }
