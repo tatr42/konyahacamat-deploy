@@ -1,0 +1,133 @@
+@import url('https://fonts.googleapis.com/css2?family=Playfair+Display:ital,wght@0,400;0,600;0,700;1,400;1,600&family=DM+Sans:opsz,wght@9..40,300;9..40,400;9..40,500;9..40,600&display=swap');
+@import "tailwindcss";
+
+/* ── 1. Tasarım Tokenları (Tailwind v4) ── */
+@theme {
+  --color-anthracite: #1a1f2e;
+  --color-anthracite-light: #252b3b;
+  --color-anthracite-dark: #0f1219;
+  --color-teal: #2dd4c0;
+  --color-teal-dark: #1fb8a6;
+  --color-teal-muted: #0d9488;
+  --color-sage: #86efac;
+  --color-cream: #f8f9f7;
+  --color-warm-gray: #f1f2f0;
+  --color-text-muted: #94a3b8;
+  --color-gold: #d4a853;
+
+  --font-display: "Playfair Display", Georgia, serif;
+  --font-body: "DM Sans", system-ui, -apple-system, sans-serif;
+
+  --spacing-container-px: 1rem;
+}
+
+/* ── 2. Temel Katman (Base) ── */
+@layer base {
+  *, *::before, *::after {
+    box-sizing: border-box;
+    margin: 0;
+    padding: 0;
+  }
+
+  html {
+    scroll-behavior: smooth;
+    -webkit-text-size-adjust: 100%;
+    overflow-x: hidden;
+  }
+
+  body {
+    font-family: var(--font-body);
+    /* KRİTİK: Beyaz ekran sorununu çözmek için arka planı koyu yaptık */
+    background-color: var(--color-anthracite-dark);
+    color: white;
+    -webkit-font-smoothing: antialiased;
+    overflow-x: hidden;
+    min-height: 100vh;
+    display: flex;
+    flex-direction: column;
+  }
+
+  img {
+    max-width: 100%;
+    height: auto;
+    display: block;
+  }
+
+  /* Sayfa içeriğinin Footer'ı aşağı itmesi için */
+  main {
+    flex: 1 0 auto;
+    display: flex;
+    flex-direction: column;
+    width: 100%;
+    /* Navbar'ın altında kalmaması için padding */
+    padding-top: 80px; 
+  }
+
+  footer {
+    flex-shrink: 0;
+  }
+}
+
+/* ── 3. Özel Bileşenler & Utility ── */
+@layer utilities {
+  .font-display {
+    font-family: var(--font-display);
+  }
+
+  /* Dinamik Container Yapısı */
+  .container-site {
+    width: 100%;
+    max-width: 1280px;
+    margin-inline: auto;
+    padding-inline: 1.25rem;
+  }
+
+  @media (min-width: 1024px) {
+    .container-site {
+      padding-inline: 2.5rem;
+    }
+  }
+
+  /* Ebusadullah Özel Hero Mesh Arka Plan */
+  .hero-mesh {
+    background: 
+      radial-gradient(ellipse 70% 55% at 20% 45%, rgba(45,212,192,0.12) 0%, transparent 60%),
+      radial-gradient(ellipse 50% 50% at 80% 70%, rgba(134,239,172,0.08) 0%, transparent 55%),
+      linear-gradient(to bottom, var(--color-anthracite), var(--color-anthracite-dark));
+  }
+
+  .teal-divider {
+    width: 44px;
+    height: 3px;
+    background: linear-gradient(90deg, var(--color-teal), var(--color-sage));
+    border-radius: 2px;
+  }
+
+  /* Animasyonlar */
+  .animate-slide-up {
+    animation: slideUp 0.4s cubic-bezier(0.16, 1, 0.3, 1) both;
+  }
+}
+
+/* ── 4. Global Animasyonlar & Scroll ── */
+@keyframes slideUp {
+  from { opacity: 0; transform: translateY(20px); }
+  to { opacity: 1; transform: translateY(0); }
+}
+
+::-webkit-scrollbar {
+  width: 8px;
+}
+
+::-webkit-scrollbar-track {
+  background: var(--color-anthracite-dark);
+}
+
+::-webkit-scrollbar-thumb {
+  background: var(--color-teal-muted);
+  border-radius: 10px;
+}
+
+::-webkit-scrollbar-thumb:hover {
+  background: var(--color-teal);
+}
