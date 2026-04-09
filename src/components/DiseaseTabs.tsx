@@ -93,7 +93,7 @@ export default function DiseaseTabs() {
           <p className="text-white/50 text-lg leading-relaxed">
             Hacamat ve sülük terapisi; nörolojik bozukluklardan cilt hastalıklarına, 
             kadın-erkek sorunlarından psikolojik rahatsızlıklara kadar geniş bir yelpazede şifa sunar. 
-            Hz. Peygamber'in tavsiye ettiği bu kadim yöntem, 15 yıllık uzmanlıkla sunulmaktadır.
+            Hz. Peygamber'in tavsiye ettiği bu kadim yöntem, {new Date().getFullYear() - 1994} yıllık uzmanlıkla sunulmaktadır.
           </p>
         </div>
 

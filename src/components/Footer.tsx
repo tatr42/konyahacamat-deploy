@@ -24,7 +24,7 @@ export default function Footer() {
               </h3>
             </Link>
             <p className="text-white/50 text-sm leading-relaxed max-w-xs">
-              Kadim şifa geleneklerini modern sterilizasyon ve uzmanlık eğitimiyle harmanlayarak geleceğe taşıyoruz. 15+ yıl, 1200+ mezun.
+              Kadim şifa geleneklerini modern sterilizasyon ve uzmanlık eğitimiyle harmanlayarak geleceğe taşıyoruz. {new Date().getFullYear() - 1994}+ yıl, 1200+ mezun.
             </p>
             <div className="flex gap-4">
               <a href="https://www.instagram.com/konya_hacamat" target="_blank" rel="noopener noreferrer" aria-label="Konya Hacamat Instagram" className="w-11 h-11 rounded-2xl bg-white/5 flex items-center justify-center hover:bg-teal hover:text-anthracite-dark transition-all duration-300 border border-white/10">

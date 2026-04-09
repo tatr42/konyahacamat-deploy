@@ -1,15 +1,16 @@
 import type { Metadata } from "next";
 import Link from "next/link";
 import { CheckCircle, Clock, Shield, AlertTriangle, Phone, MessageCircle, ChevronRight } from "lucide-react";
+import { getYearsExpStr } from "@/lib/experience";
 
 export const metadata: Metadata = {
   title: "Hacamat Tedavisi Konya | Kuru & Yaş Hacamat | Ebusadullah Akademi",
-  description: "Konya'da profesyonel kuru ve yaş hacamat tedavisi. CE sertifikalı steril malzeme, 15+ yıl deneyim, Almanya seansları. Ebusadullah Hacamat & Akademi — Randevu: 0554 406 23 83",
+  description: "Konya'da profesyonel kuru ve yaş hacamat tedavisi. CE sertifikalı steril malzeme, 32+ yıl deneyim, Almanya seansları. Ebusadullah Hacamat & Akademi — Randevu: 0554 406 23 83",
   keywords: ["hacamat tedavisi konya", "kuru hacamat", "yaş hacamat konya", "hacamat fiyat", "hacamat randevu konya", "ebusadullah hacamat", "islamda hacamat", "hacamat faydaları", "hacamat noktaları"],
   alternates: { canonical: "https://konyahacamat.net/hizmetler/hacamat" },
   openGraph: {
     title: "Hacamat Tedavisi Konya | Kuru & Yaş Hacamat | Ebusadullah Akademi",
-    description: "Konya'da profesyonel kuru ve yaş hacamat tedavisi. 15+ yıl deneyim, steril uygulama, Almanya seansları. Randevu için WhatsApp'tan yazın.",
+    description: "Konya'da profesyonel kuru ve yaş hacamat tedavisi. 32+ yıl deneyim, steril uygulama, Almanya seansları. Randevu için WhatsApp'tan yazın.",
     url: "https://konyahacamat.net/hizmetler/hacamat",
     images: [{ url: "/logo.webp", width: 1200, height: 630, alt: "Hacamat Tedavisi Konya Ebusadullah" }],
   },
@@ -270,7 +271,7 @@ export default function HacamatPage() {
             </div>
             <div className="flex-1">
               <h2 className="font-display text-3xl font-bold text-white mb-2">Randevu Almak İster misiniz?</h2>
-              <p className="text-white/50 mb-6">Konya veya Almanya seansları için hemen iletişime geçin. 15+ yıl deneyimle güvenli ve steril uygulama.</p>
+              <p className="text-white/50 mb-6">Konya veya Almanya seansları için hemen iletişime geçin. {getYearsExpStr()} yıl deneyimle güvenli ve steril uygulama.</p>
               <div className="flex flex-wrap gap-3">
                 <a href="https://wa.me/905544062383?text=Hacamat%20randevusu%20almak%20istiyorum." target="_blank" rel="noopener noreferrer"
                   className="flex items-center gap-2 bg-[#25D366] text-white px-6 py-3 rounded-xl font-black text-sm uppercase tracking-widest hover:scale-105 transition-all">

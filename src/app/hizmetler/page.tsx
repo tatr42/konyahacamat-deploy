@@ -1,15 +1,16 @@
 import type { Metadata } from "next";
 import Link from "next/link";
 import { Droplets, ShieldCheck, Clock, CheckCircle, ChevronRight, MessageCircle, Phone } from "lucide-react";
+import { getYearsExpStr } from "@/lib/experience";
 
 export const metadata: Metadata = {
   title: "Hacamat & Sülük Terapisi Konya | Geleneksel Tıp Hizmetleri | Ebusadullah",
-  description: "Konya Ebusadullah Akademi'de kuru hacamat, yaş hacamat ve sülük terapisi hizmetleri. CE sertifikalı steril uygulama, 15+ yıl deneyim, Almanya periyodik seansları.",
+  description: "Konya Ebusadullah Akademi'de kuru hacamat, yaş hacamat ve sülük terapisi hizmetleri. CE sertifikalı steril uygulama, 32+ yıl deneyim, Almanya periyodik seansları.",
   keywords: ["konya hacamat hizmetleri", "konya geleneksel tıp", "kuru hacamat konya", "yaş hacamat", "sülük terapisi", "hacamat ve sülük", "ebusadullah konya"],
   alternates: { canonical: "https://konyahacamat.net/hizmetler" },
   openGraph: {
     title: "Hacamat & Sülük Terapisi Konya | Ebusadullah Akademi",
-    description: "Kuru hacamat, yaş hacamat ve sülük terapisi. Steril uygulama, 15+ yıl deneyim. Konya ve Almanya'da hizmet.",
+    description: "Kuru hacamat, yaş hacamat ve sülük terapisi. Steril uygulama, 32+ yıl deneyim. Konya ve Almanya'da hizmet.",
     url: "https://konyahacamat.net/hizmetler",
     images: [{ url: "/logo.webp", width: 1200, height: 630, alt: "Konya Hacamat Hizmetleri" }],
   },
@@ -137,7 +138,7 @@ export default function HizmetlerPage() {
           </div>
           <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-4 gap-5">
             {[
-              { rakam: "15+", etiket: "Yıl Deneyim", aciklama: "2008'den bu yana kesintisiz hizmet" },
+              { rakam: getYearsExpStr(), etiket: "Yıl Deneyim", aciklama: "1994'ten bu yana kesintisiz hizmet" },
               { rakam: "1200+", etiket: "Eğitim Mezunu", aciklama: "Türkiye ve Avrupa'da yetişmiş uzmanlar" },
               { rakam: "384+", etiket: "Rahatsızlık", aciklama: "Geleneksel kaynaklarda belirtilen fayda alanı" },
               { rakam: "10+", etiket: "Ülke", aciklama: "Mezunlarımızın aktif hizmet verdiği ülkeler" },

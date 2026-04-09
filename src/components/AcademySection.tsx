@@ -2,10 +2,11 @@
 import React from 'react';
 import Image from 'next/image';
 import { CheckCircle2, Calendar, Info, Globe } from 'lucide-react';
+import { getYearsExpStr } from '@/lib/experience';
 
 const stats = [
   { num: "1200+", label: "Mezun" },
-  { num: "15+", label: "Yıl Deneyim" },
+  { num: getYearsExpStr(), label: "Yıl Deneyim" },
   { num: "384", label: "Tedavi Alanı" },
   { num: "6+", label: "Şehir" },
 ];

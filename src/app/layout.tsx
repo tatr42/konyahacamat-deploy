@@ -13,7 +13,7 @@ export const metadata: Metadata = {
     template: "%s | Konyahacamat.net",
   },
   description:
-    "Konya'da profesyonel hacamat tedavisi ve sülük terapisi. Ebusadullah Hacamat & Akademi — 15+ yıl deneyim, CE sertifikalı steril malzeme, Almanya seansları. Randevu: 0554 406 23 83",
+    "Konya'da profesyonel hacamat tedavisi ve sülük terapisi. Ebusadullah Hacamat & Akademi — 32+ yıl deneyim, CE sertifikalı steril malzeme, Almanya seansları. Randevu: 0554 406 23 83",
   keywords: [
     "konya hacamat", "hacamat konya", "kuru hacamat", "yaş hacamat",
     "sülük terapisi konya", "hirudoterapi", "hacamat tedavisi",
@@ -38,13 +38,13 @@ export const metadata: Metadata = {
     siteName: "Konya Hacamat Ebusadullah",
     title: "Konya Hacamat | Ebusadullah Hacamat & Akademi",
     description:
-      "Konya'da profesyonel hacamat ve sülük terapisi. 15+ yıl deneyim, steril uygulama, Almanya seansları. Hicri takvime göre faziletli günlerde randevu alın.",
+      "Konya'da profesyonel hacamat ve sülük terapisi. 32+ yıl deneyim, steril uygulama, Almanya seansları. Hicri takvime göre faziletli günlerde randevu alın.",
     images: [{ url: "/logo.webp", width: 1200, height: 630, alt: "Konya Hacamat Ebusadullah Akademi" }],
   },
   twitter: {
     card: "summary_large_image",
     title: "Konya Hacamat | Ebusadullah Hacamat & Akademi",
-    description: "Konya'da profesyonel hacamat ve sülük terapisi. 15+ yıl deneyim. Randevu: 0554 406 23 83",
+    description: "Konya'da profesyonel hacamat ve sülük terapisi. 32+ yıl deneyim. Randevu: 0554 406 23 83",
     images: ["/logo.webp"],
   },
   verification: {
@@ -64,7 +64,7 @@ const localBusinessSchema = {
   name: "Ebusadullah Hacamat & Akademi",
   alternateName: "Konya Hacamat Ebusadullah",
   description:
-    "Konya'da 15+ yıldır hizmet veren profesyonel hacamat ve sülük terapisi merkezi. Uluslararası geçerli hacamat uzmanlık eğitimleri.",
+    "Konya'da 32+ yıldır hizmet veren profesyonel hacamat ve sülük terapisi merkezi. Uluslararası geçerli hacamat uzmanlık eğitimleri.",
   url: BASE,
   telephone: "+905544062383",
   email: "info@konyahacamat.net",
@@ -123,7 +123,7 @@ export default function RootLayout({ children }: { children: React.ReactNode }) 
           gtag('config', 'G-HY8VE2CQS1');
         `}</Script>
         <Navbar />
-        <main>{children}</main>
+        <main className="pb-[72px] lg:pb-0">{children}</main>
         <Footer />
       </body>
     </html>

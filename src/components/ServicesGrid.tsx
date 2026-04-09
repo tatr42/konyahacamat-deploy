@@ -1,13 +1,14 @@
 "use client";
 import React from "react";
 import { Droplets, Bug, GraduationCap, ShoppingBag, ArrowRight, Shield, Globe, Clock } from "lucide-react";
+import { getYearsExpStr } from "@/lib/experience";
 
 const services = [
   {
     icon: Droplets,
     title: "Hacamat Tedavisi",
     sub: "Kuru & Yaş Hacamat",
-    desc: "Hz. Peygamber'in (s.a.v) tavsiye ettiği kadim tedavi yöntemi. 15 yıllık deneyim, steril malzemeler, uzman eller. Konya ve çevre illerde hizmet.",
+    desc: `Hz. Peygamber'in (s.a.v) tavsiye ettiği kadim tedavi yöntemi. ${getYearsExpStr()} yıllık deneyim, steril malzemeler, uzman eller. Konya ve çevre illerde hizmet.`,
     href: "/hizmetler/hacamat",
     badge: "En Çok Tercih",
     gradient: "from-teal/20 via-teal/5 to-transparent",
@@ -48,7 +49,7 @@ const services = [
 const badges = [
   { icon: Shield, text: "Steril & Hijyenik" },
   { icon: Globe, text: "Uluslararası Standartlar" },
-  { icon: Clock, text: "15+ Yıl Deneyim" },
+  { icon: Clock, text: `${getYearsExpStr()} Yıl Deneyim` },
 ];
 
 export default function ServicesGrid() {
@@ -117,7 +118,7 @@ export default function ServicesGrid() {
         <div className="mt-16 grid grid-cols-1 md:grid-cols-3 gap-6">
           {[
             { title: "Kalite & Güvenilirlik", desc: "Tüm ürün ve uygulamalarımızda hijyen standartlarına sıkı sıkıya bağlıyız. Steril tek kullanımlık malzeme garantisi." },
-            { title: "Eğitim & Bilgi", desc: "15 yıllık deneyimle binlerce kursiyere hacamat, sülük ve geleneksel tıp eğitimi verdik. Mezunlar aktif olarak kendi merkezlerini işletiyor." },
+            { title: "Eğitim & Bilgi", desc: `${getYearsExpStr()} yıllık deneyimle binlerce kursiyere hacamat, sülük ve geleneksel tıp eğitimi verdik. Mezunlar aktif olarak kendi merkezlerini işletiyor.` },
             { title: "Müşteri Odaklılık", desc: "Her hastamıza özel yaklaşım. Randevu öncesi ücretsiz danışmanlık. Kurs sonrası süresiz teknik destek." },
           ].map((item) => (
             <div key={item.title} className="bg-white/5 border border-white/10 rounded-3xl p-7 hover:border-teal/20 transition-all">

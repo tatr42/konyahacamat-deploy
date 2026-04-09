@@ -2,6 +2,7 @@
 import { useEffect, useState } from "react";
 import Image from "next/image";
 import { Phone, Calendar, ChevronDown, Star, Award } from "lucide-react";
+import { getYearsExpStr } from "@/lib/experience";
 
 const cities = ["Adana","Adıyaman","Afyonkarahisar","Ağrı","Amasya","Ankara","Antalya","Artvin","Aydın","Balıkesir","Bilecik","Bingöl","Bitlis","Bolu","Burdur","Bursa","Çanakkale","Çankırı","Çorum","Denizli","Diyarbakır","Edirne","Elazığ","Erzincan","Erzurum","Eskişehir","Gaziantep","Giresun","Gümüşhane","Hakkari","Hatay","Isparta","Mersin","İstanbul","İzmir","Kars","Kastamonu","Kayseri","Kırklareli","Kırşehir","Kocaeli","Konya","Kütahya","Malatya","Manisa","Kahramanmaraş","Mardin","Muğla","Muş","Nevşehir","Niğde","Ordu","Rize","Sakarya","Samsun","Siirt","Sinop","Sivas","Tekirdağ","Tokat","Trabzon","Tunceli","Şanlıurfa","Uşak","Van","Yozgat","Zonguldak","Aksaray","Bayburt","Karaman","Kırıkkale","Batman","Şırnak","Bartın","Ardahan","Iğdır","Yalova","Karabük","Kilis","Osmaniye","Düzce"];
 
@@ -14,7 +15,7 @@ export default function HeroSection() {
   }, []);
 
   return (
-    <section className="relative min-h-screen flex items-center justify-center hero-mesh overflow-hidden">
+    <section className="relative min-h-screen flex items-start lg:items-center justify-center hero-mesh overflow-hidden pt-14 lg:pt-0">
       <div className="absolute top-1/4 left-[10%] w-[500px] h-[500px] rounded-full border border-teal/5 pointer-events-none" />
       <div className="absolute top-1/4 left-[10%] w-[350px] h-[350px] rounded-full border border-teal/10 pointer-events-none translate-x-[75px] translate-y-[75px]" />
 
@@ -30,13 +31,13 @@ export default function HeroSection() {
         />
       </div>
 
-      <div className="container-site relative z-10 flex flex-col gap-10 pt-10">
+      <div className="container-site relative z-10 flex flex-col gap-10">
         {/* Üst Rozetler */}
         <div className="flex flex-wrap gap-3">
           <div className="inline-flex items-center gap-2 bg-teal/10 border border-teal/20 px-4 py-2 rounded-full">
             <Star size={12} className="text-teal fill-teal" />
             <span className="text-[11px] font-black text-teal uppercase tracking-[0.2em]">
-              15+ Yıl Deneyim
+              {getYearsExpStr()} Yıl Deneyim
             </span>
           </div>
           <div className="inline-flex items-center gap-2 bg-teal/10 border border-teal/20 px-4 py-2 rounded-full">
@@ -100,7 +101,7 @@ export default function HeroSection() {
             "Uluslararası Sertifika",
             "1200+ Mezun",
             "Ücretsiz Danışmanlık",
-            "15 Yıllık Deneyim",
+            `${new Date().getFullYear() - 1994} Yıllık Deneyim`,
           ].map((item) => (
             <div key={item} className="flex items-center gap-2">
               <span className="w-1.5 h-1.5 rounded-full bg-teal" />

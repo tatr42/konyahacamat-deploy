@@ -1,6 +1,7 @@
 "use client";
 import { useState, useEffect } from 'react';
 import Link from 'next/link';
+import { getYearsExpStr } from '@/lib/experience';
 import { X, ChevronLeft, ChevronRight, Phone, MessageCircle, Calendar, ZoomIn, ExternalLink, Loader2 } from 'lucide-react';
 
 interface Gazete { id: string; kaynak: string; yil: string; baslik: string; img: string; slug?: string; }
@@ -75,14 +76,14 @@ export default function BasinPage() {
           <h1 className="font-display text-5xl md:text-6xl font-bold text-white mt-3 mb-4">
             Basın <span className="text-teal italic">Odası</span>
           </h1>
-          <p className="text-white/50 text-lg max-w-xl">15 yılı aşkın sürede Türkiye'nin önde gelen gazetelerinde yer aldık.</p>
+          <p className="text-white/50 text-lg max-w-xl">{getYearsExpStr()} yılı aşkın sürede Türkiye'nin önde gelen gazetelerinde yer aldık.</p>
         </div>
 
         {/* STATS */}
         <div className="grid grid-cols-3 gap-4 mb-14 max-w-xl">
           {[
             { sayi: gazeteler.length || '25+', label: 'Gazete & Dergi' },
-            { sayi: '15+', label: 'Yıl Medyada' },
+            { sayi: getYearsExpStr(), label: 'Yıl Medyada' },
             { sayi: '50+', label: 'Haber & Röportaj' },
           ].map(s => (
             <div key={s.label} className="bg-white/5 border border-white/10 rounded-2xl p-5 text-center">
@@ -169,7 +170,7 @@ export default function BasinPage() {
             <h2 className="font-display text-3xl md:text-4xl font-bold text-white leading-snug">
               Hacamat Tedavisi<br /><span className="text-teal italic">İçin Randevu Alın</span>
             </h2>
-            <p className="text-white/50 text-sm mt-4 max-w-sm leading-relaxed">15+ yıllık deneyim ve steril malzemeyle güvenli hacamat tedavisi için bize ulaşın.</p>
+            <p className="text-white/50 text-sm mt-4 max-w-sm leading-relaxed">{getYearsExpStr()} yıllık deneyim ve steril malzemeyle güvenli hacamat tedavisi için bize ulaşın.</p>
           </div>
           <div className="flex flex-col sm:flex-row md:flex-col gap-3 shrink-0 w-full md:w-auto">
             <a href="https://wa.me/905544062383?text=Merhaba%2C%20hacamat%20tedavisi%20hakk%C4%B1nda%20bilgi%20almak%20istiyorum."

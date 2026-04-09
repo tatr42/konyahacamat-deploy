@@ -39,7 +39,7 @@ const navLinks = [
 const bottomNav = [
   { name: 'Takvim', href: '/takvim', icon: Calendar },
   {
-    name: 'Hizmetler', icon: Stethoscope,
+    name: 'Hizmetler', icon: Stethoscope, dropAlign: 'left' as const,
     dropdown: [
       { name: 'Hacamat', href: '/hizmetler/hacamat' },
       { name: 'Sülük', href: '/hizmetler/suluk' },
@@ -48,7 +48,7 @@ const bottomNav = [
   },
   { name: 'Ana Sayfa', href: '/', icon: Home, center: true },
   {
-    name: 'Medya', icon: Newspaper,
+    name: 'Medya', icon: Newspaper, dropAlign: 'right-medya' as const,
     dropdown: [
       { name: 'Blog', href: '/blog' },
       { name: 'Basın', href: '/basin' },
@@ -56,7 +56,7 @@ const bottomNav = [
     ]
   },
   {
-    name: 'Kurumsal', icon: Building2,
+    name: 'Kurumsal', icon: Building2, dropAlign: 'right' as const,
     dropdown: [
       { name: 'Hakkımızda', href: '/hakkimizda' },
       { name: 'İletişim', href: '/iletisim' },
@@ -89,9 +89,9 @@ export default function Navbar() {
     <>
       {/* ── ÜST NAV BAR ── */}
       <nav className={`fixed top-0 w-full z-[100] transition-all duration-500 ${
-        scrolled ? 'bg-anthracite-dark/95 backdrop-blur-md py-3 shadow-2xl' : 'bg-transparent py-6'
+        scrolled ? 'bg-anthracite-dark/95 backdrop-blur-md py-3 shadow-2xl' : 'bg-transparent py-3 lg:py-6'
       }`}>
-        <div className="container-site flex justify-between items-center">
+        <div className="container-site flex justify-between items-end lg:items-center">
 
           {/* LOGO */}
           <Link href="/" className="flex items-center gap-2 group shrink-0">
@@ -152,12 +152,16 @@ export default function Navbar() {
           <div className="fixed inset-0 z-[199]" onClick={() => setMobileOpen(null)} />
         )}
 
-        {/* Dropdown paneller — YUKARI açılır */}
+        {/* Dropdown paneller — YUKARI açılır, butona hizalı */}
         {bottomNav.map(item => {
           if (!item.dropdown || mobileOpen !== item.name) return null;
+          const posClass =
+            item.dropAlign === 'right' ? 'right-2' :
+            item.dropAlign === 'right-medya' ? 'right-[20%]' :
+            'left-[20%]';
           return (
             <div key={item.name}
-              className="absolute bottom-[72px] left-0 right-0 mx-4 bg-anthracite-dark border border-white/10 rounded-2xl shadow-2xl overflow-hidden z-[201]"
+              className={`absolute bottom-[72px] w-44 ${posClass} bg-anthracite-dark border border-white/10 rounded-2xl shadow-2xl overflow-hidden z-[201]`}
               onClick={e => e.stopPropagation()}>
               <div className="p-2">
                 {item.dropdown.map(sub => (
@@ -242,8 +246,6 @@ export default function Navbar() {
         </div>
       </div>
 
-      {/* Mobilde alt nav yüksekliği kadar boşluk bırak */}
-      <div className="lg:hidden h-[72px]" />
     </>
   );
 }

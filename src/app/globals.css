@@ -90,9 +90,8 @@
 
   /* Ebusadullah Özel Hero Mesh Arka Plan */
   .hero-mesh {
-    background: 
-      radial-gradient(ellipse 70% 55% at 20% 45%, rgba(45,212,192,0.12) 0%, transparent 60%),
-      radial-gradient(ellipse 50% 50% at 80% 70%, rgba(134,239,172,0.08) 0%, transparent 55%),
+    background:
+      radial-gradient(ellipse 50% 35% at 20% 70%, rgba(45,212,192,0.06) 0%, transparent 60%),
       linear-gradient(to bottom, var(--color-anthracite), var(--color-anthracite-dark));
   }
 

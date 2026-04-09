@@ -1,6 +1,7 @@
 "use client";
 import React, { useRef } from "react";
 import { Newspaper, ArrowRight, Quote, TrendingUp } from "lucide-react";
+import { getYearsExpStr } from "@/lib/experience";
 
 const pressItems = [
   {
@@ -27,7 +28,7 @@ const pressItems = [
   {
     source: "Haber Konya",
     headline: "'Hacamata itibarı yeniden kazandırılıyor'",
-    excerpt: "15 yılı aşkın deneyimiyle Ebusadullah, geleneksel tedavi yöntemlerini modern hijyen standartlarıyla buluşturuyor. 384 farklı hastalıkta başarılı sonuçlar alınıyor.",
+    excerpt: `${new Date().getFullYear() - 1994} yılı aşkın deneyimiyle Ebusadullah, geleneksel tedavi yöntemlerini modern hijyen standartlarıyla buluşturuyor. 384 farklı hastalıkta başarılı sonuçlar alınıyor.`,
     tag: "Röportaj",
     year: "2024",
   },
@@ -143,7 +144,7 @@ export default function PressSection() {
             { num: "50+", label: "Gazete & Dergi" },
             { num: "1200+", label: "Sertifikalı Mezun" },
             { num: "384", label: "Tedavi Alanı" },
-            { num: "15+", label: "Yıllık Deneyim" },
+            { num: getYearsExpStr(), label: "Yıllık Deneyim" },
           ].map((stat) => (
             <div key={stat.label} className="flex flex-col items-center text-center group">
               <span className="font-display text-4xl md:text-5xl font-bold text-teal group-hover:scale-110 transition-transform duration-300 inline-block">
