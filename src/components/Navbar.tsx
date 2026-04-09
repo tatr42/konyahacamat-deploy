@@ -1,6 +1,7 @@
 "use client";
 import { useState, useEffect } from 'react';
 import Link from 'next/link';
+import Image from 'next/image';
 import { usePathname } from 'next/navigation';
 import { ChevronDown, Calendar, Home, Newspaper, Building2, Stethoscope } from 'lucide-react';
 
@@ -94,7 +95,7 @@ export default function Navbar() {
 
           {/* LOGO */}
           <Link href="/" className="flex items-center gap-2 group shrink-0">
-            <img src="/fav.webp" alt="Konya Hacamat" className="w-8 h-8 lg:w-10 lg:h-10 rounded-lg object-contain transition-transform group-hover:scale-110" />
+            <Image src="/fav.webp" alt="Konya Hacamat" width={40} height={40} className="w-8 h-8 lg:w-10 lg:h-10 rounded-lg object-contain transition-transform group-hover:scale-110" />
             <div className="flex flex-col text-left">
               <span className="text-white font-bold text-sm lg:text-lg leading-none tracking-tight uppercase">
                 konyahacamat<span className="text-teal">.net</span>
@@ -191,7 +192,7 @@ export default function Navbar() {
                       ? 'bg-teal shadow-teal/40 scale-105'
                       : 'bg-teal/90 shadow-teal/20 active:scale-95'
                   }`}>
-                    <img src="/fav.webp" alt="Ana Sayfa" className="w-9 h-9 rounded-xl object-contain" />
+                    <Image src="/fav.webp" alt="Ana Sayfa" width={36} height={36} className="w-9 h-9 rounded-xl object-contain" />
                   </div>
                   <span className="text-[9px] font-black uppercase tracking-widest mt-1.5 text-white/50">
                     {item.name}
@@ -217,6 +218,8 @@ export default function Navbar() {
 
             return (
               <button key={item.name}
+                aria-label={item.name}
+                aria-expanded={isDropOpen}
                 onClick={(e) => {
                   e.stopPropagation();
                   setMobileOpen(isDropOpen ? null : item.name);

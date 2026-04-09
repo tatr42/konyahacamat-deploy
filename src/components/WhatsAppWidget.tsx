@@ -83,6 +83,8 @@ export default function WhatsAppWidget() {
         )}
       <button
         onClick={() => setIsOpen(!isOpen)}
+        aria-label={isOpen ? 'WhatsApp penceresini kapat' : 'WhatsApp ile iletişime geç'}
+        aria-expanded={isOpen}
         className={`w-16 h-16 rounded-full flex items-center justify-center shadow-2xl transition-all duration-300 transform active:scale-90 ${
           isOpen ? 'bg-anthracite border border-white/10 text-white rotate-90' : 'bg-[#25D366] text-white hover:scale-110'
         }`}

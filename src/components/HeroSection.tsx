@@ -1,5 +1,6 @@
 "use client";
 import { useEffect, useState } from "react";
+import Image from "next/image";
 import { Phone, Calendar, ChevronDown, Star, Award } from "lucide-react";
 
 const cities = ["Adana","Adıyaman","Afyonkarahisar","Ağrı","Amasya","Ankara","Antalya","Artvin","Aydın","Balıkesir","Bilecik","Bingöl","Bitlis","Bolu","Burdur","Bursa","Çanakkale","Çankırı","Çorum","Denizli","Diyarbakır","Edirne","Elazığ","Erzincan","Erzurum","Eskişehir","Gaziantep","Giresun","Gümüşhane","Hakkari","Hatay","Isparta","Mersin","İstanbul","İzmir","Kars","Kastamonu","Kayseri","Kırklareli","Kırşehir","Kocaeli","Konya","Kütahya","Malatya","Manisa","Kahramanmaraş","Mardin","Muğla","Muş","Nevşehir","Niğde","Ordu","Rize","Sakarya","Samsun","Siirt","Sinop","Sivas","Tekirdağ","Tokat","Trabzon","Tunceli","Şanlıurfa","Uşak","Van","Yozgat","Zonguldak","Aksaray","Bayburt","Karaman","Kırıkkale","Batman","Şırnak","Bartın","Ardahan","Iğdır","Yalova","Karabük","Kilis","Osmaniye","Düzce"];
@@ -19,10 +20,13 @@ export default function HeroSection() {
 
       <div className="absolute right-0 top-0 bottom-0 w-[45%] hidden lg:block pointer-events-none overflow-hidden">
         <div className="absolute inset-0 bg-gradient-to-r from-anthracite to-transparent z-10" />
-        <img
+        <Image
           src="/academy-hero.webp"
           alt="Ebusadullah Akademi"
-          className="h-full w-full object-cover object-center"
+          fill
+          priority
+          className="object-cover object-center"
+          sizes="45vw"
         />
       </div>
 
