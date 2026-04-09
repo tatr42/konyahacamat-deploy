@@ -1,21 +1,28 @@
-import { NextRequest, NextResponse } from "next/server";
+export const dynamic = 'force-dynamic'; // Bu satırı en üste ekle
+
+import { NextResponse } from "next/server";
 import { cookies } from "next/headers";
 
-export async function POST(req: NextRequest) {
-  const { password } = await req.json();
+// Fonksiyonun tam olarak bu isimle (POST) dışa aktarıldığından emin ol
+export async function POST(req: Request) {
+  try {
+    const { password } = await req.json();
+    const ADMIN_PASSWORD = "Eb@Hac2027#Net";
 
-  if (password !== process.env.ADMIN_PASSWORD) {
-    return NextResponse.json({ error: "Unauthorized" }, { status: 401 });
+    if (password === ADMIN_PASSWORD) {
+      const response = NextResponse.json({ success: true });
+      const cookieStore = await cookies();
+      cookieStore.set("admin_session", "active", {
+        httpOnly: true,
+        secure: true,
+        sameSite: "lax",
+        maxAge: 60 * 60 * 24,
+        path: "/",
+      });
+      return response;
+    }
+    return NextResponse.json({ error: "Şifre yanlış" }, { status: 401 });
+  } catch (err) {
+    return NextResponse.json({ error: "Hata" }, { status: 500 });
   }
-
-  const cookieStore = await cookies();
-  cookieStore.set("admin_auth", "session_ok", {
-    httpOnly: true,
-    secure: process.env.NODE_ENV === "production",
-    sameSite: "lax",
-    maxAge: 60 * 60 * 24 * 7, // 7 gün
-    path: "/",
-  });
-
-  return NextResponse.json({ ok: true });
 }
