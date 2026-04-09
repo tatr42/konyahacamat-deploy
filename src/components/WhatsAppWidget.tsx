@@ -19,7 +19,7 @@ export default function WhatsAppWidget() {
   };
 
   return (
-    <div className="fixed bottom-6 right-6 z-[999] flex flex-col items-end">
+    <div className="fixed bottom-[88px] lg:bottom-6 right-6 z-[999] flex flex-col items-end">
       {/* WhatsApp Paneli */}
       <div className={`transition-all duration-500 ease-in-out transform ${
         isOpen ? 'scale-100 opacity-100 translate-y-0' : 'scale-95 opacity-0 translate-y-10 pointer-events-none'
