@@ -1,8 +1,6 @@
 import type { Metadata } from "next";
 import "./globals.css";
 import Script from "next/script";
-import Navbar from "@/components/Navbar";
-import Footer from "@/components/Footer";
 
 const BASE = "https://konyahacamat.net";
 
@@ -122,9 +120,7 @@ export default function RootLayout({ children }: { children: React.ReactNode }) 
           gtag('js', new Date());
           gtag('config', 'G-HY8VE2CQS1');
         `}</Script>
-        <Navbar />
-        <main className="pb-[72px] lg:pb-0">{children}</main>
-        <Footer />
+        {children}
       </body>
     </html>
   );

@@ -28,7 +28,7 @@ export default function HakkimizdaPage() {
     <main className="min-h-screen bg-anthracite-dark">
 
       {/* HERO */}
-      <section className="pt-32 pb-20 relative overflow-hidden">
+      <section className="pt-20 pb-20 relative overflow-hidden">
         <div className="absolute top-0 right-0 w-[600px] h-[600px] bg-teal/5 rounded-full blur-[150px]" />
         <div className="container-site relative z-10 max-w-4xl">
           <span className="text-teal text-[11px] font-black uppercase tracking-[0.3em]">Biz Kimiz?</span>

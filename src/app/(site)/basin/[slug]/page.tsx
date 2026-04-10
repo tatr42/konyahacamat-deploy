@@ -46,7 +46,7 @@ export default async function BasinDetayPage({ params }: { params: Promise<{ slu
   if (!item) notFound();
 
   return (
-    <main className="min-h-screen bg-anthracite-dark pt-28 pb-24">
+    <main className="min-h-screen bg-anthracite-dark pt-20 pb-24">
       <div className="container-site max-w-3xl">
 
         {/* Breadcrumb */}

@@ -134,7 +134,7 @@ export default function AdminPage() {
   };
   const handleLogout = async () => {
     await fetch("/api/admin/logout", { method: "POST" });
-    window.location.reload();
+    window.location.href = "/admin/login";
   };
 
   const totalViews = posts.reduce((a, p) => a + (p.views ?? 0), 0);

@@ -1,5 +1,5 @@
 "use client";
-import React, { useState, useEffect } from 'react';
+import { useState, useEffect } from 'react';
 import { MessageCircle, X, Send, CheckCheck } from 'lucide-react';
 
 export default function WhatsAppWidget() {
@@ -19,11 +19,11 @@ export default function WhatsAppWidget() {
   };
 
   return (
-    <div className="fixed bottom-[88px] lg:bottom-6 right-6 z-[999] flex flex-col items-end">
-      {/* WhatsApp Paneli */}
-      <div className={`transition-all duration-500 ease-in-out transform ${
-        isOpen ? 'scale-100 opacity-100 translate-y-0' : 'scale-95 opacity-0 translate-y-10 pointer-events-none'
-      } bg-anthracite-dark rounded-[2rem] shadow-2xl w-[320px] mb-6 overflow-hidden border border-white/10`}>
+    <div className="fixed bottom-[88px] lg:bottom-6 right-6 z-[999]">
+      {/* WhatsApp Paneli - absolute konumlu, buton alanını etkilemez */}
+      <div className={`absolute bottom-[80px] right-0 transition-all duration-500 ease-in-out transform ${
+        isOpen ? 'scale-100 opacity-100 translate-y-0 pointer-events-auto' : 'scale-95 opacity-0 translate-y-4 pointer-events-none'
+      } bg-anthracite-dark rounded-[2rem] shadow-2xl w-[320px] overflow-hidden border border-white/10`}>
         
         {/* Header */}
         <div className="bg-teal p-6 text-anthracite-dark relative">

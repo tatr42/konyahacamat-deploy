@@ -139,7 +139,7 @@ export default function Navbar() {
         {bottomNav.map(item => {
           if (!item.dropdown || mobileOpen !== item.name) return null;
           return (
-            <div key={item.name} className="fixed inset-0 z-[1001] bg-black/60 backdrop-blur-sm animate-in fade-in duration-200">
+            <div key={item.name} className="fixed inset-0 z-[9999] bg-black/60 backdrop-blur-sm animate-in fade-in duration-200">
                 <div className="absolute bottom-[80px] left-4 right-4 bg-anthracite-dark border border-white/10 rounded-3xl shadow-2xl overflow-hidden animate-in slide-in-from-bottom-4 duration-300">
                     <div className="flex items-center justify-between p-5 border-b border-white/5">
                         <span className="text-teal font-black uppercase tracking-widest text-xs">{item.name}</span>

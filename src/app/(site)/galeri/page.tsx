@@ -26,7 +26,7 @@ const fotograflar = Array.from({ length: 24 }, (_, i) => ({
 export default function GaleriPage() {
   return (
     <main className="min-h-screen bg-anthracite-dark">
-      <section className="pt-32 pb-16">
+      <section className="pt-20 pb-16">
         <div className="container-site">
           <span className="text-teal text-[11px] font-black uppercase tracking-[0.3em]">Görseller</span>
           <h1 className="font-display text-5xl md:text-6xl font-bold text-white mt-4 mb-6">Galeri</h1>

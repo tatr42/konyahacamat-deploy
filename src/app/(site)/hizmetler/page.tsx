@@ -57,7 +57,7 @@ export default function HizmetlerPage() {
     <main className="min-h-screen bg-anthracite-dark">
 
       {/* HERO */}
-      <section className="pt-32 pb-20 relative overflow-hidden">
+      <section className="pt-20 pb-20 relative overflow-hidden">
         <div className="absolute left-0 top-0 w-[400px] h-[400px] rounded-full bg-teal/5 blur-[100px]" />
         <div className="container-site relative z-10">
           <span className="text-teal text-[11px] font-black uppercase tracking-[0.3em]">Tedavi Hizmetleri</span>

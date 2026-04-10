@@ -84,7 +84,7 @@ export default function EgitimlerPage() {
     <main className="min-h-screen bg-anthracite-dark">
 
       {/* HERO */}
-      <section className="pt-32 pb-20 relative overflow-hidden">
+      <section className="pt-20 pb-20 relative overflow-hidden">
         <div className="absolute top-0 right-0 w-[500px] h-[500px] bg-teal/5 rounded-full blur-[120px]" />
         <div className="container-site relative z-10">
           <span className="text-teal text-[11px] font-black uppercase tracking-[0.3em]">Ebusadullah Akademi</span>

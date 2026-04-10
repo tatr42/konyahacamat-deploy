@@ -35,7 +35,7 @@ export default function BasinPage() {
   };
 
   return (
-    <main className="min-h-screen bg-anthracite-dark pt-32 pb-24">
+    <main className="min-h-screen bg-anthracite-dark pt-20 pb-24">
 
       {/* LIGHTBOX */}
       {lightbox && aktifGazete && (

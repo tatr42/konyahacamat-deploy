@@ -17,7 +17,7 @@ export const metadata: Metadata = {
 
 export default function BlogPage() {
   return (
-    <main className="min-h-screen bg-anthracite-dark pt-32 pb-24">
+    <main className="min-h-screen bg-anthracite-dark pt-20 pb-24">
       <div className="container-site">
         <div className="mb-16">
           <span className="text-[11px] font-black text-teal uppercase tracking-[0.3em]">Blog & Makaleler</span>
