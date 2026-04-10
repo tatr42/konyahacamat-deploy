@@ -39,13 +39,13 @@ export default function EditBlogPost() {
       body: JSON.stringify({ ...form, published }),
     });
     setSaving(false);
-    router.push("/admin/dashboard");
+    router.push("/admin");
   };
 
   const handleDelete = async () => {
     if (!confirm("Bu yazıyı silmek istediğinizden emin misiniz?")) return;
     await fetch(`/api/blog/${id}`, { method: "DELETE" });
-    router.push("/admin/dashboard");
+    router.push("/admin");
   };
 
   if (loading) return <div className="min-h-screen bg-[#0a0a0a] flex items-center justify-center text-white/50">Yükleniyor...</div>;
@@ -54,7 +54,7 @@ export default function EditBlogPost() {
     <div className="min-h-screen bg-[#0a0a0a] text-white">
       <header className="border-b border-white/10 px-6 py-4 flex items-center justify-between">
         <div className="flex items-center gap-3">
-          <Link href="/admin/dashboard" className="text-white/50 hover:text-white"><ArrowLeft size={20} /></Link>
+          <Link href="/admin" className="text-white/50 hover:text-white"><ArrowLeft size={20} /></Link>
           <h1 className="font-bold">Yazıyı Düzenle</h1>
         </div>
         <div className="flex gap-3">

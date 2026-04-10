@@ -40,7 +40,7 @@ export default function NewBlogPost() {
       body: JSON.stringify({ ...form, published }),
     });
     if (res.ok) {
-      router.push("/admin/dashboard");
+      router.push("/admin");
     } else {
       alert("Kayıt hatası.");
       setSaving(false);
@@ -51,7 +51,7 @@ export default function NewBlogPost() {
     <div className="min-h-screen bg-[#0a0a0a] text-white">
       <header className="border-b border-white/10 px-6 py-4 flex items-center justify-between">
         <div className="flex items-center gap-3">
-          <Link href="/admin/dashboard" className="text-white/50 hover:text-white transition-colors">
+          <Link href="/admin" className="text-white/50 hover:text-white transition-colors">
             <ArrowLeft size={20} />
           </Link>
           <h1 className="font-bold">Yeni Blog Yazısı</h1>

@@ -1,173 +1,242 @@
 "use client";
 import { useEffect, useState } from "react";
 import Link from "next/link";
-import { ArrowLeft, Plus, Trash2, Save, ExternalLink } from "lucide-react";
+import { ArrowLeft, Plus, Trash2, Pencil, X, Check } from "lucide-react";
 
 interface PressItem {
-  id?: string; kaynak: string; yil: string; baslik: string; img: string;
-  slug: string; icerik: string; seoTitle: string; seoDescription: string;
+  id: string;
+  kaynak: string;
+  yil: string;
+  baslik: string;
+  img: string;
+  slug: string;
+  icerik: string;
+  seoTitle: string;
+  seoDescription: string;
 }
 
-const emptyItem: PressItem = {
-  kaynak: "", yil: new Date().getFullYear().toString(), baslik: "", img: "",
-  slug: "", icerik: "", seoTitle: "", seoDescription: "",
-};
+const empty = (): Omit<PressItem, "id"> => ({
+  kaynak: "",
+  yil: new Date().getFullYear().toString(),
+  baslik: "",
+  img: "",
+  slug: "",
+  icerik: "",
+  seoTitle: "",
+  seoDescription: "",
+});
 
-const slugify = (text: string) =>
-  text.toLowerCase().trim()
+const slugify = (t: string) =>
+  t.toLowerCase().trim()
     .replace(/ğ/g, "g").replace(/ü/g, "u").replace(/ş/g, "s")
     .replace(/ı/g, "i").replace(/ö/g, "o").replace(/ç/g, "c")
     .replace(/[^a-z0-9\s-]/g, "").replace(/\s+/g, "-");
 
+type Mode = "list" | "add" | "edit";
+
 export default function AdminBasinPage() {
   const [items, setItems] = useState<PressItem[]>([]);
-  const [form, setForm] = useState<PressItem>(emptyItem);
+  const [loading, setLoading] = useState(true);
+  const [mode, setMode] = useState<Mode>("list");
+  const [form, setForm] = useState(empty());
+  const [editId, setEditId] = useState<string | null>(null);
   const [saving, setSaving] = useState(false);
-  const [expanded, setExpanded] = useState<string | null>(null);
 
-  const load = () => fetch("/api/basin").then(r => r.json()).then(data => { if (Array.isArray(data)) setItems(data); });
-  useEffect(() => { load(); }, []);
-
-  const handleBaslikChange = (v: string) => {
-    setForm(f => ({ ...f, baslik: v, slug: slugify(v), seoTitle: v }));
+  const load = async () => {
+    setLoading(true);
+    const r = await fetch("/api/basin");
+    const data = await r.json();
+    if (Array.isArray(data)) setItems(data);
+    setLoading(false);
   };
 
-  const handleAdd = async () => {
-    if (!form.kaynak || !form.baslik) { alert("Kaynak ve başlık zorunludur."); return; }
+  useEffect(() => { load(); }, []);
+
+  const set = (key: keyof typeof form, val: string) => {
+    if (key === "baslik") {
+      setForm(f => ({ ...f, baslik: val, slug: slugify(val), seoTitle: val }));
+    } else {
+      setForm(f => ({ ...f, [key]: val }));
+    }
+  };
+
+  const openAdd = () => { setForm(empty()); setEditId(null); setMode("add"); };
+  const openEdit = (item: PressItem) => {
+    const { id, ...rest } = item;
+    setForm(rest);
+    setEditId(id);
+    setMode("edit");
+  };
+  const cancel = () => { setMode("list"); setForm(empty()); setEditId(null); };
+
+  const handleSave = async () => {
+    if (!form.kaynak.trim() || !form.baslik.trim()) {
+      alert("Kaynak ve Başlık zorunludur.");
+      return;
+    }
     setSaving(true);
-    await fetch("/api/basin", {
-      method: "POST",
-      headers: { "Content-Type": "application/json" },
-      body: JSON.stringify(form),
-    });
-    setForm(emptyItem);
-    await load();
+    try {
+      if (mode === "add") {
+        await fetch("/api/basin", {
+          method: "POST",
+          headers: { "Content-Type": "application/json" },
+          body: JSON.stringify(form),
+        });
+      } else if (mode === "edit" && editId) {
+        await fetch(`/api/basin/${editId}`, {
+          method: "PUT",
+          headers: { "Content-Type": "application/json" },
+          body: JSON.stringify(form),
+        });
+      }
+      await load();
+      cancel();
+    } catch {
+      alert("Kaydetme başarısız. Konsolu kontrol edin.");
+    }
     setSaving(false);
   };
 
   const handleDelete = async (id: string) => {
-    if (!confirm("Silinsin mi?")) return;
+    if (!confirm("Bu haber silinsin mi?")) return;
     await fetch(`/api/basin/${id}`, { method: "DELETE" });
     await load();
   };
 
   return (
     <div className="min-h-screen bg-[#0a0a0a] text-white">
-      <header className="border-b border-white/10 px-6 py-4 flex items-center gap-3">
-        <Link href="/admin/dashboard" className="text-white/50 hover:text-white"><ArrowLeft size={20} /></Link>
-        <h1 className="font-bold">Basın Yönetimi</h1>
+      <header className="border-b border-white/10 px-6 py-4 flex items-center justify-between">
+        <div className="flex items-center gap-3">
+          <Link href="/admin" className="text-white/50 hover:text-white transition-colors">
+            <ArrowLeft size={20} />
+          </Link>
+          <h1 className="font-bold text-lg">Basın Yönetimi</h1>
+          <span className="text-white/30 text-sm">({items.length} haber)</span>
+        </div>
+        {mode === "list" && (
+          <button onClick={openAdd}
+            className="flex items-center gap-2 bg-teal text-black px-4 py-2 rounded-xl font-black text-xs uppercase tracking-widest hover:opacity-90">
+            <Plus size={14} /> Haber Ekle
+          </button>
+        )}
       </header>
 
-      <div className="max-w-4xl mx-auto p-6 space-y-8">
+      <div className="max-w-4xl mx-auto p-6">
 
-        {/* Yeni Ekle */}
-        <div className="bg-white/5 border border-white/10 rounded-2xl p-6">
-          <h2 className="text-white font-bold mb-5 flex items-center gap-2"><Plus size={16} className="text-teal" /> Yeni Haber Ekle</h2>
-          <div className="grid grid-cols-1 sm:grid-cols-2 gap-4">
-            <div>
-              <label className="text-white/40 text-xs uppercase tracking-widest block mb-1">Kaynak *</label>
-              <input value={form.kaynak} onChange={e => setForm(f => ({ ...f, kaynak: e.target.value }))}
-                placeholder="Yenigün, Merhaba..."
-                className="w-full bg-white/5 border border-white/10 rounded-xl px-4 py-3 text-white focus:outline-none focus:border-teal/50" />
-            </div>
-            <div>
-              <label className="text-white/40 text-xs uppercase tracking-widest block mb-1">Yıl</label>
-              <input value={form.yil} onChange={e => setForm(f => ({ ...f, yil: e.target.value }))}
-                placeholder="2024"
-                className="w-full bg-white/5 border border-white/10 rounded-xl px-4 py-3 text-white focus:outline-none focus:border-teal/50" />
-            </div>
-            <div className="sm:col-span-2">
-              <label className="text-white/40 text-xs uppercase tracking-widest block mb-1">Başlık *</label>
-              <input value={form.baslik} onChange={e => handleBaslikChange(e.target.value)}
-                placeholder="Haber başlığı"
-                className="w-full bg-white/5 border border-white/10 rounded-xl px-4 py-3 text-white focus:outline-none focus:border-teal/50" />
-            </div>
-            <div className="sm:col-span-2">
-              <label className="text-white/40 text-xs uppercase tracking-widest block mb-1">Slug (URL)</label>
-              <input value={form.slug} onChange={e => setForm(f => ({ ...f, slug: e.target.value }))}
-                className="w-full bg-white/5 border border-white/10 rounded-xl px-4 py-3 text-teal font-mono text-sm focus:outline-none focus:border-teal/50" />
-              <p className="text-white/20 text-[10px] mt-1">/basin/{form.slug || "..."}</p>
-            </div>
-            <div className="sm:col-span-2">
-              <label className="text-white/40 text-xs uppercase tracking-widest block mb-1">Görsel Yolu</label>
-              <input value={form.img} onChange={e => setForm(f => ({ ...f, img: e.target.value }))}
-                placeholder="/basin/gazete-01.webp"
-                className="w-full bg-white/5 border border-white/10 rounded-xl px-4 py-3 text-white focus:outline-none focus:border-teal/50 font-mono text-sm" />
-            </div>
-            <div className="sm:col-span-2">
-              <label className="text-white/40 text-xs uppercase tracking-widest block mb-1">Haber İçeriği <span className="normal-case text-white/20">(detay sayfasında görünür)</span></label>
-              <textarea value={form.icerik} onChange={e => setForm(f => ({ ...f, icerik: e.target.value }))}
-                placeholder="Haberin detay içeriğini buraya yazın..."
-                rows={6}
-                className="w-full bg-white/5 border border-white/10 rounded-xl px-4 py-3 text-white focus:outline-none focus:border-teal/50 resize-y" />
+        {/* FORM: Ekle veya Düzenle */}
+        {mode !== "list" && (
+          <div className="bg-white/5 border border-white/10 rounded-2xl p-6 mb-8">
+            <div className="flex items-center justify-between mb-5">
+              <h2 className="font-bold text-white">{mode === "add" ? "Yeni Haber Ekle" : "Haberi Düzenle"}</h2>
+              <button onClick={cancel} className="text-white/40 hover:text-white transition-colors">
+                <X size={20} />
+              </button>
             </div>
 
-            {/* SEO */}
-            <div>
-              <label className="text-white/40 text-xs uppercase tracking-widest block mb-1">SEO Title</label>
-              <input value={form.seoTitle} onChange={e => setForm(f => ({ ...f, seoTitle: e.target.value }))}
-                className="w-full bg-white/5 border border-white/10 rounded-xl px-4 py-3 text-white focus:outline-none focus:border-teal/50 text-sm" />
-              <p className={`text-[10px] mt-1 ${form.seoTitle.length > 60 ? "text-red-400" : "text-white/20"}`}>{form.seoTitle.length}/60</p>
-            </div>
-            <div>
-              <label className="text-white/40 text-xs uppercase tracking-widest block mb-1">SEO Description</label>
-              <input value={form.seoDescription} onChange={e => setForm(f => ({ ...f, seoDescription: e.target.value }))}
-                className="w-full bg-white/5 border border-white/10 rounded-xl px-4 py-3 text-white focus:outline-none focus:border-teal/50 text-sm" />
-              <p className={`text-[10px] mt-1 ${form.seoDescription.length > 160 ? "text-red-400" : "text-white/20"}`}>{form.seoDescription.length}/160</p>
-            </div>
-
-            {/* Google önizleme */}
-            {(form.seoTitle || form.seoDescription) && (
-              <div className="sm:col-span-2 bg-white rounded-xl p-3">
-                <p className="text-[#1a0dab] text-sm font-medium">{form.seoTitle || form.baslik}</p>
-                <p className="text-[#006621] text-[11px]">konyahacamat.net/basin/{form.slug}</p>
-                <p className="text-[#545454] text-xs mt-1">{form.seoDescription}</p>
+            <div className="grid grid-cols-1 sm:grid-cols-2 gap-4">
+              <div>
+                <label className="text-white/40 text-xs uppercase tracking-widest block mb-1">Kaynak *</label>
+                <input value={form.kaynak} onChange={e => set("kaynak", e.target.value)}
+                  placeholder="Yenigün, Merhaba, TRT..."
+                  className="w-full bg-white/5 border border-white/10 rounded-xl px-4 py-3 text-white focus:outline-none focus:border-teal/50" />
               </div>
-            )}
-          </div>
-          <button onClick={handleAdd} disabled={saving}
-            className="mt-5 flex items-center gap-2 bg-teal text-anthracite-dark px-6 py-3 rounded-xl font-black text-sm uppercase tracking-widest hover:opacity-90 disabled:opacity-50">
-            <Save size={14} /> {saving ? "Kaydediliyor..." : "Ekle"}
-          </button>
-        </div>
+              <div>
+                <label className="text-white/40 text-xs uppercase tracking-widest block mb-1">Yıl</label>
+                <input value={form.yil} onChange={e => set("yil", e.target.value)}
+                  placeholder="2024"
+                  className="w-full bg-white/5 border border-white/10 rounded-xl px-4 py-3 text-white focus:outline-none focus:border-teal/50" />
+              </div>
+              <div className="sm:col-span-2">
+                <label className="text-white/40 text-xs uppercase tracking-widest block mb-1">Başlık *</label>
+                <input value={form.baslik} onChange={e => set("baslik", e.target.value)}
+                  placeholder="Haber başlığı"
+                  className="w-full bg-white/5 border border-white/10 rounded-xl px-4 py-3 text-white focus:outline-none focus:border-teal/50" />
+              </div>
+              <div className="sm:col-span-2">
+                <label className="text-white/40 text-xs uppercase tracking-widest block mb-1">Slug (URL)</label>
+                <input value={form.slug} onChange={e => set("slug", e.target.value)}
+                  className="w-full bg-white/5 border border-white/10 rounded-xl px-4 py-3 text-teal font-mono text-sm focus:outline-none focus:border-teal/50" />
+                <p className="text-white/20 text-[10px] mt-1">/basin/{form.slug || "..."}</p>
+              </div>
+              <div className="sm:col-span-2">
+                <label className="text-white/40 text-xs uppercase tracking-widest block mb-1">Görsel Yolu</label>
+                <input value={form.img} onChange={e => set("img", e.target.value)}
+                  placeholder="/basin/gazete-01.webp"
+                  className="w-full bg-white/5 border border-white/10 rounded-xl px-4 py-3 text-white font-mono text-sm focus:outline-none focus:border-teal/50" />
+              </div>
+              <div className="sm:col-span-2">
+                <label className="text-white/40 text-xs uppercase tracking-widest block mb-1">İçerik</label>
+                <textarea value={form.icerik} onChange={e => set("icerik", e.target.value)}
+                  placeholder="Haberin detayını buraya yazın..."
+                  rows={5}
+                  className="w-full bg-white/5 border border-white/10 rounded-xl px-4 py-3 text-white focus:outline-none focus:border-teal/50 resize-y" />
+              </div>
+              <div>
+                <label className="text-white/40 text-xs uppercase tracking-widest block mb-1">SEO Başlık</label>
+                <input value={form.seoTitle} onChange={e => set("seoTitle", e.target.value)}
+                  className="w-full bg-white/5 border border-white/10 rounded-xl px-4 py-3 text-white text-sm focus:outline-none focus:border-teal/50" />
+                <p className={`text-[10px] mt-1 ${form.seoTitle.length > 60 ? "text-red-400" : "text-white/20"}`}>{form.seoTitle.length}/60</p>
+              </div>
+              <div>
+                <label className="text-white/40 text-xs uppercase tracking-widest block mb-1">SEO Açıklama</label>
+                <input value={form.seoDescription} onChange={e => set("seoDescription", e.target.value)}
+                  className="w-full bg-white/5 border border-white/10 rounded-xl px-4 py-3 text-white text-sm focus:outline-none focus:border-teal/50" />
+                <p className={`text-[10px] mt-1 ${form.seoDescription.length > 160 ? "text-red-400" : "text-white/20"}`}>{form.seoDescription.length}/160</p>
+              </div>
+            </div>
 
-        {/* Liste */}
+            <div className="flex gap-3 mt-6">
+              <button onClick={handleSave} disabled={saving}
+                className="flex items-center gap-2 bg-teal text-black px-6 py-3 rounded-xl font-black text-sm uppercase tracking-widest hover:opacity-90 disabled:opacity-50">
+                <Check size={16} /> {saving ? "Kaydediliyor..." : mode === "add" ? "Ekle" : "Kaydet"}
+              </button>
+              <button onClick={cancel}
+                className="flex items-center gap-2 bg-white/10 text-white px-6 py-3 rounded-xl font-bold text-sm hover:bg-white/15">
+                İptal
+              </button>
+            </div>
+          </div>
+        )}
+
+        {/* LİSTE */}
         <div className="bg-white/5 border border-white/10 rounded-2xl overflow-hidden">
           <div className="p-4 border-b border-white/10">
-            <h2 className="text-white font-bold">Mevcut Haberler ({items.length})</h2>
+            <h2 className="text-white font-bold">Haberler</h2>
           </div>
-          {items.length === 0 ? (
+
+          {loading ? (
+            <div className="p-8 text-center text-white/30 text-sm">Yükleniyor...</div>
+          ) : items.length === 0 ? (
             <div className="p-8 text-center text-white/30 text-sm">Henüz haber eklenmedi.</div>
           ) : (
             <div className="divide-y divide-white/5">
               {items.map(item => (
-                <div key={item.id}>
-                  <div className="flex items-center justify-between px-5 py-4 hover:bg-white/3 cursor-pointer"
-                    onClick={() => setExpanded(expanded === item.id ? null : item.id!)}>
-                    <div className="flex items-center gap-4">
-                      {item.img && <img src={item.img} alt="" className="w-12 h-16 object-cover rounded-lg bg-white/5 shrink-0" />}
-                      <div>
-                        <div className="text-white font-medium text-sm">{item.baslik}</div>
-                        <div className="text-teal text-xs mt-0.5">{item.kaynak} · {item.yil}</div>
-                        {item.slug && (
-                          <a href={`/basin/${item.slug}`} target="_blank" rel="noopener noreferrer"
-                            onClick={e => e.stopPropagation()}
-                            className="text-white/30 text-[10px] font-mono hover:text-teal flex items-center gap-1 mt-0.5">
-                            /basin/{item.slug} <ExternalLink size={10} />
-                          </a>
-                        )}
-                      </div>
+                <div key={item.id} className="flex items-center justify-between px-5 py-4 hover:bg-white/3">
+                  <div className="flex items-center gap-4 min-w-0">
+                    {item.img && (
+                      <img src={item.img} alt="" className="w-12 h-14 object-cover rounded-lg bg-white/5 shrink-0" />
+                    )}
+                    <div className="min-w-0">
+                      <div className="text-white font-medium text-sm truncate">{item.baslik}</div>
+                      <div className="text-teal text-xs mt-0.5">{item.kaynak} · {item.yil}</div>
+                      {item.slug && (
+                        <a href={`/basin/${item.slug}`} target="_blank" rel="noopener noreferrer"
+                          className="text-white/30 text-[10px] font-mono hover:text-teal mt-0.5 inline-block">
+                          /basin/{item.slug}
+                        </a>
+                      )}
                     </div>
-                    <button onClick={e => { e.stopPropagation(); handleDelete(item.id!); }}
-                      className="text-red-400/60 hover:text-red-400 transition-colors p-2">
+                  </div>
+                  <div className="flex items-center gap-2 shrink-0 ml-4">
+                    <button onClick={() => openEdit(item)}
+                      className="text-white/40 hover:text-teal transition-colors p-2">
+                      <Pencil size={16} />
+                    </button>
+                    <button onClick={() => handleDelete(item.id)}
+                      className="text-white/40 hover:text-red-400 transition-colors p-2">
                       <Trash2 size={16} />
                     </button>
                   </div>
-                  {expanded === item.id && item.icerik && (
-                    <div className="px-5 pb-4 bg-white/3 border-t border-white/5">
-                      <p className="text-white/50 text-sm leading-relaxed mt-3 whitespace-pre-wrap">{item.icerik}</p>
-                    </div>
-                  )}
                 </div>
               ))}
             </div>
