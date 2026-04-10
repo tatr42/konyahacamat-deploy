@@ -6,7 +6,8 @@ async function getAccessToken(): Promise<string | null> {
   const rawKey = process.env.GA4_PRIVATE_KEY;
   if (!email || !rawKey) return null;
 
-  const key = rawKey.replace(/\\n/g, "\n");
+  // Vercel bazen \n'leri zaten newline'a çevirir, bazen çevirmez — her ikisini de destekle
+  const key = rawKey.includes("\\n") ? rawKey.replace(/\\n/g, "\n") : rawKey;
   const now = Math.floor(Date.now() / 1000);
 
   const header = Buffer.from(JSON.stringify({ alg: "RS256", typ: "JWT" })).toString("base64url");
@@ -54,7 +55,7 @@ export async function GET() {
 
   try {
     const token = await getAccessToken();
-    if (!token) return NextResponse.json({ configured: false, error: "auth_failed" });
+    if (!token) return NextResponse.json({ configured: false, error: "Token alınamadı — private key veya email hatalı olabilir" });
 
     const [countriesData, pagesData, overviewData] = await Promise.all([
       ga4Report(token, propertyId, {
@@ -103,6 +104,8 @@ export async function GET() {
 
     return NextResponse.json({ configured: true, countries, pages, summary });
   } catch (err) {
-    return NextResponse.json({ configured: false, error: String(err) });
+    const msg = String(err);
+    console.error("GA4 API hatası:", msg);
+    return NextResponse.json({ configured: false, error: msg });
   }
 }

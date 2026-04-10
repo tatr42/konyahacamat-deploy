@@ -255,21 +255,18 @@ export default function AdminPage() {
                   <div className="bg-amber-500/5 border border-amber-500/20 rounded-2xl p-5">
                     <div className="flex items-center gap-2 mb-3">
                       <AlertCircle size={16} className="text-amber-400" />
-                      <h3 className="font-bold text-amber-400 text-sm">Google Analytics bağlı değil</h3>
+                      <h3 className="font-bold text-amber-400 text-sm">Google Analytics bağlanamadı</h3>
                     </div>
-                    <p className="text-white/40 text-xs leading-relaxed mb-4">
-                      Ziyaretçi, ülke ve trafik verilerini görmek için GA4 bağlantısı gerekiyor.
-                    </p>
-                    <div className="space-y-2 text-[11px]">
-                      <p className="text-white/30 font-bold uppercase tracking-widest">Kurulum adımları:</p>
-                      <p className="text-white/50">1. <span className="text-amber-300">console.cloud.google.com</span> → Service Account oluştur</p>
-                      <p className="text-white/50">2. GA4 Admin → Property Access → Service Account ekle</p>
-                      <p className="text-white/50">3. JSON key indir → .env.local'a ekle</p>
-                      <div className="mt-3 bg-black/30 rounded-xl p-3 font-mono text-[10px] text-white/30 space-y-1">
-                        <p>GA4_PROPERTY_ID=<span className="text-amber-300">123456789</span></p>
-                        <p>GA4_SERVICE_ACCOUNT_EMAIL=<span className="text-amber-300">abc@proje.iam.gserviceaccount.com</span></p>
-                        <p>GA4_PRIVATE_KEY=<span className="text-amber-300">"-----BEGIN PRIVATE KEY-----\n..."</span></p>
+                    {ga4?.error && (
+                      <div className="bg-black/30 rounded-xl p-3 mb-4">
+                        <p className="text-red-300 text-[11px] font-mono break-all">{ga4.error}</p>
                       </div>
+                    )}
+                    <div className="space-y-1.5 text-[11px]">
+                      <p className="text-white/30 font-bold uppercase tracking-widest mb-2">Yapılması gerekenler:</p>
+                      <p className="text-white/50">1. <span className="text-amber-300">analytics.google.com</span> → Admin → Property Access Management</p>
+                      <p className="text-white/50">2. <span className="text-amber-300">ga4-monitor@cagkon-ecommerce.iam.gserviceaccount.com</span> → Viewer ekle</p>
+                      <p className="text-white/50">3. Vercel&apos;de Redeploy yap</p>
                     </div>
                   </div>
                 ) : (
