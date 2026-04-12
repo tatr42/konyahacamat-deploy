@@ -15,7 +15,7 @@ export default function HeroSection() {
   }, []);
 
   return (
-    <section className="relative min-h-screen flex items-start lg:items-center justify-center hero-mesh overflow-hidden pt-14 lg:pt-0">
+    <section className="relative min-h-[100svh] flex items-start lg:items-center justify-center hero-mesh overflow-hidden pt-14 lg:pt-0">
       <div className="absolute top-1/4 left-[10%] w-[500px] h-[500px] rounded-full border border-teal/5 pointer-events-none" />
       <div className="absolute top-1/4 left-[10%] w-[350px] h-[350px] rounded-full border border-teal/10 pointer-events-none translate-x-[75px] translate-y-[75px]" />
 
@@ -46,7 +46,7 @@ export default function HeroSection() {
               Uluslararası Sertifika
             </span>
           </div>
-          <div className="inline-flex items-center gap-2 bg-white/5 border border-white/10 px-4 py-2 rounded-full w-[168px]">
+          <div className="inline-flex items-center gap-2 bg-white/5 border border-white/10 px-4 py-2 rounded-full min-w-0 max-w-[180px]">
             <span className="relative flex h-2 w-2 shrink-0">
               <span className="animate-ping absolute inline-flex h-full w-full rounded-full bg-[#25D366] opacity-75"></span>
               <span className="relative inline-flex rounded-full h-2 w-2 bg-[#25D366]"></span>
@@ -59,7 +59,7 @@ export default function HeroSection() {
 
         {/* Ana Başlık */}
         <div className="max-w-3xl space-y-6">
-          <h1 className="font-display text-5xl md:text-7xl lg:text-8xl font-bold text-white leading-[1.0] tracking-tight">
+          <h1 className="font-display text-4xl sm:text-5xl md:text-7xl lg:text-8xl font-bold text-white leading-[1.05] tracking-tight">
             Kadim Şifanın{" "}
             <span className="relative inline-block">
               <span className="text-teal italic">Modern</span>
