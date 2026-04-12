@@ -1,7 +1,7 @@
 import { NextRequest, NextResponse } from "next/server";
+import { storage } from "@/lib/firebase";
+import { ref, uploadBytes, getDownloadURL } from "firebase/storage";
 import sharp from "sharp";
-import path from "path";
-import fs from "fs/promises";
 
 export async function POST(req: NextRequest) {
   const formData = await req.formData();
@@ -10,31 +10,29 @@ export async function POST(req: NextRequest) {
 
   if (!file) return NextResponse.json({ error: "Dosya yok" }, { status: 400 });
 
-  const allowed = ["image/jpeg", "image/png", "image/webp", "image/gif"];
+  const allowed = ["image/jpeg", "image/png", "image/webp", "image/gif", "image/avif"];
   if (!allowed.includes(file.type)) {
     return NextResponse.json({ error: "Sadece resim dosyaları kabul edilir" }, { status: 400 });
   }
 
-  const buffer = Buffer.from(await file.arrayBuffer());
-
-  // Dosya adını slug'a çevir
+  // Dosya adı oluştur
   const originalName = file.name.replace(/\.[^/.]+$/, "");
   const slug = originalName
     .toLowerCase()
-    .replace(/[^a-z0-9]/g, "-")
-    .replace(/-+/g, "-")
-    .replace(/^-|-$/g, "");
+    .replace(/ğ/g, "g").replace(/ü/g, "u").replace(/ş/g, "s")
+    .replace(/ı/g, "i").replace(/ö/g, "o").replace(/ç/g, "c")
+    .replace(/[^a-z0-9]/g, "-").replace(/-+/g, "-").replace(/^-|-$/g, "");
   const fileName = `${slug}-${Date.now()}.webp`;
+  const storagePath = `${folder}/${fileName}`;
 
-  // Klasörü oluştur
-  const dir = path.join(process.cwd(), "public", folder);
-  await fs.mkdir(dir, { recursive: true });
+  // Bellekte WebP'ye dönüştür (dosya sistemine yazmadan)
+  const inputBuffer = Buffer.from(await file.arrayBuffer());
+  const webpBuffer = await sharp(inputBuffer).webp({ quality: 85 }).toBuffer();
 
-  // WebP'ye dönüştür
-  await sharp(buffer)
-    .webp({ quality: 85 })
-    .toFile(path.join(dir, fileName));
+  // Firebase Storage'a yükle
+  const storageRef = ref(storage, storagePath);
+  await uploadBytes(storageRef, webpBuffer, { contentType: "image/webp" });
+  const url = await getDownloadURL(storageRef);
 
-  const url = `/${folder}/${fileName}`;
-  return NextResponse.json({ url, fileName });
+  return NextResponse.json({ url, fileName, storagePath });
 }
