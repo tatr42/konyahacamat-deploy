@@ -15,17 +15,26 @@ export default function MedyaPage() {
   const [copied, setCopied] = useState<string | null>(null);
   const inputRef = useRef<HTMLInputElement>(null);
 
+  const [error, setError] = useState<string | null>(null);
+
   const upload = async (fileList: FileList) => {
     setUploading(true);
+    setError(null);
     const results: UploadedFile[] = [];
     for (const file of Array.from(fileList)) {
       const fd = new FormData();
       fd.append("file", file);
       fd.append("folder", folder);
-      const res = await fetch("/api/upload", { method: "POST", body: fd });
-      if (res.ok) {
+      try {
+        const res = await fetch("/api/upload", { method: "POST", body: fd });
         const data = await res.json();
-        results.push(data);
+        if (res.ok) {
+          results.push(data);
+        } else {
+          setError(`Hata: ${data.error || res.statusText}`);
+        }
+      } catch (e) {
+        setError(`Bağlantı hatası: ${e instanceof Error ? e.message : String(e)}`);
       }
     }
     setFiles(prev => [...results, ...prev]);
@@ -90,6 +99,7 @@ export default function MedyaPage() {
           <p className="text-white font-bold">{uploading ? "Yükleniyor ve WebP'ye dönüştürülüyor..." : "Dosyaları sürükleyin veya tıklayın"}</p>
           <p className="text-white/30 text-sm mt-1">PNG, JPG, JPEG → otomatik WebP dönüşümü</p>
           <p className="text-teal text-xs mt-2 font-bold uppercase tracking-widest">Hedef: /public/{folder}/</p>
+          {error && <p className="text-red-400 text-sm mt-3 font-bold">{error}</p>}
         </div>
 
         {/* Yüklenen Dosyalar */}
