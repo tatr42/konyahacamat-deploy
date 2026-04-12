@@ -1,5 +1,6 @@
 "use client";
 import { useState, useRef, useEffect } from "react";
+import Image from "next/image";
 import { Brain, Heart, Bone, Leaf, Users, Zap, ArrowRight, ChevronDown } from "lucide-react";
 
 const categories = [
@@ -8,6 +9,7 @@ const categories = [
     label: "Nöroloji",
     icon: Brain,
     color: "from-purple-500/20 to-teal/10",
+    img: "/11.webp",
     diseases: [
       "Migren", "Vertigo", "Epilepsi", "Parkinson", "Alzheimer",
       "Dikkat Kaybı", "Unutkanlık", "Hafıza Bozukluğu", "Tinnitus",
@@ -20,6 +22,7 @@ const categories = [
     label: "Kas & İskelet",
     icon: Bone,
     color: "from-amber-500/20 to-teal/10",
+    img: "/10.webp",
     diseases: [
       "Boyun Fıtığı", "Bel Fıtığı", "Romatizma", "Gut Hastalığı",
       "Fibromiyalji", "Adale Yırtılması", "Kramp", "Eklem Ağrısı",
@@ -197,6 +200,12 @@ export default function DiseaseTabs() {
           key={active}
           className={`rounded-2xl p-5 border border-white/5 bg-gradient-to-br ${current.color}`}
         >
+          {current.img && (
+            <div className="relative w-full h-36 md:h-44 rounded-xl overflow-hidden mb-4 border border-white/10">
+              <Image src={current.img} alt={current.label} fill className="object-cover object-center" sizes="100vw" />
+              <div className="absolute inset-0 bg-gradient-to-r from-transparent to-anthracite-dark/60" />
+            </div>
+          )}
           <div className="flex flex-wrap gap-2">
             {visibleDiseases.map((disease) => (
               <span

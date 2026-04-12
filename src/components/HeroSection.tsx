@@ -119,8 +119,8 @@ export default function HeroSection() {
           {/* Alt fade */}
           <div className="absolute bottom-0 left-0 right-0 h-32 bg-gradient-to-t from-anthracite to-transparent z-10" />
           <Image
-            src="/academy-hero.webp"
-            alt="Ebusadullah Akademi"
+            src="/5.webp"
+            alt="Hacamat uygulaması — Ebusadullah Akademi"
             fill
             priority
             className="object-cover object-center"

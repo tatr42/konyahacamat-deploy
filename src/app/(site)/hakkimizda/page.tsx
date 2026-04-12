@@ -1,5 +1,6 @@
 import type { Metadata } from "next";
 import Link from "next/link";
+import Image from "next/image";
 import { Award, Users, Globe, Heart, CheckCircle, MessageCircle } from "lucide-react";
 import { getYearsExpStr } from "@/lib/experience";
 
@@ -66,19 +67,38 @@ export default function HakkimizdaPage() {
                   topluluklarına da hizmet götürmekte; orada da eğitimler vermektedir.
                 </p>
               </div>
-            </div>
-            <div className="grid grid-cols-2 gap-4">
-              {[
-                { sayi: getYearsExpStr(), label: "Yıl Deneyim" },
-                { sayi: "1200+", label: "Akademi Mezunu" },
-                { sayi: "384+", label: "Rahatsızlık Kategorisi" },
-                { sayi: "10+", label: "Ülkede Mezun" },
-              ].map(s => (
-                <div key={s.label} className="bg-white/5 border border-white/10 rounded-2xl p-6 text-center hover:border-teal/30 transition-colors">
-                  <div className="font-display text-4xl font-bold text-teal mb-2">{s.sayi}</div>
-                  <div className="text-white/50 text-xs uppercase tracking-widest font-bold">{s.label}</div>
+
+              {/* Arşiv fotoğrafları */}
+              <div className="mt-6">
+                <p className="text-[10px] font-black uppercase tracking-[0.25em] text-white/25 mb-3">Arşivden — 1990'lar</p>
+                <div className="flex gap-3">
+                  <div className="relative w-24 h-24 rounded-xl overflow-hidden border border-white/10 shrink-0 opacity-60 hover:opacity-80 transition-opacity">
+                    <Image src="/14.webp" alt="Ebusadullah Hoca — arşiv 1990'lar" fill className="object-cover grayscale" sizes="96px" />
+                  </div>
+                  <div className="relative w-36 h-24 rounded-xl overflow-hidden border border-white/10 shrink-0 opacity-60 hover:opacity-80 transition-opacity">
+                    <Image src="/15.webp" alt="Ebusadullah Hoca hacamat seansı — arşiv 1990'lar" fill className="object-cover grayscale" sizes="144px" />
+                  </div>
                 </div>
-              ))}
+              </div>
+            </div>
+            <div className="flex flex-col gap-4">
+              <div className="relative w-full aspect-[4/3] rounded-2xl overflow-hidden border border-white/10">
+                <Image src="/13.webp" alt="Hacamat danışmanlık" fill className="object-cover" sizes="(max-width: 1024px) 100vw, 50vw" />
+                <div className="absolute inset-0 bg-gradient-to-t from-anthracite-dark/60 to-transparent" />
+              </div>
+              <div className="grid grid-cols-2 gap-3">
+                {[
+                  { sayi: getYearsExpStr(), label: "Yıl Deneyim" },
+                  { sayi: "1200+", label: "Akademi Mezunu" },
+                  { sayi: "384+", label: "Rahatsızlık Kategorisi" },
+                  { sayi: "10+", label: "Ülkede Mezun" },
+                ].map(s => (
+                  <div key={s.label} className="bg-white/5 border border-white/10 rounded-2xl p-4 text-center hover:border-teal/30 transition-colors">
+                    <div className="font-display text-3xl font-bold text-teal mb-1">{s.sayi}</div>
+                    <div className="text-white/50 text-[10px] uppercase tracking-widest font-bold">{s.label}</div>
+                  </div>
+                ))}
+              </div>
             </div>
           </div>
         </div>
