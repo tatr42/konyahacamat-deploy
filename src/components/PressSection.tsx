@@ -1,54 +1,29 @@
 "use client";
-import React, { useRef } from "react";
+import { useEffect, useState } from "react";
 import { Newspaper, ArrowRight, Quote, TrendingUp } from "lucide-react";
 import { getYearsExpStr } from "@/lib/experience";
 
-const pressItems = [
-  {
-    source: "Yenigün",
-    headline: "Hacamat umut oldu",
-    excerpt: "Konya'da geleneksel tedavi yöntemleri arasında yer alan hacamat, son yıllarda yeniden ilgi görmeye başladı. Ebusadullah, yıllarca sürdürdüğü çalışmalarla hacamatın toplumsal kabulünü artırmaya devam ediyor.",
-    tag: "Sağlık",
-    year: "2023",
-  },
-  {
-    source: "Bugün Gazetesi",
-    headline: "İlacın düşmanı, hacamatın dostu",
-    excerpt: "Binlerce yıllık geçmişe sahip hacamat tedavisi, modern tıbbın desteklediği alternatif bir yöntem olarak öne çıkıyor. Doktorlar artık hastalara hacamatı tavsiye ediyor.",
-    tag: "Gündem",
-    year: "2022",
-  },
-  {
-    source: "Merhaba",
-    headline: "Modern Tıp da hacamata yöneldi",
-    excerpt: "Doktorlar ve sağlık uzmanları hacamatın faydalarını artık teslim ediyor. Konya merkezli Ebusadullah Akademi, Türkiye genelinde binlerce uygulayıcı yetiştirdi.",
-    tag: "Sağlık",
-    year: "2023",
-  },
-  {
-    source: "Haber Konya",
-    headline: "'Hacamata itibarı yeniden kazandırılıyor'",
-    excerpt: `${new Date().getFullYear() - 1994} yılı aşkın deneyimiyle Ebusadullah, geleneksel tedavi yöntemlerini modern hijyen standartlarıyla buluşturuyor. 384 farklı hastalıkta başarılı sonuçlar alınıyor.`,
-    tag: "Röportaj",
-    year: "2024",
-  },
-  {
-    source: "Sabah",
-    headline: "Geleneksel şifanın modern adresi",
-    excerpt: "Konya'da kurulan merkez, kısa sürede tüm Türkiye'den hasta ve kursiyer çekmeyi başardı. Kurslar mezunları kendi şehirlerinde merkezler açarak hizmet veriyor.",
-    tag: "Yaşam",
-    year: "2023",
-  },
-  {
-    source: "Konya Postası",
-    headline: "Kurslarla yayılıyor: 384 hastalığa şifa",
-    excerpt: "Hacamat ve sülük kursları mezunları, kendi şehirlerinde merkezler açarak geleneksel tedaviyi yaygınlaştırıyor. Ailenizin doktoru olun sloganı binleri harekete geçirdi.",
-    tag: "Eğitim",
-    year: "2024",
-  },
-];
+interface PressItem {
+  id: string;
+  kaynak: string;
+  yil: string;
+  baslik: string;
+  slug: string;
+  icerik: string;
+  img?: string;
+}
 
 export default function PressSection() {
+  const [items, setItems] = useState<PressItem[]>([]);
+  const [loading, setLoading] = useState(true);
+
+  useEffect(() => {
+    fetch("/api/basin")
+      .then(r => r.json())
+      .then(data => { if (Array.isArray(data)) setItems(data.slice(0, 6)); })
+      .finally(() => setLoading(false));
+  }, []);
+
   return (
     <section className="py-24 bg-anthracite relative overflow-hidden">
       <div className="absolute inset-0 opacity-[0.03]"
@@ -82,48 +57,66 @@ export default function PressSection() {
           </a>
         </div>
 
-        <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-6">
-          {pressItems.map((item, i) => (
-            <article
-              key={i}
-              className="group relative bg-anthracite-light border border-white/5 rounded-3xl p-7 hover:border-teal/20 transition-all duration-500 hover:shadow-xl hover:shadow-teal/5 cursor-pointer overflow-hidden"
-            >
-              <div className="absolute inset-0 bg-gradient-to-br from-teal/5 to-transparent opacity-0 group-hover:opacity-100 transition-opacity duration-500 rounded-3xl" />
-
-              <Quote
-                size={48}
-                className="absolute top-4 right-4 text-white/3 group-hover:text-teal/10 transition-colors duration-500"
-                strokeWidth={1}
-              />
-
-              <div className="relative z-10 flex flex-col gap-4 h-full">
-                <div className="flex items-center justify-between">
-                  <span className="text-[10px] font-black uppercase tracking-[0.25em] text-teal/60 border border-teal/20 px-3 py-1 rounded-full">
-                    {item.source}
-                  </span>
-                  <div className="flex items-center gap-2">
-                    <span className="text-[9px] font-bold uppercase tracking-wider text-white/20 bg-white/5 px-2 py-1 rounded-lg">
-                      {item.tag}
+        {/* Kartlar — mobilde yatay kaydırma */}
+        {loading ? (
+          <div className="flex gap-5 overflow-x-hidden">
+            {[...Array(3)].map((_, i) => (
+              <div key={i} className="shrink-0 w-[78vw] sm:w-auto sm:flex-1 h-52 rounded-3xl bg-white/5 animate-pulse" />
+            ))}
+          </div>
+        ) : items.length === 0 ? (
+          <p className="text-white/30 text-sm">Henüz basın haberi eklenmemiş.</p>
+        ) : (
+          <div className="flex gap-5 overflow-x-auto pb-3 -mx-5 px-5 sm:mx-0 sm:px-0 sm:grid sm:grid-cols-2 lg:grid-cols-3 snap-x snap-mandatory scrollbar-none">
+            {items.map((item) => (
+              <article
+                key={item.id}
+                className="group relative bg-anthracite-light border border-white/5 rounded-3xl p-7 hover:border-teal/20 transition-all duration-500 hover:shadow-xl hover:shadow-teal/5 cursor-pointer overflow-hidden shrink-0 w-[78vw] sm:w-auto snap-start"
+              >
+                {/* Arka plan görseli — %30 */}
+                {item.img && (
+                  <>
+                    <img
+                      src={item.img}
+                      alt=""
+                      aria-hidden
+                      className="absolute inset-0 w-full h-full object-contain opacity-30 pointer-events-none"
+                    />
+                    <div className="absolute inset-0 bg-anthracite-light/80 pointer-events-none" />
+                  </>
+                )}
+                <div className="absolute inset-0 bg-gradient-to-br from-teal/5 to-transparent opacity-0 group-hover:opacity-100 transition-opacity duration-500 rounded-3xl" />
+                <Quote
+                  size={48}
+                  className="absolute top-4 right-4 text-white/3 group-hover:text-teal/10 transition-colors duration-500"
+                  strokeWidth={1}
+                />
+                <div className="relative z-10 flex flex-col gap-4 h-full">
+                  <div className="flex items-center justify-between">
+                    <span className="text-[10px] font-black uppercase tracking-[0.25em] text-teal/60 border border-teal/20 px-3 py-1 rounded-full">
+                      {item.kaynak}
                     </span>
-                    <span className="text-[9px] font-bold text-white/15">{item.year}</span>
+                    <span className="text-[9px] font-bold text-white/15">{item.yil}</span>
                   </div>
+                  <h3 className="font-display text-xl font-bold text-white group-hover:text-teal transition-colors duration-300 leading-tight">
+                    "{item.baslik}"
+                  </h3>
+                  {item.icerik && (
+                    <p className="text-sm text-white/40 leading-relaxed flex-1 line-clamp-3"
+                      dangerouslySetInnerHTML={{ __html: item.icerik.replace(/<[^>]+>/g, " ").slice(0, 160) + "…" }}
+                    />
+                  )}
+                  <a
+                    href={`/basin/${item.slug}`}
+                    className="flex items-center gap-2 text-[11px] font-black text-teal/40 group-hover:text-teal transition-colors pt-2 border-t border-white/5"
+                  >
+                    Haberi Oku <ArrowRight size={12} className="group-hover:translate-x-1 transition-transform" />
+                  </a>
                 </div>
-
-                <h3 className="font-display text-xl font-bold text-white group-hover:text-teal transition-colors duration-300 leading-tight">
-                  "{item.headline}"
-                </h3>
-
-                <p className="text-sm text-white/40 leading-relaxed flex-1">
-                  {item.excerpt}
-                </p>
-
-                <div className="flex items-center gap-2 text-[11px] font-black text-teal/40 group-hover:text-teal transition-colors pt-2 border-t border-white/5">
-                  Haberi Oku <ArrowRight size={12} className="group-hover:translate-x-1 transition-transform" />
-                </div>
-              </div>
-            </article>
-          ))}
-        </div>
+              </article>
+            ))}
+          </div>
+        )}
 
         {/* Medya Güven Bandı */}
         <div className="mt-10 bg-white/5 border border-white/5 rounded-3xl p-6">
@@ -132,8 +125,8 @@ export default function PressSection() {
             <p className="text-teal text-[10px] font-black uppercase tracking-widest">Medya Güveni</p>
           </div>
           <p className="text-white/50 text-sm leading-relaxed max-w-3xl">
-            Hacamat tedavisinin uzman kişiler tarafından yapılması ve hijyenik koşulların sağlanması son derece önemlidir. 
-            Ebusadullah Akademi olarak tüm uygulamalarımızda steril malzeme kullanıyor, 
+            Hacamat tedavisinin uzman kişiler tarafından yapılması ve hijyenik koşulların sağlanması son derece önemlidir.
+            Ebusadullah Akademi olarak tüm uygulamalarımızda steril malzeme kullanıyor,
             uluslararası hijyen standartlarına uygun çalışıyoruz. Bu nedenle ulusal medyanın güvenilir kaynağı olarak yer alıyoruz.
           </p>
         </div>

@@ -118,48 +118,49 @@ export default function BasinPage() {
             <p className="text-sm mt-2">Admin panelinden ekleyebilirsiniz.</p>
           </div>
         ) : (
-          <div className="grid grid-cols-2 sm:grid-cols-3 md:grid-cols-4 lg:grid-cols-5 gap-4">
-            {filtrelendi.map((gazete) => (
-              gazete.slug ? (
-                <Link key={gazete.id} href={`/basin/${gazete.slug}`}
-                  className="group relative aspect-[4/3] rounded-2xl overflow-hidden border border-white/10 hover:border-teal/40 transition-all duration-300 hover:scale-[1.03] hover:shadow-2xl hover:shadow-teal/10 bg-white/5 flex items-center justify-center">
-                  <img src={gazete.img} alt={gazete.baslik}
-                    className="absolute inset-0 w-full h-full object-contain p-1" />
-                  <div className="absolute inset-0 bg-gradient-to-t from-anthracite-dark via-transparent to-transparent opacity-70 group-hover:opacity-90 transition-opacity" />
-                  <div className="absolute inset-0 flex flex-col justify-between p-3">
-                    <div className="self-end opacity-0 group-hover:opacity-100 transition-opacity">
-                      <div className="w-8 h-8 rounded-full bg-teal/90 flex items-center justify-center">
-                        <ExternalLink size={14} className="text-anthracite-dark" />
-                      </div>
-                    </div>
-                    <div className="text-left">
-                      <span className="text-teal text-[9px] font-black uppercase tracking-widest block">{gazete.kaynak}</span>
-                      <span className="text-white text-[11px] font-bold leading-tight line-clamp-2">{gazete.baslik}</span>
-                      <span className="text-white/30 text-[9px] mt-1 block">{gazete.yil}</span>
-                    </div>
+          <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-5">
+            {filtrelendi.map((gazete) => {
+              const inner = (
+                <div className="relative z-10 flex flex-col gap-4 h-full">
+                  <div className="flex items-center justify-between">
+                    <span className="text-[10px] font-black uppercase tracking-[0.25em] text-teal/80 border border-teal/20 px-3 py-1 rounded-full bg-black/30">
+                      {gazete.kaynak}
+                    </span>
+                    <span className="text-[9px] font-bold text-white/40 bg-black/30 px-2 py-1 rounded-lg">{gazete.yil}</span>
                   </div>
+                  <h3 className="font-display text-lg font-bold text-white leading-tight">
+                    "{gazete.baslik}"
+                  </h3>
+                  <div className="mt-auto flex items-center gap-2 text-[11px] font-black text-teal/60 group-hover:text-teal transition-colors pt-2 border-t border-white/10">
+                    {gazete.slug ? <><ExternalLink size={12} /> Haberi Oku</> : <><ZoomIn size={12} /> Görseli Büyüt</>}
+                  </div>
+                </div>
+              );
+
+              const cardClass = "group relative bg-anthracite-light border border-white/5 rounded-3xl p-6 hover:border-teal/30 transition-all duration-300 overflow-hidden cursor-pointer aspect-square flex flex-col";
+
+              return gazete.slug ? (
+                <Link key={gazete.id} href={`/basin/${gazete.slug}`} className={cardClass}>
+                  {gazete.img && (
+                    <>
+                      <img src={gazete.img} alt="" aria-hidden className="absolute inset-0 w-full h-full object-contain opacity-30 pointer-events-none" />
+                      <div className="absolute inset-0 bg-anthracite-light/75 pointer-events-none" />
+                    </>
+                  )}
+                  {inner}
                 </Link>
               ) : (
-                <button key={gazete.id} onClick={() => setLightbox(gazete.id)}
-                  className="group relative aspect-[4/3] rounded-2xl overflow-hidden border border-white/10 hover:border-teal/40 transition-all duration-300 hover:scale-[1.03] hover:shadow-2xl hover:shadow-teal/10 bg-white/5 flex items-center justify-center">
-                  <img src={gazete.img} alt={gazete.baslik}
-                    className="absolute inset-0 w-full h-full object-contain p-1" />
-                  <div className="absolute inset-0 bg-gradient-to-t from-anthracite-dark via-transparent to-transparent opacity-70 group-hover:opacity-90 transition-opacity" />
-                  <div className="absolute inset-0 flex flex-col justify-between p-3">
-                    <div className="self-end opacity-0 group-hover:opacity-100 transition-opacity">
-                      <div className="w-8 h-8 rounded-full bg-teal/90 flex items-center justify-center">
-                        <ZoomIn size={14} className="text-anthracite-dark" />
-                      </div>
-                    </div>
-                    <div className="text-left">
-                      <span className="text-teal text-[9px] font-black uppercase tracking-widest block">{gazete.kaynak}</span>
-                      <span className="text-white text-[11px] font-bold leading-tight line-clamp-2">{gazete.baslik}</span>
-                      <span className="text-white/30 text-[9px] mt-1 block">{gazete.yil}</span>
-                    </div>
-                  </div>
+                <button key={gazete.id} onClick={() => setLightbox(gazete.id)} className={cardClass + " text-left w-full"}>
+                  {gazete.img && (
+                    <>
+                      <img src={gazete.img} alt="" aria-hidden className="absolute inset-0 w-full h-full object-contain opacity-30 pointer-events-none" />
+                      <div className="absolute inset-0 bg-anthracite-light/75 pointer-events-none" />
+                    </>
+                  )}
+                  {inner}
                 </button>
-              )
-            ))}
+              );
+            })}
           </div>
         )}
 

@@ -1,6 +1,6 @@
 "use client";
 import { useState, useRef, useEffect } from "react";
-import Image from "next/image";
+
 import { Brain, Heart, Bone, Leaf, Users, Zap, ArrowRight, ChevronDown } from "lucide-react";
 
 const categories = [
@@ -198,35 +198,56 @@ export default function DiseaseTabs() {
         {/* Hastalık Listesi */}
         <div
           key={active}
-          className={`rounded-2xl p-5 border border-white/5 bg-gradient-to-br ${current.color}`}
+          className={`relative rounded-2xl p-5 border border-white/5 bg-gradient-to-br overflow-hidden ${current.color}`}
         >
+          {/* Mobilde arkaplan — %30 opaklık */}
           {current.img && (
-            <div className="relative w-full h-36 md:h-44 rounded-xl overflow-hidden mb-4 border border-white/10">
-              <Image src={current.img} alt={current.label} fill className="object-cover object-center" sizes="100vw" />
-              <div className="absolute inset-0 bg-gradient-to-r from-transparent to-anthracite-dark/60" />
-            </div>
+            <img
+              src={current.img}
+              alt=""
+              aria-hidden
+              className="md:hidden absolute inset-0 w-full h-full object-contain pointer-events-none opacity-30"
+            />
           )}
-          <div className="flex flex-wrap gap-2">
-            {visibleDiseases.map((disease) => (
-              <span
-                key={disease}
-                className="bg-white/5 border border-white/10 text-white/70 text-xs font-semibold px-3 py-1.5 rounded-lg"
-              >
-                {disease}
-              </span>
-            ))}
+
+          {/* Üst satır: sol görsel + sağ etiketler */}
+          <div className="flex gap-4 items-start">
+            {/* Sol: görsel — sadece md+ ekranlarda */}
+            {current.img && (
+              <div className="hidden md:block shrink-0 pointer-events-none">
+                <img
+                  src={current.img}
+                  alt={current.label}
+                  className="w-44 h-44 object-contain"
+                />
+              </div>
+            )}
+
+            {/* Sağ: hastalık etiketleri + genişlet */}
+            <div className="flex-1 min-w-0">
+              <div className="flex flex-wrap gap-2">
+                {visibleDiseases.map((disease) => (
+                  <span
+                    key={disease}
+                    className="bg-white/5 border border-white/10 text-white/70 text-xs font-semibold px-3 py-1.5 rounded-lg"
+                  >
+                    {disease}
+                  </span>
+                ))}
+              </div>
+              {hasMore && (
+                <button
+                  onClick={() => setDiseasesExpanded(e => !e)}
+                  className="mt-4 flex items-center gap-1.5 text-teal text-xs font-black uppercase tracking-widest"
+                >
+                  {diseasesExpanded ? "Daha Az Göster" : `+${current.diseases.length - VISIBLE_DISEASES} Daha Fazlasını Gör`}
+                  <ChevronDown size={13} className={`transition-transform ${diseasesExpanded ? "rotate-180" : ""}`} />
+                </button>
+              )}
+            </div>
           </div>
 
-          {hasMore && (
-            <button
-              onClick={() => setDiseasesExpanded(e => !e)}
-              className="mt-4 flex items-center gap-1.5 text-teal text-xs font-black uppercase tracking-widest"
-            >
-              {diseasesExpanded ? "Daha Az Göster" : `+${current.diseases.length - VISIBLE_DISEASES} Daha Fazlasını Gör`}
-              <ChevronDown size={13} className={`transition-transform ${diseasesExpanded ? "rotate-180" : ""}`} />
-            </button>
-          )}
-
+          {/* Alt: iletişim + randevu */}
           <div className="mt-5 pt-4 border-t border-white/5 flex flex-col sm:flex-row items-start sm:items-center justify-between gap-3">
             <p className="text-[10px] text-white/30">
               * Ücretsiz danışmanlık: 0554 406 23 83
