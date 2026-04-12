@@ -1,5 +1,4 @@
 "use client";
-import React from "react";
 import { Droplets, Bug, GraduationCap, ShoppingBag, ArrowRight, Shield, Globe, Clock } from "lucide-react";
 import { getYearsExpStr } from "@/lib/experience";
 
@@ -81,21 +80,21 @@ export default function ServicesGrid() {
           </div>
         </div>
 
-        <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-4 gap-5">
+        <div className="flex gap-5 overflow-x-auto pb-3 -mx-5 px-5 sm:mx-0 sm:px-0 sm:grid sm:grid-cols-2 lg:grid-cols-4 snap-x snap-mandatory scrollbar-none">
           {services.map((svc) => {
             const Icon = svc.icon;
             return (
               <a
                 key={svc.title}
                 href={svc.href}
-                className={`group relative rounded-3xl p-7 border border-white/5 hover:border-teal/20 bg-gradient-to-br ${svc.gradient} bg-white/[0.02] transition-all duration-500 hover:shadow-xl hover:shadow-teal/5 hover:-translate-y-1 flex flex-col gap-5 overflow-hidden`}
+                className={`group relative rounded-3xl p-7 border border-white/5 hover:border-teal/20 bg-gradient-to-br ${svc.gradient} bg-white/[0.02] transition-all duration-500 hover:shadow-xl hover:shadow-teal/5 hover:-translate-y-1 flex flex-col gap-5 overflow-hidden shrink-0 w-[78vw] sm:w-auto snap-start`}
               >
                 <span className="absolute top-5 right-5 text-[9px] font-black uppercase tracking-widest text-white/40 bg-white/5 border border-white/5 px-2.5 py-1 rounded-full">
                   {svc.badge}
                 </span>
 
                 <div className={`w-14 h-14 rounded-2xl ${svc.accent} bg-opacity-10 border border-white/5 flex items-center justify-center shrink-0 group-hover:scale-110 transition-transform duration-300`}>
-                  <Icon size={26} className="text-teal" />
+                  <Icon size={26} className={svc.accent === "bg-warm-gray" ? "text-black" : "text-white"} />
                 </div>
 
                 <div className="flex-1">

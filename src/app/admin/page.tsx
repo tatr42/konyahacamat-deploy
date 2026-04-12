@@ -6,6 +6,7 @@ import {
   X, Check, TrendingUp, Image as ImageIcon, ExternalLink,
   RefreshCw, Globe, BarChart2, Users, Activity, AlertCircle,
 } from "lucide-react";
+import RichEditor from "@/components/RichEditor";
 
 /* ─── Tipler ─── */
 interface Post { id: string; title: string; slug: string; category: string; published: boolean; views?: number; }
@@ -439,9 +440,12 @@ export default function AdminPage() {
                     </div>
                     <div className="sm:col-span-2">
                       <label className="text-white/30 text-[10px] uppercase tracking-widest block mb-1">İçerik</label>
-                      <textarea value={pressForm.icerik} onChange={e => setPressField("icerik", e.target.value)}
-                        placeholder="Haberin detayını buraya yazın..." rows={5}
-                        className="w-full bg-white/5 border border-white/10 rounded-xl px-4 py-3 text-white focus:outline-none focus:border-teal/50 resize-y" />
+                      <RichEditor
+                        value={pressForm.icerik}
+                        onChange={v => setPressField("icerik", v)}
+                        folder="basin"
+                        placeholder="Haberin detayını buraya yazın..."
+                      />
                     </div>
                     <div>
                       <label className="text-white/30 text-[10px] uppercase tracking-widest block mb-1">SEO Başlık</label>

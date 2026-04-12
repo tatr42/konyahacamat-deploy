@@ -3,6 +3,7 @@ import { useState } from "react";
 import { useRouter } from "next/navigation";
 import Link from "next/link";
 import { ArrowLeft, Save, Eye } from "lucide-react";
+import RichEditor from "@/components/RichEditor";
 
 export default function NewBlogPost() {
   const router = useRouter();
@@ -88,11 +89,13 @@ export default function NewBlogPost() {
           </div>
 
           <div>
-            <label className="text-white/50 text-xs uppercase tracking-widest block mb-2">İçerik * <span className="text-white/30 normal-case">(HTML veya düz metin)</span></label>
-            <textarea value={form.content} onChange={e => setForm(f => ({ ...f, content: e.target.value }))}
-              placeholder="Yazı içeriği buraya..."
-              rows={20}
-              className="w-full bg-white/5 border border-white/10 rounded-xl px-4 py-3 text-white placeholder-white/30 focus:outline-none focus:border-teal/50 resize-y font-mono text-sm" />
+            <label className="text-white/50 text-xs uppercase tracking-widest block mb-2">İçerik *</label>
+            <RichEditor
+              value={form.content}
+              onChange={v => setForm(f => ({ ...f, content: v }))}
+              folder="blog"
+              placeholder="Yazı içeriğini buraya yazın..."
+            />
           </div>
         </div>
 

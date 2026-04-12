@@ -102,7 +102,7 @@ export default async function BlogPostPage({ params }: { params: Promise<{ slug:
             prose-headings:text-white prose-headings:font-bold
             prose-strong:text-white prose-a:text-teal prose-a:no-underline hover:prose-a:underline
             prose-ul:text-white/70 prose-ol:text-white/70"
-          dangerouslySetInnerHTML={{ __html: post.content.replace(/\n/g, "<br/>") }}
+          dangerouslySetInnerHTML={{ __html: post.content }}
         />
 
         <hr className="border-white/10 mt-12 mb-8" />

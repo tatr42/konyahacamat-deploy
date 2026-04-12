@@ -66,8 +66,22 @@
   }
 }
 
+/* ── Rich Editor placeholder ── */
+.rich-editor-area:empty::before {
+  content: attr(data-placeholder);
+  color: rgba(255, 255, 255, 0.2);
+  pointer-events: none;
+  display: block;
+}
+
 /* ── 3. Özel Bileşenler & Utility ── */
 @layer utilities {
+  .scrollbar-none {
+    scrollbar-width: none;
+    -ms-overflow-style: none;
+    &::-webkit-scrollbar { display: none; }
+  }
+
   .font-display {
     font-family: var(--font-display);
   }

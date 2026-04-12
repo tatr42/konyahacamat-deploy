@@ -81,7 +81,7 @@ export default async function BasinDetayPage({ params }: { params: Promise<{ slu
           <article className="prose prose-invert prose-lg max-w-none text-white/80 leading-relaxed
             prose-headings:text-white prose-headings:font-bold prose-strong:text-white
             prose-a:text-teal prose-ul:text-white/70">
-            <div dangerouslySetInnerHTML={{ __html: item.icerik.replace(/\n/g, "<br/>") }} />
+            <div dangerouslySetInnerHTML={{ __html: item.icerik }} />
           </article>
         )}
 
