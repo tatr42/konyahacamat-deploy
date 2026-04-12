@@ -110,23 +110,16 @@ export default function HeroSection() {
           </div>
         </div>
 
-        {/* Sağ: Görsel — sadece büyük ekranlarda */}
-        <div className="hidden lg:block relative h-full min-h-[680px]">
-          {/* Sol fade */}
-          <div className="absolute inset-y-0 left-0 w-32 bg-gradient-to-r from-anthracite to-transparent z-10" />
-          {/* Üst fade — navbar altına geçişi gizler */}
-          <div className="absolute top-0 left-0 right-0 h-40 bg-gradient-to-b from-anthracite via-anthracite/80 to-transparent z-10" />
-          {/* Alt fade */}
-          <div className="absolute bottom-0 left-0 right-0 h-32 bg-gradient-to-t from-anthracite to-transparent z-10" />
-          <Image
-            src="/5.webp"
-            alt="Hacamat uygulaması — Ebusadullah Akademi"
-            fill
-            priority
+        {/* Sağ: Fotoğraf */}
+        <div className="hidden lg:block relative h-full min-h-[680px] overflow-hidden">
+          <div className="absolute inset-y-0 left-0 w-40 bg-gradient-to-r from-anthracite to-transparent z-10 pointer-events-none" />
+          <div className="absolute top-0 left-0 right-0 h-40 bg-gradient-to-b from-anthracite via-anthracite/80 to-transparent z-10 pointer-events-none" />
+          <div className="absolute bottom-0 left-0 right-0 h-32 bg-gradient-to-t from-anthracite to-transparent z-10 pointer-events-none" />
+          <Image src="/16.webp" alt="Hacamat kupası" fill priority
             className="object-cover object-center"
-            sizes="50vw"
-          />
+            sizes="50vw" />
         </div>
+
       </div>
 
       {/* Alt geçiş */}
