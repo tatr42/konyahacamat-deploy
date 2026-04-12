@@ -16,12 +16,17 @@ export const metadata: Metadata = {
 
 const kategoriler = ["Tümü", "Hacamat Seansı", "Eğitim & Kurs", "Mezunlar", "Almanya"];
 
-const fotograflar = Array.from({ length: 24 }, (_, i) => ({
-  id: i + 1,
-  src: `/galeri/foto-${String(i + 1).padStart(2, "0")}.jpg`,
-  alt: `Galeri fotoğrafı ${i + 1}`,
-  kategori: ["Hacamat Seansı", "Eğitim & Kurs", "Mezunlar", "Almanya"][i % 4],
-}));
+const fotograflar = [
+  { id: 1, src: "/1.webp", alt: "Hacamat seansı 1", kategori: "Hacamat Seansı" },
+  { id: 2, src: "/2.webp", alt: "Hacamat seansı 2", kategori: "Hacamat Seansı" },
+  { id: 3, src: "/3.webp", alt: "Hacamat seansı 3", kategori: "Hacamat Seansı" },
+  { id: 4, src: "/4.webp", alt: "Hacamat seansı 4", kategori: "Eğitim & Kurs" },
+  { id: 5, src: "/5.webp", alt: "Hacamat seansı 5", kategori: "Eğitim & Kurs" },
+  { id: 6, src: "/6.webp", alt: "Hacamat seansı 6", kategori: "Eğitim & Kurs" },
+  { id: 7, src: "/7.webp", alt: "Hacamat seansı 7", kategori: "Hacamat Seansı" },
+  { id: 8, src: "/8.webp", alt: "Hacamat seansı 8", kategori: "Hacamat Seansı" },
+  { id: 9, src: "/9.webp", alt: "Hacamat seansı 9", kategori: "Hacamat Seansı" },
+];
 
 export default function GaleriPage() {
   return (

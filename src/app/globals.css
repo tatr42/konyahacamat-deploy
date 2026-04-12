@@ -106,17 +106,6 @@
       radial-gradient(ellipse 50% 35% at 20% 70%, rgba(45,212,192,0.06) 0%, transparent 60%),
       linear-gradient(to bottom, var(--color-anthracite), var(--color-anthracite-dark));
   }
-  .hero-mesh::after {
-    content: "";
-    position: absolute;
-    bottom: 0;
-    left: 0;
-    right: 0;
-    height: 120px;
-    background: linear-gradient(to bottom, transparent, var(--color-anthracite-light));
-    pointer-events: none;
-    z-index: 1;
-  }
 
   .teal-divider {
     width: 44px;
