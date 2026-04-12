@@ -1,5 +1,6 @@
 import type { Metadata } from "next";
 import Link from "next/link";
+import Image from "next/image";
 import { Clock, MessageCircle, Phone, ChevronRight, AlertTriangle } from "lucide-react";
 
 export const metadata: Metadata = {
@@ -64,6 +65,19 @@ export default function SulukPage() {
                 <div className="text-teal font-black text-4xl font-display mb-4 opacity-30">{m.no}</div>
                 <h3 className="text-white font-bold text-lg mb-2">{m.baslik}</h3>
                 <p className="text-white/50 text-sm leading-relaxed">{m.aciklama}</p>
+              </div>
+            ))}
+          </div>
+        </div>
+      </section>
+
+      {/* SEANS GÖRSELLERİ */}
+      <section className="py-10">
+        <div className="container-site">
+          <div className="grid grid-cols-3 gap-3 md:gap-4">
+            {["/6.webp", "/7.webp", "/9.webp"].map((src, i) => (
+              <div key={i} className="relative aspect-[4/3] rounded-2xl overflow-hidden border border-white/10">
+                <Image src={src} alt={`Sülük terapisi ${i + 1}`} fill className="object-cover hover:scale-105 transition-transform duration-500" sizes="33vw" />
               </div>
             ))}
           </div>

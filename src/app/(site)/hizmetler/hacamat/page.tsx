@@ -1,5 +1,6 @@
 import type { Metadata } from "next";
 import Link from "next/link";
+import Image from "next/image";
 import { CheckCircle, Clock, Shield, AlertTriangle, Phone, MessageCircle, ChevronRight } from "lucide-react";
 import { getYearsExpStr } from "@/lib/experience";
 
@@ -103,6 +104,19 @@ export default function HacamatPage() {
                     </li>
                   ))}
                 </ul>
+              </div>
+            ))}
+          </div>
+        </div>
+      </section>
+
+      {/* SEANS GÖRSELLERİ */}
+      <section className="py-10">
+        <div className="container-site">
+          <div className="grid grid-cols-3 gap-3 md:gap-4">
+            {["/1.webp", "/3.webp", "/5.webp"].map((src, i) => (
+              <div key={i} className="relative aspect-[4/3] rounded-2xl overflow-hidden border border-white/10">
+                <Image src={src} alt={`Hacamat seansı ${i + 1}`} fill className="object-cover hover:scale-105 transition-transform duration-500" sizes="33vw" />
               </div>
             ))}
           </div>
