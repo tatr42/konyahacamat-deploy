@@ -1,7 +1,7 @@
 import { NextRequest, NextResponse } from "next/server";
 import sharp from "sharp";
 
-const BUCKET = "hacamat-site.firebasestorage.app";
+const BUCKET = "hacamat-site.appspot.com";
 
 export async function POST(req: NextRequest) {
   try {

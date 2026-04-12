@@ -11,13 +11,26 @@ export const metadata: Metadata = {
     template: "%s | Konyahacamat.net",
   },
   description:
-    "Konya'da profesyonel hacamat tedavisi ve sülük terapisi. Ebusadullah Hacamat & Akademi — 32+ yıl deneyim, CE sertifikalı steril malzeme, Almanya seansları. Randevu: 0554 406 23 83",
+    "Konya'da uzman hacamat ve sülük terapisi. Ebusadullah Hacamat & Akademi — 32+ yıl deneyim, steril CE sertifikalı malzeme, 384+ rahatsızlıkta şifa. Almanya seansları. Randevu: 0554 406 23 83",
   keywords: [
-    "konya hacamat", "hacamat konya", "kuru hacamat", "yaş hacamat",
-    "sülük terapisi konya", "hirudoterapi", "hacamat tedavisi",
-    "ebusadullah hacamat", "konya geleneksel tıp", "hacamat akademi",
-    "hacamat kursu konya", "hacamat eğitimi", "almanya hacamat",
-    "islamda hacamat", "sünnet tedavisi", "konyahacamat"
+    // Konum + hizmet
+    "konya hacamat", "hacamat konya", "konya hacamat merkezi", "konya hacamat fiyatı",
+    "konya sülük terapisi", "konya geleneksel tıp", "konya alternatif tıp",
+    // Soru tabanlı (arama niyeti)
+    "hacamat ne işe yarar", "hacamat nasıl yapılır", "hacamat faydaları nelerdir",
+    "hacamat kimlere yapılmaz", "hacamat sonrası ne yapılır", "hacamat kaç seansta etki eder",
+    "sülük terapisi ne işe yarar", "hirudoterapi faydaları",
+    // Hastalık + hacamat
+    "migren hacamat", "bel fıtığı hacamat", "boyun fıtığı hacamat",
+    "yüksek tansiyon hacamat", "diz ağrısı hacamat", "saç dökülmesi hacamat",
+    "fibromiyalji hacamat", "eklem ağrısı hacamat",
+    // Kurs & eğitim
+    "hacamat kursu konya", "hacamat eğitimi", "hacamat sertifikası",
+    "sülük kursu", "hacamat uzmanlık kursu",
+    // Marka
+    "ebusadullah hacamat", "ebusadullah akademi", "konyahacamat",
+    // Diğer
+    "islamda hacamat", "kuru hacamat", "yaş hacamat", "almanya hacamat",
   ],
   authors: [{ name: "Ebusadullah Hacamat & Akademi", url: BASE }],
   creator: "Ebusadullah Hacamat & Akademi",

@@ -3,16 +3,23 @@ import BlogList from "./BlogList";
 import { Feather, BookOpen, Users, Stethoscope } from "lucide-react";
 
 export const metadata: Metadata = {
-  title: "Hacamat Blog | Geleneksel Tıp & Sağlık Yazıları | Ebusadullah Akademi",
-  description: "Hacamat, sülük terapisi ve İslam tıbbı hakkında uzman içerikler. Konya Ebusadullah Hacamat & Akademi blog sayfası — sağlıklı yaşam rehberi.",
-  keywords: ["hacamat blog", "hacamat yazıları", "hacamat faydaları makale", "islamda hacamat", "geleneksel tıp blog", "sülük terapisi hakkında", "konya hacamat blog"],
+  title: "Hacamat Blog 2025 | Hacamat Faydaları, Nasıl Yapılır & Sülük Terapisi",
+  description: "Hacamat nedir, nasıl yapılır, kimlere yapılmaz? Sülük terapisi faydaları, İslam tıbbı ve doğal şifa yöntemleri. Ebusadullah Akademi Konya uzman blog içerikleri.",
+  keywords: [
+    "hacamat nedir", "hacamat nasıl yapılır", "hacamat faydaları",
+    "hacamat kimlere yapılmaz", "hacamat ne işe yarar", "hacamat sonrası ne yapılır",
+    "sülük terapisi nedir", "sülük terapisi faydaları", "hirudoterapi nedir",
+    "islamda hacamat", "hacamat sünneti", "geleneksel tıp blog",
+    "konya hacamat blog", "ebusadullah akademi blog", "doğal şifa yöntemleri",
+    "migren için hacamat", "bel fıtığı için hacamat", "hacamat hastalıklar",
+  ],
   alternates: { canonical: "https://konyahacamat.net/blog" },
   openGraph: {
-    title: "Hacamat Blog | Geleneksel Tıp & Sağlık Yazıları",
-    description: "Hacamat, sülük terapisi ve İslam tıbbı hakkında uzman içerikler. Ebusadullah Hacamat & Akademi blog sayfası.",
+    title: "Hacamat Blog 2025 | Hacamat Faydaları & Sülük Terapisi",
+    description: "Hacamat nedir, nasıl yapılır, faydaları nelerdir? Uzman içeriklerle geleneksel tıp rehberi. Ebusadullah Akademi Konya.",
     url: "https://konyahacamat.net/blog",
     type: "website",
-    images: [{ url: "/logo.webp", width: 1200, height: 630, alt: "Hacamat Blog Konya" }],
+    images: [{ url: "/logo.webp", width: 1200, height: 630, alt: "Hacamat Blog Konya Ebusadullah" }],
   },
 };
 
