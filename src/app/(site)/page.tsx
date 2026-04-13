@@ -4,6 +4,7 @@ import ServicesGrid from "@/components/ServicesGrid";
 import DiseaseTabs from "@/components/DiseaseTabs";
 import AcademySection from "@/components/AcademySection";
 import PressSection from "@/components/PressSection";
+import Testimonials from "@/components/Testimonials";
 import WhatsAppWidget from "@/components/WhatsAppWidget";
 
 export const metadata: Metadata = {
@@ -55,6 +56,7 @@ export default function Home() {
       <ServicesGrid />
       <DiseaseTabs />
       <AcademySection />
+      <Testimonials />
       <PressSection />
       <WhatsAppWidget />
     </>
