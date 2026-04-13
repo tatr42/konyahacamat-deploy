@@ -1,0 +1,19 @@
+
+> hacamat-site@0.1.0 dev
+> next dev
+
+▲ Next.js 16.2.3 (Turbopack)
+- Local:         http://localhost:3000
+- Network:       http://192.168.0.2:3000
+✓ Ready in 578ms
+⚠ The "middleware" file convention is deprecated. Please use "proxy" instead. Learn more: https://nextjs.org/docs/messages/middleware-to-proxy
+
+○ Compiling / ...
+ GET / 200 in 6.2s (next.js: 5.2s, application-code: 974ms)
+ GET /academy-hero.webp 404 in 2.1s (next.js: 1911ms, application-code: 182ms)
+⨯ The requested resource isn't a valid image for /academy-hero.webp received null
+[browser] Image with src "/academy-hero.webp" has "fill" but is missing "sizes" prop. Please add it to improve page performance. Read more: https://nextjs.org/docs/api-reference/next/image#sizes
+ GET /api/basin 200 in 3.2s (next.js: 2.6s, application-code: 613ms)
+ GET /takvim 200 in 1560ms (next.js: 1160ms, application-code: 400ms)
+ GET /blog 200 in 2.2s (next.js: 2.0s, application-code: 147ms)
+ GET /api/blog 200 in 531ms (next.js: 339ms, application-code: 193ms)

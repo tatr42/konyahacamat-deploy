@@ -3,13 +3,15 @@ import { Moon, Shield, Clock, MessageCircle, Phone } from "lucide-react";
 import HacamatCalendar from "@/components/HacamatCalendar";
 import Link from "next/link";
 
+const currentYear = new Date().getFullYear();
+
 export const metadata: Metadata = {
-  title: "Hacamat Takvimi 2025 | Hicri Faziletli Günler & Online Randevu | Konya",
+  title: `Hacamat Takvimi ${currentYear} | Hicri Faziletli Günler & Online Randevu | Konya`,
   description: "Hicri takvime göre faziletli hacamat günleri (13, 14, 15, 17, 19, 21). Konya ve Almanya için WhatsApp randevu. Ebusadullah Hacamat & Akademi — Anında teyit.",
   keywords: ["hacamat takvimi", "hacamat günleri", "hicri takvim hacamat", "faziletli hacamat günleri", "hacamat randevu konya", "sünnet hacamat günleri", "hacamat ne zaman yapılır", "konya hacamat randevu"],
   alternates: { canonical: "https://konyahacamat.net/takvim" },
   openGraph: {
-    title: "Hacamat Takvimi 2025 | Hicri Faziletli Günler | Konya Randevu",
+    title: `Hacamat Takvimi ${currentYear} | Hicri Faziletli Günler | Konya Randevu`,
     description: "Hicri takvime göre işaretli faziletli hacamat günleri. Gün seçin, WhatsApp ile anında randevu alın. Konya ve Almanya.",
     url: "https://konyahacamat.net/takvim",
     images: [{ url: "/logo.webp", width: 1200, height: 630, alt: "Hacamat Takvimi Konya" }],

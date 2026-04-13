@@ -2,8 +2,10 @@ import type { Metadata } from "next";
 import BlogList from "./BlogList";
 import { Feather, BookOpen, Users, Stethoscope } from "lucide-react";
 
+const currentYear = new Date().getFullYear();
+
 export const metadata: Metadata = {
-  title: "Hacamat Blog 2025 | Hacamat Faydaları, Nasıl Yapılır & Sülük Terapisi",
+  title: `Hacamat Blog ${currentYear} | Hacamat Faydaları, Nasıl Yapılır & Sülük Terapisi`,
   description: "Hacamat nedir, nasıl yapılır, kimlere yapılmaz? Sülük terapisi faydaları, İslam tıbbı ve doğal şifa yöntemleri. Ebusadullah Akademi Konya uzman blog içerikleri.",
   keywords: [
     "hacamat nedir", "hacamat nasıl yapılır", "hacamat faydaları",
@@ -15,7 +17,7 @@ export const metadata: Metadata = {
   ],
   alternates: { canonical: "https://konyahacamat.net/blog" },
   openGraph: {
-    title: "Hacamat Blog 2025 | Hacamat Faydaları & Sülük Terapisi",
+    title: `Hacamat Blog ${currentYear} | Hacamat Faydaları & Sülük Terapisi`,
     description: "Hacamat nedir, nasıl yapılır, faydaları nelerdir? Uzman içeriklerle geleneksel tıp rehberi. Ebusadullah Akademi Konya.",
     url: "https://konyahacamat.net/blog",
     type: "website",
