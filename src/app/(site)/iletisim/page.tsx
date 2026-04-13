@@ -151,16 +151,27 @@ export default function IletisimPage() {
               </div>
 
               {/* Harita */}
-              <div className="rounded-2xl overflow-hidden border border-white/10 h-64">
+              <div className="rounded-2xl overflow-hidden border border-white/10 h-72 group relative">
                 <iframe
-                  src="https://www.google.com/maps/embed?pb=!1m18!1m12!1m3!1d12487.123456!2d32.4984!3d37.8746!2m3!1f0!2f0!3f0!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0x0%3A0x0!2zMzfCsDUyJzI4LjYiTiAzMsKwMjknNTQuMiJF!5e0!3m2!1str!2str!4v1234567890"
+                  src="https://www.google.com/maps/embed?pb=!1m18!1m12!1m3!1d3148.566373752631!2d32.49581177651817!3d37.87040907196147!2m3!1f0!2f0!3f0!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0x14d085951f2536d7%3A0x1d14a1a09d31d45!2zTmnFnWFudGHFnywgRHIuIEh1bHVzaSBCYXliYWwgQ2QuLCBTZWzDp3VrbHUvS29ueWE!5e0!3m2!1str!2str!4v1715500000000!5m2!1str!2str"
                   width="100%"
                   height="100%"
                   style={{ border: 0 }}
                   allowFullScreen
                   loading="lazy"
                   referrerPolicy="no-referrer-when-downgrade"
+                  className="grayscale invert contrast-[0.9] opacity-80 group-hover:opacity-100 group-hover:grayscale-0 group-hover:invert-0 transition-all duration-700"
                 />
+                <div className="absolute bottom-4 left-4 right-4 pointer-events-none">
+                  <a
+                    href="https://www.google.com/maps/dir/?api=1&destination=37.8704,32.4958"
+                    target="_blank"
+                    rel="noopener noreferrer"
+                    className="inline-flex items-center gap-2 bg-anthracite-dark/90 backdrop-blur-md border border-white/10 px-4 py-2 rounded-xl text-[11px] font-bold text-teal uppercase tracking-widest pointer-events-auto hover:bg-teal hover:text-black transition-all shadow-2xl"
+                  >
+                    <MapPin size={12} /> Yol Tarifi Al
+                  </a>
+                </div>
               </div>
 
               <div className="bg-white/5 border border-white/10 rounded-2xl p-6">
