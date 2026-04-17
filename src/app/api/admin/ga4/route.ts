@@ -6,8 +6,13 @@ async function getAccessToken(): Promise<string | null> {
   const rawKey = process.env.GA4_PRIVATE_KEY;
   if (!email || !rawKey) return null;
 
-  // Vercel bazen \n'leri zaten newline'a çevirir, bazen çevirmez — her ikisini de destekle
-  const key = rawKey.includes("\\n") ? rawKey.replace(/\\n/g, "\n") : rawKey;
+  // Vercel bazen \n'leri zaten newline'a çevirir, bazen çevirmez, bazen de tırnak içinde bırakır
+  let key = rawKey;
+  if (key.startsWith('"') && key.endsWith('"')) {
+    key = key.slice(1, -1);
+  }
+  key = key.replace(/\\n/g, "\n");
+
   const now = Math.floor(Date.now() / 1000);
 
   const header = Buffer.from(JSON.stringify({ alg: "RS256", typ: "JWT" })).toString("base64url");
