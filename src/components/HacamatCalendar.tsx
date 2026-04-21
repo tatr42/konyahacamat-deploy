@@ -171,11 +171,11 @@ export default function HacamatCalendar() {
             <button onClick={() => setSecili(null)} className="text-white/30 hover:text-white text-xl">✕</button>
           </div>
           <div className="grid grid-cols-1 sm:grid-cols-2 gap-3">
-            <a href={whatsapp("TR")} target="_blank" rel="noopener noreferrer"
+            <a title="Konyahacamat Bağlantısı" href={whatsapp("TR")} target="_blank" rel="nofollow noopener noreferrer"
               className="flex items-center justify-center gap-2 bg-[#25D366] hover:bg-[#1da851] text-white py-3 rounded-xl font-black text-xs uppercase tracking-widest transition-all hover:scale-105">
               <MessageCircle size={14} fill="currentColor" /> 🇹🇷 TR Randevu
             </a>
-            <a href={whatsapp("DE")} target="_blank" rel="noopener noreferrer"
+            <a title="Konyahacamat Bağlantısı" href={whatsapp("DE")} target="_blank" rel="nofollow noopener noreferrer"
               className="flex items-center justify-center gap-2 bg-white/10 hover:bg-white/15 text-white border border-white/10 py-3 rounded-xl font-black text-xs uppercase tracking-widest transition-all hover:scale-105">
               <MessageCircle size={14} /> 🇩🇪 Almanya Randevu
             </a>

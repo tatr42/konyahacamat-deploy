@@ -84,7 +84,7 @@ export default function Navbar() {
         scrolled ? 'bg-anthracite-dark/95 backdrop-blur-md py-3 shadow-2xl' : 'bg-transparent py-3 lg:py-6'
       }`}>
         <div className="container-site flex justify-between items-end lg:items-center">
-          <Link href="/" className="flex items-center gap-2 group shrink-0">
+          <Link title="Konyahacamat" href="/" className="flex items-center gap-2 group shrink-0">
             <Image src="/fav.webp" alt="Konya Hacamat" width={40} height={40} className="w-8 h-8 lg:w-10 lg:h-10 rounded-lg object-contain transition-transform group-hover:scale-110" />
             <div className="flex flex-col text-left">
               <span className="text-white font-bold text-sm lg:text-lg leading-none tracking-tight uppercase">
@@ -105,7 +105,7 @@ export default function Navbar() {
                     <ChevronDown size={14} className="group-hover/item:rotate-180 transition-transform" />
                   </button>
                 ) : (
-                  <Link href={link.href} className="inline-flex items-center text-[12px] font-bold text-white/70 hover:text-teal transition-all tracking-wide uppercase py-4">
+                  <Link title="Konyahacamat" href={link.href} className="inline-flex items-center text-[12px] font-bold text-white/70 hover:text-teal transition-all tracking-wide uppercase py-4">
                     {link.name}
                   </Link>
                 )}
@@ -125,7 +125,7 @@ export default function Navbar() {
             ))}
           </div>
 
-          <Link href="/takvim"
+          <Link title="Konyahacamat" href="/takvim"
             className="bg-teal text-anthracite-dark px-4 py-2.5 lg:px-7 lg:py-3 rounded-full font-black text-[10px] lg:text-[11px] uppercase tracking-widest hover:scale-105 hover:shadow-[0_0_25px_rgba(20,184,166,0.4)] active:scale-95 transition-all duration-300 flex items-center gap-1.5 whitespace-nowrap shrink-0">
             <Calendar size={14} className="shrink-0" /> Randevu Al
           </Link>

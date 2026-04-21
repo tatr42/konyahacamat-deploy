@@ -124,7 +124,7 @@ export default function MalzemelePage() {
                 </ul>
                 <a
                   href={`https://wa.me/905544062383?text=${encodeURIComponent(`Merhaba, "${u.isim}" ürünü hakkında fiyat bilgisi almak istiyorum.`)}`}
-                  target="_blank" rel="noopener noreferrer"
+                  target="_blank" rel="nofollow noopener noreferrer"
                   className="flex items-center justify-center gap-2 bg-[#25D366] hover:bg-[#1da851] text-white py-3 rounded-xl font-black text-xs uppercase tracking-widest transition-all">
                   <MessageCircle size={14} fill="currentColor" /> Fiyat Al
                 </a>
@@ -200,15 +200,15 @@ export default function MalzemelePage() {
             </div>
           </div>
           <div className="flex flex-col sm:flex-row gap-3 shrink-0">
-            <a href="https://wa.me/905544062383" target="_blank" rel="noopener noreferrer"
+            <a title="Konyahacamat Bağlantısı" href="https://wa.me/905544062383" target="_blank" rel="nofollow noopener noreferrer"
               className="flex items-center gap-2 bg-[#25D366] text-white px-6 py-4 rounded-2xl font-black text-sm uppercase tracking-widest hover:scale-105 transition-all">
               <MessageCircle size={18} fill="currentColor" /> WhatsApp
             </a>
-            <a href="tel:05544062383"
+            <a title="Konyahacamat Bağlantısı" href="tel:05544062383"
               className="flex items-center gap-2 bg-white/10 text-white border border-white/20 px-6 py-4 rounded-2xl font-black text-sm uppercase tracking-widest hover:bg-white/15 transition-all">
               🇹🇷 <Phone size={18} /> 0554 406 23 83
             </a>
-            <a href="tel:+491634492870"
+            <a title="Konyahacamat Bağlantısı" href="tel:+491634492870"
               className="flex items-center gap-2 bg-white/10 text-white border border-white/20 px-6 py-4 rounded-2xl font-black text-sm uppercase tracking-widest hover:bg-white/15 transition-all">
               🇩🇪 <Phone size={18} /> +49 163 449 28 70
             </a>

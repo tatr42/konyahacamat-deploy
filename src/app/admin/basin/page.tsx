@@ -220,7 +220,7 @@ export default function AdminBasinPage() {
                       <div className="text-white font-medium text-sm truncate">{item.baslik}</div>
                       <div className="text-teal text-xs mt-0.5">{item.kaynak} · {item.yil}</div>
                       {item.slug && (
-                        <a href={`/basin/${item.slug}`} target="_blank" rel="noopener noreferrer"
+                        <a href={`/basin/${item.slug}`} target="_blank" rel="nofollow noopener noreferrer"
                           className="text-white/30 text-[10px] font-mono hover:text-teal mt-0.5 inline-block">
                           /basin/{item.slug}
                         </a>

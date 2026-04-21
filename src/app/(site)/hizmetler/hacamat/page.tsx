@@ -51,15 +51,15 @@ export default function HacamatPage() {
             <strong className="text-white"> Almanya'daki periyodik seanslarımızda</strong> steril protokollerle uyguluyoruz.
           </p>
           <div className="flex flex-wrap gap-4">
-            <a href="https://wa.me/905544062383?text=Hacamat%20tedavisi%20hakk%C4%B1nda%20bilgi%20almak%20istiyorum." target="_blank" rel="noopener noreferrer"
+            <a title="Konyahacamat Bağlantısı" href="https://wa.me/905544062383?text=Hacamat%20tedavisi%20hakk%C4%B1nda%20bilgi%20almak%20istiyorum." target="_blank" rel="nofollow noopener noreferrer"
               className="flex items-center gap-2 bg-[#25D366] text-white px-6 py-4 rounded-2xl font-black text-sm uppercase tracking-widest hover:scale-105 transition-all">
               <MessageCircle size={18} fill="currentColor" /> WhatsApp
             </a>
-            <a href="tel:05544062383"
+            <a title="Konyahacamat Bağlantısı" href="tel:05544062383"
               className="flex items-center gap-2 bg-white/10 text-white border border-white/20 px-6 py-4 rounded-2xl font-black text-sm uppercase tracking-widest hover:bg-white/15 transition-all">
               🇹🇷 <Phone size={18} /> 0554 406 23 83
             </a>
-            <a href="tel:+491634492870"
+            <a title="Konyahacamat Bağlantısı" href="tel:+491634492870"
               className="flex items-center gap-2 bg-white/10 text-white border border-white/20 px-6 py-4 rounded-2xl font-black text-sm uppercase tracking-widest hover:bg-white/15 transition-all">
               🇩🇪 <Phone size={18} /> +49 163 449 28 70
             </a>
@@ -192,8 +192,8 @@ export default function HacamatPage() {
                 WhatsApp üzerinden bize ulaşın.
               </p>
             </div>
-            <a href="https://wa.me/905544062383?text=Almanya%20hacamat%20seans%20tarihleri%20hakk%C4%B1nda%20bilgi%20almak%20istiyorum."
-              target="_blank" rel="noopener noreferrer"
+            <a title="Konyahacamat Bağlantısı" href="https://wa.me/905544062383?text=Almanya%20hacamat%20seans%20tarihleri%20hakk%C4%B1nda%20bilgi%20almak%20istiyorum."
+              target="_blank" rel="nofollow noopener noreferrer"
               className="shrink-0 flex items-center gap-2 bg-[#25D366] text-white px-8 py-4 rounded-2xl font-black uppercase tracking-widest hover:scale-105 transition-all">
               <MessageCircle size={18} fill="currentColor" /> Almanya Randevusu
             </a>
@@ -287,15 +287,15 @@ export default function HacamatPage() {
               <h2 className="font-display text-3xl font-bold text-white mb-2">Randevu Almak İster misiniz?</h2>
               <p className="text-white/50 mb-6">Konya veya Almanya seansları için hemen iletişime geçin. {getYearsExpStr()} yıl deneyimle güvenli ve steril uygulama.</p>
               <div className="flex flex-wrap gap-3">
-                <a href="https://wa.me/905544062383?text=Hacamat%20randevusu%20almak%20istiyorum." target="_blank" rel="noopener noreferrer"
+                <a title="Konyahacamat Bağlantısı" href="https://wa.me/905544062383?text=Hacamat%20randevusu%20almak%20istiyorum." target="_blank" rel="nofollow noopener noreferrer"
                   className="flex items-center gap-2 bg-[#25D366] text-white px-6 py-3 rounded-xl font-black text-sm uppercase tracking-widest hover:scale-105 transition-all">
                   <MessageCircle size={16} fill="currentColor" /> 🇹🇷 WhatsApp
                 </a>
-                <a href="https://wa.me/491634492870?text=Hacamat%20randevusu%20almak%20istiyorum." target="_blank" rel="noopener noreferrer"
+                <a title="Konyahacamat Bağlantısı" href="https://wa.me/491634492870?text=Hacamat%20randevusu%20almak%20istiyorum." target="_blank" rel="nofollow noopener noreferrer"
                   className="flex items-center gap-2 bg-white/10 text-white border border-white/20 px-6 py-3 rounded-xl font-black text-sm uppercase tracking-widest hover:bg-white/15 transition-all">
                   <MessageCircle size={16} /> 🇩🇪 Almanya
                 </a>
-                <Link href="/takvim"
+                <Link title="Konyahacamat" href="/takvim"
                   className="flex items-center gap-2 bg-teal text-anthracite-dark px-6 py-3 rounded-xl font-black text-sm uppercase tracking-widest hover:opacity-90 transition-opacity">
                   Takvim <ChevronRight size={16} />
                 </Link>

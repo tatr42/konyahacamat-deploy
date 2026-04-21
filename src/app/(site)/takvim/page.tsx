@@ -91,19 +91,19 @@ export default function TakvimPage() {
                 <h3 className="text-white font-black text-sm uppercase tracking-widest mb-2 flex items-center gap-2">
                   <span className="w-3 h-[2px] bg-teal" /> Hızlı Randevu
                 </h3>
-                <a href="https://wa.me/905544062383?text=Merhaba%2C%20hacamat%20randevusu%20almak%20istiyorum." target="_blank" rel="noopener noreferrer"
+                <a title="Konyahacamat Bağlantısı" href="https://wa.me/905544062383?text=Merhaba%2C%20hacamat%20randevusu%20almak%20istiyorum." target="_blank" rel="nofollow noopener noreferrer"
                   className="flex items-center gap-3 bg-[#25D366] hover:bg-[#1da851] text-white w-full px-4 py-3 rounded-xl font-black text-xs uppercase tracking-widest transition-all">
                   <MessageCircle size={16} fill="currentColor" /> 🇹🇷 WhatsApp TR
                 </a>
-                <a href="https://wa.me/491634492870?text=Merhaba%2C%20hacamat%20randevusu%20almak%20istiyorum." target="_blank" rel="noopener noreferrer"
+                <a title="Konyahacamat Bağlantısı" href="https://wa.me/491634492870?text=Merhaba%2C%20hacamat%20randevusu%20almak%20istiyorum." target="_blank" rel="nofollow noopener noreferrer"
                   className="flex items-center gap-3 bg-white/10 hover:bg-white/15 text-white border border-white/10 w-full px-4 py-3 rounded-xl font-black text-xs uppercase tracking-widest transition-all">
                   <MessageCircle size={16} /> 🇩🇪 WhatsApp Almanya
                 </a>
-                <a href="tel:05544062383"
+                <a title="Konyahacamat Bağlantısı" href="tel:05544062383"
                   className="flex items-center gap-3 bg-white/5 hover:bg-white/10 text-white/60 border border-white/5 w-full px-4 py-3 rounded-xl font-bold text-xs uppercase tracking-widest transition-all">
                   <Phone size={14} /> 🇹🇷 0554 406 23 83
                 </a>
-                <a href="tel:+491634492870"
+                <a title="Konyahacamat Bağlantısı" href="tel:+491634492870"
                   className="flex items-center gap-3 bg-white/5 hover:bg-white/10 text-white/60 border border-white/5 w-full px-4 py-3 rounded-xl font-bold text-xs uppercase tracking-widest transition-all">
                   <Phone size={14} /> 🇩🇪 +49 163 449 28 70
                 </a>
@@ -219,15 +219,15 @@ export default function TakvimPage() {
             </div>
           </div>
           <div className="flex gap-3 flex-wrap">
-            <a href="https://wa.me/905544062383" target="_blank" rel="noopener noreferrer"
+            <a title="Konyahacamat Bağlantısı" href="https://wa.me/905544062383" target="_blank" rel="nofollow noopener noreferrer"
               className="flex items-center gap-2 bg-[#25D366] text-white px-6 py-4 rounded-2xl font-black text-sm uppercase tracking-widest hover:scale-105 transition-all">
               <MessageCircle size={18} fill="currentColor" /> 🇹🇷 WhatsApp
             </a>
-            <a href="https://wa.me/491634492870" target="_blank" rel="noopener noreferrer"
+            <a title="Konyahacamat Bağlantısı" href="https://wa.me/491634492870" target="_blank" rel="nofollow noopener noreferrer"
               className="flex items-center gap-2 bg-white/10 text-white border border-white/20 px-6 py-4 rounded-2xl font-black text-sm uppercase tracking-widest hover:bg-white/15 transition-all">
               <MessageCircle size={18} /> 🇩🇪 Almanya
             </a>
-            <Link href="/iletisim"
+            <Link title="Konyahacamat" href="/iletisim"
               className="flex items-center gap-2 bg-white/10 text-white border border-white/20 px-6 py-4 rounded-2xl font-black text-sm uppercase tracking-widest hover:bg-white/15 transition-all">
               İletişim
             </Link>

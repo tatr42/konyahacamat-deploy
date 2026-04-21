@@ -206,7 +206,7 @@ export default function DiseaseTabs() {
             <div className="md:hidden absolute inset-0 w-full h-full opacity-30 pointer-events-none">
               <Image
                 src={current.img}
-                alt=""
+                alt={current.label}
                 aria-hidden
                 fill
                 sizes="100vw"
@@ -262,7 +262,7 @@ export default function DiseaseTabs() {
             <a
               href="https://wa.me/905544062383"
               target="_blank"
-              rel="noopener noreferrer"
+              rel="nofollow noopener noreferrer"
               className="inline-flex items-center gap-2 bg-teal text-black px-5 py-2.5 rounded-xl font-black text-xs uppercase tracking-wider hover:opacity-90 transition-all shrink-0"
             >
               Randevu Al <ArrowRight size={12} />

@@ -71,7 +71,7 @@ export default async function BlogPostPage({ params }: { params: Promise<{ slug:
 
         {/* Breadcrumb */}
         <div className="flex items-center gap-2 text-white/30 text-sm mb-8">
-          <Link href="/blog" className="hover:text-teal transition-colors flex items-center gap-1">
+          <Link title="Konyahacamat" href="/blog" className="hover:text-teal transition-colors flex items-center gap-1">
             <ArrowLeft size={14} /> Blog
           </Link>
           <span>/</span>
@@ -112,11 +112,11 @@ export default async function BlogPostPage({ params }: { params: Promise<{ slug:
           <h3 className="text-white font-bold text-xl mb-2">Hacamat Tedavisi İçin Randevu Alın</h3>
           <p className="text-white/50 text-sm mb-6">Konya veya Almanya seansları için bize ulaşın.</p>
           <div className="flex flex-wrap justify-center gap-3">
-            <a href="https://wa.me/905544062383" target="_blank" rel="noopener noreferrer"
+            <a title="Konyahacamat Bağlantısı" href="https://wa.me/905544062383" target="_blank" rel="nofollow noopener noreferrer"
               className="flex items-center gap-2 bg-[#25D366] text-white px-6 py-3 rounded-xl font-black text-sm uppercase tracking-widest hover:scale-105 transition-all">
               WhatsApp
             </a>
-            <Link href="/takvim"
+            <Link title="Konyahacamat" href="/takvim"
               className="flex items-center gap-2 bg-teal text-anthracite-dark px-6 py-3 rounded-xl font-black text-sm uppercase tracking-widest hover:scale-105 transition-all">
               Randevu Al
             </Link>

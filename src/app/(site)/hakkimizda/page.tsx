@@ -239,7 +239,7 @@ export default function HakkimizdaPage() {
               </div>
             ))}
           </div>
-          <Link href="/egitimler" className="inline-flex items-center gap-2 bg-teal text-anthracite-dark px-6 py-3 rounded-xl font-black text-sm uppercase tracking-widest hover:opacity-90 transition-opacity">
+          <Link title="Konyahacamat" href="/egitimler" className="inline-flex items-center gap-2 bg-teal text-anthracite-dark px-6 py-3 rounded-xl font-black text-sm uppercase tracking-widest hover:opacity-90 transition-opacity">
             Eğitim Programları →
           </Link>
         </div>
@@ -281,15 +281,15 @@ export default function HakkimizdaPage() {
             </div>
           </div>
           <div className="flex flex-wrap gap-3">
-            <a href="https://wa.me/905544062383" target="_blank" rel="noopener noreferrer"
+            <a title="Konyahacamat Bağlantısı" href="https://wa.me/905544062383" target="_blank" rel="nofollow noopener noreferrer"
               className="flex items-center gap-2 bg-[#25D366] text-white px-6 py-4 rounded-2xl font-black uppercase tracking-widest hover:scale-105 transition-all">
               <MessageCircle size={18} fill="currentColor" /> 🇹🇷 WhatsApp
             </a>
-            <a href="https://wa.me/491634492870" target="_blank" rel="noopener noreferrer"
+            <a title="Konyahacamat Bağlantısı" href="https://wa.me/491634492870" target="_blank" rel="nofollow noopener noreferrer"
               className="flex items-center gap-2 bg-white/10 text-white border border-white/20 px-6 py-4 rounded-2xl font-black uppercase tracking-widest hover:bg-white/15 transition-all">
               <MessageCircle size={18} /> 🇩🇪 Almanya
             </a>
-            <Link href="/iletisim"
+            <Link title="Konyahacamat" href="/iletisim"
               className="flex items-center gap-2 bg-white/10 text-white border border-white/20 px-6 py-4 rounded-2xl font-black uppercase tracking-widest hover:bg-white/15 transition-all">
               İletişim
             </Link>
