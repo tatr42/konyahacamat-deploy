@@ -1,12 +1,14 @@
 import { NextRequest, NextResponse } from "next/server";
+import { verifySession } from "@/lib/session";
 
-export function middleware(req: NextRequest) {
+export async function middleware(req: NextRequest) {
   const { pathname } = req.nextUrl;
 
   // Login sayfasını koru — zaten giriş yapmışsa dashboard'a yönlendir
   if (pathname === "/admin/login") {
     const cookie = req.cookies.get("admin_auth");
-    if (cookie?.value === "session_ok") {
+    const session = await verifySession(cookie?.value);
+    if (session) {
       return NextResponse.redirect(new URL("/admin", req.url));
     }
     return NextResponse.next();
@@ -15,7 +17,8 @@ export function middleware(req: NextRequest) {
   // /admin ve tüm alt sayfaları koru
   if (pathname.startsWith("/admin")) {
     const cookie = req.cookies.get("admin_auth");
-    if (!cookie || cookie.value !== "session_ok") {
+    const session = await verifySession(cookie?.value);
+    if (!session) {
       return NextResponse.redirect(new URL("/admin/login", req.url));
     }
   }
