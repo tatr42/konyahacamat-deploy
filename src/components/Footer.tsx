@@ -44,6 +44,7 @@ export default function Footer() {
             <ul className="space-y-4 text-sm font-semibold">
               <li><Link href="/hizmetler" className="text-white/60 hover:text-teal transition-colors">Hacamat Tedavisi</Link></li>
               <li><Link href="/hizmetler/suluk" className="text-white/60 hover:text-teal transition-colors">Sülük Terapisi</Link></li>
+              <li><Link href="/almanya-hacamat" className="text-white/60 hover:text-teal transition-colors font-bold">Almanya Şubemiz</Link></li>
               <li><Link href="/egitimler" className="text-white/60 hover:text-teal transition-colors">Eğitim & Kurslar</Link></li>
               <li><Link href="/malzemeler" className="text-white/60 hover:text-teal transition-colors">Malzeme Satışı</Link></li>
               <li><Link href="/takvim" className="text-white/60 hover:text-teal transition-colors">Sünnet Takvimi</Link></li>
