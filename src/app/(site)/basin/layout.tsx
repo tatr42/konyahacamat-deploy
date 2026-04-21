@@ -10,7 +10,7 @@ export const metadata: Metadata = {
     "yenigun hacamat", "konya postası hacamat", "merhaba gazetesi hacamat",
     "hacamat tedavisi haber", "ebusadullah akademi medya",
   ],
-  alternates: { canonical: "https://konyahacamat.net/basin" },
+  alternates: { canonical: "/basin" },
   openGraph: {
     title: "Basın Odası | Medyada Ebusadullah Hacamat Konya",
     description: "50+ ulusal ve yerel gazetede yer alan hacamat haberleri. Ebusadullah Hacamat & Akademi Konya basın odası.",

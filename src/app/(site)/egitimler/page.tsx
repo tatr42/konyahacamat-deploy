@@ -6,7 +6,7 @@ export const metadata: Metadata = {
   title: "Hacamat Kursu Konya | Sertifikalı Hacamat Eğitimi | Ebusadullah Akademi",
   description: "Konya Ebusadullah Akademi'de sertifikalı hacamat ve sülük terapisi uzmanlık kursları. Küçük gruplar, birebir uygulama, uluslararası geçerli sertifika. Almanya'da da eğitim verilmektedir.",
   keywords: ["hacamat kursu konya", "hacamat eğitimi", "hacamat sertifikası", "sülük terapisi kursu", "hirudoterapi eğitimi", "hacamat uzmanlık", "hacamat kursu fiyat", "ebusadullah akademi", "hacamat öğrenmek"],
-  alternates: { canonical: "https://konyahacamat.net/egitimler" },
+  alternates: { canonical: "/egitimler" },
   openGraph: {
     title: "Hacamat Kursu Konya | Sertifikalı Eğitim | Ebusadullah Akademi",
     description: "Sertifikalı hacamat ve sülük terapisi uzmanlık kursları. Küçük gruplar, birebir uygulama. 1200+ mezun. Konya ve Almanya'da eğitim.",

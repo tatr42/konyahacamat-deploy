@@ -5,7 +5,7 @@ export const metadata: Metadata = {
   title: "Hacamat Malzemeleri | Steril Set, Vantuz, Bistüri | Konya Kargo",
   description: "CE sertifikalı profesyonel hacamat malzemeleri: steril vantuz seti, tek kullanımlık bistüri, elektrikli pompa, sülük bakım seti. Konya'dan Türkiye geneline kargo. WhatsApp sipariş.",
   keywords: ["hacamat malzemeleri", "hacamat seti", "hacamat vantuz", "hacamat bistüri", "steril hacamat seti", "hacamat pompası", "sülük bakım seti", "hacamat ekipman", "hacamat malzeme fiyat"],
-  alternates: { canonical: "https://konyahacamat.net/malzemeler" },
+  alternates: { canonical: "/malzemeler" },
   openGraph: {
     title: "Hacamat Malzemeleri | CE Sertifikalı Steril Set | Konya",
     description: "Profesyonel hacamat malzemeleri ve sülük bakım seti. CE sertifikalı, steril ambalaj. Türkiye geneli kargo. WhatsApp: 0554 406 23 83",

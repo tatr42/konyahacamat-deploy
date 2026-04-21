@@ -6,7 +6,7 @@ export default function robots(): MetadataRoute.Robots {
       {
         userAgent: "*",
         allow: "/",
-        disallow: ["/admin", "/api/"],
+        disallow: ["/admin", "/admin/", "/admin/*", "/api/", "/api/*"],
       },
     ],
     sitemap: "https://konyahacamat.net/sitemap.xml",

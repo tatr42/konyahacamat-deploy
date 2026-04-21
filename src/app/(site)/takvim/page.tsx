@@ -9,7 +9,7 @@ export const metadata: Metadata = {
   title: `Hacamat Takvimi ${currentYear} | Hicri Faziletli Günler & Online Randevu | Konya`,
   description: "Hicri takvime göre faziletli hacamat günleri (13, 14, 15, 17, 19, 21). Konya ve Almanya için WhatsApp randevu. Ebusadullah Hacamat & Akademi — Anında teyit.",
   keywords: ["hacamat takvimi", "hacamat günleri", "hicri takvim hacamat", "faziletli hacamat günleri", "hacamat randevu konya", "sünnet hacamat günleri", "hacamat ne zaman yapılır", "konya hacamat randevu"],
-  alternates: { canonical: "https://konyahacamat.net/takvim" },
+  alternates: { canonical: "/takvim" },
   openGraph: {
     title: `Hacamat Takvimi ${currentYear} | Hicri Faziletli Günler | Konya Randevu`,
     description: "Hicri takvime göre işaretli faziletli hacamat günleri. Gün seçin, WhatsApp ile anında randevu alın. Konya ve Almanya.",

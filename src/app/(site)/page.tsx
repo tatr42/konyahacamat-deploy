@@ -10,7 +10,7 @@ import WhatsAppWidget from "@/components/WhatsAppWidget";
 export const metadata: Metadata = {
   title: "Konya Hacamat | Ebusadullah Hacamat & Akademi | Konyahacamat.net",
   description: "Konya'nın en köklü hacamat merkezi. Kuru & yaş hacamat, sülük terapisi, sertifikalı hacamat kursu. 32+ yıl deneyim, CE steril malzeme. Almanya seansları. Randevu: 0554 406 23 83",
-  alternates: { canonical: "https://konyahacamat.net" },
+  alternates: { canonical: "/" },
   openGraph: {
     title: "Konya Hacamat | Ebusadullah Hacamat & Akademi",
     description: "Konya'nın köklü hacamat merkezi. Kuru & yaş hacamat, sülük terapisi, uzmanlık kursları. 32+ yıl deneyim. Almanya periyodik seansları.",
