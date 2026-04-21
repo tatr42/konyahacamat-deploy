@@ -1,17 +1,20 @@
 import { NextResponse } from "next/server";
 import { cookies } from "next/headers";
+import { signSession } from "@/lib/session";
 
 export async function POST(req: Request) {
   try {
     const { password } = await req.json();
     const correct = process.env.ADMIN_PASSWORD ?? "Eb@Hac2027#Net";
     if (password === correct) {
+      const sessionToken = await signSession({ role: "admin" });
       const cookieStore = await cookies();
-      cookieStore.set("admin_auth", "session_ok", {
+      cookieStore.set("admin_auth", sessionToken, {
         httpOnly: true,
         secure: process.env.NODE_ENV === "production",
         path: "/",
         maxAge: 60 * 60 * 24 * 7, // 7 gün
+        sameSite: "lax",
       });
       return NextResponse.json({ success: true });
     }
