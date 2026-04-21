@@ -21,11 +21,15 @@ const staticPages = [
 
 export default async function sitemap(): Promise<MetadataRoute.Sitemap> {
   let blogPages: MetadataRoute.Sitemap = [];
+  let pressPages: MetadataRoute.Sitemap = [];
 
   try {
-    const q = query(collection(db, "posts"), where("published", "==", true));
-    const snap = await getDocs(q);
-    blogPages = snap.docs.map(doc => {
+    const [blogSnap, pressSnap] = await Promise.all([
+      getDocs(query(collection(db, "posts"), where("published", "==", true))),
+      getDocs(collection(db, "press"))
+    ]);
+
+    blogPages = blogSnap.docs.map(doc => {
       const data = doc.data();
       return {
         url: `${BASE}/blog/${data.slug}`,
@@ -34,9 +38,19 @@ export default async function sitemap(): Promise<MetadataRoute.Sitemap> {
         priority: 0.7,
       };
     });
+
+    pressPages = pressSnap.docs
+      .map(doc => doc.data())
+      .filter(data => data.slug)
+      .map(data => ({
+        url: `${BASE}/basin/${data.slug}`,
+        lastModified: data.createdAt ? new Date(data.createdAt.seconds * 1000) : new Date(),
+        changeFrequency: "monthly" as const,
+        priority: 0.6,
+      }));
   } catch {
     // Firebase henüz yapılandırılmamışsa statik sayfalarla devam et
   }
 
-  return [...staticPages, ...blogPages];
+  return [...staticPages, ...blogPages, ...pressPages];
 }

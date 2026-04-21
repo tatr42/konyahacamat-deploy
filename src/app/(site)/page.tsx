@@ -6,19 +6,23 @@ import AcademySection from "@/components/AcademySection";
 import PressSection from "@/components/PressSection";
 import Testimonials from "@/components/Testimonials";
 import WhatsAppWidget from "@/components/WhatsAppWidget";
+import { getYearsExpStr } from "@/lib/experience";
 
-export const metadata: Metadata = {
-  title: "Konya Hacamat | Ebusadullah Hacamat & Akademi | Konyahacamat.net",
-  description: "Konya'nın en köklü hacamat merkezi. Kuru & yaş hacamat, sülük terapisi, sertifikalı hacamat kursu. 32+ yıl deneyim, CE steril malzeme. Almanya seansları. Randevu: 0554 406 23 83",
-  alternates: { canonical: "https://konyahacamat.net" },
-  openGraph: {
-    title: "Konya Hacamat | Ebusadullah Hacamat & Akademi",
-    description: "Konya'nın köklü hacamat merkezi. Kuru & yaş hacamat, sülük terapisi, uzmanlık kursları. 32+ yıl deneyim. Almanya periyodik seansları.",
-    url: "https://konyahacamat.net",
-    type: "website",
-    images: [{ url: "/logo.webp", width: 1200, height: 630, alt: "Konya Hacamat Ebusadullah Akademi" }],
-  },
-};
+export function generateMetadata(): Metadata {
+  const exp = getYearsExpStr();
+  return {
+    title: "Konya Hacamat | Ebusadullah Hacamat & Akademi | Konyahacamat.net",
+    description: `Konya'nın en köklü hacamat merkezi. Kuru & yaş hacamat, sülük terapisi, sertifikalı hacamat kursu. ${exp}+ yıl deneyim, CE steril malzeme. Almanya seansları. Randevu: 0554 406 23 83`,
+    alternates: { canonical: "https://konyahacamat.net" },
+    openGraph: {
+      title: "Konya Hacamat | Ebusadullah Hacamat & Akademi",
+      description: `Konya'nın köklü hacamat merkezi. Kuru & yaş hacamat, sülük terapisi, uzmanlık kursları. ${exp}+ yıl deneyim. Almanya periyodik seansları.`,
+      url: "https://konyahacamat.net",
+      type: "website",
+      images: [{ url: "/logo.webp", width: 1200, height: 630, alt: "Konya Hacamat Ebusadullah Akademi" }],
+    },
+  };
+}
 
 const faqSchema = {
   "@context": "https://schema.org",

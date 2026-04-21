@@ -4,69 +4,74 @@ import Script from "next/script";
 
 const BASE = "https://konyahacamat.net";
 
-export const metadata: Metadata = {
-  metadataBase: new URL(BASE),
-  title: {
-    default: "Konya Hacamat | Ebusadullah Hacamat & Akademi",
-    template: "%s | Konyahacamat.net",
-  },
-  description:
-    "Konya'da uzman hacamat ve sülük terapisi. Ebusadullah Hacamat & Akademi — 32+ yıl deneyim, steril CE sertifikalı malzeme, 384+ rahatsızlıkta şifa. Almanya seansları. Randevu: 0554 406 23 83",
-  keywords: [
-    // Konum + hizmet
-    "konya hacamat", "hacamat konya", "konya hacamat merkezi", "konya hacamat fiyatı",
-    "konya sülük terapisi", "konya geleneksel tıp", "konya alternatif tıp",
-    // Soru tabanlı (arama niyeti)
-    "hacamat ne işe yarar", "hacamat nasıl yapılır", "hacamat faydaları nelerdir",
-    "hacamat kimlere yapılmaz", "hacamat sonrası ne yapılır", "hacamat kaç seansta etki eder",
-    "sülük terapisi ne işe yarar", "hirudoterapi faydaları",
-    // Hastalık + hacamat
-    "migren hacamat", "bel fıtığı hacamat", "boyun fıtığı hacamat",
-    "yüksek tansiyon hacamat", "diz ağrısı hacamat", "saç dökülmesi hacamat",
-    "fibromiyalji hacamat", "eklem ağrısı hacamat",
-    // Kurs & eğitim
-    "hacamat kursu konya", "hacamat eğitimi", "hacamat sertifikası",
-    "sülük kursu", "hacamat uzmanlık kursu",
-    // Marka
-    "ebusadullah hacamat", "ebusadullah akademi", "konyahacamat",
-    // Diğer
-    "islamda hacamat", "kuru hacamat", "yaş hacamat", "almanya hacamat",
-  ],
-  authors: [{ name: "Ebusadullah Hacamat & Akademi", url: BASE }],
-  creator: "Ebusadullah Hacamat & Akademi",
-  publisher: "Ebusadullah Hacamat & Akademi",
-  category: "Sağlık & Tıp",
-  robots: {
-    index: true,
-    follow: true,
-    googleBot: { index: true, follow: true, "max-image-preview": "large", "max-snippet": -1 },
-  },
-  alternates: { canonical: BASE },
-  openGraph: {
-    type: "website",
-    locale: "tr_TR",
-    url: BASE,
-    siteName: "Konya Hacamat Ebusadullah",
-    title: "Konya Hacamat | Ebusadullah Hacamat & Akademi",
+import { getYearsExpStr } from "@/lib/experience";
+
+export function generateMetadata(): Metadata {
+  const exp = getYearsExpStr();
+  return {
+    metadataBase: new URL(BASE),
+    title: {
+      default: "Konya Hacamat | Ebusadullah Hacamat & Akademi",
+      template: "%s | Konyahacamat.net",
+    },
     description:
-      "Konya'da profesyonel hacamat ve sülük terapisi. 32+ yıl deneyim, steril uygulama, Almanya seansları. Hicri takvime göre faziletli günlerde randevu alın.",
-    images: [{ url: "/logo.webp", width: 1200, height: 630, alt: "Konya Hacamat Ebusadullah Akademi" }],
-  },
-  twitter: {
-    card: "summary_large_image",
-    title: "Konya Hacamat | Ebusadullah Hacamat & Akademi",
-    description: "Konya'da profesyonel hacamat ve sülük terapisi. 32+ yıl deneyim. Randevu: 0554 406 23 83",
-    images: ["/logo.webp"],
-  },
-  verification: {
-    google: "204ADYzUeUBHfuGRAFRrBFUrOvWq1WCJtsUvI-mIi6c",
-  },
-  icons: {
-    icon: "/fav.webp",
-    shortcut: "/fav.webp",
-    apple: "/fav.webp",
-  },
-};
+      `Konya'da uzman hacamat ve sülük terapisi. Ebusadullah Hacamat & Akademi — ${exp}+ yıl deneyim, steril CE sertifikalı malzeme, 384+ rahatsızlıkta şifa. Almanya seansları. Randevu: 0554 406 23 83`,
+    keywords: [
+      // Konum + hizmet
+      "konya hacamat", "hacamat konya", "konya hacamat merkezi", "konya hacamat fiyatı",
+      "konya sülük terapisi", "konya geleneksel tıp", "konya alternatif tıp",
+      // Soru tabanlı (arama niyeti)
+      "hacamat ne işe yarar", "hacamat nasıl yapılır", "hacamat faydaları nelerdir",
+      "hacamat kimlere yapılmaz", "hacamat sonrası ne yapılır", "hacamat kaç seansta etki eder",
+      "sülük terapisi ne işe yarar", "hirudoterapi faydaları",
+      // Hastalık + hacamat
+      "migren hacamat", "bel fıtığı hacamat", "boyun fıtığı hacamat",
+      "yüksek tansiyon hacamat", "diz ağrısı hacamat", "saç dökülmesi hacamat",
+      "fibromiyalji hacamat", "eklem ağrısı hacamat",
+      // Kurs & eğitim
+      "hacamat kursu konya", "hacamat eğitimi", "hacamat sertifikası",
+      "sülük kursu", "hacamat uzmanlık kursu",
+      // Marka
+      "ebusadullah hacamat", "ebusadullah akademi", "konyahacamat",
+      // Diğer
+      "islamda hacamat", "kuru hacamat", "yaş hacamat", "almanya hacamat",
+    ],
+    authors: [{ name: "Ebusadullah Hacamat & Akademi", url: BASE }],
+    creator: "Ebusadullah Hacamat & Akademi",
+    publisher: "Ebusadullah Hacamat & Akademi",
+    category: "Sağlık & Tıp",
+    robots: {
+      index: true,
+      follow: true,
+      googleBot: { index: true, follow: true, "max-image-preview": "large", "max-snippet": -1 },
+    },
+    alternates: { canonical: BASE },
+    openGraph: {
+      type: "website",
+      locale: "tr_TR",
+      url: BASE,
+      siteName: "Konya Hacamat Ebusadullah",
+      title: "Konya Hacamat | Ebusadullah Hacamat & Akademi",
+      description:
+        `Konya'da profesyonel hacamat ve sülük terapisi. ${exp}+ yıl deneyim, steril uygulama, Almanya seansları. Hicri takvime göre faziletli günlerde randevu alın.`,
+      images: [{ url: "/logo.webp", width: 1200, height: 630, alt: "Konya Hacamat Ebusadullah Akademi" }],
+    },
+    twitter: {
+      card: "summary_large_image",
+      title: "Konya Hacamat | Ebusadullah Hacamat & Akademi",
+      description: `Konya'da profesyonel hacamat ve sülük terapisi. ${exp}+ yıl deneyim. Randevu: 0554 406 23 83`,
+      images: ["/logo.webp"],
+    },
+    verification: {
+      google: "204ADYzUeUBHfuGRAFRrBFUrOvWq1WCJtsUvI-mIi6c",
+    },
+    icons: {
+      icon: "/fav.webp",
+      shortcut: "/fav.webp",
+      apple: "/fav.webp",
+    },
+  };
+}
 
 const localBusinessSchema = {
   "@context": "https://schema.org",

@@ -4,18 +4,21 @@ import Image from "next/image";
 import { Award, Users, Globe, Heart, CheckCircle, MessageCircle } from "lucide-react";
 import { getYearsExpStr } from "@/lib/experience";
 
-export const metadata: Metadata = {
-  title: "Hakkımızda | Ebusadullah Hacamat & Akademi Konya | 32+ Yıl Deneyim",
-  description: "Ebusadullah Hacamat & Akademi hakkında. 32+ yıl deneyim, 1200+ sertifikalı mezun, 384+ rahatsızlık kategorisi. Konya merkezli, Almanya dahil Avrupa'da hizmet.",
-  keywords: ["ebusadullah hacamat kimdir", "konya hacamat merkezi", "hacamat akademi konya", "ebusadullah akademi", "konya hacamat hakkında", "geleneksel tıp merkezi konya"],
-  alternates: { canonical: "https://konyahacamat.net/hakkimizda" },
-  openGraph: {
-    title: "Hakkımızda | Ebusadullah Hacamat & Akademi Konya",
-    description: "32+ yıl deneyim, 1200+ mezun. Konya'nın köklü hacamat ve akademi merkezi. Almanya dahil Avrupa'da hizmet.",
-    url: "https://konyahacamat.net/hakkimizda",
-    images: [{ url: "/logo.webp", width: 1200, height: 630, alt: "Ebusadullah Hacamat Akademi Konya" }],
-  },
-};
+export function generateMetadata(): Metadata {
+  const exp = getYearsExpStr();
+  return {
+    title: `Hakkımızda | Ebusadullah Hacamat & Akademi Konya | ${exp}+ Yıl Deneyim`,
+    description: `Ebusadullah Hacamat & Akademi hakkında. ${exp}+ yıl deneyim, 1200+ sertifikalı mezun, 384+ rahatsızlık kategorisi. Konya merkezli, Almanya dahil Avrupa'da hizmet.`,
+    keywords: ["ebusadullah hacamat kimdir", "konya hacamat merkezi", "hacamat akademi konya", "ebusadullah akademi", "konya hacamat hakkında", "geleneksel tıp merkezi konya"],
+    alternates: { canonical: "https://konyahacamat.net/hakkimizda" },
+    openGraph: {
+      title: "Hakkımızda | Ebusadullah Hacamat & Akademi Konya",
+      description: `${exp}+ yıl deneyim, 1200+ mezun. Konya'nın köklü hacamat ve akademi merkezi. Almanya dahil Avrupa'da hizmet.`,
+      url: "https://konyahacamat.net/hakkimizda",
+      images: [{ url: "/logo.webp", width: 1200, height: 630, alt: "Ebusadullah Hacamat Akademi Konya" }],
+    },
+  };
+}
 
 const degerler = [
   { icon: Heart, baslik: "Şifa Önce Gelir", aciklama: "Her kararımızda hastanın iyileşmesi temel önceliğimizdir. Ticari kaygıdan önce şifa gelir." },
