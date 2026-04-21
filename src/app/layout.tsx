@@ -1,6 +1,6 @@
 import type { Metadata } from "next";
 import "./globals.css";
-import Script from "next/script";
+import { GoogleAnalytics } from "@next/third-parties/google";
 
 const BASE = "https://konyahacamat.net";
 
@@ -126,14 +126,8 @@ export default function RootLayout({ children }: { children: React.ReactNode }) 
         />
       </head>
       <body className="bg-anthracite-dark antialiased">
-        <Script async src="https://www.googletagmanager.com/gtag/js?id=G-HY8VE2CQS1" strategy="afterInteractive" />
-        <Script id="gtag-init" strategy="afterInteractive">{`
-          window.dataLayer = window.dataLayer || [];
-          function gtag(){dataLayer.push(arguments);}
-          gtag('js', new Date());
-          gtag('config', 'G-HY8VE2CQS1');
-        `}</Script>
         {children}
+        <GoogleAnalytics gaId="G-HY8VE2CQS1" />
       </body>
     </html>
   );

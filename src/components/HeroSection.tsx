@@ -115,7 +115,7 @@ export default function HeroSection() {
           <div className="absolute inset-y-0 left-0 w-40 bg-gradient-to-r from-anthracite to-transparent z-10 pointer-events-none" />
           <div className="absolute top-0 left-0 right-0 h-40 bg-gradient-to-b from-anthracite via-anthracite/80 to-transparent z-10 pointer-events-none" />
           <div className="absolute bottom-0 left-0 right-0 h-32 bg-gradient-to-t from-anthracite to-transparent z-10 pointer-events-none" />
-          <Image src="/16.webp" alt="Hacamat kupası" fill priority
+          <Image src="/16.webp" alt="Hacamat kupası" fill priority fetchPriority="high"
             className="object-cover object-center"
             sizes="50vw" />
         </div>

@@ -1,5 +1,6 @@
 "use client";
 import { useState, useRef, useEffect } from "react";
+import Image from "next/image";
 
 import { Brain, Heart, Bone, Leaf, Users, Zap, ArrowRight, ChevronDown } from "lucide-react";
 
@@ -202,23 +203,29 @@ export default function DiseaseTabs() {
         >
           {/* Mobilde arkaplan — %30 opaklık */}
           {current.img && (
-            <img
-              src={current.img}
-              alt=""
-              aria-hidden
-              className="md:hidden absolute inset-0 w-full h-full object-contain pointer-events-none opacity-30"
-            />
+            <div className="md:hidden absolute inset-0 w-full h-full opacity-30 pointer-events-none">
+              <Image
+                src={current.img}
+                alt=""
+                aria-hidden
+                fill
+                sizes="100vw"
+                className="object-contain"
+              />
+            </div>
           )}
 
           {/* Üst satır: sol görsel + sağ etiketler */}
           <div className="flex gap-4 items-start">
             {/* Sol: görsel — sadece md+ ekranlarda */}
             {current.img && (
-              <div className="hidden md:block shrink-0 pointer-events-none">
-                <img
+              <div className="hidden md:block shrink-0 pointer-events-none relative w-44 h-44">
+                <Image
                   src={current.img}
                   alt={current.label}
-                  className="w-44 h-44 object-contain"
+                  fill
+                  sizes="(max-width: 768px) 100vw, 176px"
+                  className="object-contain"
                 />
               </div>
             )}
