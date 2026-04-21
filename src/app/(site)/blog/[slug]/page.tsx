@@ -1,5 +1,6 @@
 import type { Metadata } from "next";
 import { notFound } from "next/navigation";
+import { cache } from "react";
 import { db } from "@/lib/firebase";
 import { collection, getDocs, query, where } from "firebase/firestore";
 import { Clock, Tag, Eye, ArrowLeft } from "lucide-react";
@@ -12,13 +13,13 @@ interface Post {
   views: number; createdAt?: { seconds: number };
 }
 
-async function getPost(slug: string): Promise<Post | null> {
+const getPost = cache(async (slug: string): Promise<Post | null> => {
   const q = query(collection(db, "posts"), where("slug", "==", slug), where("published", "==", true));
   const snap = await getDocs(q);
   if (snap.empty) return null;
   const doc = snap.docs[0];
   return { id: doc.id, ...doc.data() } as Post;
-}
+});
 
 export async function generateMetadata({ params }: { params: Promise<{ slug: string }> }): Promise<Metadata> {
   const { slug } = await params;
