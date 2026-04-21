@@ -7,7 +7,7 @@ import { getYearsExpStr } from "@/lib/experience";
 export const metadata: Metadata = {
   title: "Hacamat Tedavisi Konya | Kuru & Yaş Hacamat | Ebusadullah Akademi",
   description: "Konya'da profesyonel kuru ve yaş hacamat tedavisi. CE sertifikalı steril malzeme, 32+ yıl deneyim, Almanya seansları. Ebusadullah Hacamat & Akademi — Randevu: 0554 406 23 83",
-  keywords: ["hacamat tedavisi konya", "kuru hacamat", "yaş hacamat konya", "hacamat fiyat", "hacamat randevu konya", "ebusadullah hacamat", "islamda hacamat", "hacamat faydaları", "hacamat noktaları"],
+
   alternates: { canonical: "/hizmetler/hacamat" },
   openGraph: {
     title: "Hacamat Tedavisi Konya | Kuru & Yaş Hacamat | Ebusadullah Akademi",

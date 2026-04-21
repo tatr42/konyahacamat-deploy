@@ -5,7 +5,7 @@ import { BookOpen, CheckCircle, Clock, Users, Award, MessageCircle, Phone, Globe
 export const metadata: Metadata = {
   title: "Hacamat Kursu Konya | Sertifikalı Hacamat Eğitimi | Ebusadullah Akademi",
   description: "Konya Ebusadullah Akademi'de sertifikalı hacamat ve sülük terapisi uzmanlık kursları. Küçük gruplar, birebir uygulama, uluslararası geçerli sertifika. Almanya'da da eğitim verilmektedir.",
-  keywords: ["hacamat kursu konya", "hacamat eğitimi", "hacamat sertifikası", "sülük terapisi kursu", "hirudoterapi eğitimi", "hacamat uzmanlık", "hacamat kursu fiyat", "ebusadullah akademi", "hacamat öğrenmek"],
+
   alternates: { canonical: "/egitimler" },
   openGraph: {
     title: "Hacamat Kursu Konya | Sertifikalı Eğitim | Ebusadullah Akademi",

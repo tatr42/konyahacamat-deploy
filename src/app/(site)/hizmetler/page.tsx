@@ -1,12 +1,12 @@
 import type { Metadata } from "next";
 import Link from "next/link";
-import { Droplets, ShieldCheck, Clock, CheckCircle, ChevronRight, MessageCircle, Phone } from "lucide-react";
+import { Droplets, ShieldCheck, Clock, CheckCircle, ChevronRight, MessageCircle } from "lucide-react";
 import { getYearsExpStr } from "@/lib/experience";
 
 export const metadata: Metadata = {
   title: "Hacamat & Sülük Terapisi Konya | Geleneksel Tıp Hizmetleri | Ebusadullah",
   description: "Konya Ebusadullah Akademi'de kuru hacamat, yaş hacamat ve sülük terapisi hizmetleri. CE sertifikalı steril uygulama, 32+ yıl deneyim, Almanya periyodik seansları.",
-  keywords: ["konya hacamat hizmetleri", "konya geleneksel tıp", "kuru hacamat konya", "yaş hacamat", "sülük terapisi", "hacamat ve sülük", "ebusadullah konya"],
+
   alternates: { canonical: "/hizmetler" },
   openGraph: {
     title: "Hacamat & Sülük Terapisi Konya | Ebusadullah Akademi",

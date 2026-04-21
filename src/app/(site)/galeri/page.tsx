@@ -4,7 +4,6 @@ import Link from "next/link";
 export const metadata: Metadata = {
   title: "Galeri | Hacamat Seansı & Kurs Fotoğrafları | Ebusadullah Akademi Konya",
   description: "Ebusadullah Hacamat & Akademi galeri. Konya'daki hacamat seansları, sülük terapisi uygulamaları, uzmanlık kursları ve Almanya faaliyetlerinden görüntüler.",
-  keywords: ["konya hacamat galeri", "hacamat fotoğraf", "hacamat seans görüntü", "ebusadullah akademi galeri", "hacamat kurs fotoğraf"],
   alternates: { canonical: "/galeri" },
   openGraph: {
     title: "Galeri | Hacamat Seansı & Kurs Fotoğrafları | Ebusadullah Konya",

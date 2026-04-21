@@ -175,7 +175,7 @@ export default function Navbar() {
 
             if (isCenter) {
               return (
-                <Link key={item.name} href={item.href!} className="flex-1 flex flex-col items-center justify-center pb-2">
+                <Link key={item.name} href={item.href!} title="Ana Sayfa" className="flex-1 flex flex-col items-center justify-center pb-2">
                   <div className={`w-14 h-14 rounded-2xl flex items-center justify-center shadow-lg -mt-4 transition-all ${
                     isActive ? 'bg-teal shadow-teal/40 scale-105' : 'bg-teal/90 shadow-teal/20 active:scale-95'
                   }`}>

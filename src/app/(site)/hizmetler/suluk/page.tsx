@@ -6,7 +6,7 @@ import { Clock, MessageCircle, Phone, ChevronRight, AlertTriangle } from "lucide
 export const metadata: Metadata = {
   title: "Sülük Terapisi Konya | Hirudoterapi | Ebusadullah Hacamat Akademi",
   description: "Konya'da uzman sülük terapisi (hirudoterapi). Varis, eklem iltihabı, ödem ve dolaşım bozukluklarında doğal tedavi. Tek kullanımlık tıbbi sülük. Randevu: 0554 406 23 83",
-  keywords: ["sülük terapisi konya", "hirudoterapi konya", "sülük tedavisi", "varis tedavisi konya", "sülük fiyat", "tıbbi sülük", "hirudoterapi fiyat", "sülük kürü konya"],
+
   alternates: { canonical: "/hizmetler/suluk" },
   openGraph: {
     title: "Sülük Terapisi Konya | Hirudoterapi | Ebusadullah Hacamat Akademi",

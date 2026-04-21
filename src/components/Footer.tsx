@@ -71,13 +71,13 @@ export default function Footer() {
                 <span className="text-[10px] text-teal font-black uppercase tracking-widest block mb-2">Randevu & Bilgi</span>
                 <div>
                   <span className="text-[9px] text-white/30 uppercase tracking-widest">🇹🇷 Türkiye</span>
-                  <a href="tel:05544062383" className="block text-xl font-display font-bold text-white hover:text-teal transition-colors">
+                  <a href="tel:05544062383" title="Konya Hacamat Türkiye: 0554 406 23 83" className="block text-xl font-display font-bold text-white hover:text-teal transition-colors">
                     0554 406 23 83
                   </a>
                 </div>
                 <div>
                   <span className="text-[9px] text-white/30 uppercase tracking-widest">🇩🇪 Almanya</span>
-                  <a href="tel:+491634492870" className="block text-xl font-display font-bold text-white hover:text-teal transition-colors">
+                  <a href="tel:+491634492870" title="Konya Hacamat Almanya: +49 163 449 28 70" className="block text-xl font-display font-bold text-white hover:text-teal transition-colors">
                     +49 163 449 28 70
                   </a>
                 </div>

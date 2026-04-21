@@ -218,13 +218,13 @@ export default function DiseaseTabs() {
           <div className="flex gap-4 items-start">
             {/* Sol: görsel — sadece md+ ekranlarda */}
             {current.img && (
-              <div className="hidden md:block shrink-0 pointer-events-none relative w-44 h-44">
+              <div className="hidden md:block shrink-0 pointer-events-none w-44 h-44">
                 <Image
                   src={current.img}
                   alt={current.label}
-                  fill
-                  sizes="(max-width: 768px) 100vw, 176px"
-                  className="object-contain"
+                  width={176}
+                  height={176}
+                  className="object-contain w-full h-full"
                 />
               </div>
             )}
