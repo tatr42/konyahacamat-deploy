@@ -97,12 +97,12 @@ export default function EgitimlerPage() {
           </p>
           <div className="flex flex-wrap gap-4">
             <a href="https://wa.me/905544062383?text=Merhaba%2C%20e%C4%9Fitim%20hakk%C4%B1nda%20bilgi%20almak%20istiyorum."
-              target="_blank" rel="noopener noreferrer"
+              target="_blank" rel="noopener noreferrer nofollow"
               className="flex items-center gap-2 bg-[#25D366] text-white px-6 py-4 rounded-2xl font-black text-sm uppercase tracking-widest hover:scale-105 transition-all">
               <MessageCircle size={18} fill="currentColor" /> 🇹🇷 WhatsApp TR
             </a>
             <a href="https://wa.me/491634492870?text=Merhaba%2C%20e%C4%9Fitim%20hakk%C4%B1nda%20bilgi%20almak%20istiyorum."
-              target="_blank" rel="noopener noreferrer"
+              target="_blank" rel="noopener noreferrer nofollow"
               className="flex items-center gap-2 bg-white/10 text-white border border-white/20 px-6 py-4 rounded-2xl font-black text-sm uppercase tracking-widest hover:bg-white/15 transition-all">
               <MessageCircle size={18} /> 🇩🇪 WhatsApp Almanya
             </a>
@@ -178,7 +178,7 @@ export default function EgitimlerPage() {
                   <div className="pt-4 border-t border-white/10">
                     <a
                       href={`https://wa.me/905544062383?text=${encodeURIComponent(`Merhaba, "${k.baslik}" eğitimi hakkında bilgi almak istiyorum.`)}`}
-                      target="_blank" rel="noopener noreferrer"
+                      target="_blank" rel="noopener noreferrer nofollow"
                       className={`flex items-center justify-center gap-2 w-full py-3 rounded-xl font-black text-xs uppercase tracking-widest transition-all hover:scale-105 ${
                         k.ozellik
                           ? "bg-teal text-anthracite-dark hover:opacity-90"
@@ -221,7 +221,7 @@ export default function EgitimlerPage() {
               </p>
             </div>
             <a href="https://wa.me/491634492870?text=Merhaba%2C%20Almanya%20e%C4%9Fitim%20tarihleri%20hakk%C4%B1nda%20bilgi%20almak%20istiyorum."
-              target="_blank" rel="noopener noreferrer"
+              target="_blank" rel="noopener noreferrer nofollow"
               className="flex items-center gap-2 bg-white/10 hover:bg-white/15 text-white border border-white/20 px-6 py-4 rounded-2xl font-black text-sm uppercase tracking-widest transition-all whitespace-nowrap shrink-0">
               <MessageCircle size={16} /> 🇩🇪 Almanya Hattı
             </a>
@@ -294,12 +294,12 @@ export default function EgitimlerPage() {
           </div>
           <div className="flex flex-wrap gap-3">
             <a href="https://wa.me/905544062383?text=Merhaba%2C%20e%C4%9Fitim%20hakk%C4%B1nda%20bilgi%20almak%20istiyorum."
-              target="_blank" rel="noopener noreferrer"
+              target="_blank" rel="noopener noreferrer nofollow"
               className="flex items-center gap-2 bg-[#25D366] text-white px-6 py-4 rounded-2xl font-black text-sm uppercase tracking-widest hover:scale-105 transition-all">
               <MessageCircle size={18} fill="currentColor" /> 🇹🇷 WhatsApp
             </a>
             <a href="https://wa.me/491634492870?text=Merhaba%2C%20e%C4%9Fitim%20hakk%C4%B1nda%20bilgi%20almak%20istiyorum."
-              target="_blank" rel="noopener noreferrer"
+              target="_blank" rel="noopener noreferrer nofollow"
               className="flex items-center gap-2 bg-white/10 text-white border border-white/20 px-6 py-4 rounded-2xl font-black text-sm uppercase tracking-widest hover:bg-white/15 transition-all">
               <MessageCircle size={18} /> 🇩🇪 Almanya
             </a>

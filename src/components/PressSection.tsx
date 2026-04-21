@@ -51,6 +51,7 @@ export default function PressSection() {
           </div>
           <a
             href="/basin"
+            title="Tüm Basın Haberleri"
             className="inline-flex items-center gap-2 text-teal text-sm font-black uppercase tracking-widest hover:gap-4 transition-all shrink-0"
           >
             Tüm Haberler <ArrowRight size={16} />

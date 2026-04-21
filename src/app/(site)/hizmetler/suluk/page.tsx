@@ -32,7 +32,7 @@ export default function SulukPage() {
             kadar bilimsel olarak desteklenen nadir tedavi yöntemlerinden biridir.
           </p>
           <div className="flex flex-wrap gap-4">
-            <a href="https://wa.me/905544062383?text=S%C3%BCl%C3%BCk%20terapisi%20hakk%C4%B1nda%20bilgi%20almak%20istiyorum." target="_blank" rel="noopener noreferrer"
+            <a href="https://wa.me/905544062383?text=S%C3%BCl%C3%BCk%20terapisi%20hakk%C4%B1nda%20bilgi%20almak%20istiyorum." target="_blank" rel="noopener noreferrer nofollow"
               className="flex items-center gap-2 bg-[#25D366] text-white px-6 py-4 rounded-2xl font-black text-sm uppercase tracking-widest hover:scale-105 transition-all">
               <MessageCircle size={18} fill="currentColor" /> WhatsApp
             </a>
@@ -218,11 +218,11 @@ export default function SulukPage() {
               <h2 className="font-display text-3xl font-bold text-white mb-2">Sülük Terapisi Randevusu</h2>
               <p className="text-white/50 mb-6">Konya kliniğimizde veya Almanya seanslarımızda randevu almak için bize ulaşın.</p>
               <div className="flex flex-wrap gap-3">
-                <a href="https://wa.me/905544062383?text=S%C3%BCl%C3%BCk%20terapisi%20randevusu%20almak%20istiyorum." target="_blank" rel="noopener noreferrer"
+                <a href="https://wa.me/905544062383?text=S%C3%BCl%C3%BCk%20terapisi%20randevusu%20almak%20istiyorum." target="_blank" rel="noopener noreferrer nofollow"
                   className="flex items-center gap-2 bg-[#25D366] text-white px-6 py-3 rounded-xl font-black text-sm uppercase tracking-widest hover:scale-105 transition-all">
                   <MessageCircle size={16} fill="currentColor" /> 🇹🇷 WhatsApp
                 </a>
-                <a href="https://wa.me/491634492870?text=S%C3%BCl%C3%BCk%20terapisi%20randevusu%20almak%20istiyorum." target="_blank" rel="noopener noreferrer"
+                <a href="https://wa.me/491634492870?text=S%C3%BCl%C3%BCk%20terapisi%20randevusu%20almak%20istiyorum." target="_blank" rel="noopener noreferrer nofollow"
                   className="flex items-center gap-2 bg-white/10 text-white border border-white/20 px-6 py-3 rounded-xl font-black text-sm uppercase tracking-widest hover:bg-white/15 transition-all">
                   <MessageCircle size={16} /> 🇩🇪 Almanya
                 </a>

@@ -34,7 +34,7 @@ export default function AlmanyaHacamatPage() {
               <a
                 href="https://wa.me/491634492870"
                 target="_blank"
-                rel="noopener noreferrer"
+                rel="noopener noreferrer nofollow"
                 className="w-full sm:w-auto bg-teal text-anthracite-dark px-8 py-4 rounded-2xl font-black text-sm uppercase tracking-widest hover:scale-105 active:scale-95 transition-all shadow-xl shadow-teal/20 flex items-center justify-center gap-2"
               >
                 <Phone size={18} />
@@ -202,7 +202,7 @@ export default function AlmanyaHacamatPage() {
                 <a
                   href="https://wa.me/491634492870?text=Almanya%20Hacamat%20E%C4%9Fitimi%20hakk%C4%B1nda%20bilgi%20almak%20istiyorum."
                   target="_blank"
-                  rel="noopener noreferrer"
+                  rel="noopener noreferrer nofollow"
                   className="bg-teal text-anthracite-dark px-8 py-4 rounded-xl font-black text-sm uppercase tracking-widest hover:scale-105 active:scale-95 transition-all text-center"
                 >
                   Eğitim Kayıt
@@ -239,7 +239,7 @@ export default function AlmanyaHacamatPage() {
               Almanya, Berlin ve çevresindeki randevu, sülük tedavisi ve eğitim kurslarımız hakkında bilgi almak için bizimle WhatsApp üzerinden doğrudan iletişime geçebilirsiniz.
             </p>
             <div className="flex flex-col items-center justify-center gap-6">
-              <a href="https://wa.me/491634492870" target="_blank" rel="noopener noreferrer" className="text-4xl font-black text-teal hover:text-white transition-colors">
+              <a href="https://wa.me/491634492870" target="_blank" rel="noopener noreferrer nofollow" className="text-4xl font-black text-teal hover:text-white transition-colors">
                 +49 163 449 28 70
               </a>
               <span className="text-sm text-white/40 uppercase tracking-widest font-bold">Almanya İletişim Hattı</span>

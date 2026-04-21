@@ -206,8 +206,7 @@ export default function DiseaseTabs() {
             <div className="md:hidden absolute inset-0 w-full h-full opacity-30 pointer-events-none">
               <Image
                 src={current.img}
-                alt=""
-                aria-hidden
+                alt={current.label}
                 fill
                 sizes="100vw"
                 className="object-contain"
@@ -262,7 +261,7 @@ export default function DiseaseTabs() {
             <a
               href="https://wa.me/905544062383"
               target="_blank"
-              rel="noopener noreferrer"
+              rel="noopener noreferrer nofollow"
               className="inline-flex items-center gap-2 bg-teal text-black px-5 py-2.5 rounded-xl font-black text-xs uppercase tracking-wider hover:opacity-90 transition-all shrink-0"
             >
               Randevu Al <ArrowRight size={12} />
@@ -283,6 +282,7 @@ export default function DiseaseTabs() {
           </div>
           <a
             href="/egitimler"
+            title="Hacamat Kurs Programı"
             className="inline-flex items-center gap-2 bg-teal text-black px-6 py-3 rounded-xl font-black text-xs uppercase tracking-widest hover:opacity-90 transition-all shrink-0"
           >
             Kurs Programı <ArrowRight size={14} />
