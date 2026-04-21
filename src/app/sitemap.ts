@@ -9,6 +9,7 @@ const staticPages = [
   { url: `${BASE}/hizmetler`, priority: 0.9, changeFrequency: "monthly" as const },
   { url: `${BASE}/hizmetler/hacamat`, priority: 0.9, changeFrequency: "monthly" as const },
   { url: `${BASE}/hizmetler/suluk`, priority: 0.8, changeFrequency: "monthly" as const },
+  { url: `${BASE}/almanya-hacamat`, priority: 0.9, changeFrequency: "monthly" as const },
   { url: `${BASE}/egitimler`, priority: 0.8, changeFrequency: "monthly" as const },
   { url: `${BASE}/takvim`, priority: 0.7, changeFrequency: "weekly" as const },
   { url: `${BASE}/blog`, priority: 0.8, changeFrequency: "weekly" as const },
