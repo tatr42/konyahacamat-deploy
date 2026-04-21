@@ -27,7 +27,7 @@ export async function generateMetadata({ params }: { params: Promise<{ slug: str
   return {
     title,
     description,
-    alternates: { canonical: `https://konyahacamat.net/basin/${slug}` },
+    alternates: { canonical: `/basin/${slug}` },
     openGraph: {
       title,
       description,

@@ -29,7 +29,7 @@ export async function generateMetadata({ params }: { params: Promise<{ slug: str
   return {
     title,
     description,
-    alternates: { canonical: `https://konyahacamat.net/blog/${slug}` },
+    alternates: { canonical: `/blog/${slug}` },
     openGraph: {
       title,
       description,

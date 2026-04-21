@@ -8,7 +8,7 @@ export const metadata: Metadata = {
   title: "Hakkımızda | Ebusadullah Hacamat & Akademi Konya | 32+ Yıl Deneyim",
   description: "Ebusadullah Hacamat & Akademi hakkında. 32+ yıl deneyim, 1200+ sertifikalı mezun, 384+ rahatsızlık kategorisi. Konya merkezli, Almanya dahil Avrupa'da hizmet.",
   keywords: ["ebusadullah hacamat kimdir", "konya hacamat merkezi", "hacamat akademi konya", "ebusadullah akademi", "konya hacamat hakkında", "geleneksel tıp merkezi konya"],
-  alternates: { canonical: "https://konyahacamat.net/hakkimizda" },
+  alternates: { canonical: "/hakkimizda" },
   openGraph: {
     title: "Hakkımızda | Ebusadullah Hacamat & Akademi Konya",
     description: "32+ yıl deneyim, 1200+ mezun. Konya'nın köklü hacamat ve akademi merkezi. Almanya dahil Avrupa'da hizmet.",

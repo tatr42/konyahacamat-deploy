@@ -15,7 +15,7 @@ export const metadata: Metadata = {
     "konya hacamat blog", "ebusadullah akademi blog", "doğal şifa yöntemleri",
     "migren için hacamat", "bel fıtığı için hacamat", "hacamat hastalıklar",
   ],
-  alternates: { canonical: "https://konyahacamat.net/blog" },
+  alternates: { canonical: "/blog" },
   openGraph: {
     title: `Hacamat Blog ${currentYear} | Hacamat Faydaları & Sülük Terapisi`,
     description: "Hacamat nedir, nasıl yapılır, faydaları nelerdir? Uzman içeriklerle geleneksel tıp rehberi. Ebusadullah Akademi Konya.",
