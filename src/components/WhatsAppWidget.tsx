@@ -35,7 +35,7 @@ export default function WhatsAppWidget() {
               <span className="absolute bottom-0 right-0 w-3 h-3 bg-[#25D366] rounded-full border-2 border-teal animate-pulse"></span>
             </div>
             <div>
-              <h4 className="font-black text-sm uppercase tracking-tight">Ebusadullah Destek</h4>
+              <h3 className="font-black text-sm uppercase tracking-tight">Ebusadullah Destek</h3>
               <div className="flex items-center gap-1 opacity-80">
                 <span className="text-[10px] font-bold">Çevrimiçi</span>
                 <CheckCheck size={12} />
