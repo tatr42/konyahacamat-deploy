@@ -2,18 +2,19 @@ import type { Metadata } from "next";
 import { Moon, Shield, Clock, MessageCircle, Phone } from "lucide-react";
 import HacamatCalendar from "@/components/HacamatCalendar";
 import Link from "next/link";
+import Image from "next/image";
 
 const currentYear = new Date().getFullYear();
 
 export const metadata: Metadata = {
   title: `Hacamat Takvimi ${currentYear} | Hicri Faziletli Günler & Online Randevu | Konya`,
   description: "Hicri takvime göre faziletli hacamat günleri (13, 14, 15, 17, 19, 21). Konya ve Almanya için WhatsApp randevu. Ebusadullah Hacamat & Akademi — Anında teyit.",
-  keywords: ["hacamat takvimi", "hacamat günleri", "hicri takvim hacamat", "faziletli hacamat günleri", "hacamat randevu konya", "sünnet hacamat günleri", "hacamat ne zaman yapılır", "konya hacamat randevu"],
-  alternates: { canonical: "https://konyahacamat.net/takvim" },
+
+  alternates: { canonical: '/takvim' },
   openGraph: {
     title: `Hacamat Takvimi ${currentYear} | Hicri Faziletli Günler | Konya Randevu`,
     description: "Hicri takvime göre işaretli faziletli hacamat günleri. Gün seçin, WhatsApp ile anında randevu alın. Konya ve Almanya.",
-    url: "https://konyahacamat.net/takvim",
+    url: '/takvim',
     images: [{ url: "/logo.webp", width: 1200, height: 630, alt: "Hacamat Takvimi Konya" }],
   },
 };
@@ -91,11 +92,11 @@ export default function TakvimPage() {
                 <h3 className="text-white font-black text-sm uppercase tracking-widest mb-2 flex items-center gap-2">
                   <span className="w-3 h-[2px] bg-teal" /> Hızlı Randevu
                 </h3>
-                <a href="https://wa.me/905544062383?text=Merhaba%2C%20hacamat%20randevusu%20almak%20istiyorum." target="_blank" rel="noopener noreferrer"
+                <a href="https://wa.me/905544062383?text=Merhaba%2C%20hacamat%20randevusu%20almak%20istiyorum." target="_blank" rel="noopener noreferrer nofollow"
                   className="flex items-center gap-3 bg-[#25D366] hover:bg-[#1da851] text-white w-full px-4 py-3 rounded-xl font-black text-xs uppercase tracking-widest transition-all">
                   <MessageCircle size={16} fill="currentColor" /> 🇹🇷 WhatsApp TR
                 </a>
-                <a href="https://wa.me/491634492870?text=Merhaba%2C%20hacamat%20randevusu%20almak%20istiyorum." target="_blank" rel="noopener noreferrer"
+                <a href="https://wa.me/491634492870?text=Merhaba%2C%20hacamat%20randevusu%20almak%20istiyorum." target="_blank" rel="noopener noreferrer nofollow"
                   className="flex items-center gap-3 bg-white/10 hover:bg-white/15 text-white border border-white/10 w-full px-4 py-3 rounded-xl font-black text-xs uppercase tracking-widest transition-all">
                   <MessageCircle size={16} /> 🇩🇪 WhatsApp Almanya
                 </a>
@@ -211,7 +212,7 @@ export default function TakvimPage() {
         <div className="container-site flex flex-col md:flex-row items-center justify-between gap-8">
           <div className="flex items-center gap-5">
             <div className="bg-white rounded-xl p-3 shrink-0 shadow">
-              <img src="/logo.webp" alt="Konya Hacamat Ebusadullah" className="h-12 w-auto" />
+              <Image src="/logo.webp" alt="Konya Hacamat Ebusadullah" width={200} height={48} className="h-12 w-auto" />
             </div>
             <div>
               <h2 className="font-display text-3xl font-bold text-white mb-2">Sorularınız mı var?</h2>
@@ -219,11 +220,11 @@ export default function TakvimPage() {
             </div>
           </div>
           <div className="flex gap-3 flex-wrap">
-            <a href="https://wa.me/905544062383" target="_blank" rel="noopener noreferrer"
+            <a href="https://wa.me/905544062383" target="_blank" rel="noopener noreferrer nofollow"
               className="flex items-center gap-2 bg-[#25D366] text-white px-6 py-4 rounded-2xl font-black text-sm uppercase tracking-widest hover:scale-105 transition-all">
               <MessageCircle size={18} fill="currentColor" /> 🇹🇷 WhatsApp
             </a>
-            <a href="https://wa.me/491634492870" target="_blank" rel="noopener noreferrer"
+            <a href="https://wa.me/491634492870" target="_blank" rel="noopener noreferrer nofollow"
               className="flex items-center gap-2 bg-white/10 text-white border border-white/20 px-6 py-4 rounded-2xl font-black text-sm uppercase tracking-widest hover:bg-white/15 transition-all">
               <MessageCircle size={18} /> 🇩🇪 Almanya
             </a>

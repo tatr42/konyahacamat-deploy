@@ -7,12 +7,12 @@ import { getYearsExpStr } from "@/lib/experience";
 export const metadata: Metadata = {
   title: "Hakkımızda | Ebusadullah Hacamat & Akademi Konya | 32+ Yıl Deneyim",
   description: "Ebusadullah Hacamat & Akademi hakkında. 32+ yıl deneyim, 1200+ sertifikalı mezun, 384+ rahatsızlık kategorisi. Konya merkezli, Almanya dahil Avrupa'da hizmet.",
-  keywords: ["ebusadullah hacamat kimdir", "konya hacamat merkezi", "hacamat akademi konya", "ebusadullah akademi", "konya hacamat hakkında", "geleneksel tıp merkezi konya"],
-  alternates: { canonical: "https://konyahacamat.net/hakkimizda" },
+
+  alternates: { canonical: '/hakkimizda' },
   openGraph: {
     title: "Hakkımızda | Ebusadullah Hacamat & Akademi Konya",
     description: "32+ yıl deneyim, 1200+ mezun. Konya'nın köklü hacamat ve akademi merkezi. Almanya dahil Avrupa'da hizmet.",
-    url: "https://konyahacamat.net/hakkimizda",
+    url: '/hakkimizda',
     images: [{ url: "/logo.webp", width: 1200, height: 630, alt: "Ebusadullah Hacamat Akademi Konya" }],
   },
 };
@@ -273,7 +273,7 @@ export default function HakkimizdaPage() {
         <div className="container-site flex flex-col md:flex-row items-center justify-between gap-8">
           <div className="flex items-center gap-6">
             <div className="bg-white rounded-2xl p-4 shrink-0 shadow-lg">
-              <img src="/logo.webp" alt="Konya Hacamat Ebusadullah" className="h-14 w-auto" />
+              <Image src="/logo.webp" alt="Konya Hacamat Ebusadullah" width={200} height={56} className="h-14 w-auto" />
             </div>
             <div>
               <h2 className="font-display text-3xl font-bold text-white mb-2">Bize Ulaşın</h2>
@@ -281,11 +281,11 @@ export default function HakkimizdaPage() {
             </div>
           </div>
           <div className="flex flex-wrap gap-3">
-            <a href="https://wa.me/905544062383" target="_blank" rel="noopener noreferrer"
+            <a href="https://wa.me/905544062383" target="_blank" rel="noopener noreferrer nofollow"
               className="flex items-center gap-2 bg-[#25D366] text-white px-6 py-4 rounded-2xl font-black uppercase tracking-widest hover:scale-105 transition-all">
               <MessageCircle size={18} fill="currentColor" /> 🇹🇷 WhatsApp
             </a>
-            <a href="https://wa.me/491634492870" target="_blank" rel="noopener noreferrer"
+            <a href="https://wa.me/491634492870" target="_blank" rel="noopener noreferrer nofollow"
               className="flex items-center gap-2 bg-white/10 text-white border border-white/20 px-6 py-4 rounded-2xl font-black uppercase tracking-widest hover:bg-white/15 transition-all">
               <MessageCircle size={18} /> 🇩🇪 Almanya
             </a>

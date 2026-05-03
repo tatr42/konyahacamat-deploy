@@ -175,7 +175,7 @@ export default function BasinPage() {
           </div>
           <div className="flex flex-col sm:flex-row md:flex-col gap-3 shrink-0 w-full md:w-auto">
             <a href="https://wa.me/905544062383?text=Merhaba%2C%20hacamat%20tedavisi%20hakk%C4%B1nda%20bilgi%20almak%20istiyorum."
-              target="_blank" rel="noopener noreferrer"
+              target="_blank" rel="noopener noreferrer nofollow"
               className="flex items-center justify-center gap-3 bg-[#25D366] hover:bg-[#1da851] text-white px-6 py-4 rounded-2xl font-black text-sm uppercase tracking-widest transition-all hover:scale-105">
               <MessageCircle size={18} fill="currentColor" /> WhatsApp'tan Yaz
             </a>

@@ -79,6 +79,7 @@ export default function HeroSection() {
           <div className="flex flex-wrap gap-3">
             <a
               href="tel:05544062383"
+              title="Konya Hacamat Hemen Ara: 0554 406 23 83"
               className="bg-teal hover:bg-teal-dark text-anthracite-dark px-6 py-4 rounded-2xl font-black flex items-center gap-3 transition-all hover:scale-105 active:scale-95 shadow-xl shadow-teal/20 text-sm"
             >
               <Phone size={16} fill="currentColor" />
@@ -86,6 +87,7 @@ export default function HeroSection() {
             </a>
             <a
               href="/takvim"
+              title="Hacamat Randevusu Al"
               className="bg-white/5 hover:bg-white/10 text-white border border-white/10 px-6 py-4 rounded-2xl font-bold flex items-center gap-3 transition-all active:scale-95 backdrop-blur-sm text-sm"
             >
               <Calendar size={16} />
@@ -115,7 +117,7 @@ export default function HeroSection() {
           <div className="absolute inset-y-0 left-0 w-40 bg-gradient-to-r from-anthracite to-transparent z-10 pointer-events-none" />
           <div className="absolute top-0 left-0 right-0 h-40 bg-gradient-to-b from-anthracite via-anthracite/80 to-transparent z-10 pointer-events-none" />
           <div className="absolute bottom-0 left-0 right-0 h-32 bg-gradient-to-t from-anthracite to-transparent z-10 pointer-events-none" />
-          <Image src="/16.webp" alt="Hacamat kupası" fill priority
+          <Image src="/16.webp" alt="Hacamat kupası" fill priority fetchPriority="high"
             className="object-cover object-center"
             sizes="50vw" />
         </div>

@@ -2,13 +2,14 @@ import type { MetadataRoute } from "next";
 import { db } from "@/lib/firebase";
 import { collection, getDocs, query, where } from "firebase/firestore";
 
-const BASE = "https://konyahacamat.net";
+const BASE = "https://www.konyahacamat.net";
 
 const staticPages = [
   { url: BASE, priority: 1.0, changeFrequency: "weekly" as const },
   { url: `${BASE}/hizmetler`, priority: 0.9, changeFrequency: "monthly" as const },
   { url: `${BASE}/hizmetler/hacamat`, priority: 0.9, changeFrequency: "monthly" as const },
   { url: `${BASE}/hizmetler/suluk`, priority: 0.8, changeFrequency: "monthly" as const },
+  { url: `${BASE}/almanya-hacamat`, priority: 0.9, changeFrequency: "monthly" as const },
   { url: `${BASE}/egitimler`, priority: 0.8, changeFrequency: "monthly" as const },
   { url: `${BASE}/takvim`, priority: 0.7, changeFrequency: "weekly" as const },
   { url: `${BASE}/blog`, priority: 0.8, changeFrequency: "weekly" as const },
@@ -23,6 +24,7 @@ export default async function sitemap(): Promise<MetadataRoute.Sitemap> {
   let blogPages: MetadataRoute.Sitemap = [];
 
   try {
+    if (!db) return [...staticPages];
     const q = query(collection(db, "posts"), where("published", "==", true));
     const snap = await getDocs(q);
     blogPages = snap.docs.map(doc => {

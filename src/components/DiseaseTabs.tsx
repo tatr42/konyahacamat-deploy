@@ -1,5 +1,6 @@
 "use client";
 import { useState, useRef, useEffect } from "react";
+import Image from "next/image";
 
 import { Brain, Heart, Bone, Leaf, Users, Zap, ArrowRight, ChevronDown } from "lucide-react";
 
@@ -202,23 +203,28 @@ export default function DiseaseTabs() {
         >
           {/* Mobilde arkaplan — %30 opaklık */}
           {current.img && (
-            <img
-              src={current.img}
-              alt=""
-              aria-hidden
-              className="md:hidden absolute inset-0 w-full h-full object-contain pointer-events-none opacity-30"
-            />
+            <div className="md:hidden absolute inset-0 w-full h-full opacity-30 pointer-events-none">
+              <Image
+                src={current.img}
+                alt={current.label}
+                fill
+                sizes="100vw"
+                className="object-contain"
+              />
+            </div>
           )}
 
           {/* Üst satır: sol görsel + sağ etiketler */}
           <div className="flex gap-4 items-start">
             {/* Sol: görsel — sadece md+ ekranlarda */}
             {current.img && (
-              <div className="hidden md:block shrink-0 pointer-events-none">
-                <img
+              <div className="hidden md:block shrink-0 pointer-events-none w-44 h-44">
+                <Image
                   src={current.img}
                   alt={current.label}
-                  className="w-44 h-44 object-contain"
+                  width={176}
+                  height={176}
+                  className="object-contain w-full h-full"
                 />
               </div>
             )}
@@ -255,7 +261,7 @@ export default function DiseaseTabs() {
             <a
               href="https://wa.me/905544062383"
               target="_blank"
-              rel="noopener noreferrer"
+              rel="noopener noreferrer nofollow"
               className="inline-flex items-center gap-2 bg-teal text-black px-5 py-2.5 rounded-xl font-black text-xs uppercase tracking-wider hover:opacity-90 transition-all shrink-0"
             >
               Randevu Al <ArrowRight size={12} />
@@ -276,6 +282,7 @@ export default function DiseaseTabs() {
           </div>
           <a
             href="/egitimler"
+            title="Hacamat Kurs Programı"
             className="inline-flex items-center gap-2 bg-teal text-black px-6 py-3 rounded-xl font-black text-xs uppercase tracking-widest hover:opacity-90 transition-all shrink-0"
           >
             Kurs Programı <ArrowRight size={14} />

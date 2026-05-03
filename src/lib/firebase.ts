@@ -4,17 +4,17 @@ import { getStorage } from "firebase/storage";
 import { getAuth } from "firebase/auth";
 
 const firebaseConfig = {
-  apiKey: "AIzaSyAIGRU9Zfjz_1JrTpXDS2QWPxf349OciHs",
-  authDomain: "hacamat-site.firebaseapp.com",
-  projectId: "hacamat-site",
-  storageBucket: "hacamat-site.firebasestorage.app",
-  messagingSenderId: "363023198428",
-  appId: "1:363023198428:web:0792fc52e8ddecd50fec19",
+  apiKey: process.env.NEXT_PUBLIC_FIREBASE_API_KEY,
+  authDomain: process.env.NEXT_PUBLIC_FIREBASE_AUTH_DOMAIN,
+  projectId: process.env.NEXT_PUBLIC_FIREBASE_PROJECT_ID,
+  storageBucket: process.env.NEXT_PUBLIC_FIREBASE_STORAGE_BUCKET,
+  messagingSenderId: process.env.NEXT_PUBLIC_FIREBASE_MESSAGING_SENDER_ID,
+  appId: process.env.NEXT_PUBLIC_FIREBASE_APP_ID,
 };
 
 const app = getApps().length > 0 ? getApp() : initializeApp(firebaseConfig);
 
-export const db = getFirestore(app);
-export const storage = getStorage(app);
-export const auth = getAuth(app);
+export const db = process.env.NEXT_PUBLIC_FIREBASE_API_KEY ? getFirestore(app) : null;
+export const storage = process.env.NEXT_PUBLIC_FIREBASE_API_KEY ? getStorage(app) : null;
+export const auth = process.env.NEXT_PUBLIC_FIREBASE_API_KEY ? getAuth(app) : null;
 export default app;

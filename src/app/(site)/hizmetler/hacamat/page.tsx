@@ -7,12 +7,12 @@ import { getYearsExpStr } from "@/lib/experience";
 export const metadata: Metadata = {
   title: "Hacamat Tedavisi Konya | Kuru & Yaş Hacamat | Ebusadullah Akademi",
   description: "Konya'da profesyonel kuru ve yaş hacamat tedavisi. CE sertifikalı steril malzeme, 32+ yıl deneyim, Almanya seansları. Ebusadullah Hacamat & Akademi — Randevu: 0554 406 23 83",
-  keywords: ["hacamat tedavisi konya", "kuru hacamat", "yaş hacamat konya", "hacamat fiyat", "hacamat randevu konya", "ebusadullah hacamat", "islamda hacamat", "hacamat faydaları", "hacamat noktaları"],
-  alternates: { canonical: "https://konyahacamat.net/hizmetler/hacamat" },
+
+  alternates: { canonical: '/hizmetler/hacamat' },
   openGraph: {
     title: "Hacamat Tedavisi Konya | Kuru & Yaş Hacamat | Ebusadullah Akademi",
     description: "Konya'da profesyonel kuru ve yaş hacamat tedavisi. 32+ yıl deneyim, steril uygulama, Almanya seansları. Randevu için WhatsApp'tan yazın.",
-    url: "https://konyahacamat.net/hizmetler/hacamat",
+    url: '/hizmetler/hacamat',
     images: [{ url: "/logo.webp", width: 1200, height: 630, alt: "Hacamat Tedavisi Konya Ebusadullah" }],
   },
 };
@@ -51,7 +51,7 @@ export default function HacamatPage() {
             <strong className="text-white"> Almanya'daki periyodik seanslarımızda</strong> steril protokollerle uyguluyoruz.
           </p>
           <div className="flex flex-wrap gap-4">
-            <a href="https://wa.me/905544062383?text=Hacamat%20tedavisi%20hakk%C4%B1nda%20bilgi%20almak%20istiyorum." target="_blank" rel="noopener noreferrer"
+            <a href="https://wa.me/905544062383?text=Hacamat%20tedavisi%20hakk%C4%B1nda%20bilgi%20almak%20istiyorum." target="_blank" rel="noopener noreferrer nofollow"
               className="flex items-center gap-2 bg-[#25D366] text-white px-6 py-4 rounded-2xl font-black text-sm uppercase tracking-widest hover:scale-105 transition-all">
               <MessageCircle size={18} fill="currentColor" /> WhatsApp
             </a>
@@ -193,7 +193,7 @@ export default function HacamatPage() {
               </p>
             </div>
             <a href="https://wa.me/905544062383?text=Almanya%20hacamat%20seans%20tarihleri%20hakk%C4%B1nda%20bilgi%20almak%20istiyorum."
-              target="_blank" rel="noopener noreferrer"
+              target="_blank" rel="noopener noreferrer nofollow"
               className="shrink-0 flex items-center gap-2 bg-[#25D366] text-white px-8 py-4 rounded-2xl font-black uppercase tracking-widest hover:scale-105 transition-all">
               <MessageCircle size={18} fill="currentColor" /> Almanya Randevusu
             </a>
@@ -281,17 +281,17 @@ export default function HacamatPage() {
         <div className="container-site">
           <div className="flex flex-col md:flex-row items-center gap-10">
             <div className="bg-white rounded-2xl p-5 shrink-0 shadow-lg">
-              <img src="/logo.webp" alt="Konya Hacamat Ebusadullah" className="h-16 w-auto" />
+              <Image src="/logo.webp" alt="Konya Hacamat Ebusadullah" width={200} height={64} className="h-16 w-auto" />
             </div>
             <div className="flex-1">
               <h2 className="font-display text-3xl font-bold text-white mb-2">Randevu Almak İster misiniz?</h2>
               <p className="text-white/50 mb-6">Konya veya Almanya seansları için hemen iletişime geçin. {getYearsExpStr()} yıl deneyimle güvenli ve steril uygulama.</p>
               <div className="flex flex-wrap gap-3">
-                <a href="https://wa.me/905544062383?text=Hacamat%20randevusu%20almak%20istiyorum." target="_blank" rel="noopener noreferrer"
+                <a href="https://wa.me/905544062383?text=Hacamat%20randevusu%20almak%20istiyorum." target="_blank" rel="noopener noreferrer nofollow"
                   className="flex items-center gap-2 bg-[#25D366] text-white px-6 py-3 rounded-xl font-black text-sm uppercase tracking-widest hover:scale-105 transition-all">
                   <MessageCircle size={16} fill="currentColor" /> 🇹🇷 WhatsApp
                 </a>
-                <a href="https://wa.me/491634492870?text=Hacamat%20randevusu%20almak%20istiyorum." target="_blank" rel="noopener noreferrer"
+                <a href="https://wa.me/491634492870?text=Hacamat%20randevusu%20almak%20istiyorum." target="_blank" rel="noopener noreferrer nofollow"
                   className="flex items-center gap-2 bg-white/10 text-white border border-white/20 px-6 py-3 rounded-xl font-black text-sm uppercase tracking-widest hover:bg-white/15 transition-all">
                   <MessageCircle size={16} /> 🇩🇪 Almanya
                 </a>

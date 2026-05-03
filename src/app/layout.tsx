@@ -2,7 +2,7 @@ import type { Metadata } from "next";
 import "./globals.css";
 import Script from "next/script";
 
-const BASE = "https://konyahacamat.net";
+const BASE = "https://www.konyahacamat.net";
 
 export const metadata: Metadata = {
   metadataBase: new URL(BASE),
@@ -12,26 +12,6 @@ export const metadata: Metadata = {
   },
   description:
     "Konya'da uzman hacamat ve sülük terapisi. Ebusadullah Hacamat & Akademi — 32+ yıl deneyim, steril CE sertifikalı malzeme, 384+ rahatsızlıkta şifa. Almanya seansları. Randevu: 0554 406 23 83",
-  keywords: [
-    // Konum + hizmet
-    "konya hacamat", "hacamat konya", "konya hacamat merkezi", "konya hacamat fiyatı",
-    "konya sülük terapisi", "konya geleneksel tıp", "konya alternatif tıp",
-    // Soru tabanlı (arama niyeti)
-    "hacamat ne işe yarar", "hacamat nasıl yapılır", "hacamat faydaları nelerdir",
-    "hacamat kimlere yapılmaz", "hacamat sonrası ne yapılır", "hacamat kaç seansta etki eder",
-    "sülük terapisi ne işe yarar", "hirudoterapi faydaları",
-    // Hastalık + hacamat
-    "migren hacamat", "bel fıtığı hacamat", "boyun fıtığı hacamat",
-    "yüksek tansiyon hacamat", "diz ağrısı hacamat", "saç dökülmesi hacamat",
-    "fibromiyalji hacamat", "eklem ağrısı hacamat",
-    // Kurs & eğitim
-    "hacamat kursu konya", "hacamat eğitimi", "hacamat sertifikası",
-    "sülük kursu", "hacamat uzmanlık kursu",
-    // Marka
-    "ebusadullah hacamat", "ebusadullah akademi", "konyahacamat",
-    // Diğer
-    "islamda hacamat", "kuru hacamat", "yaş hacamat", "almanya hacamat",
-  ],
   authors: [{ name: "Ebusadullah Hacamat & Akademi", url: BASE }],
   creator: "Ebusadullah Hacamat & Akademi",
   publisher: "Ebusadullah Hacamat & Akademi",
@@ -41,11 +21,11 @@ export const metadata: Metadata = {
     follow: true,
     googleBot: { index: true, follow: true, "max-image-preview": "large", "max-snippet": -1 },
   },
-  alternates: { canonical: BASE },
+  alternates: { canonical: '/' },
   openGraph: {
     type: "website",
     locale: "tr_TR",
-    url: BASE,
+    url: '/',
     siteName: "Konya Hacamat Ebusadullah",
     title: "Konya Hacamat | Ebusadullah Hacamat & Akademi",
     description:
@@ -126,14 +106,21 @@ export default function RootLayout({ children }: { children: React.ReactNode }) 
         />
       </head>
       <body className="bg-anthracite-dark antialiased">
-        <Script async src="https://www.googletagmanager.com/gtag/js?id=G-HY8VE2CQS1" strategy="afterInteractive" />
-        <Script id="gtag-init" strategy="afterInteractive">{`
-          window.dataLayer = window.dataLayer || [];
-          function gtag(){dataLayer.push(arguments);}
-          gtag('js', new Date());
-          gtag('config', 'G-HY8VE2CQS1');
-        `}</Script>
         {children}
+        <Script
+          src={`https://www.googletagmanager.com/gtag/js?id=G-HY8VE2CQS1`}
+          strategy="lazyOnload"
+        />
+        <Script id="google-analytics" strategy="lazyOnload">
+          {`
+            window.dataLayer = window.dataLayer || [];
+            function gtag(){dataLayer.push(arguments);}
+            gtag('js', new Date());
+            gtag('config', 'G-HY8VE2CQS1', {
+              page_path: window.location.pathname,
+            });
+          `}
+        </Script>
       </body>
     </html>
   );

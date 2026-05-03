@@ -6,11 +6,12 @@
     "dev": "next dev",
     "build": "next build",
     "start": "next start",
-    "lint": "next lint"
+    "lint": "next lint",
+    "test": "node --test --experimental-strip-types \"src/**/*.test.ts\""
   },
   "dependencies": {
     "cloudinary": "^2.9.0",
-    "firebase": "^12.11.0",
+    "firebase": "^12.12.1",
     "lucide-react": "^0.511.0",
     "next": "^16.2.3",
     "react": "^19.0.0",
@@ -23,6 +24,7 @@
     "@types/react": "^19",
     "@types/react-dom": "^19",
     "tailwindcss": "^4",
+    "tsx": "^4.21.0",
     "typescript": "^5"
   }
 }

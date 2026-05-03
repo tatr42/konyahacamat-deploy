@@ -1,6 +1,7 @@
 "use client";
 import { Star, Quote, ChevronLeft, ChevronRight } from "lucide-react";
 import { useState, useEffect } from "react";
+import Image from "next/image";
 
 const reviews = [
   {
@@ -141,10 +142,11 @@ export default function Testimonials() {
           <a
             href="https://www.google.com/maps/search/Ebusadullah+Hacamat+Konya"
             target="_blank"
-            rel="noopener noreferrer"
+            rel="noopener noreferrer nofollow"
+            title="Ebusadullah Hacamat Google Yorumları"
             className="inline-flex items-center gap-3 bg-white/5 hover:bg-white/10 border border-white/10 px-8 py-4 rounded-2xl font-bold text-white text-sm transition-all active:scale-95"
           >
-            <img src="/logo.webp" alt="Google" className="w-5 h-5 object-contain grayscale brightness-200" />
+            <Image src="/logo.webp" alt="Google" width={20} height={20} className="w-5 h-5 object-contain grayscale brightness-200" />
             TÜM GOOGLE YORUMLARINI GÖR
           </a>
         </div>

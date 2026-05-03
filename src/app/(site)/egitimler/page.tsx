@@ -1,16 +1,17 @@
 import type { Metadata } from "next";
 import Link from "next/link";
+import Image from "next/image";
 import { BookOpen, CheckCircle, Clock, Users, Award, MessageCircle, Phone, Globe, ChevronRight } from "lucide-react";
 
 export const metadata: Metadata = {
   title: "Hacamat Kursu Konya | Sertifikalı Hacamat Eğitimi | Ebusadullah Akademi",
   description: "Konya Ebusadullah Akademi'de sertifikalı hacamat ve sülük terapisi uzmanlık kursları. Küçük gruplar, birebir uygulama, uluslararası geçerli sertifika. Almanya'da da eğitim verilmektedir.",
-  keywords: ["hacamat kursu konya", "hacamat eğitimi", "hacamat sertifikası", "sülük terapisi kursu", "hirudoterapi eğitimi", "hacamat uzmanlık", "hacamat kursu fiyat", "ebusadullah akademi", "hacamat öğrenmek"],
-  alternates: { canonical: "https://konyahacamat.net/egitimler" },
+
+  alternates: { canonical: '/egitimler' },
   openGraph: {
     title: "Hacamat Kursu Konya | Sertifikalı Eğitim | Ebusadullah Akademi",
     description: "Sertifikalı hacamat ve sülük terapisi uzmanlık kursları. Küçük gruplar, birebir uygulama. 1200+ mezun. Konya ve Almanya'da eğitim.",
-    url: "https://konyahacamat.net/egitimler",
+    url: '/egitimler',
     images: [{ url: "/logo.webp", width: 1200, height: 630, alt: "Hacamat Kursu Ebusadullah Akademi Konya" }],
   },
 };
@@ -97,12 +98,12 @@ export default function EgitimlerPage() {
           </p>
           <div className="flex flex-wrap gap-4">
             <a href="https://wa.me/905544062383?text=Merhaba%2C%20e%C4%9Fitim%20hakk%C4%B1nda%20bilgi%20almak%20istiyorum."
-              target="_blank" rel="noopener noreferrer"
+              target="_blank" rel="noopener noreferrer nofollow"
               className="flex items-center gap-2 bg-[#25D366] text-white px-6 py-4 rounded-2xl font-black text-sm uppercase tracking-widest hover:scale-105 transition-all">
               <MessageCircle size={18} fill="currentColor" /> 🇹🇷 WhatsApp TR
             </a>
             <a href="https://wa.me/491634492870?text=Merhaba%2C%20e%C4%9Fitim%20hakk%C4%B1nda%20bilgi%20almak%20istiyorum."
-              target="_blank" rel="noopener noreferrer"
+              target="_blank" rel="noopener noreferrer nofollow"
               className="flex items-center gap-2 bg-white/10 text-white border border-white/20 px-6 py-4 rounded-2xl font-black text-sm uppercase tracking-widest hover:bg-white/15 transition-all">
               <MessageCircle size={18} /> 🇩🇪 WhatsApp Almanya
             </a>
@@ -178,7 +179,7 @@ export default function EgitimlerPage() {
                   <div className="pt-4 border-t border-white/10">
                     <a
                       href={`https://wa.me/905544062383?text=${encodeURIComponent(`Merhaba, "${k.baslik}" eğitimi hakkında bilgi almak istiyorum.`)}`}
-                      target="_blank" rel="noopener noreferrer"
+                      target="_blank" rel="noopener noreferrer nofollow"
                       className={`flex items-center justify-center gap-2 w-full py-3 rounded-xl font-black text-xs uppercase tracking-widest transition-all hover:scale-105 ${
                         k.ozellik
                           ? "bg-teal text-anthracite-dark hover:opacity-90"
@@ -221,7 +222,7 @@ export default function EgitimlerPage() {
               </p>
             </div>
             <a href="https://wa.me/491634492870?text=Merhaba%2C%20Almanya%20e%C4%9Fitim%20tarihleri%20hakk%C4%B1nda%20bilgi%20almak%20istiyorum."
-              target="_blank" rel="noopener noreferrer"
+              target="_blank" rel="noopener noreferrer nofollow"
               className="flex items-center gap-2 bg-white/10 hover:bg-white/15 text-white border border-white/20 px-6 py-4 rounded-2xl font-black text-sm uppercase tracking-widest transition-all whitespace-nowrap shrink-0">
               <MessageCircle size={16} /> 🇩🇪 Almanya Hattı
             </a>
@@ -285,7 +286,7 @@ export default function EgitimlerPage() {
         <div className="container-site flex flex-col md:flex-row items-center justify-between gap-8">
           <div className="flex items-center gap-6">
             <div className="bg-white rounded-2xl p-4 shrink-0 shadow-lg">
-              <img src="/logo.webp" alt="Konya Hacamat Ebusadullah" className="h-14 w-auto" />
+              <Image src="/logo.webp" alt="Konya Hacamat Ebusadullah" width={200} height={56} className="h-14 w-auto" />
             </div>
             <div>
               <h2 className="font-display text-3xl font-bold text-white mb-2">Kayıt &amp; Bilgi</h2>
@@ -294,12 +295,12 @@ export default function EgitimlerPage() {
           </div>
           <div className="flex flex-wrap gap-3">
             <a href="https://wa.me/905544062383?text=Merhaba%2C%20e%C4%9Fitim%20hakk%C4%B1nda%20bilgi%20almak%20istiyorum."
-              target="_blank" rel="noopener noreferrer"
+              target="_blank" rel="noopener noreferrer nofollow"
               className="flex items-center gap-2 bg-[#25D366] text-white px-6 py-4 rounded-2xl font-black text-sm uppercase tracking-widest hover:scale-105 transition-all">
               <MessageCircle size={18} fill="currentColor" /> 🇹🇷 WhatsApp
             </a>
             <a href="https://wa.me/491634492870?text=Merhaba%2C%20e%C4%9Fitim%20hakk%C4%B1nda%20bilgi%20almak%20istiyorum."
-              target="_blank" rel="noopener noreferrer"
+              target="_blank" rel="noopener noreferrer nofollow"
               className="flex items-center gap-2 bg-white/10 text-white border border-white/20 px-6 py-4 rounded-2xl font-black text-sm uppercase tracking-widest hover:bg-white/15 transition-all">
               <MessageCircle size={18} /> 🇩🇪 Almanya
             </a>

@@ -1,15 +1,15 @@
 import type { Metadata } from "next";
 import Link from "next/link";
+import Image from "next/image";
 
 export const metadata: Metadata = {
   title: "Galeri | Hacamat Seansı & Kurs Fotoğrafları | Ebusadullah Akademi Konya",
   description: "Ebusadullah Hacamat & Akademi galeri. Konya'daki hacamat seansları, sülük terapisi uygulamaları, uzmanlık kursları ve Almanya faaliyetlerinden görüntüler.",
-  keywords: ["konya hacamat galeri", "hacamat fotoğraf", "hacamat seans görüntü", "ebusadullah akademi galeri", "hacamat kurs fotoğraf"],
-  alternates: { canonical: "https://konyahacamat.net/galeri" },
+  alternates: { canonical: '/galeri' },
   openGraph: {
     title: "Galeri | Hacamat Seansı & Kurs Fotoğrafları | Ebusadullah Konya",
     description: "Hacamat seansları, kurs eğitimleri ve Almanya faaliyetlerinden fotoğraflar. Ebusadullah Hacamat & Akademi.",
-    url: "https://konyahacamat.net/galeri",
+    url: '/galeri',
     images: [{ url: "/logo.webp", width: 1200, height: 630, alt: "Hacamat Galeri Konya" }],
   },
 };
@@ -79,7 +79,7 @@ export default function GaleriPage() {
         <div className="container-site">
           <div className="flex flex-col md:flex-row gap-10 items-start">
             <div className="bg-white rounded-2xl p-5 shrink-0 shadow-lg">
-              <img src="/logo.webp" alt="Konya Hacamat Ebusadullah" className="h-14 w-auto" />
+              <Image src="/logo.webp" alt="Konya Hacamat Ebusadullah" width={200} height={56} className="h-14 w-auto" />
             </div>
             <div className="space-y-3 text-white/60 text-sm leading-relaxed max-w-2xl">
               <p>
