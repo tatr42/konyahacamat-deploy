@@ -21,7 +21,7 @@ interface PressItem {
 }
 
 /**
- * Firestore sorgusunu cache ile sarmalayarak 
+ * Firestore sorgusunu cache ile sarmalayarak
  * aynı sayfa yüklemesinde tekrarlı çağrıları önlüyoruz.
  */
 const getItem = cache(async (slug: string): Promise<PressItem | null> => {
@@ -123,16 +123,16 @@ export default async function BasinDetayPage({ params }: { params: Promise<{ slu
           <h3 className="text-white font-bold text-xl mb-2">Hacamat Tedavisi İçin Randevu Alın</h3>
           <p className="text-white/50 text-sm mb-6">Konya veya Almanya seansları için profesyonel destek alın.</p>
           <div className="flex flex-wrap justify-center gap-3">
-            <a 
-              href="https://wa.me/905544062383" 
-              target="_blank" 
+            <a
+              href="https://wa.me/905544062383"
+              target="_blank"
               rel="noopener noreferrer nofollow"
               className="flex items-center gap-2 bg-[#25D366] text-white px-6 py-3 rounded-xl font-black text-sm uppercase tracking-widest hover:scale-105 transition-all"
               title="WhatsApp üzerinden bilgi alın"
             >
               <MessageCircle size={16} fill="currentColor" /> WhatsApp
             </a>
-            <Link 
+            <Link
               href="/takvim"
               className="flex items-center gap-2 bg-teal text-anthracite-dark px-6 py-3 rounded-xl font-black text-sm uppercase tracking-widest hover:scale-105 transition-all"
               title="Randevu takvimine git"
