@@ -7,6 +7,11 @@ import PressSection from "@/components/PressSection";
 import Testimonials from "@/components/Testimonials";
 import WhatsAppWidget from "@/components/WhatsAppWidget";
 
+/**
+ * Ana Sayfa Metadata Yapısı
+ * alternates ve openGraph içindeki url değerleri metadataBase üzerinden 
+ * otomatik çözülmesi için göreceli (/) olarak bırakılmıştır.
+ */
 export const metadata: Metadata = {
   title: "Konya Hacamat | Ebusadullah Hacamat & Akademi | Konyahacamat.net",
   description: "Konya'nın en köklü hacamat merkezi. Kuru & yaş hacamat, sülük terapisi, sertifikalı hacamat kursu. 32+ yıl deneyim, CE steril malzeme. Almanya seansları. Randevu: 0554 406 23 83",
@@ -20,6 +25,9 @@ export const metadata: Metadata = {
   },
 };
 
+/**
+ * SSS Şeması (FAQ Schema)
+ */
 const faqSchema = {
   "@context": "https://schema.org",
   "@type": "FAQPage",
@@ -28,17 +36,27 @@ const faqSchema = {
     { "@type": "Question", name: "Hacamat ne işe yarar?", acceptedAnswer: { "@type": "Answer", text: "Hacamat; kronik bel ve boyun ağrıları, migren, yüksek tansiyon, uyku bozuklukları, cilt hastalıkları, bağışıklık sistemi güçlendirme ve genel detoks amacıyla geleneksel kaynaklarda 384'ten fazla rahatsızlığa faydalı olduğu belirtilmektedir." } },
     { "@type": "Question", name: "Kuru ve yaş hacamat arasındaki fark nedir?", acceptedAnswer: { "@type": "Answer", text: "Kuru hacamatta yalnızca negatif basınç uygulanır, kesi yapılmaz. Yaş hacamatta ise küçük yüzeysel kesiler açılarak metabolik atıkların uzaklaştırılması sağlanır. Yaş hacamat Hz. Peygamber'in tavsiye ettiği klasik yöntemdir." } },
     { "@type": "Question", name: "Hacamat kursu nerede verilmektedir?", acceptedAnswer: { "@type": "Answer", text: "<a href=\"https://www.konyahacamat.net/\">Ebusadullah Akademi</a>, Konya'da Temel Hacamat Uzmanlık Kursu ve Sülük Terapisi Kursu vermektedir. Yılın belirli dönemlerinde Almanya'da da eğitim düzenlenmektedir. Uluslararası geçerli sertifika verilmektedir." } },
-    { "@type": "Question", name: "Almanya'da hacamat yaptırabilir miyim?", acceptedAnswer: { "@type": "Answer", text: "Evet. Ebusadullah Hoca yılda 2–3 kez Almanya'ya giderek Frankfurt, Köln, Stuttgart ve çevre şehirlerde hacamat seansları düzenlemektedir. Tarih bilgisi için WhatsApp: +49 163 449 28 70" } },
+    { "@type": "Question", name: "Almanya'da hacamat yaptırabilir miyim?", acceptedAnswer: { "@type": "Answer", text: "Evet. Ebusadullah Hoca yılda 2–3 kez Almanya'ya giderek Frankfurt, Köln, Stuttgart ve çevre şehirlerde hacamat seansları düzenlendirmektedir. Tarih bilgisi için WhatsApp: +49 163 449 28 70" } },
   ],
 };
 
+/**
+ * İşletme ve Hizmet Şeması (MedicalBusiness Schema)
+ * Şema verilerinde (JSON-LD) mutlak URL kullanımı SEO açısından zorunludur.
+ */
 const serviceSchema = {
   "@context": "https://schema.org",
   "@type": "MedicalBusiness",
   name: "Ebusadullah Hacamat & Akademi",
   url: "https://www.konyahacamat.net",
   telephone: "+905544062383",
-  address: { "@type": "PostalAddress", streetAddress: "Nişantaş Mh. Dr. Hulusi Baybal Cd.", addressLocality: "Selçuklu", addressRegion: "Konya", addressCountry: "TR" },
+  address: { 
+    "@type": "PostalAddress", 
+    streetAddress: "Nişantaş Mh. Dr. Hulusi Baybal Cd.", 
+    addressLocality: "Selçuklu", 
+    addressRegion: "Konya", 
+    addressCountry: "TR" 
+  },
   medicalSpecialty: "Geleneksel Tıp",
   availableService: [
     { "@type": "MedicalTherapy", name: "Kuru Hacamat", url: "https://www.konyahacamat.net/hizmetler/hacamat" },
