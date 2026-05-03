@@ -212,7 +212,7 @@ export default function SulukPage() {
         <div className="container-site">
           <div className="flex flex-col md:flex-row items-center gap-10">
             <div className="bg-white rounded-2xl p-5 shrink-0 shadow-lg">
-              <img src="/logo.webp" alt="Konya Hacamat Ebusadullah" className="h-16 w-auto" />
+              <Image src="/logo.webp" alt="Konya Hacamat Ebusadullah" width={200} height={64} className="h-16 w-auto" />
             </div>
             <div className="flex-1">
               <h2 className="font-display text-3xl font-bold text-white mb-2">Sülük Terapisi Randevusu</h2>

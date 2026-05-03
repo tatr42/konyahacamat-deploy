@@ -1,6 +1,7 @@
 import type { Metadata } from "next";
 import { MapPin, Phone, Mail, Clock, MessageCircle, Globe } from "lucide-react";
 import { getYearsExpStr } from "@/lib/experience";
+import Image from "next/image";
 
 export const metadata: Metadata = {
   title: "İletişim & Randevu | Konya Hacamat | Ebusadullah Akademi",
@@ -35,7 +36,7 @@ export default function IletisimPage() {
         <div className="container-site">
           <div className="flex items-center gap-5 bg-white/5 border border-white/10 rounded-2xl p-6 mb-10">
             <div className="bg-white rounded-xl p-3 shrink-0 shadow">
-              <img src="/logo.webp" alt="Konya Hacamat Ebusadullah" className="h-12 w-auto" />
+              <Image src="/logo.webp" alt="Konya Hacamat Ebusadullah" width={200} height={48} className="h-12 w-auto" />
             </div>
             <p className="text-white/60 text-sm leading-relaxed">
               <strong className="text-white">Ebusadullah Hacamat &amp; Akademi</strong> — Konya'da {getYearsExpStr()} yıldır hizmet veren geleneksel tıp merkezi. Hacamat, sülük terapisi ve uzmanlık eğitimleri için bize ulaşın. Almanya seansları için Almanya hattımızı kullanabilirsiniz.

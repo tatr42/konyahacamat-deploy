@@ -2,7 +2,7 @@ import type { MetadataRoute } from "next";
 import { db } from "@/lib/firebase";
 import { collection, getDocs, query, where } from "firebase/firestore";
 
-const BASE = "https://konyahacamat.net";
+const BASE = "https://www.konyahacamat.net";
 
 const staticPages = [
   { url: BASE, priority: 1.0, changeFrequency: "weekly" as const },
@@ -24,6 +24,7 @@ export default async function sitemap(): Promise<MetadataRoute.Sitemap> {
   let blogPages: MetadataRoute.Sitemap = [];
 
   try {
+    if (!db) return [...staticPages];
     const q = query(collection(db, "posts"), where("published", "==", true));
     const snap = await getDocs(q);
     blogPages = snap.docs.map(doc => {

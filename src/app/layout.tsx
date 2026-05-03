@@ -1,8 +1,8 @@
 import type { Metadata } from "next";
 import "./globals.css";
-import { GoogleAnalytics } from "@next/third-parties/google";
+import Script from "next/script";
 
-const BASE = "https://konyahacamat.net";
+const BASE = "https://www.konyahacamat.net";
 
 export const metadata: Metadata = {
   metadataBase: new URL(BASE),
@@ -56,11 +56,11 @@ const localBusinessSchema = {
   alternateName: "Konya Hacamat Ebusadullah",
   description:
     "Konya'da 32+ yıldır hizmet veren profesyonel hacamat ve sülük terapisi merkezi. Uluslararası geçerli hacamat uzmanlık eğitimleri.",
-  url: BASE,
+  url: "/",
   telephone: "+905544062383",
   email: "info@konyahacamat.net",
-  image: `${BASE}/logo.webp`,
-  logo: `${BASE}/fav.webp`,
+  image: "/logo.webp",
+  logo: "/fav.webp",
   priceRange: "₺₺",
   currenciesAccepted: "TRY",
   paymentAccepted: "Nakit, Havale",
@@ -88,10 +88,10 @@ const localBusinessSchema = {
     "@type": "OfferCatalog",
     name: "Hacamat Hizmetleri",
     itemListElement: [
-      { "@type": "Offer", itemOffered: { "@type": "Service", name: "Kuru Hacamat", url: `${BASE}/hizmetler/hacamat` } },
-      { "@type": "Offer", itemOffered: { "@type": "Service", name: "Yaş Hacamat", url: `${BASE}/hizmetler/hacamat` } },
-      { "@type": "Offer", itemOffered: { "@type": "Service", name: "Sülük Terapisi", url: `${BASE}/hizmetler/suluk` } },
-      { "@type": "Offer", itemOffered: { "@type": "Service", name: "Hacamat Uzmanlık Kursu", url: `${BASE}/egitimler` } },
+      { "@type": "Offer", itemOffered: { "@type": "Service", name: "Kuru Hacamat", url: "/hizmetler/hacamat" } },
+      { "@type": "Offer", itemOffered: { "@type": "Service", name: "Yaş Hacamat", url: "/hizmetler/hacamat" } },
+      { "@type": "Offer", itemOffered: { "@type": "Service", name: "Sülük Terapisi", url: "/hizmetler/suluk" } },
+      { "@type": "Offer", itemOffered: { "@type": "Service", name: "Hacamat Uzmanlık Kursu", url: "/egitimler" } },
     ],
   },
 };
@@ -107,7 +107,20 @@ export default function RootLayout({ children }: { children: React.ReactNode }) 
       </head>
       <body className="bg-anthracite-dark antialiased">
         {children}
-        <GoogleAnalytics gaId="G-HY8VE2CQS1" />
+        <Script
+          src={`https://www.googletagmanager.com/gtag/js?id=G-HY8VE2CQS1`}
+          strategy="lazyOnload"
+        />
+        <Script id="google-analytics" strategy="lazyOnload">
+          {`
+            window.dataLayer = window.dataLayer || [];
+            function gtag(){dataLayer.push(arguments);}
+            gtag('js', new Date());
+            gtag('config', 'G-HY8VE2CQS1', {
+              page_path: window.location.pathname,
+            });
+          `}
+        </Script>
       </body>
     </html>
   );

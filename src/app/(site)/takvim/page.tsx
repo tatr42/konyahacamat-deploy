@@ -2,6 +2,7 @@ import type { Metadata } from "next";
 import { Moon, Shield, Clock, MessageCircle, Phone } from "lucide-react";
 import HacamatCalendar from "@/components/HacamatCalendar";
 import Link from "next/link";
+import Image from "next/image";
 
 const currentYear = new Date().getFullYear();
 
@@ -211,7 +212,7 @@ export default function TakvimPage() {
         <div className="container-site flex flex-col md:flex-row items-center justify-between gap-8">
           <div className="flex items-center gap-5">
             <div className="bg-white rounded-xl p-3 shrink-0 shadow">
-              <img src="/logo.webp" alt="Konya Hacamat Ebusadullah" className="h-12 w-auto" />
+              <Image src="/logo.webp" alt="Konya Hacamat Ebusadullah" width={200} height={48} className="h-12 w-auto" />
             </div>
             <div>
               <h2 className="font-display text-3xl font-bold text-white mb-2">Sorularınız mı var?</h2>
