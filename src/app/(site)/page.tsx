@@ -36,14 +36,14 @@ const serviceSchema = {
   "@context": "https://schema.org",
   "@type": "MedicalBusiness",
   name: "Ebusadullah Hacamat & Akademi",
-  url: "https://konyahacamat.net",
+  url: "/",
   telephone: "+905544062383",
   address: { "@type": "PostalAddress", streetAddress: "Nişantaş Mh. Dr. Hulusi Baybal Cd.", addressLocality: "Selçuklu", addressRegion: "Konya", addressCountry: "TR" },
   medicalSpecialty: "Geleneksel Tıp",
   availableService: [
-    { "@type": "MedicalTherapy", name: "Kuru Hacamat", url: "https://konyahacamat.net/hizmetler/hacamat" },
-    { "@type": "MedicalTherapy", name: "Yaş Hacamat", url: "https://konyahacamat.net/hizmetler/hacamat" },
-    { "@type": "MedicalTherapy", name: "Sülük Terapisi (Hirudoterapi)", url: "https://konyahacamat.net/hizmetler/suluk" },
+    { "@type": "MedicalTherapy", name: "Kuru Hacamat", url: "/hizmetler/hacamat" },
+    { "@type": "MedicalTherapy", name: "Yaş Hacamat", url: "/hizmetler/hacamat" },
+    { "@type": "MedicalTherapy", name: "Sülük Terapisi (Hirudoterapi)", url: "/hizmetler/suluk" },
   ],
 };
 
