@@ -12,6 +12,7 @@ interface PressItem {
 }
 
 async function getItem(slug: string): Promise<PressItem | null> {
+  if (!db) return null;
   const q = query(collection(db, "press"), where("slug", "==", slug));
   const snap = await getDocs(q);
   if (snap.empty) return null;
