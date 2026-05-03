@@ -10,7 +10,6 @@
     "test": "node --test --experimental-strip-types \"src/**/*.test.ts\""
   },
   "dependencies": {
-    "@next/third-parties": "^16.2.4",
     "cloudinary": "^2.9.0",
     "firebase": "^12.12.1",
     "lucide-react": "^0.511.0",
