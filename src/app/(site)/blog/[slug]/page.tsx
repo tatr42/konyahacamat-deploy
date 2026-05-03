@@ -14,6 +14,7 @@ interface Post {
 }
 
 const getPost = cache(async (slug: string): Promise<Post | null> => {
+  if (!db) return null;
   const q = query(collection(db, "posts"), where("slug", "==", slug), where("published", "==", true));
   const snap = await getDocs(q);
   if (snap.empty) return null;
