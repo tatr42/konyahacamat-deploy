@@ -60,7 +60,7 @@ export default function MedyaPage() {
   return (
     <div className="min-h-screen bg-[#0a0a0a] text-white">
       <header className="border-b border-white/10 px-6 py-4 flex items-center gap-3">
-        <Link href="/admin" className="text-white/50 hover:text-white"><ArrowLeft size={20} /></Link>
+        <Link href="/admin" title="Admin Panele Dön" className="text-white/50 hover:text-white"><ArrowLeft size={20} /></Link>
         <h1 className="font-bold">Medya Yöneticisi</h1>
       </header>
 

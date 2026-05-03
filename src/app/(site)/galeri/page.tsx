@@ -107,7 +107,7 @@ export default function GaleriPage() {
               { href: "/egitimler", baslik: "Eğitim Kursları", aciklama: "Hacamat uzmanlık sertifikası", emoji: "🎓" },
               { href: "/takvim", baslik: "Randevu Takvimi", aciklama: "Faziletli günlerde randevu", emoji: "📅" },
             ].map(l => (
-              <Link key={l.href} href={l.href}
+              <Link key={l.href} href={l.href} title={(l as any).baslik || (l as any).title || (l as any).isim || "Bağlantı Detayı"}
                 className="bg-white/5 border border-white/10 rounded-2xl p-5 hover:border-teal/30 hover:bg-white/8 transition-all group">
                 <div className="text-3xl mb-3">{l.emoji}</div>
                 <div className="text-white font-bold text-sm mb-1 group-hover:text-teal transition-colors">{l.baslik}</div>

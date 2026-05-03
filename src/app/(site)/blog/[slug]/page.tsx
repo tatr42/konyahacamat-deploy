@@ -91,7 +91,7 @@ export default async function BlogPostPage({ params }: { params: Promise<{ slug:
     "@type": "Article",
     headline: post.title,
     description: post.excerpt,
-author: { "@type": "Organization", name: "Ebusadullah Hacamat & Akademi", url: "https://www.konyahacamat.net" },
+    author: { "@type": "Organization", name: "Ebusadullah Hacamat & Akademi", url: "https://www.konyahacamat.net" },
     publisher: { "@type": "Organization", name: "Ebusadullah Hacamat & Akademi", logo: { "@type": "ImageObject", url: "https://www.konyahacamat.net/logo.webp" } },
     url: `https://www.konyahacamat.net/blog/${post.slug}`,
     datePublished: post.createdAt ? new Date(post.createdAt.seconds * 1000).toISOString() : undefined,
@@ -105,7 +105,11 @@ author: { "@type": "Organization", name: "Ebusadullah Hacamat & Akademi", url: "
 
         {/* Geri Dönüş ve Kategori (Breadcrumb) */}
         <div className="flex items-center gap-2 text-white/30 text-sm mb-8">
-          <Link href="/blog" className="hover:text-teal transition-colors flex items-center gap-1" title="Blog listesine dön">
+          <Link 
+            href="/blog" 
+            className="hover:text-teal transition-colors flex items-center gap-1" 
+            title="Blog listesine dön"
+          >
             <ArrowLeft size={14} /> Blog
           </Link>
           <span>/</span>

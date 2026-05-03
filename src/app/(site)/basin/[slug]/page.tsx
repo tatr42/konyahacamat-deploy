@@ -71,7 +71,11 @@ export default async function BasinDetayPage({ params }: { params: Promise<{ slu
 
         {/* Breadcrumb */}
         <div className="flex items-center gap-2 text-white/30 text-sm mb-8">
-          <Link href="/basin" className="hover:text-teal transition-colors flex items-center gap-1" title="Basın Odasına Dön">
+          <Link 
+            href="/basin" 
+            className="hover:text-teal transition-colors flex items-center gap-1" 
+            title="Basın Odasına Dön"
+          >
             <ArrowLeft size={14} /> Basın Odası
           </Link>
           <span>/</span>
@@ -116,14 +120,20 @@ export default async function BasinDetayPage({ params }: { params: Promise<{ slu
           <h3 className="text-white font-bold text-xl mb-2">Hacamat Tedavisi İçin Randevu Alın</h3>
           <p className="text-white/50 text-sm mb-6">Konya veya Almanya seansları için bize ulaşın.</p>
           <div className="flex flex-wrap justify-center gap-3">
-            <a href="https://wa.me/905544062383" target="_blank" rel="noopener noreferrer nofollow"
+            <a 
+              href="https://wa.me/905544062383" 
+              target="_blank" 
+              rel="noopener noreferrer nofollow"
               title="WhatsApp üzerinden randevu al"
-              className="flex items-center gap-2 bg-[#25D366] text-white px-6 py-3 rounded-xl font-black text-sm uppercase tracking-widest hover:scale-105 transition-all">
+              className="flex items-center gap-2 bg-[#25D366] text-white px-6 py-3 rounded-xl font-black text-sm uppercase tracking-widest hover:scale-105 transition-all"
+            >
               <MessageCircle size={16} fill="currentColor" /> WhatsApp
             </a>
-            <Link href="/takvim"
+            <Link 
+              href="/takvim"
               title="Online randevu takvimine git"
-              className="flex items-center gap-2 bg-teal text-anthracite-dark px-6 py-3 rounded-xl font-black text-sm uppercase tracking-widest hover:scale-105 transition-all">
+              className="flex items-center gap-2 bg-teal text-anthracite-dark px-6 py-3 rounded-xl font-black text-sm uppercase tracking-widest hover:scale-105 transition-all"
+            >
               Randevu Al
             </Link>
           </div>
