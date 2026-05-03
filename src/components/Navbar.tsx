@@ -149,7 +149,7 @@ export default function Navbar() {
                     </div>
                     <div className="p-2 grid grid-cols-1 gap-1">
                         {item.dropdown.map(sub => (
-                            <Link key={sub.href} href={sub.href}
+                            <Link key={sub.href} href={sub.href} title={sub.name}
                                 onClick={() => setMobileOpen(null)}
                                 className="flex items-center justify-between px-5 py-4 rounded-2xl hover:bg-white/5 active:bg-teal/10 transition-all group">
                                 <span className="text-white font-bold group-active:text-teal">{sub.name}</span>

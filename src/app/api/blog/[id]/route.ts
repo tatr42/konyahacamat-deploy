@@ -3,6 +3,7 @@ import { db } from "@/lib/firebase";
 import { doc, getDoc, updateDoc, deleteDoc, serverTimestamp } from "firebase/firestore";
 
 export async function GET(_: NextRequest, { params }: { params: Promise<{ id: string }> }) {
+  if (!db) return NextResponse.json({ error: "Firebase not configured" }, { status: 500 });
   const { id } = await params;
   const snap = await getDoc(doc(db, "posts", id));
   if (!snap.exists()) return NextResponse.json({ error: "Not found" }, { status: 404 });
@@ -10,6 +11,7 @@ export async function GET(_: NextRequest, { params }: { params: Promise<{ id: st
 }
 
 export async function PUT(req: NextRequest, { params }: { params: Promise<{ id: string }> }) {
+  if (!db) return NextResponse.json({ error: "Firebase not configured" }, { status: 500 });
   const { id } = await params;
   const body = await req.json();
   await updateDoc(doc(db, "posts", id), { ...body, updatedAt: serverTimestamp() });
@@ -17,6 +19,7 @@ export async function PUT(req: NextRequest, { params }: { params: Promise<{ id: 
 }
 
 export async function DELETE(_: NextRequest, { params }: { params: Promise<{ id: string }> }) {
+  if (!db) return NextResponse.json({ error: "Firebase not configured" }, { status: 500 });
   const { id } = await params;
   await deleteDoc(doc(db, "posts", id));
   return NextResponse.json({ ok: true });

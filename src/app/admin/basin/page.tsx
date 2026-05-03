@@ -98,7 +98,7 @@ export default function AdminBasinPage() {
     <div className="min-h-screen bg-[#0a0a0a] text-white">
       <header className="border-b border-white/10 px-6 py-4 flex items-center justify-between">
         <div className="flex items-center gap-3">
-          <Link href="/admin" className="text-white/50 hover:text-white transition-colors">
+          <Link href="/admin" title="Admin Panele Dön" className="text-white/50 hover:text-white transition-colors">
             <ArrowLeft size={20} />
           </Link>
           <h1 className="font-bold text-lg">Basın Yönetimi</h1>

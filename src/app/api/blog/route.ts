@@ -5,6 +5,7 @@ import {
 } from "firebase/firestore";
 
 export async function GET() {
+  if (!db) return NextResponse.json({ error: "Firebase not configured" }, { status: 500 });
   const q = query(collection(db, "posts"), orderBy("createdAt", "desc"));
   const snap = await getDocs(q);
   const posts = snap.docs.map(d => ({ id: d.id, ...d.data() }));
@@ -12,6 +13,7 @@ export async function GET() {
 }
 
 export async function POST(req: NextRequest) {
+  if (!db) return NextResponse.json({ error: "Firebase not configured" }, { status: 500 });
   const body = await req.json();
   const doc = await addDoc(collection(db, "posts"), {
     ...body,

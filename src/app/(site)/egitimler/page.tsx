@@ -1,5 +1,6 @@
 import type { Metadata } from "next";
 import Link from "next/link";
+import Image from "next/image";
 import { BookOpen, CheckCircle, Clock, Users, Award, MessageCircle, Phone, Globe, ChevronRight } from "lucide-react";
 
 export const metadata: Metadata = {
@@ -96,12 +97,12 @@ export default function EgitimlerPage() {
             hem kendi sağlığınıza hem de çevrenize katkı sağlayın.
           </p>
           <div className="flex flex-wrap gap-4">
-            <a href="https://wa.me/905544062383?text=Merhaba%2C%20e%C4%9Fitim%20hakk%C4%B1nda%20bilgi%20almak%20istiyorum."
+            <a href="https://wa.me/905544062383?text=Merhaba%2C%20e%C4%9Fitim%20hakk%C4%B1nda%20bilgi%20almak%20istiyorum." title="Türkiye Hacamat İletişim"
               target="_blank" rel="noopener noreferrer nofollow"
               className="flex items-center gap-2 bg-[#25D366] text-white px-6 py-4 rounded-2xl font-black text-sm uppercase tracking-widest hover:scale-105 transition-all">
               <MessageCircle size={18} fill="currentColor" /> 🇹🇷 WhatsApp TR
             </a>
-            <a href="https://wa.me/491634492870?text=Merhaba%2C%20e%C4%9Fitim%20hakk%C4%B1nda%20bilgi%20almak%20istiyorum."
+            <a href="https://wa.me/491634492870?text=Merhaba%2C%20e%C4%9Fitim%20hakk%C4%B1nda%20bilgi%20almak%20istiyorum." title="Almanya Hacamat İletişim"
               target="_blank" rel="noopener noreferrer nofollow"
               className="flex items-center gap-2 bg-white/10 text-white border border-white/20 px-6 py-4 rounded-2xl font-black text-sm uppercase tracking-widest hover:bg-white/15 transition-all">
               <MessageCircle size={18} /> 🇩🇪 WhatsApp Almanya
@@ -220,7 +221,7 @@ export default function EgitimlerPage() {
                 Avrupa'daki katılımcılar için özel tarihler hakkında WhatsApp'tan bilgi alabilirsiniz.
               </p>
             </div>
-            <a href="https://wa.me/491634492870?text=Merhaba%2C%20Almanya%20e%C4%9Fitim%20tarihleri%20hakk%C4%B1nda%20bilgi%20almak%20istiyorum."
+            <a href="https://wa.me/491634492870?text=Merhaba%2C%20Almanya%20e%C4%9Fitim%20tarihleri%20hakk%C4%B1nda%20bilgi%20almak%20istiyorum." title="Almanya Hacamat İletişim"
               target="_blank" rel="noopener noreferrer nofollow"
               className="flex items-center gap-2 bg-white/10 hover:bg-white/15 text-white border border-white/20 px-6 py-4 rounded-2xl font-black text-sm uppercase tracking-widest transition-all whitespace-nowrap shrink-0">
               <MessageCircle size={16} /> 🇩🇪 Almanya Hattı
@@ -269,7 +270,7 @@ export default function EgitimlerPage() {
               { href: "/malzemeler", baslik: "Malzemeler", aciklama: "Sertifikalı hacamat ekipmanları", emoji: "🛒" },
               { href: "/hakkimizda", baslik: "Hakkımızda", aciklama: "Akademi ve kurucu hakkında", emoji: "🏛️" },
             ].map(l => (
-              <Link key={l.href} href={l.href}
+              <Link key={l.href} href={l.href} title={(l as any).baslik || (l as any).title || (l as any).isim || "Bağlantı Detayı"}
                 className="bg-white/5 border border-white/10 rounded-2xl p-5 hover:border-teal/30 hover:bg-white/8 transition-all group">
                 <div className="text-3xl mb-3">{l.emoji}</div>
                 <div className="text-white font-bold text-sm mb-1 group-hover:text-teal transition-colors">{l.baslik}</div>
@@ -285,7 +286,7 @@ export default function EgitimlerPage() {
         <div className="container-site flex flex-col md:flex-row items-center justify-between gap-8">
           <div className="flex items-center gap-6">
             <div className="bg-white rounded-2xl p-4 shrink-0 shadow-lg">
-              <img src="/logo.webp" alt="Konya Hacamat Ebusadullah" className="h-14 w-auto" />
+              <Image src="/logo.webp" alt="Konya Hacamat Ebusadullah" width={200} height={56} className="h-14 w-auto" />
             </div>
             <div>
               <h2 className="font-display text-3xl font-bold text-white mb-2">Kayıt &amp; Bilgi</h2>
@@ -293,21 +294,21 @@ export default function EgitimlerPage() {
             </div>
           </div>
           <div className="flex flex-wrap gap-3">
-            <a href="https://wa.me/905544062383?text=Merhaba%2C%20e%C4%9Fitim%20hakk%C4%B1nda%20bilgi%20almak%20istiyorum."
+            <a href="https://wa.me/905544062383?text=Merhaba%2C%20e%C4%9Fitim%20hakk%C4%B1nda%20bilgi%20almak%20istiyorum." title="Türkiye Hacamat İletişim"
               target="_blank" rel="noopener noreferrer nofollow"
               className="flex items-center gap-2 bg-[#25D366] text-white px-6 py-4 rounded-2xl font-black text-sm uppercase tracking-widest hover:scale-105 transition-all">
               <MessageCircle size={18} fill="currentColor" /> 🇹🇷 WhatsApp
             </a>
-            <a href="https://wa.me/491634492870?text=Merhaba%2C%20e%C4%9Fitim%20hakk%C4%B1nda%20bilgi%20almak%20istiyorum."
+            <a href="https://wa.me/491634492870?text=Merhaba%2C%20e%C4%9Fitim%20hakk%C4%B1nda%20bilgi%20almak%20istiyorum." title="Almanya Hacamat İletişim"
               target="_blank" rel="noopener noreferrer nofollow"
               className="flex items-center gap-2 bg-white/10 text-white border border-white/20 px-6 py-4 rounded-2xl font-black text-sm uppercase tracking-widest hover:bg-white/15 transition-all">
               <MessageCircle size={18} /> 🇩🇪 Almanya
             </a>
-            <a href="tel:05544062383"
+            <a href="tel:05544062383" title="Türkiye Hacamat İletişim"
               className="flex items-center gap-2 bg-white/5 text-white/60 border border-white/10 px-6 py-4 rounded-2xl font-bold text-sm uppercase tracking-widest hover:bg-white/10 transition-all">
               <Phone size={16} /> 0554 406 23 83
             </a>
-            <Link href="/iletisim"
+            <Link href="/iletisim" title="İletişim"
               className="flex items-center gap-2 bg-white/10 text-white border border-white/20 px-6 py-4 rounded-2xl font-black text-sm uppercase tracking-widest hover:bg-white/15 transition-all">
               İletişim <ChevronRight size={16} />
             </Link>

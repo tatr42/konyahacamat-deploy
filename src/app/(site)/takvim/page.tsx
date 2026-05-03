@@ -2,6 +2,7 @@ import type { Metadata } from "next";
 import { Moon, Shield, Clock, MessageCircle, Phone } from "lucide-react";
 import HacamatCalendar from "@/components/HacamatCalendar";
 import Link from "next/link";
+import Image from "next/image";
 
 const currentYear = new Date().getFullYear();
 
@@ -91,19 +92,19 @@ export default function TakvimPage() {
                 <h3 className="text-white font-black text-sm uppercase tracking-widest mb-2 flex items-center gap-2">
                   <span className="w-3 h-[2px] bg-teal" /> Hızlı Randevu
                 </h3>
-                <a href="https://wa.me/905544062383?text=Merhaba%2C%20hacamat%20randevusu%20almak%20istiyorum." target="_blank" rel="noopener noreferrer nofollow"
+                <a href="https://wa.me/905544062383?text=Merhaba%2C%20hacamat%20randevusu%20almak%20istiyorum." title="Türkiye Hacamat İletişim" target="_blank" rel="noopener noreferrer nofollow"
                   className="flex items-center gap-3 bg-[#25D366] hover:bg-[#1da851] text-white w-full px-4 py-3 rounded-xl font-black text-xs uppercase tracking-widest transition-all">
                   <MessageCircle size={16} fill="currentColor" /> 🇹🇷 WhatsApp TR
                 </a>
-                <a href="https://wa.me/491634492870?text=Merhaba%2C%20hacamat%20randevusu%20almak%20istiyorum." target="_blank" rel="noopener noreferrer nofollow"
+                <a href="https://wa.me/491634492870?text=Merhaba%2C%20hacamat%20randevusu%20almak%20istiyorum." title="Almanya Hacamat İletişim" target="_blank" rel="noopener noreferrer nofollow"
                   className="flex items-center gap-3 bg-white/10 hover:bg-white/15 text-white border border-white/10 w-full px-4 py-3 rounded-xl font-black text-xs uppercase tracking-widest transition-all">
                   <MessageCircle size={16} /> 🇩🇪 WhatsApp Almanya
                 </a>
-                <a href="tel:05544062383"
+                <a href="tel:05544062383" title="Türkiye Hacamat İletişim"
                   className="flex items-center gap-3 bg-white/5 hover:bg-white/10 text-white/60 border border-white/5 w-full px-4 py-3 rounded-xl font-bold text-xs uppercase tracking-widest transition-all">
                   <Phone size={14} /> 🇹🇷 0554 406 23 83
                 </a>
-                <a href="tel:+491634492870"
+                <a href="tel:+491634492870" title="Almanya Hacamat İletişim"
                   className="flex items-center gap-3 bg-white/5 hover:bg-white/10 text-white/60 border border-white/5 w-full px-4 py-3 rounded-xl font-bold text-xs uppercase tracking-widest transition-all">
                   <Phone size={14} /> 🇩🇪 +49 163 449 28 70
                 </a>
@@ -195,7 +196,7 @@ export default function TakvimPage() {
               { href: "/egitimler", baslik: "Eğitim Kursları", aciklama: "Hacamat uzmanlık programları", emoji: "🎓" },
               { href: "/iletisim", baslik: "İletişim", aciklama: "Konya & Almanya hattı", emoji: "📞" },
             ].map(l => (
-              <Link key={l.href} href={l.href}
+              <Link key={l.href} href={l.href} title={(l as any).baslik || (l as any).title || (l as any).isim || "Bağlantı Detayı"}
                 className="bg-white/5 border border-white/10 rounded-2xl p-5 hover:border-teal/30 hover:bg-white/8 transition-all group">
                 <div className="text-3xl mb-3">{l.emoji}</div>
                 <div className="text-white font-bold text-sm mb-1 group-hover:text-teal transition-colors">{l.baslik}</div>
@@ -211,7 +212,7 @@ export default function TakvimPage() {
         <div className="container-site flex flex-col md:flex-row items-center justify-between gap-8">
           <div className="flex items-center gap-5">
             <div className="bg-white rounded-xl p-3 shrink-0 shadow">
-              <img src="/logo.webp" alt="Konya Hacamat Ebusadullah" className="h-12 w-auto" />
+              <Image src="/logo.webp" alt="Konya Hacamat Ebusadullah" width={200} height={48} className="h-12 w-auto" />
             </div>
             <div>
               <h2 className="font-display text-3xl font-bold text-white mb-2">Sorularınız mı var?</h2>
@@ -219,15 +220,15 @@ export default function TakvimPage() {
             </div>
           </div>
           <div className="flex gap-3 flex-wrap">
-            <a href="https://wa.me/905544062383" target="_blank" rel="noopener noreferrer nofollow"
+            <a href="https://wa.me/905544062383" title="Türkiye Hacamat İletişim" target="_blank" rel="noopener noreferrer nofollow"
               className="flex items-center gap-2 bg-[#25D366] text-white px-6 py-4 rounded-2xl font-black text-sm uppercase tracking-widest hover:scale-105 transition-all">
               <MessageCircle size={18} fill="currentColor" /> 🇹🇷 WhatsApp
             </a>
-            <a href="https://wa.me/491634492870" target="_blank" rel="noopener noreferrer nofollow"
+            <a href="https://wa.me/491634492870" title="Almanya Hacamat İletişim" target="_blank" rel="noopener noreferrer nofollow"
               className="flex items-center gap-2 bg-white/10 text-white border border-white/20 px-6 py-4 rounded-2xl font-black text-sm uppercase tracking-widest hover:bg-white/15 transition-all">
               <MessageCircle size={18} /> 🇩🇪 Almanya
             </a>
-            <Link href="/iletisim"
+            <Link href="/iletisim" title="İletişim"
               className="flex items-center gap-2 bg-white/10 text-white border border-white/20 px-6 py-4 rounded-2xl font-black text-sm uppercase tracking-widest hover:bg-white/15 transition-all">
               İletişim
             </Link>

@@ -1,6 +1,7 @@
 import type { Metadata } from "next";
 import { MapPin, Phone, Mail, Clock, MessageCircle, Globe } from "lucide-react";
 import { getYearsExpStr } from "@/lib/experience";
+import Image from "next/image";
 
 export const metadata: Metadata = {
   title: "İletişim & Randevu | Konya Hacamat | Ebusadullah Akademi",
@@ -35,7 +36,7 @@ export default function IletisimPage() {
         <div className="container-site">
           <div className="flex items-center gap-5 bg-white/5 border border-white/10 rounded-2xl p-6 mb-10">
             <div className="bg-white rounded-xl p-3 shrink-0 shadow">
-              <img src="/logo.webp" alt="Konya Hacamat Ebusadullah" className="h-12 w-auto" />
+              <Image src="/logo.webp" alt="Konya Hacamat Ebusadullah" width={200} height={48} className="h-12 w-auto" />
             </div>
             <p className="text-white/60 text-sm leading-relaxed">
               <strong className="text-white">Ebusadullah Hacamat &amp; Akademi</strong> — Konya'da {getYearsExpStr()} yıldır hizmet veren geleneksel tıp merkezi. Hacamat, sülük terapisi ve uzmanlık eğitimleri için bize ulaşın. Almanya seansları için Almanya hattımızı kullanabilirsiniz.
@@ -69,11 +70,11 @@ export default function IletisimPage() {
                 <div className="space-y-2">
                   <div className="text-teal text-[10px] font-black uppercase tracking-widest mb-1">Telefon</div>
                   <div>
-                    <a href="tel:05544062383" className="text-white font-bold text-xl hover:text-teal transition-colors">0554 406 23 83</a>
+                    <a href="tel:05544062383" title="Türkiye Hacamat İletişim" className="text-white font-bold text-xl hover:text-teal transition-colors">0554 406 23 83</a>
                     <div className="text-white/40 text-xs">🇹🇷 Türkiye</div>
                   </div>
                   <div>
-                    <a href="tel:+491634492870" className="text-white font-bold text-xl hover:text-teal transition-colors">+49 163 449 28 70</a>
+                    <a href="tel:+491634492870" title="Almanya Hacamat İletişim" className="text-white font-bold text-xl hover:text-teal transition-colors">+49 163 449 28 70</a>
                     <div className="text-white/40 text-xs">🇩🇪 Almanya</div>
                   </div>
                 </div>
@@ -85,7 +86,7 @@ export default function IletisimPage() {
                 </div>
                 <div>
                   <div className="text-teal text-[10px] font-black uppercase tracking-widest mb-1">WhatsApp</div>
-                  <a href="https://wa.me/905544062383" target="_blank" rel="noopener noreferrer nofollow" className="text-white font-bold hover:text-teal transition-colors">wa.me/905544062383</a>
+                  <a href="https://wa.me/905544062383" title="Türkiye Hacamat İletişim" target="_blank" rel="noopener noreferrer nofollow" className="text-white font-bold hover:text-teal transition-colors">wa.me/905544062383</a>
                   <div className="text-white/40 text-xs mt-1">7/24 mesaj atabilirsiniz</div>
                 </div>
               </div>
@@ -96,7 +97,7 @@ export default function IletisimPage() {
                 </div>
                 <div>
                   <div className="text-teal text-[10px] font-black uppercase tracking-widest mb-1">E-Posta</div>
-                  <a href="mailto:info@konyahacamat.net" className="text-white font-bold hover:text-teal transition-colors">info@konyahacamat.net</a>
+                  <a href="mailto:info@konyahacamat.net" title="E-posta Gönderin" className="text-white font-bold hover:text-teal transition-colors">info@konyahacamat.net</a>
                 </div>
               </div>
 
@@ -132,17 +133,17 @@ export default function IletisimPage() {
                   <span className="w-3 h-[2px] bg-teal" /> Hızlı İletişim
                 </h3>
                 <div className="space-y-3">
-                  <a href="https://wa.me/905544062383?text=Merhaba%2C%20hacamat%20randevusu%20almak%20istiyorum."
+                  <a href="https://wa.me/905544062383?text=Merhaba%2C%20hacamat%20randevusu%20almak%20istiyorum." title="Türkiye Hacamat İletişim"
                     target="_blank" rel="noopener noreferrer nofollow"
                     className="flex items-center gap-3 bg-[#25D366] hover:bg-[#1da851] text-white w-full px-5 py-4 rounded-xl font-black text-sm uppercase tracking-widest transition-all">
                     <MessageCircle size={18} fill="currentColor" /> Tedavi Randevusu Al
                   </a>
-                  <a href="https://wa.me/905544062383?text=Merhaba%2C%20e%C4%9Fitim%20programlar%C4%B1%20hakk%C4%B1nda%20bilgi%20almak%20istiyorum."
+                  <a href="https://wa.me/905544062383?text=Merhaba%2C%20e%C4%9Fitim%20programlar%C4%B1%20hakk%C4%B1nda%20bilgi%20almak%20istiyorum." title="Türkiye Hacamat İletişim"
                     target="_blank" rel="noopener noreferrer nofollow"
                     className="flex items-center gap-3 bg-white/10 hover:bg-white/15 text-white border border-white/20 w-full px-5 py-4 rounded-xl font-black text-sm uppercase tracking-widest transition-all">
                     <MessageCircle size={18} /> Eğitim Bilgisi Al
                   </a>
-                  <a href="https://wa.me/491634492870?text=Merhaba%2C%20Almanya%20seans%20tarihleri%20hakk%C4%B1nda%20bilgi%20almak%20istiyorum."
+                  <a href="https://wa.me/491634492870?text=Merhaba%2C%20Almanya%20seans%20tarihleri%20hakk%C4%B1nda%20bilgi%20almak%20istiyorum." title="Almanya Hacamat İletişim"
                     target="_blank" rel="noopener noreferrer nofollow"
                     className="flex items-center gap-3 bg-teal/10 hover:bg-teal/20 text-teal border border-teal/20 w-full px-5 py-4 rounded-xl font-black text-sm uppercase tracking-widest transition-all">
                     🇩🇪 Almanya: +49 163 449 28 70
@@ -165,8 +166,8 @@ export default function IletisimPage() {
                 <div className="absolute bottom-4 left-4 right-4 pointer-events-none">
                   <a
                     href="https://www.google.com/maps/dir/?api=1&destination=37.8704,32.4958"
-                    target="_blank"
-                    rel="noopener noreferrer nofollow"
+                    target="_blank" rel="noopener noreferrer nofollow"
+
                     title="Konya Hacamat Yol Tarifi"
                     className="inline-flex items-center gap-2 bg-anthracite-dark/90 backdrop-blur-md border border-white/10 px-4 py-2 rounded-xl text-[11px] font-bold text-teal uppercase tracking-widest pointer-events-auto hover:bg-teal hover:text-black transition-all shadow-2xl"
                   >
@@ -197,7 +198,7 @@ export default function IletisimPage() {
               { href: "/egitimler", baslik: "Eğitim Kursları", aciklama: "Sertifikalı uzmanlık programları", emoji: "🎓" },
               { href: "/takvim", baslik: "Randevu Takvimi", aciklama: "Faziletli günlerde seans planla", emoji: "📅" },
             ].map(l => (
-              <a key={l.href} href={l.href}
+              <a key={l.href} href={l.href} title={(l as any).baslik || (l as any).title || (l as any).isim || "Bağlantı Detayı"}
                 className="bg-white/5 border border-white/10 rounded-2xl p-5 hover:border-teal/30 hover:bg-white/8 transition-all group">
                 <div className="text-3xl mb-3">{l.emoji}</div>
                 <div className="text-white font-bold text-sm mb-1 group-hover:text-teal transition-colors">{l.baslik}</div>

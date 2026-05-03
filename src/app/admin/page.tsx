@@ -167,13 +167,13 @@ export default function AdminPage() {
               <Icon size={16} /> {label}
             </button>
           ))}
-          <Link href="/admin/medya"
+          <Link href="/admin/medya" title="Admin Panele Git"
             className="flex items-center gap-3 px-4 py-2.5 rounded-xl text-sm font-bold text-white/40 hover:text-white hover:bg-white/5 transition-all">
             <ImageIcon size={16} /> Medya
           </Link>
         </nav>
         <div className="space-y-1 pt-4 border-t border-white/5">
-          <Link href="/" target="_blank"
+          <Link href="/" title="Ana Sayfa" target="_blank" rel="noopener noreferrer nofollow"
             className="flex items-center gap-3 px-4 py-2.5 rounded-xl text-sm text-white/30 hover:text-white hover:bg-white/5 transition-all">
             <ExternalLink size={15} /> Siteyi Gör
           </Link>
@@ -353,7 +353,7 @@ export default function AdminPage() {
                   <h2 className="font-bold">Blog Yazıları</h2>
                   <button onClick={loadBlogs} className="text-white/20 hover:text-white transition-colors"><RefreshCw size={13} /></button>
                 </div>
-                <Link href="/admin/blog/new"
+                <Link href="/admin/blog/new" title="Admin Panele Git"
                   className="flex items-center gap-2 bg-teal text-black px-4 py-2 rounded-xl font-black text-xs uppercase tracking-widest hover:opacity-90">
                   <Plus size={13} /> Yeni Yazı
                 </Link>
@@ -385,7 +385,7 @@ export default function AdminPage() {
                         </div>
                       </div>
                       <div className="flex items-center gap-2 shrink-0 ml-4">
-                        <Link href={`/admin/blog/${p.id}`}
+                        <Link href={`/admin/blog/${p.id}`} title="Düzenle"
                           className="flex items-center gap-1.5 bg-white/5 hover:bg-teal/20 hover:text-teal text-white/50 px-3 py-1.5 rounded-lg text-xs font-bold transition-all">
                           <Pencil size={12} /> Düzenle
                         </Link>
@@ -504,7 +504,7 @@ export default function AdminPage() {
                             <div className="text-white text-sm font-medium truncate">{item.baslik}</div>
                             <div className="text-teal text-xs mt-0.5">{item.kaynak} · {item.yil}</div>
                             {item.slug && (
-                              <a href={`/basin/${item.slug}`} target="_blank" rel="noopener noreferrer"
+                              <a href={`/basin/${item.slug}`} title="Basın Haberi" target="_blank" rel="noopener noreferrer nofollow"
                                 className="text-white/20 text-[10px] font-mono hover:text-teal mt-0.5 inline-flex items-center gap-1">
                                 /basin/{item.slug} <ExternalLink size={9} />
                               </a>
