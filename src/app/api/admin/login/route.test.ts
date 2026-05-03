@@ -1,4 +1,4 @@
-import { POST } from "./route";
+import { POST } from "./route.ts";
 
 export async function test() {
   const originalPassword = process.env.ADMIN_PASSWORD;
