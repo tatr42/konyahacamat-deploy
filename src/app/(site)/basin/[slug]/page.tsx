@@ -1,4 +1,5 @@
 import type { Metadata } from "next";
+import { cache } from "react";
 import { notFound } from "next/navigation";
 import { db } from "@/lib/firebase";
 import { collection, getDocs, query, where } from "firebase/firestore";
@@ -11,12 +12,12 @@ interface PressItem {
   slug: string; icerik: string; seoTitle: string; seoDescription: string;
 }
 
-async function getItem(slug: string): Promise<PressItem | null> {
+const getItem = cache(async (slug: string): Promise<PressItem | null> => {
   const q = query(collection(db, "press"), where("slug", "==", slug));
   const snap = await getDocs(q);
   if (snap.empty) return null;
   return { id: snap.docs[0].id, ...snap.docs[0].data() } as PressItem;
-}
+});
 
 export async function generateMetadata({ params }: { params: Promise<{ slug: string }> }): Promise<Metadata> {
   const { slug } = await params;
