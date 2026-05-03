@@ -3,7 +3,7 @@ import { test, mock } from 'node:test';
 import { getYearsExp, getYearsExpStr } from './experience.ts';
 
 test('experience calculation', async (t) => {
-  // Reset mocks after each subtest
+  // Her alt testten sonra mock'ları sıfırla
   t.afterEach(() => {
     mock.reset();
   });
