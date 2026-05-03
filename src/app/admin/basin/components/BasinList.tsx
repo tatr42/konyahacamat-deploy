@@ -16,9 +16,9 @@ export function BasinList({ items, loading, openEdit, handleDelete }: BasinListP
       </div>
 
       {loading ? (
-        <div className="p-8 text-center text-white/30 text-sm">Yükleniyor...</div>
+        <div className="p-8 text-center text-white/70 text-sm">Yükleniyor...</div>
       ) : items.length === 0 ? (
-        <div className="p-8 text-center text-white/30 text-sm">Henüz haber eklenmedi.</div>
+        <div className="p-8 text-center text-white/70 text-sm">Henüz haber eklenmedi.</div>
       ) : (
         <div className="divide-y divide-white/5">
           {items.map(item => (
@@ -32,7 +32,7 @@ export function BasinList({ items, loading, openEdit, handleDelete }: BasinListP
                   <div className="text-teal text-xs mt-0.5">{item.kaynak} · {item.yil}</div>
                   {item.slug && (
                     <a href={`/basin/${item.slug}`} target="_blank" rel="noopener noreferrer nofollow"
-                      className="text-white/30 text-[10px] font-mono hover:text-teal mt-0.5 inline-block" title={`View ${item.baslik}`}>
+                      className="text-white/70 text-[10px] font-mono hover:text-teal mt-0.5 inline-block" title={`View ${item.baslik}`}>
                       /basin/{item.slug}
                     </a>
                   )}

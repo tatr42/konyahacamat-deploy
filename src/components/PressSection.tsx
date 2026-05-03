@@ -45,7 +45,7 @@ export default function PressSection() {
             <h2 className="font-display text-4xl md:text-6xl font-bold text-white leading-[1.1]">
               Basında <span className="text-teal italic">Biz</span>
             </h2>
-            <p className="text-white/50 max-w-md text-base">
+            <p className="text-white/70 max-w-md text-base">
               50'den fazla ulusal ve yerel gazetede yer alan çalışmalarımız. Hacamatın Türkiye'deki en güvenilir adresi olarak tanınıyoruz.
             </p>
           </div>
@@ -66,7 +66,7 @@ export default function PressSection() {
             ))}
           </div>
         ) : items.length === 0 ? (
-          <p className="text-white/30 text-sm">Henüz basın haberi eklenmemiş.</p>
+          <p className="text-white/70 text-sm">Henüz basın haberi eklenmemiş.</p>
         ) : (
           <div className="flex gap-5 overflow-x-auto pb-3 -mx-5 px-5 sm:mx-0 sm:px-0 sm:grid sm:grid-cols-2 lg:grid-cols-3 snap-x snap-mandatory scrollbar-none">
             {items.map((item) => (
@@ -125,7 +125,7 @@ export default function PressSection() {
             <TrendingUp size={16} className="text-teal" />
             <p className="text-teal text-[10px] font-black uppercase tracking-widest">Medya Güveni</p>
           </div>
-          <p className="text-white/50 text-sm leading-relaxed max-w-3xl">
+          <p className="text-white/70 text-sm leading-relaxed max-w-3xl">
             Hacamat tedavisinin uzman kişiler tarafından yapılması ve hijyenik koşulların sağlanması son derece önemlidir.
             Ebusadullah Akademi olarak tüm uygulamalarımızda steril malzeme kullanıyor,
             uluslararası hijyen standartlarına uygun çalışıyoruz. Bu nedenle ulusal medyanın güvenilir kaynağı olarak yer alıyoruz.
@@ -144,7 +144,7 @@ export default function PressSection() {
               <span className="font-display text-4xl md:text-5xl font-bold text-teal group-hover:scale-110 transition-transform duration-300 inline-block">
                 {stat.num}
               </span>
-              <span className="text-[11px] uppercase tracking-[0.2em] text-white/30 font-bold mt-2">
+              <span className="text-[11px] uppercase tracking-[0.2em] text-white/70 font-bold mt-2">
                 {stat.label}
               </span>
             </div>

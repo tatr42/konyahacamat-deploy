@@ -115,7 +115,7 @@ export default function MalzemelePage() {
                     {u.etiket}
                   </span>
                 </div>
-                <p className="text-white/50 text-sm leading-relaxed">{u.aciklama}</p>
+                <p className="text-white/70 text-sm leading-relaxed">{u.aciklama}</p>
                 <ul className="space-y-1.5 flex-1">
                   {u.icindekiler.map(ic => (
                     <li key={ic} className="flex items-center gap-2 text-xs text-white/60">
@@ -158,7 +158,7 @@ export default function MalzemelePage() {
                 <div key={s.etiket} className="bg-white/5 border border-white/10 rounded-2xl p-5 text-center hover:border-teal/20 transition-colors">
                   <div className="text-3xl mb-2">{s.ikon}</div>
                   <div className="font-display text-2xl font-bold text-teal mb-1">{s.rakam}</div>
-                  <div className="text-white/50 text-xs">{s.etiket}</div>
+                  <div className="text-white/70 text-xs">{s.etiket}</div>
                 </div>
               ))}
             </div>
@@ -181,7 +181,7 @@ export default function MalzemelePage() {
                 className="bg-white/5 border border-white/10 rounded-2xl p-5 hover:border-teal/30 hover:bg-white/8 transition-all group">
                 <div className="text-3xl mb-3">{l.emoji}</div>
                 <div className="text-white font-bold text-sm mb-1 group-hover:text-teal transition-colors">{l.baslik}</div>
-                <div className="text-white/50 text-xs leading-relaxed">{l.aciklama}</div>
+                <div className="text-white/70 text-xs leading-relaxed">{l.aciklama}</div>
               </a>
             ))}
           </div>
@@ -197,7 +197,7 @@ export default function MalzemelePage() {
             </div>
             <div>
               <h2 className="font-display text-3xl font-bold text-white mb-2">Sipariş &amp; Bilgi</h2>
-              <p className="text-white/50 max-w-md">Ürün soruları, toplu sipariş ve kargo için WhatsApp veya telefon ile ulaşın.</p>
+              <p className="text-white/70 max-w-md">Ürün soruları, toplu sipariş ve kargo için WhatsApp veya telefon ile ulaşın.</p>
             </div>
           </div>
           <div className="flex flex-col sm:flex-row gap-3 shrink-0">

@@ -101,12 +101,6 @@ export default async function BlogPostPage({ params }: { params: Promise<{ slug:
     datePublished: post.createdAt ? new Date(post.createdAt.seconds * 1000).toISOString() : undefined,
     mainEntityOfPage: { "@type": "WebPage", "@id": `${BASE}/blog/${post.slug}` },
 
-    author: { "@type": "Organization", name: "Ebusadullah Hacamat & Akademi", url: "https://www.konyahacamat.net" },
-    publisher: { "@type": "Organization", name: "Ebusadullah Hacamat & Akademi", logo: { "@type": "ImageObject", url: "https://www.konyahacamat.net/logo.webp" } },
-    url: `https://www.konyahacamat.net/blog/${post.slug}`,
-    datePublished: post.createdAt ? new Date(post.createdAt.seconds * 1000).toISOString() : undefined,
-    mainEntityOfPage: { "@type": "WebPage", "@id": `https://www.konyahacamat.net/blog/${post.slug}` },
-
   };
 
   return (
@@ -115,7 +109,7 @@ export default async function BlogPostPage({ params }: { params: Promise<{ slug:
       <div className="container-site max-w-3xl">
 
         {/* Geri Dönüş ve Kategori (Breadcrumb) */}
-        <div className="flex items-center gap-2 text-white/30 text-sm mb-8">
+        <div className="flex items-center gap-2 text-white/70 text-sm mb-8">
           <Link 
             href="/blog" 
             className="hover:text-teal transition-colors flex items-center gap-1" 
@@ -136,7 +130,7 @@ export default async function BlogPostPage({ params }: { params: Promise<{ slug:
             {post.title}
           </h1>
           {post.excerpt && <p className="text-white/60 text-lg leading-relaxed">{post.excerpt}</p>}
-          <div className="flex items-center gap-6 mt-6 text-white/30 text-sm">
+          <div className="flex items-center gap-6 mt-6 text-white/70 text-sm">
             {tarih && <span className="flex items-center gap-1"><Clock size={14} /> {tarih}</span>}
             <span className="flex items-center gap-1"><Tag size={14} /> {post.category}</span>
             <span className="flex items-center gap-1">
@@ -162,7 +156,7 @@ export default async function BlogPostPage({ params }: { params: Promise<{ slug:
         {/* CTA (Randevu Alanı) */}
         <div className="bg-teal/5 border border-teal/20 rounded-2xl p-8 text-center">
           <h3 className="text-white font-bold text-xl mb-2">Hacamat Tedavisi İçin Randevu Alın</h3>
-          <p className="text-white/50 text-sm mb-6">Konya veya Almanya seansları için profesyonel destek alın.</p>
+          <p className="text-white/70 text-sm mb-6">Konya veya Almanya seansları için profesyonel destek alın.</p>
           <div className="flex flex-wrap justify-center gap-3">
             <a 
               href="https://wa.me/905544062383" 

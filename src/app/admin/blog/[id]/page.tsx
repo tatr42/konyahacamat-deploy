@@ -49,13 +49,13 @@ export default function EditBlogPost() {
     router.push("/admin");
   };
 
-  if (loading) return <div className="min-h-screen bg-[#0a0a0a] flex items-center justify-center text-white/50">Yükleniyor...</div>;
+  if (loading) return <div className="min-h-screen bg-[#0a0a0a] flex items-center justify-center text-white/70">Yükleniyor...</div>;
 
   return (
     <div className="min-h-screen bg-[#0a0a0a] text-white">
       <header className="border-b border-white/10 px-6 py-4 flex items-center justify-between">
         <div className="flex items-center gap-3">
-          <Link href="/admin" title="Admin Panele Dön" className="text-white/50 hover:text-white"><ArrowLeft size={20} /></Link>
+          <Link href="/admin" title="Admin Panele Dön" className="text-white/70 hover:text-white"><ArrowLeft size={20} /></Link>
           <h1 className="font-bold">Yazıyı Düzenle</h1>
         </div>
         <div className="flex gap-3">
@@ -76,17 +76,17 @@ export default function EditBlogPost() {
       <div className="max-w-4xl mx-auto p-6 grid grid-cols-1 lg:grid-cols-3 gap-6">
         <div className="lg:col-span-2 space-y-4">
           <div>
-            <label className="text-white/50 text-xs uppercase tracking-widest block mb-2">Başlık</label>
+            <label className="text-white/70 text-xs uppercase tracking-widest block mb-2">Başlık</label>
             <input type="text" value={form.title} onChange={e => setForm(f => ({ ...f, title: e.target.value }))}
               className="w-full bg-white/5 border border-white/10 rounded-xl px-4 py-3 text-white focus:outline-none focus:border-teal/50 text-lg font-bold" />
           </div>
           <div>
-            <label className="text-white/50 text-xs uppercase tracking-widest block mb-2">Özet</label>
+            <label className="text-white/70 text-xs uppercase tracking-widest block mb-2">Özet</label>
             <textarea value={form.excerpt} onChange={e => setForm(f => ({ ...f, excerpt: e.target.value }))} rows={2}
               className="w-full bg-white/5 border border-white/10 rounded-xl px-4 py-3 text-white focus:outline-none focus:border-teal/50 resize-none" />
           </div>
           <div>
-            <label className="text-white/50 text-xs uppercase tracking-widest block mb-2">İçerik</label>
+            <label className="text-white/70 text-xs uppercase tracking-widest block mb-2">İçerik</label>
             <RichEditor
               value={form.content}
               onChange={v => setForm(f => ({ ...f, content: v }))}
@@ -97,13 +97,13 @@ export default function EditBlogPost() {
         </div>
         <div className="space-y-4">
           <div className="bg-white/5 border border-white/10 rounded-xl p-4">
-            <label className="text-white/50 text-xs uppercase tracking-widest block mb-2">Slug</label>
+            <label className="text-white/70 text-xs uppercase tracking-widest block mb-2">Slug</label>
             <input type="text" value={form.slug} onChange={e => setForm(f => ({ ...f, slug: e.target.value }))}
               className="w-full bg-white/5 border border-white/10 rounded-lg px-3 py-2 text-teal text-sm focus:outline-none font-mono" />
-            <p className="text-white/30 text-[10px] mt-1">/blog/{form.slug}</p>
+            <p className="text-white/70 text-[10px] mt-1">/blog/{form.slug}</p>
           </div>
           <div className="bg-white/5 border border-white/10 rounded-xl p-4">
-            <label className="text-white/50 text-xs uppercase tracking-widest block mb-2">Kategori</label>
+            <label className="text-white/70 text-xs uppercase tracking-widest block mb-2">Kategori</label>
             <select value={form.category} onChange={e => setForm(f => ({ ...f, category: e.target.value }))}
               className="w-full bg-[#1a1a1a] border border-white/10 rounded-lg px-3 py-2 text-white text-sm focus:outline-none">
               {["Temel Bilgi", "Sağlık", "Uygulama", "Teknik", "Güvenlik", "Sülük", "Genel"].map(c => (
@@ -114,16 +114,16 @@ export default function EditBlogPost() {
           <div className="bg-white/5 border border-white/10 rounded-xl p-4 space-y-3">
             <h3 className="text-white font-bold text-sm">SEO Ayarları</h3>
             <div>
-              <label className="text-white/50 text-[10px] uppercase tracking-widest block mb-1">Meta Title</label>
+              <label className="text-white/70 text-[10px] uppercase tracking-widest block mb-1">Meta Title</label>
               <input type="text" value={form.seoTitle} onChange={e => setForm(f => ({ ...f, seoTitle: e.target.value }))}
                 className="w-full bg-white/5 border border-white/10 rounded-lg px-3 py-2 text-white text-sm focus:outline-none" />
-              <p className={`text-[10px] mt-1 ${form.seoTitle.length > 60 ? "text-red-400" : "text-white/30"}`}>{form.seoTitle.length}/60</p>
+              <p className={`text-[10px] mt-1 ${form.seoTitle.length > 60 ? "text-red-400" : "text-white/70"}`}>{form.seoTitle.length}/60</p>
             </div>
             <div>
-              <label className="text-white/50 text-[10px] uppercase tracking-widest block mb-1">Meta Description</label>
+              <label className="text-white/70 text-[10px] uppercase tracking-widest block mb-1">Meta Description</label>
               <textarea value={form.seoDescription} onChange={e => setForm(f => ({ ...f, seoDescription: e.target.value }))} rows={3}
                 className="w-full bg-white/5 border border-white/10 rounded-lg px-3 py-2 text-white text-sm focus:outline-none resize-none" />
-              <p className={`text-[10px] mt-1 ${form.seoDescription.length > 160 ? "text-red-400" : "text-white/30"}`}>{form.seoDescription.length}/160</p>
+              <p className={`text-[10px] mt-1 ${form.seoDescription.length > 160 ? "text-red-400" : "text-white/70"}`}>{form.seoDescription.length}/160</p>
             </div>
             {(form.seoTitle || form.seoDescription) && (
               <div className="bg-white rounded-xl p-3">

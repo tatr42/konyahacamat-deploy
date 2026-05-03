@@ -64,7 +64,7 @@ export default function Testimonials() {
           </h2>
           <div className="flex items-center justify-center gap-1 text-teal">
              {[...Array(5)].map((_, i) => <Star key={i} size={16} fill="currentColor" />)}
-             <span className="ml-2 text-white/50 font-bold text-sm">4.9/5 Ortalama</span>
+             <span className="ml-2 text-white/70 font-bold text-sm">4.9/5 Ortalama</span>
           </div>
         </div>
 
@@ -72,13 +72,13 @@ export default function Testimonials() {
           {/* Navigasyon Okları */}
           <button
             onClick={() => setActive((prev) => (prev - 1 + reviews.length) % reviews.length)}
-            className="absolute left-0 lg:-left-20 top-1/2 -translate-y-1/2 w-12 h-12 rounded-full border border-white/10 flex items-center justify-center text-white/30 hover:text-teal hover:border-teal/50 hover:bg-teal/5 transition-all z-20 hidden md:flex"
+            className="absolute left-0 lg:-left-20 top-1/2 -translate-y-1/2 w-12 h-12 rounded-full border border-white/10 flex items-center justify-center text-white/70 hover:text-teal hover:border-teal/50 hover:bg-teal/5 transition-all z-20 hidden md:flex"
           >
             <ChevronLeft size={24} />
           </button>
           <button
             onClick={() => setActive((prev) => (prev + 1) % reviews.length)}
-            className="absolute right-0 lg:-right-20 top-1/2 -translate-y-1/2 w-12 h-12 rounded-full border border-white/10 flex items-center justify-center text-white/30 hover:text-teal hover:border-teal/50 hover:bg-teal/5 transition-all z-20 hidden md:flex"
+            className="absolute right-0 lg:-right-20 top-1/2 -translate-y-1/2 w-12 h-12 rounded-full border border-white/10 flex items-center justify-center text-white/70 hover:text-teal hover:border-teal/50 hover:bg-teal/5 transition-all z-20 hidden md:flex"
           >
             <ChevronRight size={24} />
           </button>
@@ -129,10 +129,15 @@ export default function Testimonials() {
               <button
                 key={i}
                 onClick={() => setActive(i)}
-                className={`h-1.5 rounded-full transition-all ${
-                  active === i ? "w-8 bg-teal" : "w-2 bg-white/20"
-                }`}
-              />
+                aria-label="Slaytı değiştir"
+                className="min-h-[44px] min-w-[44px] flex items-center justify-center -mx-3"
+              >
+                <span
+                  className={`h-1.5 rounded-full transition-all ${
+                    active === i ? "w-8 bg-teal" : "w-2 bg-white/20"
+                  }`}
+                />
+              </button>
             ))}
           </div>
         </div>

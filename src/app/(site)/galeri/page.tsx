@@ -35,7 +35,7 @@ export default function GaleriPage() {
         <div className="container-site">
           <span className="text-teal text-[11px] font-black uppercase tracking-[0.3em]">Görseller</span>
           <h1 className="font-display text-5xl md:text-6xl font-bold text-white mt-4 mb-6">Galeri</h1>
-          <p className="text-white/50 text-lg max-w-xl mb-10">
+          <p className="text-white/70 text-lg max-w-xl mb-10">
             Seans, eğitim ve Almanya faaliyetlerimizden kareler.
           </p>
 
@@ -43,7 +43,7 @@ export default function GaleriPage() {
           <div className="flex flex-wrap gap-2 mb-12">
             {kategoriler.map(k => (
               <span key={k} className={`px-4 py-2 rounded-full text-[11px] font-black uppercase tracking-widest cursor-pointer transition-all
-                ${k === "Tümü" ? "bg-teal text-anthracite-dark" : "bg-white/5 text-white/50 border border-white/10 hover:border-teal/30 hover:text-teal"}`}>
+                ${k === "Tümü" ? "bg-teal text-anthracite-dark" : "bg-white/5 text-white/70 border border-white/10 hover:border-teal/30 hover:text-teal"}`}>
                 {k}
               </span>
             ))}
@@ -70,7 +70,7 @@ export default function GaleriPage() {
             ))}
           </div>
 
-          <p className="text-white/30 text-center text-sm mt-12">Fotoğraflar yüklenme aşamasındadır.</p>
+          <p className="text-white/70 text-center text-sm mt-12">Fotoğraflar yüklenme aşamasındadır.</p>
         </div>
       </section>
 
@@ -111,7 +111,7 @@ export default function GaleriPage() {
                 className="bg-white/5 border border-white/10 rounded-2xl p-5 hover:border-teal/30 hover:bg-white/8 transition-all group">
                 <div className="text-3xl mb-3">{l.emoji}</div>
                 <div className="text-white font-bold text-sm mb-1 group-hover:text-teal transition-colors">{l.baslik}</div>
-                <div className="text-white/50 text-xs leading-relaxed">{l.aciklama}</div>
+                <div className="text-white/70 text-xs leading-relaxed">{l.aciklama}</div>
               </Link>
             ))}
           </div>

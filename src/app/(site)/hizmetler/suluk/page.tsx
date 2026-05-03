@@ -64,7 +64,7 @@ export default function SulukPage() {
               <div key={m.no} className="bg-anthracite-dark border border-white/10 rounded-2xl p-6">
                 <div className="text-teal font-black text-4xl font-display mb-4 opacity-30">{m.no}</div>
                 <h3 className="text-white font-bold text-lg mb-2">{m.baslik}</h3>
-                <p className="text-white/50 text-sm leading-relaxed">{m.aciklama}</p>
+                <p className="text-white/70 text-sm leading-relaxed">{m.aciklama}</p>
               </div>
             ))}
           </div>
@@ -131,7 +131,7 @@ export default function SulukPage() {
                 <div className="w-8 h-8 rounded-full bg-teal/10 border border-teal/30 flex items-center justify-center text-teal font-black text-sm shrink-0 mt-1">{s.adim}</div>
                 <div>
                   <div className="text-white font-bold mb-1">{s.baslik}</div>
-                  <div className="text-white/50 text-sm leading-relaxed">{s.aciklama}</div>
+                  <div className="text-white/70 text-sm leading-relaxed">{s.aciklama}</div>
                 </div>
               </div>
             ))}
@@ -200,7 +200,7 @@ export default function SulukPage() {
                 className="bg-white/5 border border-white/10 rounded-2xl p-5 hover:border-teal/30 hover:bg-white/8 transition-all group">
                 <div className="text-3xl mb-3">{l.emoji}</div>
                 <div className="text-white font-bold text-sm mb-1 group-hover:text-teal transition-colors">{l.baslik}</div>
-                <div className="text-white/50 text-xs leading-relaxed">{l.aciklama}</div>
+                <div className="text-white/70 text-xs leading-relaxed">{l.aciklama}</div>
               </Link>
             ))}
           </div>
@@ -216,7 +216,7 @@ export default function SulukPage() {
             </div>
             <div className="flex-1">
               <h2 className="font-display text-3xl font-bold text-white mb-2">Sülük Terapisi Randevusu</h2>
-              <p className="text-white/50 mb-6">Konya kliniğimizde veya Almanya seanslarımızda randevu almak için bize ulaşın.</p>
+              <p className="text-white/70 mb-6">Konya kliniğimizde veya Almanya seanslarımızda randevu almak için bize ulaşın.</p>
               <div className="flex flex-wrap gap-3">
                 <a href="https://wa.me/905544062383?text=S%C3%BCl%C3%BCk%20terapisi%20randevusu%20almak%20istiyorum." title="Türkiye Hacamat İletişim" target="_blank" rel="noopener noreferrer nofollow"
                   className="flex items-center gap-2 bg-[#25D366] text-white px-6 py-3 rounded-xl font-black text-sm uppercase tracking-widest hover:scale-105 transition-all">

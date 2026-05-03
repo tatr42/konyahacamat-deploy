@@ -95,7 +95,7 @@ export default function HakkimizdaPage() {
                 ].map(s => (
                   <div key={s.label} className="bg-white/5 border border-white/10 rounded-2xl p-4 text-center hover:border-teal/30 transition-colors">
                     <div className="font-display text-3xl font-bold text-teal mb-1">{s.sayi}</div>
-                    <div className="text-white/50 text-[10px] uppercase tracking-widest font-bold">{s.label}</div>
+                    <div className="text-white/70 text-[10px] uppercase tracking-widest font-bold">{s.label}</div>
                   </div>
                 ))}
               </div>
@@ -213,7 +213,7 @@ export default function HakkimizdaPage() {
                   <d.icon size={22} className="text-teal" />
                 </div>
                 <h3 className="text-white font-bold mb-2">{d.baslik}</h3>
-                <p className="text-white/50 text-sm leading-relaxed">{d.aciklama}</p>
+                <p className="text-white/70 text-sm leading-relaxed">{d.aciklama}</p>
               </div>
             ))}
           </div>
@@ -261,7 +261,7 @@ export default function HakkimizdaPage() {
                 className="bg-white/5 border border-white/10 rounded-2xl p-5 hover:border-teal/30 hover:bg-white/8 transition-all group">
                 <div className="text-3xl mb-3">{l.emoji}</div>
                 <div className="text-white font-bold text-sm mb-1 group-hover:text-teal transition-colors">{l.baslik}</div>
-                <div className="text-white/50 text-xs leading-relaxed">{l.aciklama}</div>
+                <div className="text-white/70 text-xs leading-relaxed">{l.aciklama}</div>
               </Link>
             ))}
           </div>
@@ -277,7 +277,7 @@ export default function HakkimizdaPage() {
             </div>
             <div>
               <h2 className="font-display text-3xl font-bold text-white mb-2">Bize Ulaşın</h2>
-              <p className="text-white/50">Tedavi veya eğitim hakkında her şeyi sormaktan çekinmeyin.</p>
+              <p className="text-white/70">Tedavi veya eğitim hakkında her şeyi sormaktan çekinmeyin.</p>
             </div>
           </div>
           <div className="flex flex-wrap gap-3">

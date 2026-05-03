@@ -51,7 +51,7 @@ export default function BlogList() {
 
   if (posts.length === 0) {
     return (
-      <div className="text-center py-24 text-white/30">
+      <div className="text-center py-24 text-white/70">
         <BookOpen size={40} className="mx-auto mb-4 opacity-30" />
         <p className="text-lg">Henüz blog yazısı yayınlanmamış.</p>
         <p className="text-sm mt-2">Admin panelinden yazı ekleyebilirsiniz.</p>
@@ -80,7 +80,7 @@ export default function BlogList() {
               className={`text-[11px] font-black uppercase tracking-widest px-4 py-2 rounded-full border transition-all ${
                 aktifKategori === k
                   ? "bg-teal text-black border-teal"
-                  : "bg-white/5 text-white/50 border-white/10 hover:border-teal/40 hover:text-white"
+                  : "bg-white/5 text-white/70 border-white/10 hover:border-teal/40 hover:text-white"
               }`}
             >
               {k}
@@ -108,10 +108,10 @@ export default function BlogList() {
               <h2 className="text-white font-bold text-2xl md:text-3xl group-hover:text-teal transition-colors leading-snug mb-3">
                 {featured.title}
               </h2>
-              <p className="text-white/50 text-sm md:text-base leading-relaxed mb-6 max-w-2xl">
+              <p className="text-white/70 text-sm md:text-base leading-relaxed mb-6 max-w-2xl">
                 {featured.excerpt}
               </p>
-              <div className="flex flex-wrap items-center gap-5 text-white/30 text-[12px]">
+              <div className="flex flex-wrap items-center gap-5 text-white/70 text-[12px]">
                 {featured.createdAt && (
                   <span className="flex items-center gap-1.5">
                     <Clock size={13} /> {formatDate(featured.createdAt.seconds)}
@@ -150,7 +150,7 @@ export default function BlogList() {
                   {post.category}
                 </span>
                 {post.createdAt && (
-                  <span className="flex items-center gap-1 text-white/30 text-[11px]">
+                  <span className="flex items-center gap-1 text-white/70 text-[11px]">
                     <Clock size={11} />
                     {new Date(post.createdAt.seconds * 1000).toLocaleDateString("tr-TR", { day: "numeric", month: "short" })}
                   </span>
@@ -163,7 +163,7 @@ export default function BlogList() {
               </h2>
 
               {/* Özet */}
-              <p className="text-white/50 text-sm leading-relaxed flex-1 line-clamp-3">
+              <p className="text-white/70 text-sm leading-relaxed flex-1 line-clamp-3">
                 {post.excerpt}
               </p>
 

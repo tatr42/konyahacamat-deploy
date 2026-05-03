@@ -156,7 +156,7 @@ export default function AlmanyaHacamatPage() {
                   </div>
                   <div>
                     <div className="text-3xl font-black text-white">1000+</div>
-                    <div className="text-sm text-white/50 font-medium">Memnun Danışan</div>
+                    <div className="text-sm text-white/70 font-medium">Memnun Danışan</div>
                   </div>
                 </div>
               </div>
@@ -187,14 +187,14 @@ export default function AlmanyaHacamatPage() {
                   <Calendar className="text-teal" size={24} />
                   <div>
                     <h4 className="text-white font-bold">Kapsamlı Müfredat</h4>
-                    <p className="text-sm text-white/50">Anatomi, noktalar, kesi teknikleri ve sterilizasyon.</p>
+                    <p className="text-sm text-white/70">Anatomi, noktalar, kesi teknikleri ve sterilizasyon.</p>
                   </div>
                 </div>
                 <div className="flex items-center gap-3 pt-2">
                   <Award className="text-teal" size={24} />
                   <div>
                     <h4 className="text-white font-bold">Geçerli Sertifika</h4>
-                    <p className="text-sm text-white/50">Eğitim sonrasında uluslararası geçerliliği olan belge.</p>
+                    <p className="text-sm text-white/70">Eğitim sonrasında uluslararası geçerliliği olan belge.</p>
                   </div>
                 </div>
               </div>

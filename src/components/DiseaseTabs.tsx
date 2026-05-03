@@ -255,7 +255,7 @@ export default function DiseaseTabs() {
 
           {/* Alt: iletişim + randevu */}
           <div className="mt-5 pt-4 border-t border-white/5 flex flex-col sm:flex-row items-start sm:items-center justify-between gap-3">
-            <p className="text-[10px] text-white/30">
+            <p className="text-[10px] text-white/70">
               * Ücretsiz danışmanlık: 0554 406 23 83
             </p>
             <a
