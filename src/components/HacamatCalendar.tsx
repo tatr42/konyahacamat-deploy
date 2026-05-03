@@ -50,6 +50,8 @@ function MonthGrid({ yil, ay, secili, onSelect }: {
   // 6 satıra tamamla
   while (cells.length % 7 !== 0) cells.push(null);
 
+  const bugunGeceYarisi = new Date(bugun.getFullYear(), bugun.getMonth(), bugun.getDate());
+
   return (
     <div className="bg-white rounded-xl overflow-hidden shadow-sm border border-gray-100">
       {/* Ay başlığı */}
@@ -72,7 +74,7 @@ function MonthGrid({ yil, ay, secili, onSelect }: {
           const fazl = FAZL_GUNLER.includes(hicri);
           const bugunMu = gun.toDateString() === bugun.toDateString();
           const seciliMi = secili?.toDateString() === gun.toDateString();
-          const gecmis = gun < new Date(bugun.getFullYear(), bugun.getMonth(), bugun.getDate());
+          const gecmis = gun < bugunGeceYarisi;
           const cumaMi = gun.getDay() === 5;
           const haftaSonu = gun.getDay() === 0 || gun.getDay() === 6;
 
