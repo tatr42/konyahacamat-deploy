@@ -95,7 +95,7 @@ export default function HizmetlerPage() {
                     </li>
                   ))}
                 </ul>
-                <Link href={h.href}
+                <Link href={h.href} title="Bağlantı Detayı"
                   className="self-start flex items-center gap-2 bg-teal text-anthracite-dark px-5 py-2.5 rounded-xl font-black text-xs uppercase tracking-widest hover:opacity-90 transition-opacity">
                   Detaylı Bilgi <ChevronRight size={14} />
                 </Link>
@@ -161,17 +161,17 @@ export default function HizmetlerPage() {
             <p className="text-white/50 max-w-md">WhatsApp üzerinden bize ulaşarak uygun tarih ve seans hakkında bilgi alabilirsiniz.</p>
           </div>
           <div className="flex flex-wrap gap-3 shrink-0">
-            <a href="https://wa.me/905544062383?text=Merhaba%2C%20tedavi%20randevusu%20almak%20istiyorum."
+            <a href="https://wa.me/905544062383?text=Merhaba%2C%20tedavi%20randevusu%20almak%20istiyorum." title="Türkiye Hacamat İletişim"
               target="_blank" rel="noopener noreferrer nofollow"
               className="flex items-center gap-2 bg-[#25D366] text-white px-6 py-4 rounded-2xl font-black text-sm uppercase tracking-widest hover:scale-105 transition-all">
               <MessageCircle size={18} fill="currentColor" /> 🇹🇷 WhatsApp TR
             </a>
-            <a href="https://wa.me/491634492870?text=Merhaba%2C%20tedavi%20randevusu%20almak%20istiyorum."
+            <a href="https://wa.me/491634492870?text=Merhaba%2C%20tedavi%20randevusu%20almak%20istiyorum." title="Almanya Hacamat İletişim"
               target="_blank" rel="noopener noreferrer nofollow"
               className="flex items-center gap-2 bg-white/10 text-white border border-white/20 px-6 py-4 rounded-2xl font-black text-sm uppercase tracking-widest hover:bg-white/15 transition-all">
               <MessageCircle size={18} /> 🇩🇪 WhatsApp Almanya
             </a>
-            <Link href="/takvim"
+            <Link href="/takvim" title="Randevu Al"
               className="flex items-center gap-2 bg-teal/10 text-teal border border-teal/20 px-6 py-4 rounded-2xl font-black text-sm uppercase tracking-widest hover:bg-teal/20 transition-all">
               Takvimden Randevu <ChevronRight size={16} />
             </Link>

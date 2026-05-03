@@ -140,7 +140,7 @@ export default function BasinPage() {
               const cardClass = "group relative bg-anthracite-light border border-white/5 rounded-3xl p-6 hover:border-teal/30 transition-all duration-300 overflow-hidden cursor-pointer aspect-square flex flex-col";
 
               return gazete.slug ? (
-                <Link key={gazete.id} href={`/basin/${gazete.slug}`} className={cardClass}>
+                <Link key={gazete.id} href={`/basin/${gazete.slug}`} title="Basın Haberi Detayları" className={cardClass}>
                   {gazete.img && (
                     <>
                       <img src={gazete.img} alt="" aria-hidden className="absolute inset-0 w-full h-full object-contain opacity-30 pointer-events-none" />
@@ -174,20 +174,20 @@ export default function BasinPage() {
             <p className="text-white/50 text-sm mt-4 max-w-sm leading-relaxed">{getYearsExpStr()} yıllık deneyim ve steril malzemeyle güvenli hacamat tedavisi için bize ulaşın.</p>
           </div>
           <div className="flex flex-col sm:flex-row md:flex-col gap-3 shrink-0 w-full md:w-auto">
-            <a href="https://wa.me/905544062383?text=Merhaba%2C%20hacamat%20tedavisi%20hakk%C4%B1nda%20bilgi%20almak%20istiyorum."
+            <a href="https://wa.me/905544062383?text=Merhaba%2C%20hacamat%20tedavisi%20hakk%C4%B1nda%20bilgi%20almak%20istiyorum." title="Türkiye Hacamat İletişim"
               target="_blank" rel="noopener noreferrer nofollow"
               className="flex items-center justify-center gap-3 bg-[#25D366] hover:bg-[#1da851] text-white px-6 py-4 rounded-2xl font-black text-sm uppercase tracking-widest transition-all hover:scale-105">
               <MessageCircle size={18} fill="currentColor" /> WhatsApp'tan Yaz
             </a>
-            <a href="tel:05544062383"
+            <a href="tel:05544062383" title="Türkiye Hacamat İletişim"
               className="flex items-center justify-center gap-3 bg-white/10 hover:bg-white/15 text-white border border-white/10 px-6 py-4 rounded-2xl font-black text-sm uppercase tracking-widest transition-all">
               🇹🇷 <Phone size={18} /> 0554 406 23 83
             </a>
-            <a href="tel:+491634492870"
+            <a href="tel:+491634492870" title="Almanya Hacamat İletişim"
               className="flex items-center justify-center gap-3 bg-white/10 hover:bg-white/15 text-white border border-white/10 px-6 py-4 rounded-2xl font-black text-sm uppercase tracking-widest transition-all">
               🇩🇪 <Phone size={18} /> +49 163 449 28 70
             </a>
-            <a href="/takvim"
+            <a href="/takvim" title="Randevu Al"
               className="flex items-center justify-center gap-3 bg-teal/10 hover:bg-teal/20 text-teal border border-teal/20 px-6 py-4 rounded-2xl font-black text-sm uppercase tracking-widest transition-all">
               <Calendar size={18} /> Randevu Al
             </a>

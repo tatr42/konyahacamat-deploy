@@ -141,8 +141,8 @@ export default function Testimonials() {
         <div className="mt-16 text-center">
           <a
             href="https://www.google.com/maps/search/Ebusadullah+Hacamat+Konya"
-            target="_blank"
-            rel="noopener noreferrer nofollow"
+            target="_blank" rel="noopener noreferrer nofollow"
+
             title="Ebusadullah Hacamat Google Yorumları"
             className="inline-flex items-center gap-3 bg-white/5 hover:bg-white/10 border border-white/10 px-8 py-4 rounded-2xl font-bold text-white text-sm transition-all active:scale-95"
           >

@@ -32,15 +32,15 @@ export default function SulukPage() {
             kadar bilimsel olarak desteklenen nadir tedavi yöntemlerinden biridir.
           </p>
           <div className="flex flex-wrap gap-4">
-            <a href="https://wa.me/905544062383?text=S%C3%BCl%C3%BCk%20terapisi%20hakk%C4%B1nda%20bilgi%20almak%20istiyorum." target="_blank" rel="noopener noreferrer nofollow"
+            <a href="https://wa.me/905544062383?text=S%C3%BCl%C3%BCk%20terapisi%20hakk%C4%B1nda%20bilgi%20almak%20istiyorum." title="Türkiye Hacamat İletişim" target="_blank" rel="noopener noreferrer nofollow"
               className="flex items-center gap-2 bg-[#25D366] text-white px-6 py-4 rounded-2xl font-black text-sm uppercase tracking-widest hover:scale-105 transition-all">
               <MessageCircle size={18} fill="currentColor" /> WhatsApp
             </a>
-            <a href="tel:05544062383"
+            <a href="tel:05544062383" title="Türkiye Hacamat İletişim"
               className="flex items-center gap-2 bg-white/10 text-white border border-white/20 px-6 py-4 rounded-2xl font-black text-sm uppercase tracking-widest hover:bg-white/15 transition-all">
               🇹🇷 <Phone size={18} /> 0554 406 23 83
             </a>
-            <a href="tel:+491634492870"
+            <a href="tel:+491634492870" title="Almanya Hacamat İletişim"
               className="flex items-center gap-2 bg-white/10 text-white border border-white/20 px-6 py-4 rounded-2xl font-black text-sm uppercase tracking-widest hover:bg-white/15 transition-all">
               🇩🇪 <Phone size={18} /> +49 163 449 28 70
             </a>
@@ -196,7 +196,7 @@ export default function SulukPage() {
               { href: "/egitimler", baslik: "Sülük Terapisi Kursu", aciklama: "Hirudoterapi uzmanlık eğitimi", emoji: "🎓" },
               { href: "/hakkimizda", baslik: "Hakkımızda", aciklama: "32+ yıl deneyim, 1200+ mezun", emoji: "🏛️" },
             ].map(l => (
-              <Link key={l.href} href={l.href}
+              <Link key={l.href} href={l.href} title={(l as any).baslik || (l as any).title || (l as any).isim || "Bağlantı Detayı"}
                 className="bg-white/5 border border-white/10 rounded-2xl p-5 hover:border-teal/30 hover:bg-white/8 transition-all group">
                 <div className="text-3xl mb-3">{l.emoji}</div>
                 <div className="text-white font-bold text-sm mb-1 group-hover:text-teal transition-colors">{l.baslik}</div>
@@ -218,15 +218,15 @@ export default function SulukPage() {
               <h2 className="font-display text-3xl font-bold text-white mb-2">Sülük Terapisi Randevusu</h2>
               <p className="text-white/50 mb-6">Konya kliniğimizde veya Almanya seanslarımızda randevu almak için bize ulaşın.</p>
               <div className="flex flex-wrap gap-3">
-                <a href="https://wa.me/905544062383?text=S%C3%BCl%C3%BCk%20terapisi%20randevusu%20almak%20istiyorum." target="_blank" rel="noopener noreferrer nofollow"
+                <a href="https://wa.me/905544062383?text=S%C3%BCl%C3%BCk%20terapisi%20randevusu%20almak%20istiyorum." title="Türkiye Hacamat İletişim" target="_blank" rel="noopener noreferrer nofollow"
                   className="flex items-center gap-2 bg-[#25D366] text-white px-6 py-3 rounded-xl font-black text-sm uppercase tracking-widest hover:scale-105 transition-all">
                   <MessageCircle size={16} fill="currentColor" /> 🇹🇷 WhatsApp
                 </a>
-                <a href="https://wa.me/491634492870?text=S%C3%BCl%C3%BCk%20terapisi%20randevusu%20almak%20istiyorum." target="_blank" rel="noopener noreferrer nofollow"
+                <a href="https://wa.me/491634492870?text=S%C3%BCl%C3%BCk%20terapisi%20randevusu%20almak%20istiyorum." title="Almanya Hacamat İletişim" target="_blank" rel="noopener noreferrer nofollow"
                   className="flex items-center gap-2 bg-white/10 text-white border border-white/20 px-6 py-3 rounded-xl font-black text-sm uppercase tracking-widest hover:bg-white/15 transition-all">
                   <MessageCircle size={16} /> 🇩🇪 Almanya
                 </a>
-                <Link href="/takvim"
+                <Link href="/takvim" title="Randevu Al"
                   className="flex items-center gap-2 bg-teal text-anthracite-dark px-6 py-3 rounded-xl font-black text-sm uppercase tracking-widest hover:opacity-90 transition-opacity">
                   Takvim <ChevronRight size={16} />
                 </Link>

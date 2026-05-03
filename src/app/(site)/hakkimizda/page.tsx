@@ -239,7 +239,7 @@ export default function HakkimizdaPage() {
               </div>
             ))}
           </div>
-          <Link href="/egitimler" className="inline-flex items-center gap-2 bg-teal text-anthracite-dark px-6 py-3 rounded-xl font-black text-sm uppercase tracking-widest hover:opacity-90 transition-opacity">
+          <Link href="/egitimler" title="Eğitim Programları" className="inline-flex items-center gap-2 bg-teal text-anthracite-dark px-6 py-3 rounded-xl font-black text-sm uppercase tracking-widest hover:opacity-90 transition-opacity">
             Eğitim Programları →
           </Link>
         </div>
@@ -257,7 +257,7 @@ export default function HakkimizdaPage() {
               { href: "/egitimler", baslik: "Uzmanlık Kursları", aciklama: "Sertifikalı hacamat & sülük eğitimleri", emoji: "🎓" },
               { href: "/takvim", baslik: "Randevu Al", aciklama: "Hicri faziletli günlerde seans planla", emoji: "📅" },
             ].map(l => (
-              <Link key={l.href} href={l.href}
+              <Link key={l.href} href={l.href} title={(l as any).baslik || (l as any).title || (l as any).isim || "Bağlantı Detayı"}
                 className="bg-white/5 border border-white/10 rounded-2xl p-5 hover:border-teal/30 hover:bg-white/8 transition-all group">
                 <div className="text-3xl mb-3">{l.emoji}</div>
                 <div className="text-white font-bold text-sm mb-1 group-hover:text-teal transition-colors">{l.baslik}</div>
@@ -281,15 +281,15 @@ export default function HakkimizdaPage() {
             </div>
           </div>
           <div className="flex flex-wrap gap-3">
-            <a href="https://wa.me/905544062383" target="_blank" rel="noopener noreferrer nofollow"
+            <a href="https://wa.me/905544062383" title="Türkiye Hacamat İletişim" target="_blank" rel="noopener noreferrer nofollow"
               className="flex items-center gap-2 bg-[#25D366] text-white px-6 py-4 rounded-2xl font-black uppercase tracking-widest hover:scale-105 transition-all">
               <MessageCircle size={18} fill="currentColor" /> 🇹🇷 WhatsApp
             </a>
-            <a href="https://wa.me/491634492870" target="_blank" rel="noopener noreferrer nofollow"
+            <a href="https://wa.me/491634492870" title="Almanya Hacamat İletişim" target="_blank" rel="noopener noreferrer nofollow"
               className="flex items-center gap-2 bg-white/10 text-white border border-white/20 px-6 py-4 rounded-2xl font-black uppercase tracking-widest hover:bg-white/15 transition-all">
               <MessageCircle size={18} /> 🇩🇪 Almanya
             </a>
-            <Link href="/iletisim"
+            <Link href="/iletisim" title="İletişim"
               className="flex items-center gap-2 bg-white/10 text-white border border-white/20 px-6 py-4 rounded-2xl font-black uppercase tracking-widest hover:bg-white/15 transition-all">
               İletişim
             </Link>
