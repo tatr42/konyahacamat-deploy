@@ -2,7 +2,7 @@ import type { Metadata } from "next";
 import "./globals.css";
 import { GoogleAnalytics } from "@next/third-parties/google";
 
-const BASE = "https://konyahacamat.net";
+const BASE = "https://www.konyahacamat.net";
 
 export const metadata: Metadata = {
   metadataBase: new URL(BASE),
@@ -12,7 +12,7 @@ export const metadata: Metadata = {
   },
   description:
     "Konya'da uzman hacamat ve sülük terapisi. Ebusadullah Hacamat & Akademi — 32+ yıl deneyim, steril CE sertifikalı malzeme, 384+ rahatsızlıkta şifa. Almanya seansları. Randevu: 0554 406 23 83",
-  authors: [{ name: "Ebusadullah Hacamat & Akademi", url: BASE }],
+  authors: [{ name: "Ebusadullah Hacamat & Akademi", url: '/' }],
   creator: "Ebusadullah Hacamat & Akademi",
   publisher: "Ebusadullah Hacamat & Akademi",
   category: "Sağlık & Tıp",
