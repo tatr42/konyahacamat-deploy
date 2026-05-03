@@ -4,18 +4,21 @@ import Image from "next/image";
 import { CheckCircle, Clock, Shield, AlertTriangle, Phone, MessageCircle, ChevronRight } from "lucide-react";
 import { getYearsExpStr } from "@/lib/experience";
 
-export const metadata: Metadata = {
-  title: "Hacamat Tedavisi Konya | Kuru & Yaş Hacamat | Ebusadullah Akademi",
-  description: "Konya'da profesyonel kuru ve yaş hacamat tedavisi. CE sertifikalı steril malzeme, 32+ yıl deneyim, Almanya seansları. Ebusadullah Hacamat & Akademi — Randevu: 0554 406 23 83",
+export async function generateMetadata(): Promise<Metadata> {
+  const exp = getYearsExpStr();
 
-  alternates: { canonical: '/hizmetler/hacamat' },
-  openGraph: {
+  return {
     title: "Hacamat Tedavisi Konya | Kuru & Yaş Hacamat | Ebusadullah Akademi",
-    description: "Konya'da profesyonel kuru ve yaş hacamat tedavisi. 32+ yıl deneyim, steril uygulama, Almanya seansları. Randevu için WhatsApp'tan yazın.",
-    url: '/hizmetler/hacamat',
-    images: [{ url: "/logo.webp", width: 1200, height: 630, alt: "Hacamat Tedavisi Konya Ebusadullah" }],
-  },
-};
+    description: `Konya'da profesyonel kuru ve yaş hacamat tedavisi. CE sertifikalı steril malzeme, ${exp} yıl deneyim, Almanya seansları. Ebusadullah Hacamat & Akademi — Randevu: 0554 406 23 83`,
+    alternates: { canonical: '/hizmetler/hacamat' },
+    openGraph: {
+      title: "Hacamat Tedavisi Konya | Kuru & Yaş Hacamat | Ebusadullah Akademi",
+      description: `Konya'da profesyonel kuru ve yaş hacamat tedavisi. ${exp} yıl deneyim, steril uygulama, Almanya seansları. Randevu için WhatsApp'tan yazın.`,
+      url: '/hizmetler/hacamat',
+      images: [{ url: "/logo.webp", width: 1200, height: 630, alt: "Hacamat Tedavisi Konya Ebusadullah" }],
+    },
+  };
+}
 
 const noktalar = [
   { isim: "Kâhil Noktası", yer: "İki kürek kemiği arası", etki: "Genel detoks, bağışıklık" },

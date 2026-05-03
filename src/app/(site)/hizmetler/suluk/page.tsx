@@ -2,6 +2,7 @@ import type { Metadata } from "next";
 import Link from "next/link";
 import Image from "next/image";
 import { Clock, MessageCircle, Phone, ChevronRight, AlertTriangle } from "lucide-react";
+import { getYearsExpStr } from "@/lib/experience";
 
 export const metadata: Metadata = {
   title: "Sülük Terapisi Konya | Hirudoterapi | Ebusadullah Hacamat Akademi",
@@ -194,7 +195,7 @@ export default function SulukPage() {
               { href: "/hizmetler/hacamat", baslik: "Hacamat Tedavisi", aciklama: "Kuru ve yaş hacamat uygulamaları", emoji: "🩸" },
               { href: "/takvim", baslik: "Randevu Takvimi", aciklama: "Faziletli günlerde randevu alın", emoji: "📅" },
               { href: "/egitimler", baslik: "Sülük Terapisi Kursu", aciklama: "Hirudoterapi uzmanlık eğitimi", emoji: "🎓" },
-              { href: "/hakkimizda", baslik: "Hakkımızda", aciklama: "32+ yıl deneyim, 1200+ mezun", emoji: "🏛️" },
+              { href: "/hakkimizda", baslik: "Hakkımızda", aciklama: `${getYearsExpStr()} yıl deneyim, 1200+ mezun`, emoji: "🏛️" },
             ].map(l => (
               <Link key={l.href} href={l.href}
                 className="bg-white/5 border border-white/10 rounded-2xl p-5 hover:border-teal/30 hover:bg-white/8 transition-all group">
