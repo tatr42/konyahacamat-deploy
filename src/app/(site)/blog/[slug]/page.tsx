@@ -85,17 +85,28 @@ export default async function BlogPostPage({ params }: { params: Promise<{ slug:
     ? new Date(post.createdAt.seconds * 1000).toLocaleDateString("tr-TR", { day: "numeric", month: "long", year: "numeric" })
     : "";
 
+  const BASE = "https://www.konyahacamat.net";
+
   // Arama Motorları İçin Yapılandırılmış Veri (JSON-LD)
+
   const articleSchema = {
     "@context": "https://schema.org",
     "@type": "Article",
     headline: post.title,
     description: post.excerpt,
+
+    author: { "@type": "Organization", name: "Ebusadullah Hacamat & Akademi", url: BASE },
+    publisher: { "@type": "Organization", name: "Ebusadullah Hacamat & Akademi", logo: { "@type": "ImageObject", url: `${BASE}/logo.webp` } },
+    url: `${BASE}/blog/${post.slug}`,
+    datePublished: post.createdAt ? new Date(post.createdAt.seconds * 1000).toISOString() : undefined,
+    mainEntityOfPage: { "@type": "WebPage", "@id": `${BASE}/blog/${post.slug}` },
+
     author: { "@type": "Organization", name: "Ebusadullah Hacamat & Akademi", url: "https://www.konyahacamat.net" },
     publisher: { "@type": "Organization", name: "Ebusadullah Hacamat & Akademi", logo: { "@type": "ImageObject", url: "https://www.konyahacamat.net/logo.webp" } },
     url: `https://www.konyahacamat.net/blog/${post.slug}`,
     datePublished: post.createdAt ? new Date(post.createdAt.seconds * 1000).toISOString() : undefined,
     mainEntityOfPage: { "@type": "WebPage", "@id": `https://www.konyahacamat.net/blog/${post.slug}` },
+
   };
 
   return (
