@@ -9,8 +9,6 @@
     "lint": "next lint",
     "test": "node --test --experimental-strip-types \"src/**/*.test.ts\""
   },
-  ...
-}
   "dependencies": {
     "@next/third-parties": "^16.2.4",
     "cloudinary": "^2.9.0",
