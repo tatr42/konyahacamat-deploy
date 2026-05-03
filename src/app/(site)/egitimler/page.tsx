@@ -6,11 +6,11 @@ export const metadata: Metadata = {
   title: "Hacamat Kursu Konya | Sertifikalı Hacamat Eğitimi | Ebusadullah Akademi",
   description: "Konya Ebusadullah Akademi'de sertifikalı hacamat ve sülük terapisi uzmanlık kursları. Küçük gruplar, birebir uygulama, uluslararası geçerli sertifika. Almanya'da da eğitim verilmektedir.",
 
-  alternates: { canonical: "/egitimler" },
+  alternates: { canonical: '/egitimler' },
   openGraph: {
     title: "Hacamat Kursu Konya | Sertifikalı Eğitim | Ebusadullah Akademi",
     description: "Sertifikalı hacamat ve sülük terapisi uzmanlık kursları. Küçük gruplar, birebir uygulama. 1200+ mezun. Konya ve Almanya'da eğitim.",
-    url: "https://konyahacamat.net/egitimler",
+    url: '/egitimler',
     images: [{ url: "/logo.webp", width: 1200, height: 630, alt: "Hacamat Kursu Ebusadullah Akademi Konya" }],
   },
 };
