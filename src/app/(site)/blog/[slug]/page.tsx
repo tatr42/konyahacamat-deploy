@@ -58,11 +58,11 @@ export default async function BlogPostPage({ params }: { params: Promise<{ slug:
     "@type": "Article",
     headline: post.title,
     description: post.excerpt,
-    author: { "@type": "Organization", name: "Ebusadullah Hacamat & Akademi", url: "https://konyahacamat.net" },
-    publisher: { "@type": "Organization", name: "Ebusadullah Hacamat & Akademi", logo: { "@type": "ImageObject", url: "https://konyahacamat.net/logo.webp" } },
-    url: `https://konyahacamat.net/blog/${post.slug}`,
+    author: { "@type": "Organization", name: "Ebusadullah Hacamat & Akademi", url: "https://www.konyahacamat.net" },
+    publisher: { "@type": "Organization", name: "Ebusadullah Hacamat & Akademi", logo: { "@type": "ImageObject", url: "https://www.konyahacamat.net/logo.webp" } },
+    url: `https://www.konyahacamat.net/blog/${post.slug}`,
     datePublished: post.createdAt ? new Date(post.createdAt.seconds * 1000).toISOString() : undefined,
-    mainEntityOfPage: { "@type": "WebPage", "@id": `https://konyahacamat.net/blog/${post.slug}` },
+    mainEntityOfPage: { "@type": "WebPage", "@id": `https://www.konyahacamat.net/blog/${post.slug}` },
   };
 
   return (
