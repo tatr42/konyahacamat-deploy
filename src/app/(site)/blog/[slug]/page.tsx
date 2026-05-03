@@ -34,7 +34,7 @@ export async function generateMetadata({ params }: { params: Promise<{ slug: str
     openGraph: {
       title,
       description,
-      url: `https://konyahacamat.net/blog/${slug}`,
+      url: `/blog/${slug}`,
       siteName: "Konya Hacamat - Ebusadullah Akademi",
       locale: "tr_TR",
       type: "article",

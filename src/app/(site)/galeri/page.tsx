@@ -4,11 +4,11 @@ import Link from "next/link";
 export const metadata: Metadata = {
   title: "Galeri | Hacamat Seansı & Kurs Fotoğrafları | Ebusadullah Akademi Konya",
   description: "Ebusadullah Hacamat & Akademi galeri. Konya'daki hacamat seansları, sülük terapisi uygulamaları, uzmanlık kursları ve Almanya faaliyetlerinden görüntüler.",
-  alternates: { canonical: "/galeri" },
+  alternates: { canonical: '/galeri' },
   openGraph: {
     title: "Galeri | Hacamat Seansı & Kurs Fotoğrafları | Ebusadullah Konya",
     description: "Hacamat seansları, kurs eğitimleri ve Almanya faaliyetlerinden fotoğraflar. Ebusadullah Hacamat & Akademi.",
-    url: "https://konyahacamat.net/galeri",
+    url: '/galeri',
     images: [{ url: "/logo.webp", width: 1200, height: 630, alt: "Hacamat Galeri Konya" }],
   },
 };

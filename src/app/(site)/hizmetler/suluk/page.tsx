@@ -7,11 +7,11 @@ export const metadata: Metadata = {
   title: "Sülük Terapisi Konya | Hirudoterapi | Ebusadullah Hacamat Akademi",
   description: "Konya'da uzman sülük terapisi (hirudoterapi). Varis, eklem iltihabı, ödem ve dolaşım bozukluklarında doğal tedavi. Tek kullanımlık tıbbi sülük. Randevu: 0554 406 23 83",
 
-  alternates: { canonical: "/hizmetler/suluk" },
+  alternates: { canonical: '/hizmetler/suluk' },
   openGraph: {
     title: "Sülük Terapisi Konya | Hirudoterapi | Ebusadullah Hacamat Akademi",
     description: "Konya'da uzman sülük terapisi. Varis, eklem ve dolaşım bozukluklarında doğal tedavi. Tek kullanımlık tıbbi sülük ile steril uygulama.",
-    url: "https://konyahacamat.net/hizmetler/suluk",
+    url: '/hizmetler/suluk',
     images: [{ url: "/logo.webp", width: 1200, height: 630, alt: "Sülük Terapisi Konya Ebusadullah" }],
   },
 };

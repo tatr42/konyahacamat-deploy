@@ -21,11 +21,11 @@ export const metadata: Metadata = {
     follow: true,
     googleBot: { index: true, follow: true, "max-image-preview": "large", "max-snippet": -1 },
   },
-  alternates: { canonical: "/" },
+  alternates: { canonical: '/' },
   openGraph: {
     type: "website",
     locale: "tr_TR",
-    url: BASE,
+    url: '/',
     siteName: "Konya Hacamat Ebusadullah",
     title: "Konya Hacamat | Ebusadullah Hacamat & Akademi",
     description:

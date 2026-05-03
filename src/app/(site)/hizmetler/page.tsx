@@ -7,11 +7,11 @@ export const metadata: Metadata = {
   title: "Hacamat & Sülük Terapisi Konya | Geleneksel Tıp Hizmetleri | Ebusadullah",
   description: "Konya Ebusadullah Akademi'de kuru hacamat, yaş hacamat ve sülük terapisi hizmetleri. CE sertifikalı steril uygulama, 32+ yıl deneyim, Almanya periyodik seansları.",
 
-  alternates: { canonical: "/hizmetler" },
+  alternates: { canonical: '/hizmetler' },
   openGraph: {
     title: "Hacamat & Sülük Terapisi Konya | Ebusadullah Akademi",
     description: "Kuru hacamat, yaş hacamat ve sülük terapisi. Steril uygulama, 32+ yıl deneyim. Konya ve Almanya'da hizmet.",
-    url: "https://konyahacamat.net/hizmetler",
+    url: '/hizmetler',
     images: [{ url: "/logo.webp", width: 1200, height: 630, alt: "Konya Hacamat Hizmetleri" }],
   },
 };

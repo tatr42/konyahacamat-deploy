@@ -6,11 +6,11 @@ export const metadata: Metadata = {
   title: "İletişim & Randevu | Konya Hacamat | Ebusadullah Akademi",
   description: "Konya hacamat randevusu için bize ulaşın: 0554 406 23 83 | Almanya: +49 163 449 28 70. Nişantaş Mh. Selçuklu/Konya. WhatsApp ile 7/24 mesaj atabilirsiniz.",
 
-  alternates: { canonical: "/iletisim" },
+  alternates: { canonical: '/iletisim' },
   openGraph: {
     title: "İletişim & Randevu | Konya Hacamat Ebusadullah",
     description: "Hacamat randevusu için: 0554 406 23 83 | Almanya: +49 163 449 28 70 | Nişantaş Mh. Selçuklu/Konya. WhatsApp 7/24.",
-    url: "https://konyahacamat.net/iletisim",
+    url: '/iletisim',
     images: [{ url: "/logo.webp", width: 1200, height: 630, alt: "Konya Hacamat İletişim" }],
   },
 };

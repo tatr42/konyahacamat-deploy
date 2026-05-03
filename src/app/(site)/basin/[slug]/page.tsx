@@ -31,8 +31,8 @@ export async function generateMetadata({ params }: { params: Promise<{ slug: str
     openGraph: {
       title,
       description,
-      images: item.img ? [{ url: `https://konyahacamat.net${item.img}`, width: 1200, height: 630, alt: item.baslik }] : [{ url: "/logo.webp" }],
-      url: `https://konyahacamat.net/basin/${slug}`,
+      images: item.img ? [{ url: `${item.img}`, width: 1200, height: 630, alt: item.baslik }] : [{ url: "/logo.webp" }],
+      url: `/basin/${slug}`,
       type: "article",
       locale: "tr_TR",
     },

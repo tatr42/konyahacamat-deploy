@@ -7,11 +7,11 @@ const currentYear = new Date().getFullYear();
 export const metadata: Metadata = {
   title: `Hacamat Blog ${currentYear} | Hacamat Faydaları, Nasıl Yapılır & Sülük Terapisi`,
   description: "Hacamat nedir, nasıl yapılır, kimlere yapılmaz? Sülük terapisi faydaları, İslam tıbbı ve doğal şifa yöntemleri. Ebusadullah Akademi Konya uzman blog içerikleri.",
-  alternates: { canonical: "/blog" },
+  alternates: { canonical: '/blog' },
   openGraph: {
     title: `Hacamat Blog ${currentYear} | Hacamat Faydaları & Sülük Terapisi`,
     description: "Hacamat nedir, nasıl yapılır, faydaları nelerdir? Uzman içeriklerle geleneksel tıp rehberi. Ebusadullah Akademi Konya.",
-    url: "https://konyahacamat.net/blog",
+    url: '/blog',
     type: "website",
     images: [{ url: "/logo.webp", width: 1200, height: 630, alt: "Hacamat Blog Konya Ebusadullah" }],
   },
