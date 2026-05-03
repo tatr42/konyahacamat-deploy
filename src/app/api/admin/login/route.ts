@@ -5,7 +5,13 @@ import { signSession } from "@/lib/session";
 export async function POST(req: Request) {
   try {
     const { password } = await req.json();
-    const correct = process.env.ADMIN_PASSWORD ?? "Eb@Hac2027#Net";
+    const correct = process.env.ADMIN_PASSWORD;
+
+    if (!correct) {
+      console.error("ADMIN_PASSWORD environment variable is not set.");
+      return NextResponse.json({ error: "Server misconfiguration" }, { status: 500 });
+    }
+
     if (password === correct) {
       const sessionToken = await signSession({ role: "admin" });
       const cookieStore = await cookies();
