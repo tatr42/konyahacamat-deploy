@@ -7,7 +7,6 @@ import { Newspaper, Calendar, ArrowLeft, MessageCircle } from "lucide-react";
 import Link from "next/link";
 import ImageLightbox from "./ImageLightbox";
 
-// Veri tipi tanımı
 interface PressItem {
   id: string;
   kaynak: string;
@@ -20,20 +19,14 @@ interface PressItem {
   seoDescription: string;
 }
 
-/**
- * Firestore sorgusunu cache ile sarmalayarak
- * aynı sayfa yüklemesinde tekrarlı çağrıları önlüyoruz.
- */
 const getItem = cache(async (slug: string): Promise<PressItem | null> => {
+  if (!db) return null;
   const q = query(collection(db, "press"), where("slug", "==", slug));
   const snap = await getDocs(q);
   if (snap.empty) return null;
   return { id: snap.docs[0].id, ...snap.docs[0].data() } as PressItem;
 });
 
-/**
- * Dinamik SEO Metadata Üretimi
- */
 export async function generateMetadata({ params }: { params: Promise<{ slug: string }> }): Promise<Metadata> {
   const { slug } = await params;
   const item = await getItem(slug);
@@ -46,26 +39,19 @@ export async function generateMetadata({ params }: { params: Promise<{ slug: str
   return {
     title,
     description,
-    alternates: { canonical: `https://konyahacamat.net/basin/${slug}` },
+    alternates: { canonical: `/basin/${slug}` },
     openGraph: {
       title,
       description,
       images: item.img ? [{ url: item.img, width: 1200, height: 630, alt: item.baslik }] : [{ url: "/logo.webp" }],
-      url: `https://konyahacamat.net/basin/${slug}`,
+      url: `/basin/${slug}`,
       type: "article",
       locale: "tr_TR",
     },
-    twitter: {
-      card: "summary_large_image",
-      title,
-      description,
-    },
+    twitter: { card: "summary_large_image", title, description },
   };
 }
 
-/**
- * Basın Detay Sayfa Bileşeni
- */
 export default async function BasinDetayPage({ params }: { params: Promise<{ slug: string }> }) {
   const { slug } = await params;
   const item = await getItem(slug);
@@ -75,8 +61,6 @@ export default async function BasinDetayPage({ params }: { params: Promise<{ slu
   return (
     <main className="min-h-screen bg-anthracite-dark pt-20 pb-24">
       <div className="container-site max-w-3xl">
-
-        {/* Breadcrumb - SEO ve Navigasyon */}
         <div className="flex items-center gap-2 text-white/30 text-sm mb-8">
           <Link href="/basin" className="hover:text-teal transition-colors flex items-center gap-1" title="Basın Odasına Dön">
             <ArrowLeft size={14} /> Basın Odası
@@ -85,7 +69,6 @@ export default async function BasinDetayPage({ params }: { params: Promise<{ slu
           <span className="text-teal truncate">{item.kaynak}</span>
         </div>
 
-        {/* Meta Bilgileri */}
         <div className="flex items-center gap-3 mb-4">
           <span className="text-[11px] font-black text-teal uppercase tracking-widest bg-teal/10 px-3 py-1 rounded-full flex items-center gap-1">
             <Newspaper size={12} /> {item.kaynak}
@@ -95,19 +78,16 @@ export default async function BasinDetayPage({ params }: { params: Promise<{ slu
           </span>
         </div>
 
-        {/* Ana Başlık */}
         <h1 className="font-display text-4xl md:text-5xl font-bold text-white mb-8 leading-tight">
           {item.baslik}
         </h1>
 
-        {/* Gazete Görseli / Lightbox */}
         {item.img && (
           <div className="mb-10">
             <ImageLightbox src={item.img} alt={item.baslik} />
           </div>
         )}
 
-        {/* Makale İçeriği */}
         {item.icerik && (
           <article className="prose prose-invert prose-lg max-w-none text-white/80 leading-relaxed
             prose-headings:text-white prose-headings:font-bold prose-strong:text-white
@@ -118,7 +98,6 @@ export default async function BasinDetayPage({ params }: { params: Promise<{ slu
 
         <hr className="border-white/10 my-10" />
 
-        {/* Eylem Çağrısı (CTA) */}
         <div className="bg-teal/5 border border-teal/20 rounded-2xl p-8 text-center">
           <h3 className="text-white font-bold text-xl mb-2">Hacamat Tedavisi İçin Randevu Alın</h3>
           <p className="text-white/50 text-sm mb-6">Konya veya Almanya seansları için profesyonel destek alın.</p>
@@ -141,7 +120,6 @@ export default async function BasinDetayPage({ params }: { params: Promise<{ slu
             </Link>
           </div>
         </div>
-
       </div>
     </main>
   );
