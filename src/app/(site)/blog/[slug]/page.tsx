@@ -1,5 +1,6 @@
 import type { Metadata } from "next";
 import { notFound } from "next/navigation";
+import { cache } from "react";
 import { db } from "@/lib/firebase";
 import { collection, getDocs, query, where } from "firebase/firestore";
 import { Clock, Tag, Eye, ArrowLeft } from "lucide-react";
@@ -12,13 +13,13 @@ interface Post {
   views: number; createdAt?: { seconds: number };
 }
 
-async function getPost(slug: string): Promise<Post | null> {
+const getPost = cache(async (slug: string): Promise<Post | null> => {
   const q = query(collection(db, "posts"), where("slug", "==", slug), where("published", "==", true));
   const snap = await getDocs(q);
   if (snap.empty) return null;
   const doc = snap.docs[0];
   return { id: doc.id, ...doc.data() } as Post;
-}
+});
 
 export async function generateMetadata({ params }: { params: Promise<{ slug: string }> }): Promise<Metadata> {
   const { slug } = await params;
@@ -29,7 +30,7 @@ export async function generateMetadata({ params }: { params: Promise<{ slug: str
   return {
     title,
     description,
-    alternates: { canonical: `https://konyahacamat.net/blog/${slug}` },
+    alternates: { canonical: `/blog/${slug}` },
     openGraph: {
       title,
       description,
@@ -112,7 +113,7 @@ export default async function BlogPostPage({ params }: { params: Promise<{ slug:
           <h3 className="text-white font-bold text-xl mb-2">Hacamat Tedavisi İçin Randevu Alın</h3>
           <p className="text-white/50 text-sm mb-6">Konya veya Almanya seansları için bize ulaşın.</p>
           <div className="flex flex-wrap justify-center gap-3">
-            <a href="https://wa.me/905544062383" target="_blank" rel="noopener noreferrer"
+            <a href="https://wa.me/905544062383" target="_blank" rel="noopener noreferrer nofollow"
               className="flex items-center gap-2 bg-[#25D366] text-white px-6 py-3 rounded-xl font-black text-sm uppercase tracking-widest hover:scale-105 transition-all">
               WhatsApp
             </a>

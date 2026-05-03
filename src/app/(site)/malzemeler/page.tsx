@@ -4,8 +4,8 @@ import { ShieldCheck, Package, MessageCircle, Phone, CheckCircle } from "lucide-
 export const metadata: Metadata = {
   title: "Hacamat Malzemeleri | Steril Set, Vantuz, Bistüri | Konya Kargo",
   description: "CE sertifikalı profesyonel hacamat malzemeleri: steril vantuz seti, tek kullanımlık bistüri, elektrikli pompa, sülük bakım seti. Konya'dan Türkiye geneline kargo. WhatsApp sipariş.",
-  keywords: ["hacamat malzemeleri", "hacamat seti", "hacamat vantuz", "hacamat bistüri", "steril hacamat seti", "hacamat pompası", "sülük bakım seti", "hacamat ekipman", "hacamat malzeme fiyat"],
-  alternates: { canonical: "https://konyahacamat.net/malzemeler" },
+
+  alternates: { canonical: "/malzemeler" },
   openGraph: {
     title: "Hacamat Malzemeleri | CE Sertifikalı Steril Set | Konya",
     description: "Profesyonel hacamat malzemeleri ve sülük bakım seti. CE sertifikalı, steril ambalaj. Türkiye geneli kargo. WhatsApp: 0554 406 23 83",
@@ -124,7 +124,7 @@ export default function MalzemelePage() {
                 </ul>
                 <a
                   href={`https://wa.me/905544062383?text=${encodeURIComponent(`Merhaba, "${u.isim}" ürünü hakkında fiyat bilgisi almak istiyorum.`)}`}
-                  target="_blank" rel="noopener noreferrer"
+                  target="_blank" rel="noopener noreferrer nofollow"
                   className="flex items-center justify-center gap-2 bg-[#25D366] hover:bg-[#1da851] text-white py-3 rounded-xl font-black text-xs uppercase tracking-widest transition-all">
                   <MessageCircle size={14} fill="currentColor" /> Fiyat Al
                 </a>
@@ -200,7 +200,7 @@ export default function MalzemelePage() {
             </div>
           </div>
           <div className="flex flex-col sm:flex-row gap-3 shrink-0">
-            <a href="https://wa.me/905544062383" target="_blank" rel="noopener noreferrer"
+            <a href="https://wa.me/905544062383" target="_blank" rel="noopener noreferrer nofollow"
               className="flex items-center gap-2 bg-[#25D366] text-white px-6 py-4 rounded-2xl font-black text-sm uppercase tracking-widest hover:scale-105 transition-all">
               <MessageCircle size={18} fill="currentColor" /> WhatsApp
             </a>

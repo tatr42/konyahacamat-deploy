@@ -27,7 +27,7 @@ export async function generateMetadata({ params }: { params: Promise<{ slug: str
   return {
     title,
     description,
-    alternates: { canonical: `https://konyahacamat.net/basin/${slug}` },
+    alternates: { canonical: `/basin/${slug}` },
     openGraph: {
       title,
       description,
@@ -92,7 +92,7 @@ export default async function BasinDetayPage({ params }: { params: Promise<{ slu
           <h3 className="text-white font-bold text-xl mb-2">Hacamat Tedavisi İçin Randevu Alın</h3>
           <p className="text-white/50 text-sm mb-6">Konya veya Almanya seansları için bize ulaşın.</p>
           <div className="flex flex-wrap justify-center gap-3">
-            <a href="https://wa.me/905544062383" target="_blank" rel="noopener noreferrer"
+            <a href="https://wa.me/905544062383" target="_blank" rel="noopener noreferrer nofollow"
               className="flex items-center gap-2 bg-[#25D366] text-white px-6 py-3 rounded-xl font-black text-sm uppercase tracking-widest hover:scale-105 transition-all">
               <MessageCircle size={16} fill="currentColor" /> WhatsApp
             </a>

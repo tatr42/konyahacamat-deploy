@@ -15,7 +15,7 @@ export default function Footer() {
           
           {/* 1. Marka */}
           <div className="space-y-6">
-            <Link href="/" className="inline-block group">
+            <Link href="/" title="Ana Sayfa - Konya Hacamat" className="inline-block group">
               <h3 className="text-2xl font-display font-bold text-white leading-tight">
                 EBUSADULLAH<br />
                 <span className="text-teal text-[10px] font-black uppercase tracking-[0.4em] opacity-80 group-hover:opacity-100 transition-all">
@@ -27,10 +27,10 @@ export default function Footer() {
               Kadim şifa geleneklerini modern sterilizasyon ve uzmanlık eğitimiyle harmanlayarak geleceğe taşıyoruz. {new Date().getFullYear() - 1994}+ yıl, 1200+ mezun.
             </p>
             <div className="flex gap-4">
-              <a href="https://www.instagram.com/konya_hacamat" target="_blank" rel="noopener noreferrer" aria-label="Konya Hacamat Instagram" className="w-11 h-11 rounded-2xl bg-white/5 flex items-center justify-center hover:bg-teal hover:text-anthracite-dark transition-all duration-300 border border-white/10">
+              <a href="https://www.instagram.com/konya_hacamat" target="_blank" rel="noopener noreferrer nofollow" aria-label="Konya Hacamat Instagram" title="Konya Hacamat Instagram" className="w-11 h-11 rounded-2xl bg-white/5 flex items-center justify-center hover:bg-teal hover:text-anthracite-dark transition-all duration-300 border border-white/10">
                 <Instagram size={20} />
               </a>
-              <a href="https://www.facebook.com/konyahacamat.com.tr/" target="_blank" rel="noopener noreferrer" aria-label="Konya Hacamat Facebook" className="w-11 h-11 rounded-2xl bg-white/5 flex items-center justify-center hover:bg-teal hover:text-anthracite-dark transition-all duration-300 border border-white/10">
+              <a href="https://www.facebook.com/konyahacamat.com.tr/" target="_blank" rel="noopener noreferrer nofollow" aria-label="Konya Hacamat Facebook" title="Konya Hacamat Facebook" className="w-11 h-11 rounded-2xl bg-white/5 flex items-center justify-center hover:bg-teal hover:text-anthracite-dark transition-all duration-300 border border-white/10">
                 <Facebook size={20} />
               </a>
             </div>
@@ -42,12 +42,13 @@ export default function Footer() {
               <span className="w-4 h-[2px] bg-teal"></span> KURUMSAL
             </h4>
             <ul className="space-y-4 text-sm font-semibold">
-              <li><Link href="/hizmetler" className="text-white/60 hover:text-teal transition-colors">Hacamat Tedavisi</Link></li>
-              <li><Link href="/hizmetler/suluk" className="text-white/60 hover:text-teal transition-colors">Sülük Terapisi</Link></li>
-              <li><Link href="/egitimler" className="text-white/60 hover:text-teal transition-colors">Eğitim & Kurslar</Link></li>
-              <li><Link href="/malzemeler" className="text-white/60 hover:text-teal transition-colors">Malzeme Satışı</Link></li>
-              <li><Link href="/takvim" className="text-white/60 hover:text-teal transition-colors">Sünnet Takvimi</Link></li>
-              <li><Link href="/iletisim" className="text-white/60 hover:text-teal transition-colors">Bize Ulaşın</Link></li>
+              <li><Link href="/hizmetler" title="Hacamat Tedavisi Konya" className="text-white/60 hover:text-teal transition-colors">Hacamat Tedavisi</Link></li>
+              <li><Link href="/hizmetler/suluk" title="Sülük Terapisi Konya" className="text-white/60 hover:text-teal transition-colors">Sülük Terapisi</Link></li>
+              <li><Link href="/almanya-hacamat" title="Almanya Hacamat Şubesi" className="text-white/60 hover:text-teal transition-colors font-bold">Almanya Şubemiz</Link></li>
+              <li><Link href="/egitimler" title="Hacamat Eğitim ve Kursları" className="text-white/60 hover:text-teal transition-colors">Eğitim & Kurslar</Link></li>
+              <li><Link href="/malzemeler" title="Hacamat Malzeme Satışı" className="text-white/60 hover:text-teal transition-colors">Malzeme Satışı</Link></li>
+              <li><Link href="/takvim" title="Hacamat Sünnet Takvimi" className="text-white/60 hover:text-teal transition-colors">Sünnet Takvimi</Link></li>
+              <li><Link href="/iletisim" title="Konya Hacamat İletişim" className="text-white/60 hover:text-teal transition-colors">Bize Ulaşın</Link></li>
             </ul>
           </div>
 
@@ -70,20 +71,20 @@ export default function Footer() {
                 <span className="text-[10px] text-teal font-black uppercase tracking-widest block mb-2">Randevu & Bilgi</span>
                 <div>
                   <span className="text-[9px] text-white/30 uppercase tracking-widest">🇹🇷 Türkiye</span>
-                  <a href="tel:05544062383" className="block text-xl font-display font-bold text-white hover:text-teal transition-colors">
+                  <a href="tel:05544062383" title="Konya Hacamat Türkiye: 0554 406 23 83" className="block text-xl font-display font-bold text-white hover:text-teal transition-colors">
                     0554 406 23 83
                   </a>
                 </div>
                 <div>
                   <span className="text-[9px] text-white/30 uppercase tracking-widest">🇩🇪 Almanya</span>
-                  <a href="tel:+491634492870" className="block text-xl font-display font-bold text-white hover:text-teal transition-colors">
+                  <a href="tel:+491634492870" title="Konya Hacamat Almanya: +49 163 449 28 70" className="block text-xl font-display font-bold text-white hover:text-teal transition-colors">
                     +49 163 449 28 70
                   </a>
                 </div>
               </div>
               <div>
                 <span className="text-[10px] text-white/30 font-bold uppercase tracking-widest block mb-1">Web</span>
-                <a href="https://www.konyahacamat.net" className="text-teal text-sm hover:underline font-bold">
+                <a href="https://www.konyahacamat.net" target="_blank" rel="noopener noreferrer nofollow" title="Konya Hacamat Resmi Web Sitesi" className="text-teal text-sm hover:underline font-bold">
                   www.konyahacamat.net
                 </a>
               </div>
@@ -111,13 +112,13 @@ export default function Footer() {
         <div className="pt-10 border-t border-white/5 flex flex-col md:flex-row justify-between items-center gap-6">
           <p className="text-[10px] text-white/30 font-bold uppercase tracking-widest text-center md:text-left">
             © {currentYear} KONYA HACAMAT - EBUSADULLAH AKADEMİ &nbsp;|&nbsp;
-            <a href="https://tataryazilim.com" target="_blank" rel="noopener noreferrer" className="hover:text-teal transition-colors">
+            <a href="https://tataryazilim.com" target="_blank" rel="noopener noreferrer nofollow" title="Tatar Yazılım" className="hover:text-teal transition-colors">
               tataryazilim.com
             </a>
           </p>
           <div className="flex gap-8 text-[10px] font-black uppercase tracking-widest">
-            <Link href="/gizlilik" className="text-white/30 hover:text-teal transition-colors">Gizlilik Politikası</Link>
-            <Link href="/kvkk" className="text-white/30 hover:text-teal transition-colors">KVKK</Link>
+            <Link href="/gizlilik" title="Gizlilik Politikası" className="text-white/30 hover:text-teal transition-colors">Gizlilik Politikası</Link>
+            <Link href="/kvkk" title="KVKK Aydınlatma Metni" className="text-white/30 hover:text-teal transition-colors">KVKK</Link>
           </div>
         </div>
       </div>

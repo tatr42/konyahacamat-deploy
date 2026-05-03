@@ -1,13 +1,13 @@
 import type { Metadata } from "next";
 import Link from "next/link";
-import { Droplets, ShieldCheck, Clock, CheckCircle, ChevronRight, MessageCircle, Phone } from "lucide-react";
+import { Droplets, ShieldCheck, Clock, CheckCircle, ChevronRight, MessageCircle } from "lucide-react";
 import { getYearsExpStr } from "@/lib/experience";
 
 export const metadata: Metadata = {
   title: "Hacamat & Sülük Terapisi Konya | Geleneksel Tıp Hizmetleri | Ebusadullah",
   description: "Konya Ebusadullah Akademi'de kuru hacamat, yaş hacamat ve sülük terapisi hizmetleri. CE sertifikalı steril uygulama, 32+ yıl deneyim, Almanya periyodik seansları.",
-  keywords: ["konya hacamat hizmetleri", "konya geleneksel tıp", "kuru hacamat konya", "yaş hacamat", "sülük terapisi", "hacamat ve sülük", "ebusadullah konya"],
-  alternates: { canonical: "https://konyahacamat.net/hizmetler" },
+
+  alternates: { canonical: "/hizmetler" },
   openGraph: {
     title: "Hacamat & Sülük Terapisi Konya | Ebusadullah Akademi",
     description: "Kuru hacamat, yaş hacamat ve sülük terapisi. Steril uygulama, 32+ yıl deneyim. Konya ve Almanya'da hizmet.",
@@ -162,12 +162,12 @@ export default function HizmetlerPage() {
           </div>
           <div className="flex flex-wrap gap-3 shrink-0">
             <a href="https://wa.me/905544062383?text=Merhaba%2C%20tedavi%20randevusu%20almak%20istiyorum."
-              target="_blank" rel="noopener noreferrer"
+              target="_blank" rel="noopener noreferrer nofollow"
               className="flex items-center gap-2 bg-[#25D366] text-white px-6 py-4 rounded-2xl font-black text-sm uppercase tracking-widest hover:scale-105 transition-all">
               <MessageCircle size={18} fill="currentColor" /> 🇹🇷 WhatsApp TR
             </a>
             <a href="https://wa.me/491634492870?text=Merhaba%2C%20tedavi%20randevusu%20almak%20istiyorum."
-              target="_blank" rel="noopener noreferrer"
+              target="_blank" rel="noopener noreferrer nofollow"
               className="flex items-center gap-2 bg-white/10 text-white border border-white/20 px-6 py-4 rounded-2xl font-black text-sm uppercase tracking-widest hover:bg-white/15 transition-all">
               <MessageCircle size={18} /> 🇩🇪 WhatsApp Almanya
             </a>

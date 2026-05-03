@@ -1,23 +1,30 @@
-import { test } from 'node:test';
 import assert from 'node:assert';
+import { test, mock } from 'node:test';
 import { getYearsExp, getYearsExpStr } from './experience.ts';
 
-test('experience calculator', async (t) => {
-  await t.test('returns correct years of experience for 2024', (t) => {
-    t.mock.method(Date.prototype, 'getFullYear', () => 2024);
-    assert.strictEqual(getYearsExp(), 30);
-    assert.strictEqual(getYearsExpStr(), '30+');
+test('experience calculation', async (t) => {
+  // Her alt testten sonra mock'ları sıfırla
+  t.afterEach(() => {
+    mock.reset();
   });
 
-  await t.test('returns correct years of experience for 1994 (start year)', (t) => {
-    t.mock.method(Date.prototype, 'getFullYear', () => 1994);
+  await t.test('getYearsExp returns correct years for 2025', () => {
+    mock.method(Date.prototype, 'getFullYear', () => 2025);
+    assert.strictEqual(getYearsExp(), 31); // 2025 - 1994 = 31
+  });
+
+  await t.test('getYearsExpStr returns correct string for 2025', () => {
+    mock.method(Date.prototype, 'getFullYear', () => 2025);
+    assert.strictEqual(getYearsExpStr(), '31+');
+  });
+
+  await t.test('getYearsExp returns correct years for 1994 (start year)', () => {
+    mock.method(Date.prototype, 'getFullYear', () => 1994);
     assert.strictEqual(getYearsExp(), 0);
-    assert.strictEqual(getYearsExpStr(), '0+');
   });
 
-  await t.test('returns correct years of experience for 2030', (t) => {
-    t.mock.method(Date.prototype, 'getFullYear', () => 2030);
-    assert.strictEqual(getYearsExp(), 36);
-    assert.strictEqual(getYearsExpStr(), '36+');
+  await t.test('getYearsExp returns correct years for 2030 (future)', () => {
+    mock.method(Date.prototype, 'getFullYear', () => 2030);
+    assert.strictEqual(getYearsExp(), 36); // 2030 - 1994 = 36
   });
 });

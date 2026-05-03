@@ -6,6 +6,7 @@ const services = [
   {
     icon: Droplets,
     title: "Hacamat Tedavisi",
+    linkTitle: "Kuru ve Yaş Hacamat Tedavisi Konya",
     sub: "Kuru & Yaş Hacamat",
     desc: `Hz. Peygamber'in (s.a.v) tavsiye ettiği kadim tedavi yöntemi. ${getYearsExpStr()} yıllık deneyim, steril malzemeler, uzman eller. Konya ve çevre illerde hizmet.`,
     href: "/hizmetler/hacamat",
@@ -16,6 +17,7 @@ const services = [
   {
     icon: Bug,
     title: "Sülük Terapisi",
+    linkTitle: "Sülük Terapisi Hirudoterapi Konya",
     sub: "Hirudoterapi",
     desc: "Tıbbi sülüklerle doğal kan temizliği ve doku yenilenmesi. Canlı, sağlıklı, tıbbi standartlarda sülükler. Serviks ve jinekolojik uygulamalar dahil.",
     href: "/hizmetler/suluk",
@@ -26,6 +28,7 @@ const services = [
   {
     icon: GraduationCap,
     title: "Hacamat & Sülük Kursu",
+    linkTitle: "Sertifikalı Hacamat ve Sülük Kursu",
     sub: "Uluslararası Sertifika",
     desc: "Uygulamalı eğitim. 1200+ mezun. Hacamat, sülük, akupunktur ve manuel sınıkçı kursları. Mezunlar kendi merkezlerini kuruyor.",
     href: "/egitimler",
@@ -36,6 +39,7 @@ const services = [
   {
     icon: ShoppingBag,
     title: "Malzeme Satışı",
+    linkTitle: "Hacamat Malzeme Satışı - Kupalar ve Ekipman",
     sub: "Kupalar & Ekipman",
     desc: "Profesyonel hacamat kupaları, vakum setleri, steril lanseler, tıbbi sülükler. Kurs mezunlarına özel indirim. Toptan ve perakende.",
     href: "/malzemeler",
@@ -87,6 +91,7 @@ export default function ServicesGrid() {
               <a
                 key={svc.title}
                 href={svc.href}
+                title={svc.linkTitle}
                 className={`group relative rounded-3xl p-7 border border-white/5 hover:border-teal/20 bg-gradient-to-br ${svc.gradient} bg-white/[0.02] transition-all duration-500 hover:shadow-xl hover:shadow-teal/5 hover:-translate-y-1 flex flex-col gap-5 overflow-hidden shrink-0 w-[78vw] sm:w-auto snap-start`}
               >
                 <span className="absolute top-5 right-5 text-[9px] font-black uppercase tracking-widest text-white/40 bg-white/5 border border-white/5 px-2.5 py-1 rounded-full">

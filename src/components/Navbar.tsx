@@ -6,32 +6,32 @@ import { usePathname } from 'next/navigation';
 import { ChevronDown, Calendar, Home, Newspaper, Building2, Stethoscope, X } from 'lucide-react';
 
 const navLinks = [
-  { name: 'Ana Sayfa', href: '/' },
+  { name: 'Ana Sayfa', href: '/', title: 'Ana Sayfa' },
   {
     name: 'Hizmetler',
     href: '#',
     dropdown: [
-      { name: 'Hacamat', sub: 'Kuru & Yaş Hacamat Tedavisi', href: '/hizmetler/hacamat' },
-      { name: 'Sülük Terapisi', sub: 'Doğal Hirudoterapi', href: '/hizmetler/suluk' },
-      { name: 'Kurs & Eğitim', sub: 'Sertifikalı Uzmanlık Programı', href: '/egitimler' },
+      { name: 'Hacamat', sub: 'Kuru & Yaş Hacamat Tedavisi', href: '/hizmetler/hacamat', title: 'Kuru ve Yaş Hacamat Tedavisi Konya' },
+      { name: 'Sülük Terapisi', sub: 'Doğal Hirudoterapi', href: '/hizmetler/suluk', title: 'Sülük Terapisi Hirudoterapi Konya' },
+      { name: 'Kurs & Eğitim', sub: 'Sertifikalı Uzmanlık Programı', href: '/egitimler', title: 'Hacamat Kursu ve Eğitimi' },
     ]
   },
-  { name: 'Takvim', href: '/takvim' },
+  { name: 'Takvim', href: '/takvim', title: 'Hacamat Randevu Takvimi' },
   {
     name: 'Medya',
     href: '#',
     dropdown: [
-      { name: 'Blog', sub: 'Hacamat & Sağlık Yazıları', href: '/blog' },
-      { name: 'Basın', sub: 'Medya & Haberler', href: '/basin' },
-      { name: 'Galeri', sub: 'Fotoğraf & Video', href: '/galeri' },
+      { name: 'Blog', sub: 'Hacamat & Sağlık Yazıları', href: '/blog', title: 'Hacamat ve Sağlık Blog Yazıları' },
+      { name: 'Basın', sub: 'Medya & Haberler', href: '/basin', title: 'Basın ve Medya Haberleri' },
+      { name: 'Galeri', sub: 'Fotoğraf & Video', href: '/galeri', title: 'Hacamat Fotoğraf ve Video Galerisi' },
     ]
   },
   {
     name: 'Kurumsal',
     href: '#',
     dropdown: [
-      { name: 'Hakkımızda', sub: 'Biz Kimiz?', href: '/hakkimizda' },
-      { name: 'İletişim', sub: 'Bize Ulaşın', href: '/iletisim' },
+      { name: 'Hakkımızda', sub: 'Biz Kimiz?', href: '/hakkimizda', title: 'Ebusadullah Hacamat Hakkında' },
+      { name: 'İletişim', sub: 'Bize Ulaşın', href: '/iletisim', title: 'Konya Hacamat İletişim' },
     ]
   },
 ];
@@ -84,7 +84,7 @@ export default function Navbar() {
         scrolled ? 'bg-anthracite-dark/95 backdrop-blur-md py-3 shadow-2xl' : 'bg-transparent py-3 lg:py-6'
       }`}>
         <div className="container-site flex justify-between items-end lg:items-center">
-          <Link href="/" className="flex items-center gap-2 group shrink-0">
+          <Link href="/" title="Konya Hacamat Ana Sayfa" className="flex items-center gap-2 group shrink-0">
             <Image src="/fav.webp" alt="Konya Hacamat" width={40} height={40} className="w-8 h-8 lg:w-10 lg:h-10 rounded-lg object-contain transition-transform group-hover:scale-110" />
             <div className="flex flex-col text-left">
               <span className="text-white font-bold text-sm lg:text-lg leading-none tracking-tight uppercase">
@@ -105,7 +105,7 @@ export default function Navbar() {
                     <ChevronDown size={14} className="group-hover/item:rotate-180 transition-transform" />
                   </button>
                 ) : (
-                  <Link href={link.href} className="inline-flex items-center text-[12px] font-bold text-white/70 hover:text-teal transition-all tracking-wide uppercase py-4">
+                  <Link href={link.href} title={link.title} className="inline-flex items-center text-[12px] font-bold text-white/70 hover:text-teal transition-all tracking-wide uppercase py-4">
                     {link.name}
                   </Link>
                 )}
@@ -113,7 +113,7 @@ export default function Navbar() {
                   <div className="absolute top-[80%] left-[-20px] w-64 pt-[20px] opacity-0 translate-y-4 pointer-events-none group-hover/item:opacity-100 group-hover/item:translate-y-0 group-hover/item:pointer-events-auto transition-all duration-300 z-[110]">
                     <div className="bg-anthracite-dark border border-white/10 rounded-2xl p-4 shadow-2xl">
                       {link.dropdown.map((sub) => (
-                        <Link key={sub.name} href={sub.href} className="block p-3 rounded-xl hover:bg-white/5 transition-colors group/sub">
+                        <Link key={sub.name} href={sub.href} title={sub.title} className="block p-3 rounded-xl hover:bg-white/5 transition-colors group/sub">
                           <div className="text-white font-bold text-sm group-hover/sub:text-teal">{sub.name}</div>
                           <div className="text-[10px] text-white/40 leading-tight">{sub.sub}</div>
                         </Link>
@@ -125,7 +125,7 @@ export default function Navbar() {
             ))}
           </div>
 
-          <Link href="/takvim"
+          <Link href="/takvim" title="Hacamat Randevusu Al"
             className="bg-teal text-anthracite-dark px-4 py-2.5 lg:px-7 lg:py-3 rounded-full font-black text-[10px] lg:text-[11px] uppercase tracking-widest hover:scale-105 hover:shadow-[0_0_25px_rgba(20,184,166,0.4)] active:scale-95 transition-all duration-300 flex items-center gap-1.5 whitespace-nowrap shrink-0">
             <Calendar size={14} className="shrink-0" /> Randevu Al
           </Link>
@@ -175,7 +175,7 @@ export default function Navbar() {
 
             if (isCenter) {
               return (
-                <Link key={item.name} href={item.href!} className="flex-1 flex flex-col items-center justify-center pb-2">
+                <Link key={item.name} href={item.href!} title="Ana Sayfa" className="flex-1 flex flex-col items-center justify-center pb-2">
                   <div className={`w-14 h-14 rounded-2xl flex items-center justify-center shadow-lg -mt-4 transition-all ${
                     isActive ? 'bg-teal shadow-teal/40 scale-105' : 'bg-teal/90 shadow-teal/20 active:scale-95'
                   }`}>
