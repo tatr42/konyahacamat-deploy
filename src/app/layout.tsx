@@ -1,6 +1,6 @@
 import type { Metadata } from "next";
 import "./globals.css";
-import { GoogleAnalytics } from "@next/third-parties/google";
+import Script from "next/script";
 
 const BASE = "https://www.konyahacamat.net";
 
@@ -107,7 +107,20 @@ export default function RootLayout({ children }: { children: React.ReactNode }) 
       </head>
       <body className="bg-anthracite-dark antialiased">
         {children}
-        <GoogleAnalytics gaId="G-HY8VE2CQS1" />
+        <Script
+          src={`https://www.googletagmanager.com/gtag/js?id=G-HY8VE2CQS1`}
+          strategy="lazyOnload"
+        />
+        <Script id="google-analytics" strategy="lazyOnload">
+          {`
+            window.dataLayer = window.dataLayer || [];
+            function gtag(){dataLayer.push(arguments);}
+            gtag('js', new Date());
+            gtag('config', 'G-HY8VE2CQS1', {
+              page_path: window.location.pathname,
+            });
+          `}
+        </Script>
       </body>
     </html>
   );

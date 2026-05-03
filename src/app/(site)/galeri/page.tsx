@@ -1,5 +1,6 @@
 import type { Metadata } from "next";
 import Link from "next/link";
+import Image from "next/image";
 
 export const metadata: Metadata = {
   title: "Galeri | Hacamat Seansı & Kurs Fotoğrafları | Ebusadullah Akademi Konya",
@@ -78,7 +79,7 @@ export default function GaleriPage() {
         <div className="container-site">
           <div className="flex flex-col md:flex-row gap-10 items-start">
             <div className="bg-white rounded-2xl p-5 shrink-0 shadow-lg">
-              <img src="/logo.webp" alt="Konya Hacamat Ebusadullah" className="h-14 w-auto" />
+              <Image src="/logo.webp" alt="Konya Hacamat Ebusadullah" width={200} height={56} className="h-14 w-auto" />
             </div>
             <div className="space-y-3 text-white/60 text-sm leading-relaxed max-w-2xl">
               <p>
