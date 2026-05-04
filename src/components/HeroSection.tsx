@@ -50,7 +50,7 @@ export default function HeroSection() {
               <span className="text-[11px] font-bold uppercase tracking-widest invisible select-none pointer-events-none absolute">
                 Afyonkarahisar
               </span>
-              <span className="text-[11px] font-bold text-white/50 uppercase tracking-widest w-[110px]">
+              <span className="text-[11px] font-bold text-white/70 uppercase tracking-widest w-[110px]">
                 {cities[cityIdx]}
               </span>
             </div>

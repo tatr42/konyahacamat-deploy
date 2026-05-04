@@ -116,7 +116,7 @@ export default function HizmetlerPage() {
           <div className="mb-10">
             <span className="text-teal text-[11px] font-black uppercase tracking-[0.3em]">Hijyen Protokolü</span>
             <h2 className="font-display text-3xl font-bold text-white mt-3">Güvenliğiniz Önceliğimizdir</h2>
-            <p className="text-white/50 mt-2 text-sm max-w-xl">Sıfır enfeksiyon riski için her seansta uluslararası sterilizasyon standartlarını uyguluyoruz.</p>
+            <p className="text-white/70 mt-2 text-sm max-w-xl">Sıfır enfeksiyon riski için her seansta uluslararası sterilizasyon standartlarını uyguluyoruz.</p>
           </div>
           <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-4">
             {hijyen.map(h => (
@@ -158,7 +158,7 @@ export default function HizmetlerPage() {
         <div className="container-site flex flex-col md:flex-row items-center justify-between gap-8">
           <div>
             <h2 className="font-display text-3xl font-bold text-white mb-2">Tedavinizi Planlayın</h2>
-            <p className="text-white/50 max-w-md">WhatsApp üzerinden bize ulaşarak uygun tarih ve seans hakkında bilgi alabilirsiniz.</p>
+            <p className="text-white/70 max-w-md">WhatsApp üzerinden bize ulaşarak uygun tarih ve seans hakkında bilgi alabilirsiniz.</p>
           </div>
           <div className="flex flex-wrap gap-3 shrink-0">
             <a href="https://wa.me/905544062383?text=Merhaba%2C%20tedavi%20randevusu%20almak%20istiyorum." title="Türkiye Hacamat İletişim"

@@ -70,7 +70,7 @@ export default async function BasinDetayPage({ params }: { params: Promise<{ slu
       <div className="container-site max-w-3xl">
 
         {/* Breadcrumb */}
-        <div className="flex items-center gap-2 text-white/30 text-sm mb-8">
+        <div className="flex items-center gap-2 text-white/70 text-sm mb-8">
           <Link 
             href="/basin" 
             className="hover:text-teal transition-colors flex items-center gap-1" 
@@ -87,7 +87,7 @@ export default async function BasinDetayPage({ params }: { params: Promise<{ slu
           <span className="text-[11px] font-black text-teal uppercase tracking-widest bg-teal/10 px-3 py-1 rounded-full flex items-center gap-1">
             <Newspaper size={12} /> {item.kaynak}
           </span>
-          <span className="text-white/30 text-sm flex items-center gap-1">
+          <span className="text-white/70 text-sm flex items-center gap-1">
             <Calendar size={12} /> {item.yil}
           </span>
         </div>
@@ -118,7 +118,7 @@ export default async function BasinDetayPage({ params }: { params: Promise<{ slu
         {/* CTA (Eylem Çağrısı) */}
         <div className="bg-teal/5 border border-teal/20 rounded-2xl p-8 text-center">
           <h3 className="text-white font-bold text-xl mb-2">Hacamat Tedavisi İçin Randevu Alın</h3>
-          <p className="text-white/50 text-sm mb-6">Konya veya Almanya seansları için bize ulaşın.</p>
+          <p className="text-white/70 text-sm mb-6">Konya veya Almanya seansları için bize ulaşın.</p>
           <div className="flex flex-wrap justify-center gap-3">
             <a 
               href="https://wa.me/905544062383" 

@@ -63,7 +63,7 @@ export default function TakvimPage() {
                 </div>
                 <div>
                   <div className="text-white font-bold text-sm mb-1">Sünnet Günler</div>
-                  <p className="text-white/50 text-xs leading-relaxed">
+                  <p className="text-white/70 text-xs leading-relaxed">
                     Hz. Peygamber'in tavsiyesiyle hicri ayın <strong className="text-white">17, 19 ve 21.</strong> günleri hacamat için en faziletli günlerdir.
                   </p>
                 </div>
@@ -115,7 +115,7 @@ export default function TakvimPage() {
                 <Shield size={18} className="text-amber-400 shrink-0 mt-0.5" />
                 <div>
                   <div className="text-white font-bold text-sm mb-1">Seans Öncesi</div>
-                  <ul className="text-white/50 text-xs space-y-1">
+                  <ul className="text-white/70 text-xs space-y-1">
                     <li>• Aç karnına veya hafif yemekle gelin</li>
                     <li>• Son 2 saatte ağır yemek yemeyin</li>
                     <li>• Bol su için</li>
@@ -131,7 +131,7 @@ export default function TakvimPage() {
                 </div>
                 <div>
                   <div className="text-white font-bold text-sm">Seans Süresi</div>
-                  <div className="text-white/50 text-xs">Kuru hacamat 30–45 dk · Yaş hacamat 45–60 dk</div>
+                  <div className="text-white/70 text-xs">Kuru hacamat 30–45 dk · Yaş hacamat 45–60 dk</div>
                 </div>
               </div>
 
@@ -200,7 +200,7 @@ export default function TakvimPage() {
                 className="bg-white/5 border border-white/10 rounded-2xl p-5 hover:border-teal/30 hover:bg-white/8 transition-all group">
                 <div className="text-3xl mb-3">{l.emoji}</div>
                 <div className="text-white font-bold text-sm mb-1 group-hover:text-teal transition-colors">{l.baslik}</div>
-                <div className="text-white/50 text-xs leading-relaxed">{l.aciklama}</div>
+                <div className="text-white/70 text-xs leading-relaxed">{l.aciklama}</div>
               </Link>
             ))}
           </div>
@@ -216,7 +216,7 @@ export default function TakvimPage() {
             </div>
             <div>
               <h2 className="font-display text-3xl font-bold text-white mb-2">Sorularınız mı var?</h2>
-              <p className="text-white/50">Randevu öncesi ücretsiz danışmanlık için bize yazın.</p>
+              <p className="text-white/70">Randevu öncesi ücretsiz danışmanlık için bize yazın.</p>
             </div>
           </div>
           <div className="flex gap-3 flex-wrap">

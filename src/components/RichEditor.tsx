@@ -150,7 +150,7 @@ export default function RichEditor({
       title={title}
       onMouseDown={e => { e.preventDefault(); onClick(); }}
       className={`p-1.5 rounded-lg transition-all hover:bg-white/15 ${
-        active ? "bg-teal/20 text-teal" : "text-white/50 hover:text-white"
+        active ? "bg-teal/20 text-teal" : "text-white/70 hover:text-white"
       }`}
     >
       {children}
@@ -240,13 +240,13 @@ export default function RichEditor({
           <div className="bg-[#141414] border border-white/15 rounded-2xl p-6 w-full max-w-sm shadow-2xl">
             <div className="flex items-center justify-between mb-5">
               <h3 className="font-bold text-white">Fotoğraf Ekle</h3>
-              <button onClick={() => setImgModal("closed")} className="text-white/30 hover:text-white"><X size={18} /></button>
+              <button onClick={() => setImgModal("closed")} aria-label="Kapat" className="text-white/70 hover:text-white"><X size={18} /></button>
             </div>
 
             {imgModal === "uploading" && (
               <div className="text-center py-8">
                 <div className="w-8 h-8 border-2 border-teal border-t-transparent rounded-full animate-spin mx-auto mb-3" />
-                <p className="text-white/50 text-sm">Yükleniyor, WebP&apos;ye dönüştürülüyor...</p>
+                <p className="text-white/70 text-sm">Yükleniyor, WebP&apos;ye dönüştürülüyor...</p>
               </div>
             )}
 
@@ -259,7 +259,7 @@ export default function RichEditor({
                   <Upload size={18} className="text-teal shrink-0" />
                   <div>
                     <div className="text-white font-bold text-sm">Dosya Yükle</div>
-                    <div className="text-white/30 text-xs">PNG, JPG → otomatik WebP dönüşümü</div>
+                    <div className="text-white/70 text-xs">PNG, JPG → otomatik WebP dönüşümü</div>
                   </div>
                 </button>
                 <button
@@ -269,7 +269,7 @@ export default function RichEditor({
                   <Link2 size={18} className="text-white/40 shrink-0" />
                   <div>
                     <div className="text-white font-bold text-sm">URL ile Ekle</div>
-                    <div className="text-white/30 text-xs">https://... veya /uploads/resim.webp</div>
+                    <div className="text-white/70 text-xs">https://... veya /uploads/resim.webp</div>
                   </div>
                 </button>
                 <input
@@ -323,9 +323,9 @@ export default function RichEditor({
           <div className="bg-[#141414] border border-white/15 rounded-2xl p-6 w-full max-w-sm shadow-2xl">
             <div className="flex items-center justify-between mb-4">
               <h3 className="font-bold text-white">Link Ekle</h3>
-              <button onClick={() => setLinkModal(false)} className="text-white/30 hover:text-white"><X size={18} /></button>
+              <button onClick={() => setLinkModal(false)} aria-label="Kapat" className="text-white/70 hover:text-white"><X size={18} /></button>
             </div>
-            <p className="text-white/30 text-xs mb-3">Önce metni seçin, sonra linki ekleyin.</p>
+            <p className="text-white/70 text-xs mb-3">Önce metni seçin, sonra linki ekleyin.</p>
             <input
               type="text"
               value={linkUrl}
@@ -355,7 +355,7 @@ export default function RichEditor({
           <div className="bg-[#141414] border border-white/15 rounded-2xl p-6 w-full max-w-sm shadow-2xl">
             <div className="flex items-center justify-between mb-4">
               <h3 className="font-bold text-white">YouTube Video Ekle</h3>
-              <button onClick={() => setVideoModal(false)} className="text-white/30 hover:text-white"><X size={18} /></button>
+              <button onClick={() => setVideoModal(false)} aria-label="Kapat" className="text-white/70 hover:text-white"><X size={18} /></button>
             </div>
             <input
               type="text"

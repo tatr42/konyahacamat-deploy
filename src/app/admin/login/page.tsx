@@ -48,7 +48,7 @@ export default function AdminLoginPage() {
           <h1 className="text-white font-black text-xl tracking-tight">
             Eb<span className="text-teal">Panel</span>
           </h1>
-          <p className="text-white/30 text-xs mt-1 uppercase tracking-widest">konyahacamat.net</p>
+          <p className="text-white/70 text-xs mt-1 uppercase tracking-widest">konyahacamat.net</p>
         </div>
 
         {/* Form */}
@@ -69,7 +69,7 @@ export default function AdminLoginPage() {
               <button
                 type="button"
                 onClick={() => setShow(s => !s)}
-                className="absolute right-4 top-1/2 -translate-y-1/2 text-white/30 hover:text-white transition-colors"
+                className="absolute right-4 top-1/2 -translate-y-1/2 text-white/70 hover:text-white transition-colors"
               >
                 {show ? <EyeOff size={17} /> : <Eye size={17} />}
               </button>

@@ -122,7 +122,7 @@ export default function HacamatCalendar() {
       {/* Yıl navigasyonu */}
       <div className="flex items-center justify-between bg-white/5 border border-white/10 rounded-2xl px-6 py-4">
         <button onClick={() => setYil(y => y - 1)}
-          className="text-white/50 hover:text-teal font-black text-lg px-3 py-1 rounded-lg hover:bg-white/5 transition-colors">
+          className="text-white/70 hover:text-teal font-black text-lg px-3 py-1 rounded-lg hover:bg-white/5 transition-colors">
           ‹ {yil - 1}
         </button>
         <div className="text-center">
@@ -130,7 +130,7 @@ export default function HacamatCalendar() {
           <div className="text-white/40 text-[10px] uppercase tracking-widest">Hacamat Takvimi</div>
         </div>
         <button onClick={() => setYil(y => y + 1)}
-          className="text-white/50 hover:text-teal font-black text-lg px-3 py-1 rounded-lg hover:bg-white/5 transition-colors">
+          className="text-white/70 hover:text-teal font-black text-lg px-3 py-1 rounded-lg hover:bg-white/5 transition-colors">
           {yil + 1} ›
         </button>
       </div>
@@ -146,15 +146,15 @@ export default function HacamatCalendar() {
       <div className="flex flex-wrap gap-4 text-xs bg-white/5 border border-white/10 rounded-xl px-5 py-3">
         <div className="flex items-center gap-1.5">
           <div className="w-4 h-4 rounded bg-green-100 border border-green-300" />
-          <span className="text-white/50">Faziletli Hacamat Günü (13, 14, 15, 17, 19, 21)</span>
+          <span className="text-white/70">Faziletli Hacamat Günü (13, 14, 15, 17, 19, 21)</span>
         </div>
         <div className="flex items-center gap-1.5">
           <div className="w-4 h-4 rounded bg-yellow-400" />
-          <span className="text-white/50">Bugün</span>
+          <span className="text-white/70">Bugün</span>
         </div>
         <div className="flex items-center gap-1.5">
           <div className="w-4 h-4 rounded bg-teal" />
-          <span className="text-white/50">Seçili Gün</span>
+          <span className="text-white/70">Seçili Gün</span>
         </div>
       </div>
 
@@ -170,7 +170,7 @@ export default function HacamatCalendar() {
                 <span className="text-teal text-[10px] font-black bg-teal/10 px-2 py-0.5 rounded-full">✦ Faziletli Hacamat Günü</span>
               )}
             </div>
-            <button onClick={() => setSecili(null)} className="text-white/30 hover:text-white text-xl">✕</button>
+            <button onClick={() => setSecili(null)} aria-label="Kapat" className="text-white/70 hover:text-white text-xl">✕</button>
           </div>
           <div className="grid grid-cols-1 sm:grid-cols-2 gap-3">
             <a href={whatsapp("TR")}  title="🇹🇷 TR Randevu" target="_blank" rel="noopener noreferrer nofollow"

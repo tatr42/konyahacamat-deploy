@@ -35,7 +35,7 @@ export default function BlogPage() {
           <h1 className="font-display text-5xl md:text-6xl font-bold text-white mt-4 mb-5">
             Hacamat Hakkında<br /><span className="text-teal italic">Her Şey</span>
           </h1>
-          <p className="text-white/50 text-lg max-w-2xl leading-relaxed mb-8">
+          <p className="text-white/70 text-lg max-w-2xl leading-relaxed mb-8">
             32 yılı aşkın deneyimimizin birikimi: hacamat, sülük terapisi, İslam tıbbı ve doğal
             şifa yöntemleri hakkında uzman içerikler. Doğru bilgi, sağlıklı yaşam.
           </p>

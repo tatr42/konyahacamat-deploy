@@ -90,7 +90,7 @@ export default function Navbar() {
               <span className="text-white font-bold text-sm lg:text-lg leading-none tracking-tight uppercase">
                 konyahacamat<span className="text-teal">.net</span>
               </span>
-              <span className="text-[8px] lg:text-[9px] text-white/50 font-black uppercase tracking-[0.15em] mt-0.5 whitespace-nowrap">
+              <span className="text-[8px] lg:text-[9px] text-white/70 font-black uppercase tracking-[0.15em] mt-0.5 whitespace-nowrap">
                 EBUSADULLAH • HACAMAT & AKADEMİ
               </span>
             </div>
@@ -143,7 +143,7 @@ export default function Navbar() {
                 <div className="absolute bottom-[80px] left-4 right-4 bg-anthracite-dark border border-white/10 rounded-3xl shadow-2xl overflow-hidden animate-in slide-in-from-bottom-4 duration-300">
                     <div className="flex items-center justify-between p-5 border-b border-white/5">
                         <span className="text-teal font-black uppercase tracking-widest text-xs">{item.name}</span>
-                        <button onClick={() => setMobileOpen(null)} className="p-2 bg-white/5 rounded-full text-white/50">
+                        <button onClick={() => setMobileOpen(null)} aria-label="Menüyü kapat" className="p-2 bg-white/5 rounded-full text-white/70">
                             <X size={20} />
                         </button>
                     </div>
@@ -181,7 +181,7 @@ export default function Navbar() {
                   }`}>
                     <Image src="/fav.webp" alt="Ana Sayfa" width={36} height={36} className="w-9 h-9 rounded-xl object-contain" />
                   </div>
-                  <span className="text-[9px] font-black uppercase tracking-widest mt-1.5 text-white/50">{item.name}</span>
+                  <span className="text-[9px] font-black uppercase tracking-widest mt-1.5 text-white/70">{item.name}</span>
                 </Link>
               );
             }
@@ -197,9 +197,9 @@ export default function Navbar() {
                 }}
                 className="flex-1 flex flex-col items-center justify-center py-3 gap-1 active:bg-white/5 transition-colors">
                 <div className={`relative transition-all ${isActive || isDropOpen ? 'scale-110' : ''}`}>
-                  <Icon size={20} className={isActive || isDropOpen ? 'text-teal' : 'text-white/50'} />
+                  <Icon size={20} className={isActive || isDropOpen ? 'text-teal' : 'text-white/70'} />
                 </div>
-                <span className={`text-[9px] font-black uppercase tracking-widest ${isActive || isDropOpen ? 'text-teal' : 'text-white/50'}`}>
+                <span className={`text-[9px] font-black uppercase tracking-widest ${isActive || isDropOpen ? 'text-teal' : 'text-white/70'}`}>
                   {item.name}
                 </span>
               </button>

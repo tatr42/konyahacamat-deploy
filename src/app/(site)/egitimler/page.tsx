@@ -120,7 +120,7 @@ export default function EgitimlerPage() {
                 <a.icon size={20} className="text-teal" />
               </div>
               <div className="text-white font-bold text-sm">{a.baslik}</div>
-              <div className="text-white/50 text-xs leading-relaxed">{a.aciklama}</div>
+              <div className="text-white/70 text-xs leading-relaxed">{a.aciklama}</div>
             </div>
           ))}
         </div>
@@ -132,7 +132,7 @@ export default function EgitimlerPage() {
           <div className="mb-12">
             <span className="text-teal text-[11px] font-black uppercase tracking-[0.3em]">Kurslarımız</span>
             <h2 className="font-display text-4xl font-bold text-white mt-3">Eğitim Programları</h2>
-            <p className="text-white/50 mt-3 max-w-xl">Tüm eğitimler küçük gruplarla, birebir süpervizyon altında gerçekleştirilir.</p>
+            <p className="text-white/70 mt-3 max-w-xl">Tüm eğitimler küçük gruplarla, birebir süpervizyon altında gerçekleştirilir.</p>
           </div>
 
           <div className="grid grid-cols-1 lg:grid-cols-3 gap-7">
@@ -154,7 +154,7 @@ export default function EgitimlerPage() {
 
                 <div className="p-6 flex flex-col gap-5 flex-1">
                   <h3 className="text-white font-bold text-xl leading-snug">{k.baslik}</h3>
-                  <p className="text-white/50 text-sm leading-relaxed">{k.aciklama}</p>
+                  <p className="text-white/70 text-sm leading-relaxed">{k.aciklama}</p>
 
                   <div className="flex flex-wrap gap-2">
                     {[
@@ -274,7 +274,7 @@ export default function EgitimlerPage() {
                 className="bg-white/5 border border-white/10 rounded-2xl p-5 hover:border-teal/30 hover:bg-white/8 transition-all group">
                 <div className="text-3xl mb-3">{l.emoji}</div>
                 <div className="text-white font-bold text-sm mb-1 group-hover:text-teal transition-colors">{l.baslik}</div>
-                <div className="text-white/50 text-xs leading-relaxed">{l.aciklama}</div>
+                <div className="text-white/70 text-xs leading-relaxed">{l.aciklama}</div>
               </Link>
             ))}
           </div>
@@ -290,7 +290,7 @@ export default function EgitimlerPage() {
             </div>
             <div>
               <h2 className="font-display text-3xl font-bold text-white mb-2">Kayıt &amp; Bilgi</h2>
-              <p className="text-white/50">Kurs tarihleri ve ücretler için bize yazın.</p>
+              <p className="text-white/70">Kurs tarihleri ve ücretler için bize yazın.</p>
             </div>
           </div>
           <div className="flex flex-wrap gap-3">

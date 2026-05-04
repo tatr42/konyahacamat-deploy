@@ -23,7 +23,7 @@ export default function Footer() {
                 </span>
               </h3>
             </Link>
-            <p className="text-white/50 text-sm leading-relaxed max-w-xs">
+            <p className="text-white/70 text-sm leading-relaxed max-w-xs">
               Kadim şifa geleneklerini modern sterilizasyon ve uzmanlık eğitimiyle harmanlayarak geleceğe taşıyoruz. {new Date().getFullYear() - 1994}+ yıl, 1200+ mezun.
             </p>
             <div className="flex gap-4">
@@ -70,20 +70,20 @@ export default function Footer() {
               <div className="pt-2 space-y-2">
                 <span className="text-[10px] text-teal font-black uppercase tracking-widest block mb-2">Randevu & Bilgi</span>
                 <div>
-                  <span className="text-[9px] text-white/30 uppercase tracking-widest">🇹🇷 Türkiye</span>
+                  <span className="text-[9px] text-white/70 uppercase tracking-widest">🇹🇷 Türkiye</span>
                   <a href="tel:05544062383" title="Konya Hacamat Türkiye: 0554 406 23 83" className="block text-xl font-display font-bold text-white hover:text-teal transition-colors">
                     0554 406 23 83
                   </a>
                 </div>
                 <div>
-                  <span className="text-[9px] text-white/30 uppercase tracking-widest">🇩🇪 Almanya</span>
+                  <span className="text-[9px] text-white/70 uppercase tracking-widest">🇩🇪 Almanya</span>
                   <a href="tel:+491634492870" title="Konya Hacamat Almanya: +49 163 449 28 70" className="block text-xl font-display font-bold text-white hover:text-teal transition-colors">
                     +49 163 449 28 70
                   </a>
                 </div>
               </div>
               <div>
-                <span className="text-[10px] text-white/30 font-bold uppercase tracking-widest block mb-1">Web</span>
+                <span className="text-[10px] text-white/70 font-bold uppercase tracking-widest block mb-1">Web</span>
                 <a href="https://www.konyahacamat.net" target="_blank" rel="noopener noreferrer nofollow" title="Konya Hacamat Resmi Web Sitesi" className="text-teal text-sm hover:underline font-bold">
                   www.konyahacamat.net
                 </a>
@@ -95,13 +95,13 @@ export default function Footer() {
           <div>
             <div className="p-4 rounded-2xl bg-teal/5 border border-teal/10 flex items-center gap-3">
               <Globe className="text-teal shrink-0" size={20} />
-              <p className="text-[10px] text-white/50 leading-tight font-medium">
+              <p className="text-[10px] text-white/70 leading-tight font-medium">
                 Uzman kadromuzla tüm eğitimlerde <br/><span className="text-white font-bold">Uluslararası Standartlarda Sertifika</span> desteği.
               </p>
             </div>
             <div className="mt-4 p-4 rounded-2xl bg-white/5 border border-white/10 flex items-center gap-3">
               <HeartPulse className="text-teal shrink-0" size={20} />
-              <p className="text-[10px] text-white/50 leading-tight font-medium">
+              <p className="text-[10px] text-white/70 leading-tight font-medium">
                 Türkiye genelinde <span className="text-white font-bold">1200+ aktif mezun</span> kendi merkezinde hizmet veriyor.
               </p>
             </div>
@@ -110,15 +110,15 @@ export default function Footer() {
         </div>
 
         <div className="pt-10 border-t border-white/5 flex flex-col md:flex-row justify-between items-center gap-6">
-          <p className="text-[10px] text-white/30 font-bold uppercase tracking-widest text-center md:text-left">
+          <p className="text-[10px] text-white/70 font-bold uppercase tracking-widest text-center md:text-left">
             © {currentYear} KONYA HACAMAT - EBUSADULLAH AKADEMİ &nbsp;|&nbsp;
             <a href="https://tataryazilim.com" target="_blank" rel="noopener noreferrer nofollow" title="Tatar Yazılım" className="hover:text-teal transition-colors">
               tataryazilim.com
             </a>
           </p>
           <div className="flex gap-8 text-[10px] font-black uppercase tracking-widest">
-            <Link href="/gizlilik" title="Gizlilik Politikası" className="text-white/30 hover:text-teal transition-colors">Gizlilik Politikası</Link>
-            <Link href="/kvkk" title="KVKK Aydınlatma Metni" className="text-white/30 hover:text-teal transition-colors">KVKK</Link>
+            <Link href="/gizlilik" title="Gizlilik Politikası" className="text-white/70 hover:text-teal transition-colors">Gizlilik Politikası</Link>
+            <Link href="/kvkk" title="KVKK Aydınlatma Metni" className="text-white/70 hover:text-teal transition-colors">KVKK</Link>
           </div>
         </div>
       </div>

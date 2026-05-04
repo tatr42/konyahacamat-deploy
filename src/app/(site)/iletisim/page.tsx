@@ -177,7 +177,7 @@ export default function IletisimPage() {
               </div>
 
               <div className="bg-white/5 border border-white/10 rounded-2xl p-6">
-                <div className="text-white/50 text-sm text-center">
+                <div className="text-white/70 text-sm text-center">
                   Ortalama yanıt süresi: <strong className="text-white">15 dakika</strong>
                 </div>
               </div>
@@ -202,7 +202,7 @@ export default function IletisimPage() {
                 className="bg-white/5 border border-white/10 rounded-2xl p-5 hover:border-teal/30 hover:bg-white/8 transition-all group">
                 <div className="text-3xl mb-3">{l.emoji}</div>
                 <div className="text-white font-bold text-sm mb-1 group-hover:text-teal transition-colors">{l.baslik}</div>
-                <div className="text-white/50 text-xs leading-relaxed">{l.aciklama}</div>
+                <div className="text-white/70 text-xs leading-relaxed">{l.aciklama}</div>
               </a>
             ))}
           </div>

@@ -47,7 +47,7 @@ function BarChart({ items, maxVal, colorClass = "bg-teal" }: {
         <div key={i}>
           <div className="flex justify-between items-center mb-1">
             <span className="text-white/70 text-xs truncate max-w-[70%]">{item.label}</span>
-            <span className="text-white font-bold text-xs">{item.value.toLocaleString("tr")}{item.sub && <span className="text-white/30 font-normal"> {item.sub}</span>}</span>
+            <span className="text-white font-bold text-xs">{item.value.toLocaleString("tr")}{item.sub && <span className="text-white/70 font-normal"> {item.sub}</span>}</span>
           </div>
           <div className="h-1.5 bg-white/5 rounded-full overflow-hidden">
             <div className={`h-full ${colorClass} rounded-full transition-all duration-700`}
@@ -174,7 +174,7 @@ export default function AdminPage() {
         </nav>
         <div className="space-y-1 pt-4 border-t border-white/5">
           <Link href="/" title="Ana Sayfa" target="_blank" rel="noopener noreferrer nofollow"
-            className="flex items-center gap-3 px-4 py-2.5 rounded-xl text-sm text-white/30 hover:text-white hover:bg-white/5 transition-all">
+            className="flex items-center gap-3 px-4 py-2.5 rounded-xl text-sm text-white/70 hover:text-white hover:bg-white/5 transition-all">
             <ExternalLink size={15} /> Siteyi Gör
           </Link>
           <button onClick={handleLogout}
@@ -194,12 +194,12 @@ export default function AdminPage() {
           <div className="flex lg:hidden gap-1.5">
             {navItems.map(n => (
               <button key={n.key} onClick={() => setTab(n.key)}
-                className={`px-2.5 py-1.5 rounded-lg text-[11px] font-bold transition-all ${tab === n.key ? "bg-teal text-black" : "bg-white/10 text-white/50"}`}>
+                className={`px-2.5 py-1.5 rounded-lg text-[11px] font-bold transition-all ${tab === n.key ? "bg-teal text-black" : "bg-white/10 text-white/70"}`}>
                 {n.label.split(" ")[0]}
               </button>
             ))}
           </div>
-          <button onClick={handleLogout} className="hidden lg:flex items-center gap-2 text-white/30 hover:text-white text-sm transition-colors">
+          <button onClick={handleLogout} className="hidden lg:flex items-center gap-2 text-white/70 hover:text-white text-sm transition-colors">
             <LogOut size={15} />
           </button>
         </header>
@@ -217,7 +217,7 @@ export default function AdminPage() {
               <div key={s.label} className="bg-white/[0.04] border border-white/[0.07] rounded-2xl p-5 hover:border-white/15 transition-colors">
                 <s.icon size={18} className={`${s.color} mb-3 opacity-80`} />
                 <div className="text-2xl font-black text-white">{s.value}</div>
-                <div className="text-white/30 text-[10px] uppercase tracking-widest mt-1">{s.label}</div>
+                <div className="text-white/70 text-[10px] uppercase tracking-widest mt-1">{s.label}</div>
               </div>
             ))}
           </div>
@@ -264,10 +264,10 @@ export default function AdminPage() {
                       </div>
                     )}
                     <div className="space-y-1.5 text-[11px]">
-                      <p className="text-white/30 font-bold uppercase tracking-widest mb-2">Yapılması gerekenler:</p>
-                      <p className="text-white/50">1. <span className="text-amber-300">analytics.google.com</span> → Admin → Property Access Management</p>
-                      <p className="text-white/50">2. <span className="text-amber-300">ga4-monitor@cagkon-ecommerce.iam.gserviceaccount.com</span> → Viewer ekle</p>
-                      <p className="text-white/50">3. Vercel&apos;de Redeploy yap</p>
+                      <p className="text-white/70 font-bold uppercase tracking-widest mb-2">Yapılması gerekenler:</p>
+                      <p className="text-white/70">1. <span className="text-amber-300">analytics.google.com</span> → Admin → Property Access Management</p>
+                      <p className="text-white/70">2. <span className="text-amber-300">ga4-monitor@cagkon-ecommerce.iam.gserviceaccount.com</span> → Viewer ekle</p>
+                      <p className="text-white/70">3. Vercel&apos;de Redeploy yap</p>
                     </div>
                   </div>
                 ) : (
@@ -284,9 +284,9 @@ export default function AdminPage() {
                         { label: "Hemen Çıkma", value: ga4.summary ? `%${(ga4.summary.bounceRate * 100).toFixed(1)}` : "—", icon: TrendingUp },
                       ].map(s => (
                         <div key={s.label} className="bg-white/5 rounded-xl p-3">
-                          <s.icon size={13} className="text-white/30 mb-1.5" />
+                          <s.icon size={13} className="text-white/70 mb-1.5" />
                           <div className="text-lg font-black">{s.value}</div>
-                          <div className="text-white/30 text-[10px]">{s.label}</div>
+                          <div className="text-white/70 text-[10px]">{s.label}</div>
                         </div>
                       ))}
                     </div>
@@ -377,7 +377,7 @@ export default function AdminPage() {
                           <div className="text-white text-sm font-medium truncate">{p.title}</div>
                           <div className="flex items-center gap-2 mt-0.5">
                             <span className="text-white/20 text-[10px] font-mono">/{p.slug}</span>
-                            <span className={`text-[10px] px-2 py-0.5 rounded-full font-bold ${p.published ? "bg-green-400/10 text-green-400" : "bg-white/10 text-white/30"}`}>
+                            <span className={`text-[10px] px-2 py-0.5 rounded-full font-bold ${p.published ? "bg-green-400/10 text-green-400" : "bg-white/10 text-white/70"}`}>
                               {p.published ? "Yayında" : "Taslak"}
                             </span>
                             <span className="text-white/20 text-[10px] hidden sm:flex items-center gap-1"><Eye size={10} /> {p.views ?? 0}</span>
@@ -386,7 +386,7 @@ export default function AdminPage() {
                       </div>
                       <div className="flex items-center gap-2 shrink-0 ml-4">
                         <Link href={`/admin/blog/${p.id}`} title="Düzenle"
-                          className="flex items-center gap-1.5 bg-white/5 hover:bg-teal/20 hover:text-teal text-white/50 px-3 py-1.5 rounded-lg text-xs font-bold transition-all">
+                          className="flex items-center gap-1.5 bg-white/5 hover:bg-teal/20 hover:text-teal text-white/70 px-3 py-1.5 rounded-lg text-xs font-bold transition-all">
                           <Pencil size={12} /> Düzenle
                         </Link>
                         <button onClick={() => deletePost(p.id)}
@@ -409,7 +409,7 @@ export default function AdminPage() {
                 <div className="bg-white/[0.04] border border-white/[0.07] rounded-2xl p-6">
                   <div className="flex items-center justify-between mb-5">
                     <h2 className="font-bold">{pressMode === "add" ? "Yeni Haber Ekle" : "Haberi Düzenle"}</h2>
-                    <button onClick={cancelPress} className="text-white/30 hover:text-white transition-colors"><X size={20} /></button>
+                    <button onClick={cancelPress} aria-label="Kapat" className="text-white/70 hover:text-white transition-colors"><X size={20} /></button>
                   </div>
                   <div className="grid grid-cols-1 sm:grid-cols-2 gap-4">
                     {[
@@ -417,29 +417,29 @@ export default function AdminPage() {
                       { label: "Yıl", key: "yil" as const, placeholder: "2024" },
                     ].map(f => (
                       <div key={f.key}>
-                        <label className="text-white/30 text-[10px] uppercase tracking-widest block mb-1">{f.label}</label>
+                        <label className="text-white/70 text-[10px] uppercase tracking-widest block mb-1">{f.label}</label>
                         <input value={pressForm[f.key]} onChange={e => setPressField(f.key, e.target.value)} placeholder={f.placeholder}
                           className="w-full bg-white/5 border border-white/10 rounded-xl px-4 py-3 text-white focus:outline-none focus:border-teal/50" />
                       </div>
                     ))}
                     <div className="sm:col-span-2">
-                      <label className="text-white/30 text-[10px] uppercase tracking-widest block mb-1">Başlık *</label>
+                      <label className="text-white/70 text-[10px] uppercase tracking-widest block mb-1">Başlık *</label>
                       <input value={pressForm.baslik} onChange={e => setPressField("baslik", e.target.value)} placeholder="Haber başlığı"
                         className="w-full bg-white/5 border border-white/10 rounded-xl px-4 py-3 text-white focus:outline-none focus:border-teal/50" />
                     </div>
                     <div className="sm:col-span-2">
-                      <label className="text-white/30 text-[10px] uppercase tracking-widest block mb-1">Slug (URL)</label>
+                      <label className="text-white/70 text-[10px] uppercase tracking-widest block mb-1">Slug (URL)</label>
                       <input value={pressForm.slug} onChange={e => setPressField("slug", e.target.value)}
                         className="w-full bg-white/5 border border-white/10 rounded-xl px-4 py-3 text-teal font-mono text-sm focus:outline-none focus:border-teal/50" />
                       <p className="text-white/20 text-[10px] mt-1">/basin/{pressForm.slug || "..."}</p>
                     </div>
                     <div className="sm:col-span-2">
-                      <label className="text-white/30 text-[10px] uppercase tracking-widest block mb-1">Görsel Yolu</label>
+                      <label className="text-white/70 text-[10px] uppercase tracking-widest block mb-1">Görsel Yolu</label>
                       <input value={pressForm.img} onChange={e => setPressField("img", e.target.value)} placeholder="/basin/gazete-01.webp"
                         className="w-full bg-white/5 border border-white/10 rounded-xl px-4 py-3 text-white font-mono text-sm focus:outline-none focus:border-teal/50" />
                     </div>
                     <div className="sm:col-span-2">
-                      <label className="text-white/30 text-[10px] uppercase tracking-widest block mb-1">İçerik</label>
+                      <label className="text-white/70 text-[10px] uppercase tracking-widest block mb-1">İçerik</label>
                       <RichEditor
                         value={pressForm.icerik}
                         onChange={v => setPressField("icerik", v)}
@@ -448,13 +448,13 @@ export default function AdminPage() {
                       />
                     </div>
                     <div>
-                      <label className="text-white/30 text-[10px] uppercase tracking-widest block mb-1">SEO Başlık</label>
+                      <label className="text-white/70 text-[10px] uppercase tracking-widest block mb-1">SEO Başlık</label>
                       <input value={pressForm.seoTitle} onChange={e => setPressField("seoTitle", e.target.value)}
                         className="w-full bg-white/5 border border-white/10 rounded-xl px-4 py-3 text-white text-sm focus:outline-none focus:border-teal/50" />
                       <p className={`text-[10px] mt-1 ${pressForm.seoTitle.length > 60 ? "text-red-400" : "text-white/20"}`}>{pressForm.seoTitle.length}/60</p>
                     </div>
                     <div>
-                      <label className="text-white/30 text-[10px] uppercase tracking-widest block mb-1">SEO Açıklama</label>
+                      <label className="text-white/70 text-[10px] uppercase tracking-widest block mb-1">SEO Açıklama</label>
                       <input value={pressForm.seoDescription} onChange={e => setPressField("seoDescription", e.target.value)}
                         className="w-full bg-white/5 border border-white/10 rounded-xl px-4 py-3 text-white text-sm focus:outline-none focus:border-teal/50" />
                       <p className={`text-[10px] mt-1 ${pressForm.seoDescription.length > 160 ? "text-red-400" : "text-white/20"}`}>{pressForm.seoDescription.length}/160</p>
@@ -513,7 +513,7 @@ export default function AdminPage() {
                         </div>
                         <div className="flex items-center gap-2 shrink-0 ml-4">
                           <button onClick={() => openEditPress(item)}
-                            className="flex items-center gap-1.5 bg-white/5 hover:bg-teal/20 hover:text-teal text-white/50 px-3 py-1.5 rounded-lg text-xs font-bold transition-all">
+                            className="flex items-center gap-1.5 bg-white/5 hover:bg-teal/20 hover:text-teal text-white/70 px-3 py-1.5 rounded-lg text-xs font-bold transition-all">
                             <Pencil size={12} /> Düzenle
                           </button>
                           <button onClick={() => deletePress(item.id)}

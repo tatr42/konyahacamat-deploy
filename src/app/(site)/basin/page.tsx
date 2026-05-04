@@ -51,7 +51,7 @@ export default function BasinPage() {
             <div className="mt-4 flex items-center justify-between px-1">
               <div>
                 <span className="text-teal text-[11px] font-black uppercase tracking-widest">{aktifGazete.kaynak}</span>
-                <span className="text-white/30 text-[11px] ml-3">{aktifGazete.yil}</span>
+                <span className="text-white/70 text-[11px] ml-3">{aktifGazete.yil}</span>
                 <p className="text-white font-bold text-base mt-1">{aktifGazete.baslik}</p>
               </div>
               <span className="text-white/20 text-sm">{filtrelendi.findIndex(g => g.id === lightbox) + 1} / {filtrelendi.length}</span>
@@ -76,7 +76,7 @@ export default function BasinPage() {
           <h1 className="font-display text-5xl md:text-6xl font-bold text-white mt-3 mb-4">
             Basın <span className="text-teal italic">Odası</span>
           </h1>
-          <p className="text-white/50 text-lg max-w-xl">{getYearsExpStr()} yılı aşkın sürede Türkiye'nin önde gelen gazetelerinde yer aldık.</p>
+          <p className="text-white/70 text-lg max-w-xl">{getYearsExpStr()} yılı aşkın sürede Türkiye'nin önde gelen gazetelerinde yer aldık.</p>
         </div>
 
         {/* STATS */}
@@ -99,7 +99,7 @@ export default function BasinPage() {
             {yillar.map(yil => (
               <button key={yil} onClick={() => setAktifYil(yil)}
                 className={`px-4 py-2 rounded-full text-[11px] font-black uppercase tracking-widest transition-all ${
-                  aktifYil === yil ? 'bg-teal text-anthracite-dark' : 'bg-white/5 text-white/50 border border-white/10 hover:border-teal/30 hover:text-teal'
+                  aktifYil === yil ? 'bg-teal text-anthracite-dark' : 'bg-white/5 text-white/70 border border-white/10 hover:border-teal/30 hover:text-teal'
                 }`}>
                 {yil}
               </button>
@@ -113,7 +113,7 @@ export default function BasinPage() {
             <Loader2 size={32} className="text-teal animate-spin" />
           </div>
         ) : gazeteler.length === 0 ? (
-          <div className="text-center py-24 text-white/30">
+          <div className="text-center py-24 text-white/70">
             <p className="text-lg">Henüz basın haberi eklenmemiş.</p>
             <p className="text-sm mt-2">Admin panelinden ekleyebilirsiniz.</p>
           </div>
@@ -171,7 +171,7 @@ export default function BasinPage() {
             <h2 className="font-display text-3xl md:text-4xl font-bold text-white leading-snug">
               Hacamat Tedavisi<br /><span className="text-teal italic">İçin Randevu Alın</span>
             </h2>
-            <p className="text-white/50 text-sm mt-4 max-w-sm leading-relaxed">{getYearsExpStr()} yıllık deneyim ve steril malzemeyle güvenli hacamat tedavisi için bize ulaşın.</p>
+            <p className="text-white/70 text-sm mt-4 max-w-sm leading-relaxed">{getYearsExpStr()} yıllık deneyim ve steril malzemeyle güvenli hacamat tedavisi için bize ulaşın.</p>
           </div>
           <div className="flex flex-col sm:flex-row md:flex-col gap-3 shrink-0 w-full md:w-auto">
             <a href="https://wa.me/905544062383?text=Merhaba%2C%20hacamat%20tedavisi%20hakk%C4%B1nda%20bilgi%20almak%20istiyorum." title="Türkiye Hacamat İletişim"

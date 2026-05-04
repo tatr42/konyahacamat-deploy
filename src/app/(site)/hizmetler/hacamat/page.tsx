@@ -130,7 +130,7 @@ export default function HacamatPage() {
             <span className="w-4 h-[3px] bg-teal inline-block mr-3 mb-1" />
             Hangi Rahatsızlıklara İyi Gelir?
           </h2>
-          <p className="text-white/50 mb-10 text-sm">Geleneksel kaynaklarda 384+ rahatsızlığa faydalı olduğu belirtilmektedir.</p>
+          <p className="text-white/70 mb-10 text-sm">Geleneksel kaynaklarda 384+ rahatsızlığa faydalı olduğu belirtilmektedir.</p>
           <div className="grid grid-cols-2 sm:grid-cols-3 md:grid-cols-4 gap-3">
             {endikasyonlar.map(e => (
               <div key={e} className="flex items-center gap-2 bg-white/5 border border-white/8 rounded-xl px-4 py-3">
@@ -155,7 +155,7 @@ export default function HacamatPage() {
                 <div className="w-8 h-8 rounded-lg bg-teal/10 border border-teal/20 flex items-center justify-center text-teal font-black text-sm mb-3">{i + 1}</div>
                 <div className="text-white font-bold text-base mb-1">{n.isim}</div>
                 <div className="text-teal text-[11px] font-bold uppercase tracking-widest mb-2">{n.yer}</div>
-                <div className="text-white/50 text-xs">{n.etki}</div>
+                <div className="text-white/70 text-xs">{n.etki}</div>
               </div>
             ))}
           </div>
@@ -269,7 +269,7 @@ export default function HacamatPage() {
                 className="bg-white/5 border border-white/10 rounded-2xl p-5 hover:border-teal/30 hover:bg-white/8 transition-all group">
                 <div className="text-3xl mb-3">{l.emoji}</div>
                 <div className="text-white font-bold text-sm mb-1 group-hover:text-teal transition-colors">{l.baslik}</div>
-                <div className="text-white/50 text-xs leading-relaxed">{l.aciklama}</div>
+                <div className="text-white/70 text-xs leading-relaxed">{l.aciklama}</div>
               </Link>
             ))}
           </div>
@@ -285,7 +285,7 @@ export default function HacamatPage() {
             </div>
             <div className="flex-1">
               <h2 className="font-display text-3xl font-bold text-white mb-2">Randevu Almak İster misiniz?</h2>
-              <p className="text-white/50 mb-6">Konya veya Almanya seansları için hemen iletişime geçin. {getYearsExpStr()} yıl deneyimle güvenli ve steril uygulama.</p>
+              <p className="text-white/70 mb-6">Konya veya Almanya seansları için hemen iletişime geçin. {getYearsExpStr()} yıl deneyimle güvenli ve steril uygulama.</p>
               <div className="flex flex-wrap gap-3">
                 <a href="https://wa.me/905544062383?text=Hacamat%20randevusu%20almak%20istiyorum." title="Türkiye Hacamat İletişim" target="_blank" rel="noopener noreferrer nofollow"
                   className="flex items-center gap-2 bg-[#25D366] text-white px-6 py-3 rounded-xl font-black text-sm uppercase tracking-widest hover:scale-105 transition-all">

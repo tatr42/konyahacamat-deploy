@@ -60,7 +60,7 @@ export default function MedyaPage() {
   return (
     <div className="min-h-screen bg-[#0a0a0a] text-white">
       <header className="border-b border-white/10 px-6 py-4 flex items-center gap-3">
-        <Link href="/admin" title="Admin Panele Dön" className="text-white/50 hover:text-white"><ArrowLeft size={20} /></Link>
+        <Link href="/admin" title="Admin Panele Dön" className="text-white/70 hover:text-white"><ArrowLeft size={20} /></Link>
         <h1 className="font-bold">Medya Yöneticisi</h1>
       </header>
 
@@ -95,9 +95,9 @@ export default function MedyaPage() {
             className="hidden"
             onChange={e => e.target.files && upload(e.target.files)}
           />
-          <Upload size={32} className={`mx-auto mb-3 ${dragOver ? "text-teal" : "text-white/30"}`} />
+          <Upload size={32} className={`mx-auto mb-3 ${dragOver ? "text-teal" : "text-white/70"}`} />
           <p className="text-white font-bold">{uploading ? "Yükleniyor ve WebP'ye dönüştürülüyor..." : "Dosyaları sürükleyin veya tıklayın"}</p>
-          <p className="text-white/30 text-sm mt-1">PNG, JPG, JPEG → otomatik WebP dönüşümü</p>
+          <p className="text-white/70 text-sm mt-1">PNG, JPG, JPEG → otomatik WebP dönüşümü</p>
           <p className="text-teal text-xs mt-2 font-bold uppercase tracking-widest">Hedef: /public/{folder}/</p>
           {error && <p className="text-red-400 text-sm mt-3 font-bold">{error}</p>}
         </div>
@@ -107,7 +107,7 @@ export default function MedyaPage() {
           <div className="bg-white/5 border border-white/10 rounded-2xl overflow-hidden">
             <div className="p-4 border-b border-white/10">
               <h2 className="text-white font-bold">Bu Oturumda Yüklenenler ({files.length})</h2>
-              <p className="text-white/30 text-xs mt-1">Sayfa yenilenince liste sıfırlanır, dosyalar public klasöründe kalır.</p>
+              <p className="text-white/70 text-xs mt-1">Sayfa yenilenince liste sıfırlanır, dosyalar public klasöründe kalır.</p>
             </div>
             <div className="divide-y divide-white/5">
               {files.map(f => (
@@ -119,11 +119,11 @@ export default function MedyaPage() {
                   </div>
                   <div className="flex gap-2 shrink-0">
                     <button onClick={() => copyUrl(f.url)}
-                      className={`p-2 rounded-lg transition-colors ${copied === f.url ? "bg-teal/20 text-teal" : "bg-white/5 text-white/50 hover:text-white"}`}>
+                      className={`p-2 rounded-lg transition-colors ${copied === f.url ? "bg-teal/20 text-teal" : "bg-white/5 text-white/70 hover:text-white"}`}>
                       {copied === f.url ? <Check size={16} /> : <Copy size={16} />}
                     </button>
                     <button onClick={() => removeFromList(f.url)}
-                      className="p-2 rounded-lg bg-white/5 text-white/30 hover:text-red-400 transition-colors">
+                      className="p-2 rounded-lg bg-white/5 text-white/70 hover:text-red-400 transition-colors">
                       <Trash2 size={16} />
                     </button>
                   </div>

@@ -69,7 +69,7 @@ export default function ServicesGrid() {
             <h2 className="font-display text-4xl md:text-6xl font-bold text-white leading-[1.1]">
               Eğitim & <span className="text-teal italic">Tedavi</span>
             </h2>
-            <p className="text-white/50 text-base max-w-md">
+            <p className="text-white/70 text-base max-w-md">
               Hacamat kupaları, malzemeleri ve tıbbi sülük satışından sertifikalı kurs programlarına kadar eksiksiz hizmet.
             </p>
           </div>
@@ -127,7 +127,7 @@ export default function ServicesGrid() {
           ].map((item) => (
             <div key={item.title} className="bg-white/5 border border-white/10 rounded-3xl p-7 hover:border-teal/20 transition-all">
               <h4 className="text-white font-bold text-lg mb-3 font-display">{item.title}</h4>
-              <p className="text-white/50 text-sm leading-relaxed">{item.desc}</p>
+              <p className="text-white/70 text-sm leading-relaxed">{item.desc}</p>
             </div>
           ))}
         </div>

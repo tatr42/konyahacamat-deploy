@@ -55,8 +55,6 @@ const serviceSchema = {
   name: "Ebusadullah Hacamat & Akademi",
 
   url: BASE,
-
-  url: "https://www.konyahacamat.net",
  
   telephone: "+905544062383",
   address: { 
@@ -68,15 +66,9 @@ const serviceSchema = {
   },
   medicalSpecialty: "Geleneksel Tıp",
   availableService: [
-
     { "@type": "MedicalTherapy", name: "Kuru Hacamat", url: `${BASE}/hizmetler/hacamat` },
     { "@type": "MedicalTherapy", name: "Yaş Hacamat", url: `${BASE}/hizmetler/hacamat` },
     { "@type": "MedicalTherapy", name: "Sülük Terapisi (Hirudoterapi)", url: `${BASE}/hizmetler/suluk` },
-
-    { "@type": "MedicalTherapy", name: "Kuru Hacamat", url: "https://www.konyahacamat.net/hizmetler/hacamat" },
-    { "@type": "MedicalTherapy", name: "Yaş Hacamat", url: "https://www.konyahacamat.net/hizmetler/hacamat" },
-    { "@type": "MedicalTherapy", name: "Sülük Terapisi (Hirudoterapi)", url: "https://www.konyahacamat.net/hizmetler/suluk" },
-
   ],
 };
 
