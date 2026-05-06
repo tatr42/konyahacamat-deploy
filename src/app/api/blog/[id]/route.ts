@@ -1,6 +1,15 @@
 import { NextRequest, NextResponse } from "next/server";
 import { db } from "@/lib/firebase";
 import { doc, getDoc, updateDoc, deleteDoc, serverTimestamp } from "firebase/firestore";
+import { cookies } from "next/headers";
+import { verifySession } from "@/lib/session";
+
+async function isAuthorized() {
+  const cookieStore = await cookies();
+  const token = cookieStore.get("admin_auth")?.value;
+  const session = await verifySession(token);
+  return !!session;
+}
 
 export async function GET(_: NextRequest, { params }: { params: Promise<{ id: string }> }) {
   if (!db) return NextResponse.json({ error: "Firebase not configured" }, { status: 500 });
@@ -11,6 +20,7 @@ export async function GET(_: NextRequest, { params }: { params: Promise<{ id: st
 }
 
 export async function PUT(req: NextRequest, { params }: { params: Promise<{ id: string }> }) {
+  if (!(await isAuthorized())) return NextResponse.json({ error: "Unauthorized" }, { status: 401 });
   if (!db) return NextResponse.json({ error: "Firebase not configured" }, { status: 500 });
   const { id } = await params;
   const body = await req.json();
@@ -19,6 +29,7 @@ export async function PUT(req: NextRequest, { params }: { params: Promise<{ id: 
 }
 
 export async function DELETE(_: NextRequest, { params }: { params: Promise<{ id: string }> }) {
+  if (!(await isAuthorized())) return NextResponse.json({ error: "Unauthorized" }, { status: 401 });
   if (!db) return NextResponse.json({ error: "Firebase not configured" }, { status: 500 });
   const { id } = await params;
   await deleteDoc(doc(db, "posts", id));
