@@ -20,8 +20,8 @@ export default function MedyaPage() {
   const upload = async (fileList: FileList) => {
     setUploading(true);
     setError(null);
-    const results: UploadedFile[] = [];
-    for (const file of Array.from(fileList)) {
+
+    const uploadPromises = Array.from(fileList).map(async (file) => {
       const fd = new FormData();
       fd.append("file", file);
       fd.append("folder", folder);
@@ -29,15 +29,21 @@ export default function MedyaPage() {
         const res = await fetch("/api/upload", { method: "POST", body: fd });
         const data = await res.json();
         if (res.ok) {
-          results.push(data);
+          return data as UploadedFile;
         } else {
           setError(`Hata: ${data.error || res.statusText}`);
+          return null;
         }
       } catch (e) {
         setError(`Bağlantı hatası: ${e instanceof Error ? e.message : String(e)}`);
+        return null;
       }
-    }
-    setFiles(prev => [...results, ...prev]);
+    });
+
+    const results = await Promise.all(uploadPromises);
+    const successfulResults = results.filter((f): f is UploadedFile => f !== null);
+
+    setFiles(prev => [...successfulResults, ...prev]);
     setUploading(false);
   };
 
