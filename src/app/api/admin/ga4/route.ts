@@ -1,5 +1,14 @@
 import { NextResponse } from "next/server";
 import crypto from "crypto";
+import { cookies } from "next/headers";
+import { verifySession } from "@/lib/session";
+
+async function isAuthorized() {
+  const cookieStore = await cookies();
+  const token = cookieStore.get("admin_auth")?.value;
+  const session = await verifySession(token);
+  return !!session;
+}
 
 async function getAccessToken(): Promise<string | null> {
   const email = process.env.GA4_SERVICE_ACCOUNT_EMAIL;
@@ -46,6 +55,7 @@ async function ga4Report(token: string, propertyId: string, body: object) {
 }
 
 export async function GET() {
+  if (!(await isAuthorized())) return NextResponse.json({ error: "Unauthorized" }, { status: 401 });
   const propertyId = process.env.GA4_PROPERTY_ID;
   const email = process.env.GA4_SERVICE_ACCOUNT_EMAIL;
 
