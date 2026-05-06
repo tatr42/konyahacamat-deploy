@@ -19,18 +19,12 @@ interface PressItem {
   seoDescription: string;
 }
 
-/**
- * getItem fonksiyonu hem React.cache ile sarmalandı (performans)
- * hem de db kontrolü eklendi (güvenlik).
- */
 const getItem = cache(async (slug: string): Promise<PressItem | null> => {
   if (!db) return null; // Firebase Guard: Bağlantı yoksa hata verme, null dön.
 
   const q = query(collection(db, "press"), where("slug", "==", slug));
   const snap = await getDocs(q);
-  
   if (snap.empty) return null;
-  
   return { id: snap.docs[0].id, ...snap.docs[0].data() } as PressItem;
 });
 
