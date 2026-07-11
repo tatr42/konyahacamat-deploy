@@ -1,6 +1,10 @@
 import type { Metadata } from "next";
 import BlogList from "./BlogList";
+import { getPublishedPosts } from "@/lib/posts";
 import { Feather, BookOpen, Users, Stethoscope } from "lucide-react";
+
+// ISR: yazı listesi sunucuda render edilir (SEO), 5 dakikada bir yenilenir.
+export const revalidate = 300;
 
 const currentYear = new Date().getFullYear();
 
@@ -24,7 +28,8 @@ const topics = [
   { icon: Feather,     label: "Doğal Şifa" },
 ];
 
-export default function BlogPage() {
+export default async function BlogPage() {
+  const posts = await getPublishedPosts();
   return (
     <main className="min-h-screen bg-anthracite-dark pt-20 pb-24">
       <div className="container-site">
@@ -55,7 +60,7 @@ export default function BlogPage() {
         </div>
 
         {/* ── Yazı listesi ── */}
-        <BlogList />
+        <BlogList initialPosts={posts} />
 
       </div>
     </main>

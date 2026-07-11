@@ -1,6 +1,7 @@
 import type { MetadataRoute } from "next";
 import { db } from "@/lib/firebase";
 import { collection, getDocs, query, where } from "firebase/firestore";
+import { getPressItems } from "@/lib/press";
 
 const BASE = "https://www.konyahacamat.net";
 
@@ -22,6 +23,7 @@ const staticPages = [
 
 export default async function sitemap(): Promise<MetadataRoute.Sitemap> {
   let blogPages: MetadataRoute.Sitemap = [];
+  let pressPages: MetadataRoute.Sitemap = [];
 
   try {
     if (!db) return [...staticPages];
@@ -36,9 +38,19 @@ export default async function sitemap(): Promise<MetadataRoute.Sitemap> {
         priority: 0.7,
       };
     });
+
+    // Basın haberleri — slug'ı olanların detay sayfası var
+    const pressItems = await getPressItems();
+    pressPages = pressItems
+      .filter(item => item.slug)
+      .map(item => ({
+        url: `${BASE}/basin/${item.slug}`,
+        changeFrequency: "monthly" as const,
+        priority: 0.6,
+      }));
   } catch {
     // Firebase henüz yapılandırılmamışsa statik sayfalarla devam et
   }
 
-  return [...staticPages, ...blogPages];
+  return [...staticPages, ...blogPages, ...pressPages];
 }

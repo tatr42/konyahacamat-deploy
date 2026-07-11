@@ -1,4 +1,5 @@
 import type { Metadata } from "next";
+import { getPressItems } from "@/lib/press";
 import HeroSection from "@/components/HeroSection";
 import ServicesGrid from "@/components/ServicesGrid";
 import DiseaseTabs from "@/components/DiseaseTabs";
@@ -72,7 +73,11 @@ const serviceSchema = {
   ],
 };
 
-export default function Home() {
+// ISR: basın kartları sunucuda render edilir (SEO), 5 dakikada bir yenilenir.
+export const revalidate = 300;
+
+export default async function Home() {
+  const pressItems = (await getPressItems()).slice(0, 6);
   return (
     <>
       <script type="application/ld+json" dangerouslySetInnerHTML={{ __html: JSON.stringify(faqSchema) }} />
@@ -82,7 +87,7 @@ export default function Home() {
       <DiseaseTabs />
       <AcademySection />
       <Testimonials />
-      <PressSection />
+      <PressSection items={pressItems} />
       <WhatsAppWidget />
     </>
   );

@@ -1,29 +1,8 @@
-"use client";
-import { useEffect, useState } from "react";
 import { Newspaper, ArrowRight, Quote, TrendingUp } from "lucide-react";
 import { getYearsExpStr } from "@/lib/experience";
+import type { PressItem } from "@/lib/press";
 
-interface PressItem {
-  id: string;
-  kaynak: string;
-  yil: string;
-  baslik: string;
-  slug: string;
-  icerik: string;
-  img?: string;
-}
-
-export default function PressSection() {
-  const [items, setItems] = useState<PressItem[]>([]);
-  const [loading, setLoading] = useState(true);
-
-  useEffect(() => {
-    fetch("/api/basin")
-      .then(r => r.json())
-      .then(data => { if (Array.isArray(data)) setItems(data.slice(0, 6)); })
-      .finally(() => setLoading(false));
-  }, []);
-
+export default function PressSection({ items }: { items: PressItem[] }) {
   return (
     <section className="py-24 bg-anthracite relative overflow-hidden">
       <div className="absolute inset-0 opacity-[0.03]"
@@ -59,13 +38,7 @@ export default function PressSection() {
         </div>
 
         {/* Kartlar — mobilde yatay kaydırma */}
-        {loading ? (
-          <div className="flex gap-5 overflow-x-hidden">
-            {[...Array(3)].map((_, i) => (
-              <div key={i} className="shrink-0 w-[78vw] sm:w-auto sm:flex-1 h-52 rounded-3xl bg-white/5 animate-pulse" />
-            ))}
-          </div>
-        ) : items.length === 0 ? (
+        {items.length === 0 ? (
           <p className="text-white/70 text-sm">Henüz basın haberi eklenmemiş.</p>
         ) : (
           <div className="flex gap-5 overflow-x-auto pb-3 -mx-5 px-5 sm:mx-0 sm:px-0 sm:grid sm:grid-cols-2 lg:grid-cols-3 snap-x snap-mandatory scrollbar-none">
@@ -108,7 +81,7 @@ export default function PressSection() {
                     />
                   )}
                   <a
-                    href={`/basin/${item.slug}`}
+                    href={item.slug ? `/basin/${item.slug}` : "/basin"}
                     className="flex items-center gap-2 text-[11px] font-black text-teal/40 group-hover:text-teal transition-colors pt-2 border-t border-white/5"
                   >
                     Haberi Oku <ArrowRight size={12} className="group-hover:translate-x-1 transition-transform" />

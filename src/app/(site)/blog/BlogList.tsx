@@ -1,18 +1,8 @@
 "use client";
-import { useState, useEffect } from "react";
+import { useState } from "react";
 import Link from "next/link";
-import { BookOpen, Clock, Eye, ArrowRight, Loader2, ChevronRight } from "lucide-react";
-
-interface Post {
-  id: string;
-  slug: string;
-  title: string;
-  excerpt: string;
-  content?: string;
-  category: string;
-  views?: number;
-  createdAt?: { seconds: number };
-}
+import { BookOpen, Clock, Eye, ArrowRight, ChevronRight } from "lucide-react";
+import type { Post } from "@/lib/posts";
 
 function readingTime(content = "", excerpt = "") {
   const text = content.replace(/<[^>]+>/g, "") + " " + excerpt;
@@ -26,28 +16,9 @@ function formatDate(seconds: number) {
   });
 }
 
-export default function BlogList() {
-  const [posts, setPosts] = useState<Post[]>([]);
-  const [yukleniyor, setYukleniyor] = useState(true);
+export default function BlogList({ initialPosts }: { initialPosts: Post[] }) {
+  const posts = initialPosts;
   const [aktifKategori, setAktifKategori] = useState("Tümü");
-
-  useEffect(() => {
-    fetch("/api/blog")
-      .then(r => r.json())
-      .then(data => {
-        if (Array.isArray(data))
-          setPosts(data.filter((p: Post & { published?: boolean }) => p.published));
-      })
-      .finally(() => setYukleniyor(false));
-  }, []);
-
-  if (yukleniyor) {
-    return (
-      <div className="flex items-center justify-center py-24">
-        <Loader2 size={32} className="text-teal animate-spin" />
-      </div>
-    );
-  }
 
   if (posts.length === 0) {
     return (
