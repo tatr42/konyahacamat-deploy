@@ -15,7 +15,7 @@ export function BasinForm({ mode, form, set, saving, handleSave, cancel }: Basin
     <div className="bg-white/5 border border-white/10 rounded-2xl p-6 mb-8">
       <div className="flex items-center justify-between mb-5">
         <h2 className="font-bold text-white">{mode === "add" ? "Yeni Haber Ekle" : "Haberi Düzenle"}</h2>
-        <button onClick={cancel} className="text-white/40 hover:text-white transition-colors">
+        <button onClick={cancel} aria-label="Kapat" className="text-white/40 hover:text-white transition-colors">
           <X size={20} />
         </button>
       </div>

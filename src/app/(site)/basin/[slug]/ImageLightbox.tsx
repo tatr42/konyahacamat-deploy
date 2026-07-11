@@ -36,6 +36,7 @@ export default function ImageLightbox({ src, alt }: { src: string; alt: string }
           />
           <button
             onClick={() => setOpen(false)}
+            aria-label="Görseli kapat"
             className="absolute top-4 right-4 w-10 h-10 rounded-full bg-white/10 hover:bg-red-500/80 flex items-center justify-center transition-colors"
           >
             <X size={18} className="text-white" />

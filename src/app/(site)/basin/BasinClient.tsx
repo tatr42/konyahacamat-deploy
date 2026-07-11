@@ -33,7 +33,7 @@ export default function BasinClient({ initialItems }: { initialItems: PressItem[
       {lightbox && aktifGazete && (
         <div className="fixed inset-0 z-[500] bg-black/90 backdrop-blur-md flex items-center justify-center p-4"
           onClick={() => setLightbox(null)}>
-          <button onClick={e => { e.stopPropagation(); onceki(); }}
+          <button onClick={e => { e.stopPropagation(); onceki(); }} aria-label="Önceki haber"
             className="absolute left-4 md:left-8 top-1/2 -translate-y-1/2 w-12 h-12 rounded-full bg-white/10 hover:bg-teal/80 flex items-center justify-center transition-colors z-10">
             <ChevronLeft size={24} className="text-white" />
           </button>
@@ -49,11 +49,11 @@ export default function BasinClient({ initialItems }: { initialItems: PressItem[
               <span className="text-white/20 text-sm">{filtrelendi.findIndex(g => g.id === lightbox) + 1} / {filtrelendi.length}</span>
             </div>
           </div>
-          <button onClick={e => { e.stopPropagation(); sonraki(); }}
+          <button onClick={e => { e.stopPropagation(); sonraki(); }} aria-label="Sonraki haber"
             className="absolute right-4 md:right-8 top-1/2 -translate-y-1/2 w-12 h-12 rounded-full bg-white/10 hover:bg-teal/80 flex items-center justify-center transition-colors z-10">
             <ChevronRight size={24} className="text-white" />
           </button>
-          <button onClick={() => setLightbox(null)}
+          <button onClick={() => setLightbox(null)} aria-label="Kapat"
             className="absolute top-4 right-4 w-10 h-10 rounded-full bg-white/10 hover:bg-red-500/80 flex items-center justify-center transition-colors">
             <X size={18} className="text-white" />
           </button>

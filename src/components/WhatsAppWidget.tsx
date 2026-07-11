@@ -42,8 +42,9 @@ export default function WhatsAppWidget() {
               </div>
             </div>
           </div>
-          <button 
-            onClick={() => setIsOpen(false)} 
+          <button
+            onClick={() => setIsOpen(false)}
+            aria-label="Sohbet penceresini kapat"
             className="absolute top-4 right-4 hover:bg-black/10 p-2 rounded-full transition-colors"
           >
             <X size={20}/>
