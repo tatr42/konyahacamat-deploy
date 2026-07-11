@@ -1,6 +1,7 @@
 "use client";
 import { useState, useEffect } from 'react';
 import Link from 'next/link';
+import Image from 'next/image';
 import { getYearsExpStr } from '@/lib/experience';
 import { X, ChevronLeft, ChevronRight, Phone, MessageCircle, Calendar, ZoomIn, ExternalLink, Loader2 } from 'lucide-react';
 
@@ -46,8 +47,8 @@ export default function BasinPage() {
             <ChevronLeft size={24} className="text-white" />
           </button>
           <div className="relative max-w-3xl w-full" onClick={e => e.stopPropagation()}>
-            <img src={aktifGazete.img} alt={aktifGazete.baslik}
-              className="w-full max-h-[80vh] object-contain rounded-2xl shadow-2xl" />
+            <Image src={aktifGazete.img} alt={aktifGazete.baslik} width={1200} height={900} sizes="(min-width: 768px) 768px, 100vw"
+              className="w-full h-auto max-h-[80vh] object-contain rounded-2xl shadow-2xl" />
             <div className="mt-4 flex items-center justify-between px-1">
               <div>
                 <span className="text-teal text-[11px] font-black uppercase tracking-widest">{aktifGazete.kaynak}</span>
@@ -143,7 +144,7 @@ export default function BasinPage() {
                 <Link key={gazete.id} href={`/basin/${gazete.slug}`} title="Basın Haberi Detayları" className={cardClass}>
                   {gazete.img && (
                     <>
-                      <img src={gazete.img} alt="" aria-hidden className="absolute inset-0 w-full h-full object-contain opacity-30 pointer-events-none" />
+                      <Image src={gazete.img} alt="" aria-hidden fill sizes="(min-width: 1024px) 33vw, (min-width: 640px) 50vw, 100vw" className="object-contain opacity-30 pointer-events-none" />
                       <div className="absolute inset-0 bg-anthracite-light/75 pointer-events-none" />
                     </>
                   )}
@@ -153,7 +154,7 @@ export default function BasinPage() {
                 <button key={gazete.id} onClick={() => setLightbox(gazete.id)} className={cardClass + " text-left w-full"}>
                   {gazete.img && (
                     <>
-                      <img src={gazete.img} alt="" aria-hidden className="absolute inset-0 w-full h-full object-contain opacity-30 pointer-events-none" />
+                      <Image src={gazete.img} alt="" aria-hidden fill sizes="(min-width: 1024px) 33vw, (min-width: 640px) 50vw, 100vw" className="object-contain opacity-30 pointer-events-none" />
                       <div className="absolute inset-0 bg-anthracite-light/75 pointer-events-none" />
                     </>
                   )}

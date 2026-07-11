@@ -1,4 +1,3 @@
-"use client";
 import React from 'react';
 import Image from 'next/image';
 import { CheckCircle2, Calendar, Info, Globe } from 'lucide-react';

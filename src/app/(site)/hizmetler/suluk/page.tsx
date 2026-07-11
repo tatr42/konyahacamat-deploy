@@ -16,6 +16,18 @@ export const metadata: Metadata = {
   },
 };
 
+const BASE = "https://www.konyahacamat.net";
+
+const medicalTherapySchema = {
+  "@context": "https://schema.org",
+  "@type": "MedicalTherapy",
+  name: "Sülük Terapisi (Hirudoterapi)",
+  alternateName: ["Hirudoterapi", "Leech Therapy"],
+  description:
+    "Tıbbi sülük (Hirudo medicinalis) ile uygulanan, varis, ödem, eklem iltihabı, cilt hastalıkları ve kulak çınlaması gibi rahatsızlıklarda kullanılan doğal dolaşım tedavisi. Seanslar 30–60 dakika sürer.",
+  url: `${BASE}/hizmetler/suluk`,
+};
+
 function HeroSection() {
   return (
     <section className="pt-20 pb-20 relative overflow-hidden">
@@ -264,6 +276,7 @@ function CtaSection() {
 export default function SulukPage() {
   return (
     <main className="min-h-screen bg-anthracite-dark">
+      <script type="application/ld+json" dangerouslySetInnerHTML={{ __html: JSON.stringify(medicalTherapySchema) }} />
       <HeroSection />
       <EtkiMekanizmasiSection />
       <SeansGorselleriSection />

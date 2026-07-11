@@ -17,6 +17,18 @@ export const metadata: Metadata = {
   },
 };
 
+const BASE = "https://www.konyahacamat.net";
+
+const medicalTherapySchema = {
+  "@context": "https://schema.org",
+  "@type": "MedicalTherapy",
+  name: "Hacamat Tedavisi",
+  alternateName: ["Kuru Hacamat", "Yaş Hacamat", "Cupping Therapy"],
+  description:
+    "Kuru hacamat (30–45 dk, kesisiz negatif basınç uygulaması) ve yaş hacamat (45–60 dk, yüzeysel kesilerle detoks) yöntemleriyle uygulanan, kronik bel/boyun ağrısı, migren, yüksek tansiyon ve bağışıklık güçlendirme amacıyla kullanılan geleneksel tedavi.",
+  url: `${BASE}/hizmetler/hacamat`,
+};
+
 const noktalar = [
   { isim: "Kâhil Noktası", yer: "İki kürek kemiği arası", etki: "Genel detoks, bağışıklık" },
   { isim: "Üst Sırt", yer: "Boyun altı, trapez bölgesi", etki: "Baş ağrısı, migren, boyun tutulması" },
@@ -36,6 +48,7 @@ const endikasyonlar = [
 export default function HacamatPage() {
   return (
     <main className="min-h-screen bg-anthracite-dark">
+      <script type="application/ld+json" dangerouslySetInnerHTML={{ __html: JSON.stringify(medicalTherapySchema) }} />
 
       {/* HERO */}
       <section className="pt-20 pb-20 relative overflow-hidden">

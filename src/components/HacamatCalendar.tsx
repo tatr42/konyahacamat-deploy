@@ -83,6 +83,11 @@ function MonthGrid({ yil, ay, secili, onSelect }: {
               key={i}
               onClick={() => !gecmis && onSelect(gun)}
               disabled={gecmis}
+              aria-label={
+                gun.toLocaleDateString("tr-TR", { day: "numeric", month: "long", year: "numeric", weekday: "long" }) +
+                (fazl && !gecmis ? ", faziletli gün" : "")
+              }
+              aria-pressed={seciliMi}
               className={`aspect-square flex flex-col items-center justify-center text-[11px] font-bold transition-all relative
                 ${seciliMi ? "bg-teal text-white scale-95 rounded" :
                   bugunMu ? "bg-yellow-400 text-white rounded font-black" :
