@@ -1,32 +1,11 @@
 import type { Metadata } from "next";
-import { cache } from "react";
 import { notFound } from "next/navigation";
-import { db } from "@/lib/firebase";
-import { collection, getDocs, query, where } from "firebase/firestore";
+import { getPressItemBySlug } from "@/lib/press";
 import { Newspaper, Calendar, ArrowLeft, MessageCircle } from "lucide-react";
 import Link from "next/link";
 import ImageLightbox from "./ImageLightbox";
 
-interface PressItem {
-  id: string;
-  kaynak: string;
-  yil: string;
-  baslik: string;
-  img: string;
-  slug: string;
-  icerik: string;
-  seoTitle: string;
-  seoDescription: string;
-}
-
-const getItem = cache(async (slug: string): Promise<PressItem | null> => {
-  if (!db) return null; // Firebase Guard: Bağlantı yoksa hata verme, null dön.
-
-  const q = query(collection(db, "press"), where("slug", "==", slug));
-  const snap = await getDocs(q);
-  if (snap.empty) return null;
-  return { id: snap.docs[0].id, ...snap.docs[0].data() } as PressItem;
-});
+const getItem = getPressItemBySlug;
 
 export async function generateMetadata({ params }: { params: Promise<{ slug: string }> }): Promise<Metadata> {
   const { slug } = await params;

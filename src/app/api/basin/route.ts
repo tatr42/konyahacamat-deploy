@@ -1,7 +1,8 @@
 export const dynamic = "force-dynamic";
 import { NextRequest, NextResponse } from "next/server";
 import { db } from "@/lib/firebase";
-import { collection, addDoc, getDocs, serverTimestamp, query, orderBy } from "firebase/firestore";
+import { collection, addDoc, serverTimestamp } from "firebase/firestore";
+import { getPressItems } from "@/lib/press";
 import { cookies } from "next/headers";
 import { verifySession } from "@/lib/session";
 
@@ -13,16 +14,9 @@ async function isAuthorized() {
 }
 
 export async function GET() {
-  try {
-    if (!db) return NextResponse.json([], { status: 200 });
-    const q = query(collection(db, "press"), orderBy("yil", "desc"));
-    const snap = await getDocs(q);
-    return NextResponse.json(snap.docs.map(d => ({ id: d.id, ...d.data() })));
-  } catch (err: unknown) {
-    const msg = err instanceof Error ? err.message : String(err);
-    console.error("Firebase GET /basin hatası:", msg);
-    return NextResponse.json([], { status: 200 });
-  }
+  // Vercel'de SDK'nin gRPC baglantisi calismadigi icin REST katmani kullanilir
+  const items = await getPressItems();
+  return NextResponse.json(items);
 }
 
 export async function POST(req: NextRequest) {

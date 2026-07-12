@@ -1,47 +1,11 @@
 import type { Metadata } from "next";
 import { notFound } from "next/navigation";
-import { cache } from "react";
-import { db } from "@/lib/firebase";
-import { collection, getDocs, query, where } from "firebase/firestore";
+import { getPostBySlug } from "@/lib/posts";
 import { Clock, Tag, Eye, ArrowLeft } from "lucide-react";
 import Link from "next/link";
 import ViewCounter from "./ViewCounter";
 
-// Veri tipi tanımı (Interface)
-interface Post {
-  id: string;
-  title: string;
-  slug: string;
-  excerpt: string;
-  content: string;
-  category: string;
-  seoTitle: string;
-  seoDescription: string;
-  published: boolean;
-  views: number;
-  createdAt?: { seconds: number };
-}
-
-/**
- * Blog verisini getiren fonksiyon. 
- * React.cache sayesinde aynı sayfa yüklemesinde mükerrer sorgu atmaz.
- */
-const getPost = cache(async (slug: string): Promise<Post | null> => {
-  if (!db) return null; // Firebase Guard
-
-  const q = query(
-    collection(db, "posts"), 
-    where("slug", "==", slug), 
-    where("published", "==", true)
-  );
-
-  const snap = await getDocs(q);
-
-  if (snap.empty) return null;
-
-  const doc = snap.docs[0];
-  return { id: doc.id, ...doc.data() } as Post;
-});
+const getPost = getPostBySlug;
 
 /**
  * Dinamik SEO Metadata Üretimi
@@ -148,7 +112,7 @@ export default async function BlogPostPage({ params }: { params: Promise<{ slug:
             prose-headings:text-white prose-headings:font-bold
             prose-strong:text-white prose-a:text-teal prose-a:no-underline hover:prose-a:underline
             prose-ul:text-white/70 prose-ol:text-white/70"
-          dangerouslySetInnerHTML={{ __html: post.content }}
+          dangerouslySetInnerHTML={{ __html: post.content ?? "" }}
         />
 
         <hr className="border-white/10 mt-12 mb-8" />

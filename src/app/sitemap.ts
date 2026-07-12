@@ -1,7 +1,6 @@
 import type { MetadataRoute } from "next";
-import { db } from "@/lib/firebase";
-import { collection, getDocs, query, where } from "firebase/firestore";
 import { getPressItems } from "@/lib/press";
+import { getPublishedPosts } from "@/lib/posts";
 
 const BASE = "https://www.konyahacamat.net";
 
@@ -19,6 +18,7 @@ const staticPages = [
   { url: `${BASE}/hakkimizda`, priority: 0.7, changeFrequency: "yearly" as const },
   { url: `${BASE}/iletisim`, priority: 0.7, changeFrequency: "yearly" as const },
   { url: `${BASE}/malzemeler`, priority: 0.6, changeFrequency: "monthly" as const },
+  { url: `${BASE}/gizlilik`, priority: 0.3, changeFrequency: "yearly" as const },
 ];
 
 export default async function sitemap(): Promise<MetadataRoute.Sitemap> {
@@ -26,18 +26,13 @@ export default async function sitemap(): Promise<MetadataRoute.Sitemap> {
   let pressPages: MetadataRoute.Sitemap = [];
 
   try {
-    if (!db) return [...staticPages];
-    const q = query(collection(db, "posts"), where("published", "==", true));
-    const snap = await getDocs(q);
-    blogPages = snap.docs.map(doc => {
-      const data = doc.data();
-      return {
-        url: `${BASE}/blog/${data.slug}`,
-        lastModified: data.updatedAt ? new Date(data.updatedAt.seconds * 1000) : new Date(),
-        changeFrequency: "monthly" as const,
-        priority: 0.7,
-      };
-    });
+    const posts = await getPublishedPosts();
+    blogPages = posts.map(post => ({
+      url: `${BASE}/blog/${post.slug}`,
+      lastModified: post.updatedAt ? new Date(post.updatedAt.seconds * 1000) : new Date(),
+      changeFrequency: "monthly" as const,
+      priority: 0.7,
+    }));
 
     // Basın haberleri — slug'ı olanların detay sayfası var
     const pressItems = await getPressItems();
