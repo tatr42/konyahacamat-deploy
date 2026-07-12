@@ -1,5 +1,5 @@
 import { initializeApp, getApps, getApp } from "firebase/app";
-import { getFirestore } from "firebase/firestore";
+import { getFirestore, initializeFirestore } from "firebase/firestore";
 import { getStorage } from "firebase/storage";
 import { getAuth } from "firebase/auth";
 
@@ -14,7 +14,22 @@ const firebaseConfig = {
 
 const app = getApps().length > 0 ? getApp() : initializeApp(firebaseConfig);
 
-export const db = process.env.NEXT_PUBLIC_FIREBASE_API_KEY ? getFirestore(app) : null;
+/**
+ * Vercel serverless ortamında Firestore'un gRPC bağlantısı kurulamıyor
+ * ("Could not reach Cloud Firestore backend"). Long-polling'e zorlamak
+ * bu sorunu çözer. initializeFirestore aynı app için ikinci kez
+ * çağrılamaz (dev HMR'da olur); o durumda mevcut instance'ı alırız.
+ */
+function createDb() {
+  if (!process.env.NEXT_PUBLIC_FIREBASE_API_KEY) return null;
+  try {
+    return initializeFirestore(app, { experimentalForceLongPolling: true });
+  } catch {
+    return getFirestore(app);
+  }
+}
+
+export const db = createDb();
 export const storage = process.env.NEXT_PUBLIC_FIREBASE_API_KEY ? getStorage(app) : null;
 export const auth = process.env.NEXT_PUBLIC_FIREBASE_API_KEY ? getAuth(app) : null;
 export default app;
