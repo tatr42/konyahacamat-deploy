@@ -1,7 +1,9 @@
 import type { Metadata } from "next";
+import { Suspense } from "react";
+import Link from "next/link";
 import BlogList from "./BlogList";
 import { getPublishedPosts } from "@/lib/posts";
-import { Feather, BookOpen, Users, Stethoscope } from "lucide-react";
+import { Feather, BookOpen, Users, Stethoscope, MapPin } from "lucide-react";
 
 // ISR: yazı listesi sunucuda render edilir (SEO), 5 dakikada bir yenilenir.
 export const revalidate = 300;
@@ -28,6 +30,13 @@ const topics = [
   { icon: Feather,     label: "Doğal Şifa" },
 ];
 
+// Türkiye geneli hizmet dizinleri (pSEO hub sayfaları)
+const hubLinks = [
+  { label: "Hacamat Kursu",       href: "/hacamat-kursu",   title: "İl İl Hacamat Kursu — Tüm Türkiye" },
+  { label: "Sülük Satışı",        href: "/suluk-satisi",    title: "İl İl Sülük Satışı — Tüm Türkiye" },
+  { label: "Hacamat Malzemeleri", href: "/kupa-malzemeleri", title: "İl İl Hacamat Malzemeleri — Tüm Türkiye" },
+];
+
 export default async function BlogPage() {
   const posts = await getPublishedPosts();
   return (
@@ -45,22 +54,45 @@ export default async function BlogPage() {
             şifa yöntemleri hakkında uzman içerikler. Doğru bilgi, sağlıklı yaşam.
           </p>
 
-          {/* Konu etiketleri */}
+          {/* Konu etiketleri — tıklanınca kategori filtresi uygulanır */}
           <div className="flex flex-wrap gap-3">
             {topics.map(({ icon: Icon, label }) => (
-              <span
+              <Link
                 key={label}
-                className="flex items-center gap-2 bg-white/5 border border-white/10 text-white/60 text-[12px] font-semibold px-4 py-2 rounded-full"
+                href={`/blog?kategori=${encodeURIComponent(label)}`}
+                title={`${label} yazılarını filtrele`}
+                className="flex items-center gap-2 bg-white/5 border border-white/10 text-white/60 text-[12px] font-semibold px-4 py-2 rounded-full hover:border-teal/40 hover:text-teal transition-all"
               >
                 <Icon size={13} className="text-teal" />
                 {label}
-              </span>
+              </Link>
+            ))}
+          </div>
+
+          {/* Türkiye geneli hizmet dizinleri */}
+          <div className="flex flex-wrap items-center gap-3 mt-5">
+            <span className="text-[10px] font-black uppercase tracking-[0.2em] text-gold">
+              Türkiye Geneli
+            </span>
+            {hubLinks.map(({ label, href, title }) => (
+              <Link
+                key={href}
+                href={href}
+                title={title}
+                className="flex items-center gap-2 bg-gold/5 border border-gold/20 text-white/70 text-[12px] font-semibold px-4 py-2 rounded-full hover:border-gold/50 hover:text-gold transition-all"
+              >
+                <MapPin size={13} className="text-gold" />
+                {label}
+                <span className="text-gold/70 text-[9px] font-black uppercase tracking-widest">81 İl</span>
+              </Link>
             ))}
           </div>
         </div>
 
         {/* ── Yazı listesi ── */}
-        <BlogList initialPosts={posts} />
+        <Suspense>
+          <BlogList initialPosts={posts} />
+        </Suspense>
 
       </div>
     </main>

@@ -1,6 +1,7 @@
 "use client";
 import { useState } from "react";
 import Link from "next/link";
+import { useSearchParams } from "next/navigation";
 import { BookOpen, Clock, Eye, ArrowRight, ChevronRight } from "lucide-react";
 import type { Post } from "@/lib/posts";
 
@@ -18,7 +19,12 @@ function formatDate(seconds: number) {
 
 export default function BlogList({ initialPosts }: { initialPosts: Post[] }) {
   const posts = initialPosts;
-  const [aktifKategori, setAktifKategori] = useState("Tümü");
+  // Hero'daki konu etiketleri /blog?kategori=... linkleridir; başlangıç
+  // filtresi URL'den okunur ki etiketler gerçekten "aktif" çalışsın.
+  const searchParams = useSearchParams();
+  const [aktifKategori, setAktifKategori] = useState(
+    searchParams.get("kategori") || "Tümü",
+  );
 
   if (posts.length === 0) {
     return (
@@ -30,8 +36,11 @@ export default function BlogList({ initialPosts }: { initialPosts: Post[] }) {
     );
   }
 
-  /* Kategoriler */
-  const kategoriler = ["Tümü", ...Array.from(new Set(posts.map(p => p.category).filter(Boolean)))];
+  /* Kategoriler — URL'den gelen kategori yazılarda yoksa da satırda göster */
+  const kategoriler = ["Tümü", ...Array.from(new Set([
+    ...posts.map(p => p.category).filter(Boolean),
+    ...(aktifKategori !== "Tümü" ? [aktifKategori] : []),
+  ]))];
 
   const filtreli = aktifKategori === "Tümü"
     ? posts
@@ -57,6 +66,22 @@ export default function BlogList({ initialPosts }: { initialPosts: Post[] }) {
               {k}
             </button>
           ))}
+        </div>
+      )}
+
+      {/* ── Filtre sonucu boşsa bilgilendir ── */}
+      {filtreli.length === 0 && (
+        <div className="text-center py-16 text-white/70">
+          <BookOpen size={36} className="mx-auto mb-4 opacity-30" />
+          <p className="text-base">
+            &ldquo;{aktifKategori}&rdquo; kategorisinde henüz yazı yok.
+          </p>
+          <button
+            onClick={() => setAktifKategori("Tümü")}
+            className="mt-4 text-[11px] font-black uppercase tracking-widest px-5 py-2.5 rounded-full bg-teal text-black hover:scale-105 transition-all"
+          >
+            Tüm Yazıları Göster
+          </button>
         </div>
       )}
 

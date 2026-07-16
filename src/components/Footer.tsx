@@ -91,8 +91,38 @@ export default function Footer() {
             </div>
           </div>
 
-          {/* 4. Bölgeler */}
+          {/* 4. Türkiye Geneli (il il pSEO dizinleri) + Bölge kartları */}
           <div>
+            <h4 className="text-white font-black mb-8 text-[11px] uppercase tracking-[0.2em] flex items-center gap-2">
+              <span className="w-4 h-[2px] bg-gold"></span> TÜRKİYE GENELİ
+            </h4>
+            <ul className="space-y-4 text-sm font-semibold mb-8">
+              <li>
+                <Link href="/hacamat-kursu" title="İl İl Hacamat Kursu — Tüm Türkiye" className="text-white/60 hover:text-teal transition-colors">
+                  Hacamat Kursu <span className="text-gold/70 text-[9px] font-black uppercase tracking-widest ml-1">81 İl</span>
+                </Link>
+              </li>
+              <li>
+                <Link href="/suluk-satisi" title="İl İl Sülük Satışı — Tüm Türkiye" className="text-white/60 hover:text-teal transition-colors">
+                  Sülük Satışı <span className="text-gold/70 text-[9px] font-black uppercase tracking-widest ml-1">81 İl</span>
+                </Link>
+              </li>
+              <li>
+                <Link href="/kupa-malzemeleri" title="İl İl Hacamat ve Kupa Malzemeleri — Tüm Türkiye" className="text-white/60 hover:text-teal transition-colors">
+                  Hacamat Malzemeleri <span className="text-gold/70 text-[9px] font-black uppercase tracking-widest ml-1">81 İl</span>
+                </Link>
+              </li>
+              <li>
+                <Link href="/hacamat-nedir" title="Hacamat Nedir? İl İl Bilgi Rehberi" className="text-white/60 hover:text-teal transition-colors">
+                  Hacamat Nedir?
+                </Link>
+              </li>
+              <li>
+                <Link href="/suluk-nedir" title="Sülük Tedavisi Nedir? İl İl Bilgi Rehberi" className="text-white/60 hover:text-teal transition-colors">
+                  Sülük Nedir?
+                </Link>
+              </li>
+            </ul>
             <div className="p-4 rounded-2xl bg-teal/5 border border-teal/10 flex items-center gap-3">
               <Globe className="text-teal shrink-0" size={20} />
               <p className="text-[10px] text-white/70 leading-tight font-medium">

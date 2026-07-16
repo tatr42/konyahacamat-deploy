@@ -1,11 +1,27 @@
 "use client";
-import { useState, useEffect } from 'react';
+import React, { useState, useEffect } from 'react';
 import Link from 'next/link';
 import Image from 'next/image';
 import { usePathname } from 'next/navigation';
 import { ChevronDown, Calendar, Home, Newspaper, Building2, Stethoscope, X } from 'lucide-react';
 
-const navLinks = [
+interface DropdownItem {
+  name: string;
+  sub: string;
+  href: string;
+  title: string;
+  /** Doluysa bu öğeden önce ayraç + grup etiketi çizilir (ör. "Türkiye Geneli"). */
+  group?: string;
+}
+
+interface NavItem {
+  name: string;
+  href: string;
+  title?: string;
+  dropdown?: DropdownItem[];
+}
+
+const navLinks: NavItem[] = [
   { name: 'Ana Sayfa', href: '/', title: 'Ana Sayfa' },
   {
     name: 'Hizmetler',
@@ -14,6 +30,9 @@ const navLinks = [
       { name: 'Hacamat', sub: 'Kuru & Yaş Hacamat Tedavisi', href: '/hizmetler/hacamat', title: 'Kuru ve Yaş Hacamat Tedavisi Konya' },
       { name: 'Sülük Terapisi', sub: 'Doğal Hirudoterapi', href: '/hizmetler/suluk', title: 'Sülük Terapisi Hirudoterapi Konya' },
       { name: 'Kurs & Eğitim', sub: 'Sertifikalı Uzmanlık Programı', href: '/egitimler', title: 'Hacamat Kursu ve Eğitimi' },
+      { name: 'Hacamat Kursu', sub: '81 İl · Online Sertifikalı Eğitim', href: '/hacamat-kursu', title: 'İl İl Hacamat Kursu — Tüm Türkiye', group: 'Türkiye Geneli' },
+      { name: 'Sülük Satışı', sub: '81 İle Canlı Sülük Kargo', href: '/suluk-satisi', title: 'İl İl Sülük Satışı — Tüm Türkiye' },
+      { name: 'Kupa & Malzemeler', sub: 'CE Sertifikalı Steril Setler', href: '/kupa-malzemeleri', title: 'İl İl Hacamat Malzemeleri — Tüm Türkiye' },
     ]
   },
   { name: 'Takvim', href: '/takvim', title: 'Hacamat Randevu Takvimi' },
@@ -44,6 +63,9 @@ const bottomNav = [
       { name: 'Hacamat', href: '/hizmetler/hacamat' },
       { name: 'Sülük', href: '/hizmetler/suluk' },
       { name: 'Eğitim', href: '/egitimler' },
+      { name: 'Hacamat Kursu (81 İl)', href: '/hacamat-kursu' },
+      { name: 'Sülük Satışı (81 İl)', href: '/suluk-satisi' },
+      { name: 'Kupa & Malzemeler (81 İl)', href: '/kupa-malzemeleri' },
     ]
   },
   { name: 'Ana Sayfa', href: '/', icon: Home, center: true },
@@ -113,10 +135,18 @@ export default function Navbar() {
                   <div className="absolute top-[80%] left-[-20px] w-64 pt-[20px] opacity-0 translate-y-4 pointer-events-none group-hover/item:opacity-100 group-hover/item:translate-y-0 group-hover/item:pointer-events-auto transition-all duration-300 z-[110]">
                     <div className="bg-anthracite-dark border border-white/10 rounded-2xl p-4 shadow-2xl">
                       {link.dropdown.map((sub) => (
-                        <Link key={sub.name} href={sub.href} title={sub.title} className="block p-3 rounded-xl hover:bg-white/5 transition-colors group/sub">
-                          <div className="text-white font-bold text-sm group-hover/sub:text-teal">{sub.name}</div>
-                          <div className="text-[10px] text-white/40 leading-tight">{sub.sub}</div>
-                        </Link>
+                        <React.Fragment key={sub.name}>
+                          {sub.group && (
+                            <div className="flex items-center gap-2 mt-3 mb-1 px-3">
+                              <span className="text-[9px] font-black uppercase tracking-[0.2em] text-gold whitespace-nowrap">{sub.group}</span>
+                              <span className="h-px flex-1 bg-gradient-to-r from-gold/30 to-transparent" />
+                            </div>
+                          )}
+                          <Link href={sub.href} title={sub.title} className="block p-3 rounded-xl hover:bg-white/5 transition-colors group/sub">
+                            <div className="text-white font-bold text-sm group-hover/sub:text-teal">{sub.name}</div>
+                            <div className="text-[10px] text-white/40 leading-tight">{sub.sub}</div>
+                          </Link>
+                        </React.Fragment>
                       ))}
                     </div>
                   </div>

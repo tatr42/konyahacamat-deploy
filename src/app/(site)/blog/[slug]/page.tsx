@@ -4,6 +4,13 @@ import { getPostBySlug } from "@/lib/posts";
 import { Clock, Tag, Eye, ArrowLeft } from "lucide-react";
 import Link from "next/link";
 import ViewCounter from "./ViewCounter";
+import { enrichContent } from "@/lib/blog/enrich";
+import {
+  TableOfContents,
+  MedicalDisclaimer,
+  AuthorBox,
+  RelatedPosts,
+} from "@/components/blog/BlogEnrichment";
 
 const getPost = getPostBySlug;
 
@@ -51,6 +58,9 @@ export default async function BlogPostPage({ params }: { params: Promise<{ slug:
 
   const BASE = "https://www.konyahacamat.net";
 
+  // İçerik zenginleştirme: h2/h3'lere id enjekte et + İçindekiler listesi çıkar
+  const { html: contentHtml, toc } = enrichContent(post.content ?? "");
+
   // Arama Motorları İçin Yapılandırılmış Veri (JSON-LD)
 
   const articleSchema = {
@@ -67,9 +77,20 @@ export default async function BlogPostPage({ params }: { params: Promise<{ slug:
 
   };
 
+  const breadcrumbSchema = {
+    "@context": "https://schema.org",
+    "@type": "BreadcrumbList",
+    itemListElement: [
+      { "@type": "ListItem", position: 1, name: "Ana Sayfa", item: BASE },
+      { "@type": "ListItem", position: 2, name: "Blog", item: `${BASE}/blog` },
+      { "@type": "ListItem", position: 3, name: post.title, item: `${BASE}/blog/${post.slug}` },
+    ],
+  };
+
   return (
     <main className="min-h-screen bg-anthracite-dark pt-20 pb-24">
       <script type="application/ld+json" dangerouslySetInnerHTML={{ __html: JSON.stringify(articleSchema) }} />
+      <script type="application/ld+json" dangerouslySetInnerHTML={{ __html: JSON.stringify(breadcrumbSchema) }} />
       <div className="container-site max-w-3xl">
 
         {/* Geri Dönüş ve Kategori (Breadcrumb) */}
@@ -106,14 +127,22 @@ export default async function BlogPostPage({ params }: { params: Promise<{ slug:
 
         <hr className="border-white/10 mb-10" />
 
+        {/* İçindekiler (h2/h3'lerden — 2+ başlık varsa görünür) */}
+        <TableOfContents toc={toc} />
+
         {/* Ana İçerik */}
         <article
           className="prose prose-invert prose-lg max-w-none text-white/80 leading-relaxed
             prose-headings:text-white prose-headings:font-bold
+            [&_h2]:scroll-mt-28 [&_h3]:scroll-mt-28
             prose-strong:text-white prose-a:text-teal prose-a:no-underline hover:prose-a:underline
             prose-ul:text-white/70 prose-ol:text-white/70"
-          dangerouslySetInnerHTML={{ __html: post.content ?? "" }}
+          dangerouslySetInnerHTML={{ __html: contentHtml }}
         />
+
+        {/* Otorite & güven blokları (YMYL) */}
+        <MedicalDisclaimer />
+        <AuthorBox />
 
         <hr className="border-white/10 mt-12 mb-8" />
 
@@ -131,7 +160,7 @@ export default async function BlogPostPage({ params }: { params: Promise<{ slug:
             >
               WhatsApp
             </a>
-            <Link 
+            <Link
               href="/takvim"
               className="flex items-center gap-2 bg-teal text-anthracite-dark px-6 py-3 rounded-xl font-black text-sm uppercase tracking-widest hover:scale-105 transition-all"
               title="Randevu sayfasına git"
@@ -140,6 +169,9 @@ export default async function BlogPostPage({ params }: { params: Promise<{ slug:
             </Link>
           </div>
         </div>
+
+        {/* Aynı kategoriden yazılar */}
+        <RelatedPosts currentSlug={post.slug} category={post.category} />
 
       </div>
     </main>
