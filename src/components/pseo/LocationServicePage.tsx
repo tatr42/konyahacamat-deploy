@@ -29,11 +29,14 @@ import {
   whatsappLink,
   localCtaCopy,
   imageAlt,
+  imageTrioAlts,
+  deepContentBlocks,
+  selectFaqs,
   SERVICE_LABEL,
   PHONE_DISPLAY,
   WHATSAPP,
 } from "@/lib/pseo/content";
-import { pickImage } from "@/lib/pseo/images";
+import { pickImage, pickTrio } from "@/lib/pseo/images";
 import { dative } from "@/lib/pseo/turkish";
 import LocalContactCta from "@/components/pseo/LocalContactCta";
 
@@ -55,11 +58,17 @@ export default function LocationServicePage({
   otherServices = [],
 }: Props) {
   const copy = getServiceCopy(service);
-  const faq = copy.faq(ctx);
+  // Dinamik SSS: 15'lik havuzdan lokasyona özel, deterministik 4 soru
+  const faq = selectFaqs(service, ctx);
   const wa = whatsappLink(service, ctx);
   // Deterministik havuz seçimi: aynı il/ilçe+hizmet her zaman aynı görsel
   const cover = pickImage(service, ctx.province, ctx.district?.slug);
   const alt = imageAlt(service, ctx);
+  // 3'lü galeri: kapak hariç, lokasyona özel deterministik 3 görsel + alt metni
+  const trio = pickTrio(service, ctx.province, ctx.district?.slug, cover.src);
+  const trioAlts = imageTrioAlts(service, ctx);
+  // Derin içerik blokları (kargo güvencesi, noktalar, Konya ulaşım)
+  const blocks = deepContentBlocks(service, ctx);
   const cta = localCtaCopy(service, ctx);
 
   const path = ctx.isDistrict
@@ -211,6 +220,57 @@ export default function LocationServicePage({
               body="CE sertifikalı, steril ve tek kullanımlık malzeme. 1994'ten beri süregelen tecrübe ile güvenli uygulama ve eğitim."
             />
           </div>
+        </div>
+      </section>
+
+      {/* 3'LÜ GÖRSEL GALERİSİ — lokasyona özel, deterministik */}
+      <section className="py-16 lg:py-24 bg-anthracite-dark border-t border-white/5">
+        <div className="container-site">
+          <h2 className="text-3xl lg:text-4xl font-display font-bold text-white mb-10">
+            {ctx.place}{" "}
+            <span className="text-teal">Uygulama &amp; Malzeme Görselleri</span>
+          </h2>
+          <div className="grid grid-cols-1 sm:grid-cols-3 gap-5">
+            {trio.map((img, i) => (
+              <figure
+                key={img.src}
+                className="relative group overflow-hidden rounded-3xl border border-white/10"
+              >
+                <Image
+                  src={img.src}
+                  width={img.width}
+                  height={img.height}
+                  alt={trioAlts[i]}
+                  className="w-full h-64 object-cover group-hover:scale-105 transition-transform duration-500"
+                />
+                <figcaption className="absolute inset-x-0 bottom-0 bg-gradient-to-t from-anthracite-dark/95 to-transparent p-4 pt-10">
+                  <span className="text-white/85 text-xs font-medium leading-snug">
+                    {trioAlts[i]}
+                  </span>
+                </figcaption>
+              </figure>
+            ))}
+          </div>
+        </div>
+      </section>
+
+      {/* DERİN İÇERİK — lokasyona özel bilgi blokları (600+ kelime motoru) */}
+      <section className="py-16 lg:py-24 bg-anthracite border-t border-white/5">
+        <div className="container-site max-w-4xl space-y-12">
+          {blocks.map((block) => (
+            <article key={block.title}>
+              <h2 className="text-2xl lg:text-3xl font-display font-bold text-white mb-5">
+                {block.title}
+              </h2>
+              <div className="space-y-4">
+                {block.paragraphs.map((p, i) => (
+                  <p key={i} className="text-white/60 leading-relaxed">
+                    {p}
+                  </p>
+                ))}
+              </div>
+            </article>
+          ))}
         </div>
       </section>
 

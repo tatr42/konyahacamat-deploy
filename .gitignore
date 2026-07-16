@@ -5,6 +5,10 @@ node_modules/
 .next/
 out/
 
+# TypeScript incremental build info (derleme kalıntısı)
+tsconfig.tsbuildinfo
+*.tsbuildinfo
+
 # env files — GİZLİ, asla GitHub'a gönderme
 .env
 .env.local
@@ -16,5 +20,6 @@ npm-debug.log*
 # OS
 .DS_Store
 Thumbs.db
+desktop.ini
 
 .vercel

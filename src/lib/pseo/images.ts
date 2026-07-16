@@ -17,6 +17,7 @@
 
 import type { Province } from "@/data/tr-locations";
 import type { ServiceType } from "@/lib/pseo/content";
+import { pickOne, pickDistinct } from "@/lib/pseo/deterministic";
 
 export type ImageTheme = "cupping" | "materials" | "natural";
 
@@ -79,15 +80,6 @@ const SERVICE_THEME: Record<ServiceType, ImageTheme> = {
   "suluk-nedir": "natural",
 };
 
-/** djb2 — basit, hızlı, deterministik string hash. */
-function hashStr(s: string): number {
-  let h = 5381;
-  for (let i = 0; i < s.length; i++) {
-    h = (h * 33) ^ s.charCodeAt(i);
-  }
-  return h >>> 0;
-}
-
 /** Blog kategorisi → tema (kategori adından çıkarım). */
 export function themeForCategory(category: string): ImageTheme {
   const c = category.toLocaleLowerCase("tr-TR");
@@ -101,7 +93,16 @@ export function themeForCategory(category: string): ImageTheme {
 export function pickImageByKey(key: string, theme?: ImageTheme): PoolImage {
   const themed = theme ? IMAGE_POOL.filter((i) => i.theme === theme) : IMAGE_POOL;
   const pool = themed.length > 0 ? themed : IMAGE_POOL;
-  return pool[hashStr(key) % pool.length];
+  return pickOne(pool, key);
+}
+
+/** Lokasyon+hizmet için deterministik seçim anahtarı. */
+function locationKey(
+  service: ServiceType,
+  province: Province,
+  districtSlug?: string,
+): string {
+  return `${service}|${province.plate}|${districtSlug ?? ""}`;
 }
 
 /**
@@ -113,6 +114,40 @@ export function pickImage(
   province: Province,
   districtSlug?: string,
 ): PoolImage {
-  const key = `${service}|${province.plate}|${districtSlug ?? ""}`;
-  return pickImageByKey(key, SERVICE_THEME[service]);
+  return pickImageByKey(locationKey(service, province, districtSlug), SERVICE_THEME[service]);
+}
+
+/**
+ * Lokasyon+hizmet için deterministik 3'LÜ görsel galerisi.
+ *
+ * Anti-doorway motoru: her lokasyon 3 FARKLI görsel alır. İlk görsel hizmetin
+ * ana temasından (alaka) seçilir; kalan 2 görsel tüm havuzdan (çeşitlilik)
+ * çekilir. Böylece komşu ilçeler bile birbirinden farklı üçlü kombinasyon
+ * gösterir — 21 görsellik havuzdan bile binlerce benzersiz kombinasyon çıkar.
+ *
+ * `excludeSrc` verilirse (ör. kapak görseli) o görsel galeriden çıkarılır;
+ * böylece kapak + galeri toplam 4 benzersiz görsel olur.
+ */
+export function pickTrio(
+  service: ServiceType,
+  province: Province,
+  districtSlug?: string,
+  excludeSrc?: string,
+): PoolImage[] {
+  const key = locationKey(service, province, districtSlug);
+  const theme = SERVICE_THEME[service];
+
+  // Alaka için ana tema önde, çeşitlilik için diğer temalar arkada.
+  const primary = IMAGE_POOL.filter((i) => i.theme === theme && i.src !== excludeSrc);
+  const rest = IMAGE_POOL.filter((i) => i.theme !== theme && i.src !== excludeSrc);
+  const ordered = [...primary, ...rest];
+
+  // 1. slot garantili ana temadan; kalan 2 slot tüm sıralı havuzdan.
+  const lead = primary.length > 0 ? pickOne(primary, `${key}|lead`) : ordered[0];
+  const tail = pickDistinct(
+    ordered.filter((i) => i.src !== lead.src),
+    2,
+    `${key}|tail`,
+  );
+  return [lead, ...tail];
 }
