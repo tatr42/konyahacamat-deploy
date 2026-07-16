@@ -3,7 +3,9 @@ import { notFound } from "next/navigation";
 import { getPostBySlug } from "@/lib/posts";
 import { Clock, Tag, Eye, ArrowLeft } from "lucide-react";
 import Link from "next/link";
+import Image from "next/image";
 import ViewCounter from "./ViewCounter";
+import { pickImageByKey, themeForCategory } from "@/lib/pseo/images";
 import { enrichContent } from "@/lib/blog/enrich";
 import {
   TableOfContents,
@@ -60,6 +62,9 @@ export default async function BlogPostPage({ params }: { params: Promise<{ slug:
 
   // İçerik zenginleştirme: h2/h3'lere id enjekte et + İçindekiler listesi çıkar
   const { html: contentHtml, toc } = enrichContent(post.content ?? "");
+
+  // Kategoriye göre deterministik kapak (slug sabit → görsel hep aynı)
+  const cover = pickImageByKey(post.slug, themeForCategory(post.category));
 
   // Arama Motorları İçin Yapılandırılmış Veri (JSON-LD)
 
@@ -125,7 +130,18 @@ export default async function BlogPostPage({ params }: { params: Promise<{ slug:
           </div>
         </div>
 
-        <hr className="border-white/10 mb-10" />
+        {/* Kapak görseli */}
+        <div className="relative mb-10 rounded-3xl overflow-hidden border border-white/10">
+          <Image
+            src={cover.src}
+            width={cover.width}
+            height={cover.height}
+            alt={`${post.title} — Ebusadullah Hacamat & Akademi`}
+            priority
+            className="w-full h-64 md:h-80 object-cover"
+          />
+          <div className="absolute inset-0 bg-gradient-to-t from-anthracite-dark/70 to-transparent" />
+        </div>
 
         {/* İçindekiler (h2/h3'lerden — 2+ başlık varsa görünür) */}
         <TableOfContents toc={toc} />

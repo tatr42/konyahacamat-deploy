@@ -26,12 +26,12 @@ import {
   getServiceCopy,
   imageAlt,
   ALL_SERVICES,
-  SERVICE_IMAGE,
   SERVICE_LABEL,
   HUB_COPY,
   type ServiceType,
   type LocationCtx,
 } from "@/lib/pseo/content";
+import { pickImage } from "@/lib/pseo/images";
 import LocationServicePage from "@/components/pseo/LocationServicePage";
 import ServiceHubPage from "@/components/pseo/ServiceHubPage";
 
@@ -54,7 +54,8 @@ function metaFor(
   canonical: string,
 ): Metadata {
   const copy = getServiceCopy(service);
-  const cover = SERVICE_IMAGE[service];
+  // OG görseli de kapakla aynı deterministik havuz seçimi olsun
+  const cover = pickImage(service, ctx.province, ctx.district?.slug);
   return {
     title: copy.seoTitle(ctx),
     description: copy.seoDescription(ctx),

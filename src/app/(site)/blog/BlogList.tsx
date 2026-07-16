@@ -1,9 +1,11 @@
 "use client";
 import { useState } from "react";
 import Link from "next/link";
+import Image from "next/image";
 import { useSearchParams } from "next/navigation";
 import { BookOpen, Clock, Eye, ArrowRight, ChevronRight } from "lucide-react";
 import type { Post } from "@/lib/posts";
+import { pickImageByKey, themeForCategory } from "@/lib/pseo/images";
 
 function readingTime(content = "", excerpt = "") {
   const text = content.replace(/<[^>]+>/g, "") + " " + excerpt;
@@ -89,10 +91,19 @@ export default function BlogList({ initialPosts }: { initialPosts: Post[] }) {
       {featured && (
         <Link
           href={`/blog/${featured.slug}`}
-          className="group block bg-white/5 border border-white/10 rounded-3xl p-8 md:p-10 hover:border-teal/30 hover:bg-white/[0.08] transition-all duration-300 mb-8"
+          className="group block bg-white/5 border border-white/10 rounded-3xl overflow-hidden hover:border-teal/30 hover:bg-white/[0.08] transition-all duration-300 mb-8"
         >
-          <div className="flex flex-col md:flex-row md:items-start gap-6">
-            <div className="flex-1">
+          <div className="flex flex-col md:flex-row">
+            <div className="md:w-2/5 relative shrink-0">
+              <Image
+                src={pickImageByKey(featured.slug, themeForCategory(featured.category)).src}
+                width={1200}
+                height={800}
+                alt={`${featured.title} — Ebusadullah Hacamat & Akademi`}
+                className="w-full h-56 md:h-full object-cover"
+              />
+            </div>
+            <div className="flex-1 p-8 md:p-10 flex flex-col justify-center">
               <div className="flex items-center gap-3 mb-4">
                 <span className="text-[10px] font-black text-teal uppercase tracking-widest bg-teal/10 px-3 py-1 rounded-full">
                   {featured.category}
@@ -122,10 +133,10 @@ export default function BlogList({ initialPosts }: { initialPosts: Post[] }) {
                   </span>
                 )}
               </div>
-            </div>
-            <div className="flex items-center gap-2 text-teal text-[12px] font-black uppercase tracking-widest shrink-0 md:self-center">
-              Devamını Oku
-              <ChevronRight size={16} className="group-hover:translate-x-1 transition-transform" />
+              <div className="flex items-center gap-2 text-teal text-[12px] font-black uppercase tracking-widest mt-6">
+                Devamını Oku
+                <ChevronRight size={16} className="group-hover:translate-x-1 transition-transform" />
+              </div>
             </div>
           </div>
         </Link>
@@ -138,8 +149,20 @@ export default function BlogList({ initialPosts }: { initialPosts: Post[] }) {
             <Link
               key={post.id}
               href={`/blog/${post.slug}`}
-              className="group bg-white/5 border border-white/10 rounded-3xl p-7 hover:border-teal/30 hover:bg-white/[0.08] transition-all duration-300 flex flex-col gap-4"
+              className="group bg-white/5 border border-white/10 rounded-3xl overflow-hidden hover:border-teal/30 hover:bg-white/[0.08] transition-all duration-300 flex flex-col"
             >
+              {/* Kapak görseli */}
+              <div className="relative h-44 shrink-0">
+                <Image
+                  src={pickImageByKey(post.slug, themeForCategory(post.category)).src}
+                  width={1200}
+                  height={800}
+                  alt={`${post.title} — Ebusadullah Hacamat & Akademi`}
+                  className="w-full h-full object-cover"
+                />
+              </div>
+
+              <div className="p-7 flex flex-col gap-4 flex-1">
               {/* Üst satır */}
               <div className="flex items-center justify-between">
                 <span className="text-[10px] font-black text-teal uppercase tracking-widest bg-teal/10 px-3 py-1 rounded-full">
@@ -178,6 +201,7 @@ export default function BlogList({ initialPosts }: { initialPosts: Post[] }) {
                 <span className="flex items-center gap-1 text-teal text-[11px] font-black uppercase tracking-widest">
                   Oku <ArrowRight size={12} className="group-hover:translate-x-0.5 transition-transform" />
                 </span>
+              </div>
               </div>
             </Link>
           ))}

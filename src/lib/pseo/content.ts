@@ -347,28 +347,16 @@ export function localCtaCopy(service: ServiceType, ctx: LocationCtx): LocalCtaCo
 }
 
 // ─── Kapak görseli ────────────────────────────────────────────────────────
-
-export interface ServiceImage {
-  src: string;
-  width: number;
-  height: number;
-}
+// Görsel havuzu ve deterministik seçim lib/pseo/images.ts içindedir.
 
 /**
- * Hizmet → kapak görseli eşlemesi. Şimdilik hepsi tek profesyonel fotoğraf
- * (public/5.webp — steril kupa uygulaması); hizmete özel yüksek çözünürlüklü
- * görsel eklendiğinde SADECE burası değişir. (public/9.webp'deki sülük
- * fotoğrafı 355×142 — kapak için düşük çözünürlüklü, bilinçli kullanılmadı.)
+ * Lokasyona özel görsel alt metni.
+ * Kullanıcı isteği gereği hizmet + "ve Malzemeleri" kalıbı, ör:
+ * "Kadıköy Hacamat Kursu ve Malzemeleri — Ebusadullah Hacamat & Akademi".
+ * Etiket zaten "Malzemeleri" içeriyorsa tekrar eklenmez.
  */
-export const SERVICE_IMAGE: Record<ServiceType, ServiceImage> = {
-  "hacamat-kursu": { src: "/5.webp", width: 700, height: 500 },
-  "suluk-satisi": { src: "/5.webp", width: 700, height: 500 },
-  "kupa-malzemeleri": { src: "/5.webp", width: 700, height: 500 },
-  "hacamat-nedir": { src: "/5.webp", width: 700, height: 500 },
-  "suluk-nedir": { src: "/5.webp", width: 700, height: 500 },
-};
-
-/** Lokasyona özel görsel alt metni — ör. "Kadıköy Hacamat Kursu — Ebusadullah Akademi". */
 export function imageAlt(service: ServiceType, ctx: LocationCtx): string {
-  return `${ctx.full} ${SERVICE_LABEL[service]} — Ebusadullah Hacamat & Akademi`;
+  const label = SERVICE_LABEL[service];
+  const suffix = label.includes("Malzemeleri") ? "" : " ve Malzemeleri";
+  return `${ctx.full} ${label}${suffix} — Ebusadullah Hacamat & Akademi`;
 }

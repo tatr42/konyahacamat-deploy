@@ -29,11 +29,11 @@ import {
   whatsappLink,
   localCtaCopy,
   imageAlt,
-  SERVICE_IMAGE,
   SERVICE_LABEL,
   PHONE_DISPLAY,
   WHATSAPP,
 } from "@/lib/pseo/content";
+import { pickImage } from "@/lib/pseo/images";
 import { dative } from "@/lib/pseo/turkish";
 import LocalContactCta from "@/components/pseo/LocalContactCta";
 
@@ -57,7 +57,8 @@ export default function LocationServicePage({
   const copy = getServiceCopy(service);
   const faq = copy.faq(ctx);
   const wa = whatsappLink(service, ctx);
-  const cover = SERVICE_IMAGE[service];
+  // Deterministik havuz seçimi: aynı il/ilçe+hizmet her zaman aynı görsel
+  const cover = pickImage(service, ctx.province, ctx.district?.slug);
   const alt = imageAlt(service, ctx);
   const cta = localCtaCopy(service, ctx);
 
