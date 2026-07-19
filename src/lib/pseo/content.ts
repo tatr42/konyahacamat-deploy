@@ -102,7 +102,7 @@ export const HUB_COPY: Record<ServiceType, HubCopy> = {
 };
 
 export const WHATSAPP = "905544062383";
-export const PHONE_DISPLAY = "0554 406 23 83";
+export const PHONE_DISPLAY = "+90 554 406 23 83";
 
 /** Konya merkezden bölgelere kaba kargo süresi (iş günü). */
 const CARGO_DAYS: Record<Region, string> = {

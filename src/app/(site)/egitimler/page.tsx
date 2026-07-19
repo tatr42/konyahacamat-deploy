@@ -304,9 +304,9 @@ export default function EgitimlerPage() {
               className="flex items-center gap-2 bg-white/10 text-white border border-white/20 px-6 py-4 rounded-2xl font-black text-sm uppercase tracking-widest hover:bg-white/15 transition-all">
               <MessageCircle size={18} /> 🇩🇪 Almanya
             </a>
-            <a href="tel:05544062383" title="Türkiye Hacamat İletişim"
+            <a href="tel:+905544062383" title="Türkiye Hacamat İletişim"
               className="flex items-center gap-2 bg-white/5 text-white/60 border border-white/10 px-6 py-4 rounded-2xl font-bold text-sm uppercase tracking-widest hover:bg-white/10 transition-all">
-              <Phone size={16} /> 0554 406 23 83
+              <Phone size={16} /> +90 554 406 23 83
             </a>
             <Link href="/iletisim" title="İletişim"
               className="flex items-center gap-2 bg-white/10 text-white border border-white/20 px-6 py-4 rounded-2xl font-black text-sm uppercase tracking-widest hover:bg-white/15 transition-all">

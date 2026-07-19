@@ -13,7 +13,7 @@ const bolumler = [
   {
     baslik: "1. Veri Sorumlusu",
     icerik:
-      "Bu gizlilik politikası, Ebusadullah Hacamat & Akademi (Nişantaş Mh. Dr. Hulusi Baybal Cd., Selçuklu/Konya) tarafından işletilen www.konyahacamat.net web sitesi için geçerlidir. 6698 sayılı Kişisel Verilerin Korunması Kanunu (KVKK) kapsamında veri sorumlusu sıfatıyla hareket etmekteyiz.",
+      "Bu gizlilik politikası, Ebusadullah Hacamat & Akademi (Sahibiata Mh. Taşcami Uzunharmanlar Cd. No: 16-4, 42040 Meram/Konya) tarafından işletilen www.konyahacamat.net web sitesi için geçerlidir. 6698 sayılı Kişisel Verilerin Korunması Kanunu (KVKK) kapsamında veri sorumlusu sıfatıyla hareket etmekteyiz.",
   },
   {
     baslik: "2. Toplanan Veriler",
@@ -43,7 +43,7 @@ const bolumler = [
   {
     baslik: "7. İletişim",
     icerik:
-      "Gizlilik politikamız veya kişisel verilerinizle ilgili her türlü soru ve talebiniz için: Telefon: 0554 406 23 83 · E-posta: info@konyahacamat.net · Adres: Nişantaş Mh. Dr. Hulusi Baybal Cd., Selçuklu/Konya",
+      "Gizlilik politikamız veya kişisel verilerinizle ilgili her türlü soru ve talebiniz için: Telefon: +90 554 406 23 83 · E-posta: info@konyahacamat.net · Adres: Sahibiata Mh. Taşcami Uzunharmanlar Cd. No: 16-4, 42040 Meram/Konya",
   },
 ];
 

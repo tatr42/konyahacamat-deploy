@@ -63,16 +63,16 @@ export default function Footer() {
                   <MapPin size={18} className="text-teal group-hover:text-anthracite-dark" />
                 </div>
                 <span className="text-sm text-white/60 leading-snug">
-                  Nişantaş Mh. Dr. Hulusi Baybal Cd.<br />
-                  <strong className="text-white">Selçuklu / KONYA</strong>
+                  Sahibiata Mh. Taşcami Uzunharmanlar Cd. No: 16-4<br />
+                  <strong className="text-white">Meram / KONYA</strong>
                 </span>
               </div>
               <div className="pt-2 space-y-2">
                 <span className="text-[10px] text-teal font-black uppercase tracking-widest block mb-2">Randevu & Bilgi</span>
                 <div>
                   <span className="text-[9px] text-white/70 uppercase tracking-widest">🇹🇷 Türkiye</span>
-                  <a href="tel:05544062383" title="Konya Hacamat Türkiye: 0554 406 23 83" className="block text-xl font-display font-bold text-white hover:text-teal transition-colors">
-                    0554 406 23 83
+                  <a href="tel:+905544062383" title="Konya Hacamat Türkiye: +90 554 406 23 83" className="block text-xl font-display font-bold text-white hover:text-teal transition-colors">
+                    +90 554 406 23 83
                   </a>
                 </div>
                 <div>

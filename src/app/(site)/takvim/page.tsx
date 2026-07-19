@@ -100,9 +100,9 @@ export default function TakvimPage() {
                   className="flex items-center gap-3 bg-white/10 hover:bg-white/15 text-white border border-white/10 w-full px-4 py-3 rounded-xl font-black text-xs uppercase tracking-widest transition-all">
                   <MessageCircle size={16} /> 🇩🇪 WhatsApp Almanya
                 </a>
-                <a href="tel:05544062383" title="Türkiye Hacamat İletişim"
+                <a href="tel:+905544062383" title="Türkiye Hacamat İletişim"
                   className="flex items-center gap-3 bg-white/5 hover:bg-white/10 text-white/60 border border-white/5 w-full px-4 py-3 rounded-xl font-bold text-xs uppercase tracking-widest transition-all">
-                  <Phone size={14} /> 🇹🇷 0554 406 23 83
+                  <Phone size={14} /> 🇹🇷 +90 554 406 23 83
                 </a>
                 <a href="tel:+491634492870" title="Almanya Hacamat İletişim"
                   className="flex items-center gap-3 bg-white/5 hover:bg-white/10 text-white/60 border border-white/5 w-full px-4 py-3 rounded-xl font-bold text-xs uppercase tracking-widest transition-all">

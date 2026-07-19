@@ -27,7 +27,7 @@ export const metadata: Metadata = {
     template: "%s | Konyahacamat.net",
   },
   description:
-    "Konya'da uzman hacamat ve sülük terapisi. Ebusadullah Hacamat & Akademi — 32+ yıl deneyim, steril CE sertifikalı malzeme, 384+ rahatsızlıkta şifa. Almanya seansları. Randevu: 0554 406 23 83",
+    "Konya'da uzman hacamat ve sülük terapisi. Ebusadullah Hacamat & Akademi — 32+ yıl deneyim, steril CE sertifikalı malzeme, 384+ rahatsızlıkta şifa. Almanya seansları. Randevu: +90 554 406 23 83",
   authors: [{ name: "Ebusadullah Hacamat & Akademi", url: '/' }],
   creator: "Ebusadullah Hacamat & Akademi",
   publisher: "Ebusadullah Hacamat & Akademi",
@@ -51,11 +51,14 @@ export const metadata: Metadata = {
   twitter: {
     card: "summary_large_image",
     title: "Konya Hacamat | Ebusadullah Hacamat & Akademi",
-    description: "Konya'da profesyonel hacamat ve sülük terapisi. 32+ yıl deneyim. Randevu: 0554 406 23 83",
+    description: "Konya'da profesyonel hacamat ve sülük terapisi. 32+ yıl deneyim. Randevu: +90 554 406 23 83",
     images: ["/logo.webp"],
   },
   verification: {
     google: "204ADYzUeUBHfuGRAFRrBFUrOvWq1WCJtsUvI-mIi6c",
+    other: {
+      "msvalidate.01": "695FE9ADEE26720B3B83DE58ABB8D52D",
+    },
   },
   icons: {
     icon: "/fav.webp",
@@ -82,17 +85,20 @@ const localBusinessSchema = {
   paymentAccepted: "Nakit, Havale",
   address: {
     "@type": "PostalAddress",
-    streetAddress: "Nişantaş Mh. Dr. Hulusi Baybal Cd.",
-    addressLocality: "Selçuklu",
+    streetAddress: "Sahibiata Mh. Taşcami Uzunharmanlar Cd. No: 16-4",
+    addressLocality: "Meram",
     addressRegion: "Konya",
-    postalCode: "42060",
+    postalCode: "42040",
     addressCountry: "TR",
   },
-  geo: {
-    "@type": "GeoCoordinates",
-    latitude: 37.8746,
-    longitude: 32.4984,
-  },
+  // TODO(adres): Yeni Meram adresinin KESİN koordinatlarını Google İşletme
+  // Profili pin'inden alıp aşağıdaki bloğu güncelleyip yorumdan çıkarın.
+  // Eski Selçuklu koordinatları kaldırıldı — yanlış konum yerel SEO'ya zarar verir.
+  // geo: {
+  //   "@type": "GeoCoordinates",
+  //   latitude: 0,
+  //   longitude: 0,
+  // },
   openingHoursSpecification: [
     { "@type": "OpeningHoursSpecification", dayOfWeek: ["Monday","Tuesday","Wednesday","Thursday","Friday","Saturday"], opens: "09:00", closes: "18:00" },
   ],

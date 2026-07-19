@@ -115,7 +115,7 @@ export default function AcademySection() {
           </div>
 
           <p className="text-white/70 text-xs">
-            Ücretsiz danışmanlık için arayın: <a href="tel:05544062383" title="Türkiye Hacamat İletişim" className="text-teal hover:underline font-bold">0554 406 23 83</a>
+            Ücretsiz danışmanlık için arayın: <a href="tel:+905544062383" title="Türkiye Hacamat İletişim" className="text-teal hover:underline font-bold">+90 554 406 23 83</a>
           </p>
         </div>
       </div>

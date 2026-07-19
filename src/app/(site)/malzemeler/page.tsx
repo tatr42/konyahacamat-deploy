@@ -9,7 +9,7 @@ export const metadata: Metadata = {
   alternates: { canonical: '/malzemeler' },
   openGraph: {
     title: "Hacamat Malzemeleri | CE Sertifikalı Steril Set | Konya",
-    description: "Profesyonel hacamat malzemeleri ve sülük bakım seti. CE sertifikalı, steril ambalaj. Türkiye geneli kargo. WhatsApp: 0554 406 23 83",
+    description: "Profesyonel hacamat malzemeleri ve sülük bakım seti. CE sertifikalı, steril ambalaj. Türkiye geneli kargo. WhatsApp: +90 554 406 23 83",
     url: '/malzemeler',
     images: [{ url: "/logo.webp", width: 1200, height: 630, alt: "Hacamat Malzemeleri Konya" }],
   },
@@ -205,9 +205,9 @@ export default function MalzemelePage() {
               className="flex items-center gap-2 bg-[#25D366] text-white px-6 py-4 rounded-2xl font-black text-sm uppercase tracking-widest hover:scale-105 transition-all">
               <MessageCircle size={18} fill="currentColor" /> WhatsApp
             </a>
-            <a href="tel:05544062383" title="Türkiye Hacamat İletişim"
+            <a href="tel:+905544062383" title="Türkiye Hacamat İletişim"
               className="flex items-center gap-2 bg-white/10 text-white border border-white/20 px-6 py-4 rounded-2xl font-black text-sm uppercase tracking-widest hover:bg-white/15 transition-all">
-              🇹🇷 <Phone size={18} /> 0554 406 23 83
+              🇹🇷 <Phone size={18} /> +90 554 406 23 83
             </a>
             <a href="tel:+491634492870" title="Almanya Hacamat İletişim"
               className="flex items-center gap-2 bg-white/10 text-white border border-white/20 px-6 py-4 rounded-2xl font-black text-sm uppercase tracking-widest hover:bg-white/15 transition-all">

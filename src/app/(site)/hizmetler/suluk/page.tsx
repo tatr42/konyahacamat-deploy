@@ -5,7 +5,7 @@ import { Clock, MessageCircle, Phone, ChevronRight, AlertTriangle } from "lucide
 
 export const metadata: Metadata = {
   title: "Sülük Terapisi Konya | Hirudoterapi | Ebusadullah Hacamat Akademi",
-  description: "Konya'da uzman sülük terapisi (hirudoterapi). Varis, eklem iltihabı, ödem ve dolaşım bozukluklarında doğal tedavi. Tek kullanımlık tıbbi sülük. Randevu: 0554 406 23 83",
+  description: "Konya'da uzman sülük terapisi (hirudoterapi). Varis, eklem iltihabı, ödem ve dolaşım bozukluklarında doğal tedavi. Tek kullanımlık tıbbi sülük. Randevu: +90 554 406 23 83",
 
   alternates: { canonical: '/hizmetler/suluk' },
   openGraph: {
@@ -47,9 +47,9 @@ function HeroSection() {
             className="flex items-center gap-2 bg-[#25D366] text-white px-6 py-4 rounded-2xl font-black text-sm uppercase tracking-widest hover:scale-105 transition-all">
             <MessageCircle size={18} fill="currentColor" /> WhatsApp
           </a>
-          <a href="tel:05544062383" title="Türkiye Hacamat İletişim"
+          <a href="tel:+905544062383" title="Türkiye Hacamat İletişim"
             className="flex items-center gap-2 bg-white/10 text-white border border-white/20 px-6 py-4 rounded-2xl font-black text-sm uppercase tracking-widest hover:bg-white/15 transition-all">
-            🇹🇷 <Phone size={18} /> 0554 406 23 83
+            🇹🇷 <Phone size={18} /> +90 554 406 23 83
           </a>
           <a href="tel:+491634492870" title="Almanya Hacamat İletişim"
             className="flex items-center gap-2 bg-white/10 text-white border border-white/20 px-6 py-4 rounded-2xl font-black text-sm uppercase tracking-widest hover:bg-white/15 transition-all">

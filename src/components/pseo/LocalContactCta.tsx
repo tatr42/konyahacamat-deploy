@@ -22,7 +22,7 @@ interface Props {
   title: string;
   /** Başlık altı satır — lokasyona özel erişim cümlesi */
   subtitle: string;
-  /** Görünen telefon — ör. "0554 406 23 83" */
+  /** Görünen telefon — ör. "+90 554 406 23 83" */
   phoneDisplay: string;
   /** tel: hedefi — ör. "+905544062383" */
   phoneHref: string;

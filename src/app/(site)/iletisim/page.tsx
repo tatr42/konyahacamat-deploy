@@ -5,12 +5,12 @@ import Image from "next/image";
 
 export const metadata: Metadata = {
   title: "İletişim & Randevu | Konya Hacamat | Ebusadullah Akademi",
-  description: "Konya hacamat randevusu için bize ulaşın: 0554 406 23 83 | Almanya: +49 163 449 28 70. Nişantaş Mh. Selçuklu/Konya. WhatsApp ile 7/24 mesaj atabilirsiniz.",
+  description: "Konya hacamat randevusu için bize ulaşın: +90 554 406 23 83 | Almanya: +49 163 449 28 70. Sahibiata Mh. Meram/Konya. WhatsApp ile 7/24 mesaj atabilirsiniz.",
 
   alternates: { canonical: '/iletisim' },
   openGraph: {
     title: "İletişim & Randevu | Konya Hacamat Ebusadullah",
-    description: "Hacamat randevusu için: 0554 406 23 83 | Almanya: +49 163 449 28 70 | Nişantaş Mh. Selçuklu/Konya. WhatsApp 7/24.",
+    description: "Hacamat randevusu için: +90 554 406 23 83 | Almanya: +49 163 449 28 70 | Sahibiata Mh. Meram/Konya. WhatsApp 7/24.",
     url: '/iletisim',
     images: [{ url: "/logo.webp", width: 1200, height: 630, alt: "Konya Hacamat İletişim" }],
   },
@@ -58,8 +58,8 @@ export default function IletisimPage() {
                 </div>
                 <div>
                   <div className="text-teal text-[10px] font-black uppercase tracking-widest mb-1">Adres</div>
-                  <div className="text-white font-bold">Nişantaş Mh. Dr. Hulusi Baybal Cd.</div>
-                  <div className="text-white/60 text-sm">Selçuklu / KONYA</div>
+                  <div className="text-white font-bold">Sahibiata Mh. Taşcami Uzunharmanlar Cd. No: 16-4</div>
+                  <div className="text-white/60 text-sm">Meram / KONYA</div>
                 </div>
               </div>
 
@@ -70,7 +70,7 @@ export default function IletisimPage() {
                 <div className="space-y-2">
                   <div className="text-teal text-[10px] font-black uppercase tracking-widest mb-1">Telefon</div>
                   <div>
-                    <a href="tel:05544062383" title="Türkiye Hacamat İletişim" className="text-white font-bold text-xl hover:text-teal transition-colors">0554 406 23 83</a>
+                    <a href="tel:+905544062383" title="Türkiye Hacamat İletişim" className="text-white font-bold text-xl hover:text-teal transition-colors">+90 554 406 23 83</a>
                     <div className="text-white/40 text-xs">🇹🇷 Türkiye</div>
                   </div>
                   <div>
@@ -154,7 +154,8 @@ export default function IletisimPage() {
               {/* Harita */}
               <div className="rounded-2xl overflow-hidden border border-white/10 h-72 group relative">
                 <iframe
-                  src="https://www.google.com/maps/embed?pb=!1m18!1m12!1m3!1d3148.566373752631!2d32.49581177651817!3d37.87040907196147!2m3!1f0!2f0!3f0!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0x14d085951f2536d7%3A0x1d14a1a09d31d45!2zTmnFnWFudGHFnywgRHIuIEh1bHVzaSBCYXliYWwgQ2QuLCBTZWzDp3VrbHUvS29ueWE!5e0!3m2!1str!2str!4v1715500000000!5m2!1str!2str"
+                  src="https://maps.google.com/maps?q=Sahibiata%20Mh.%20Ta%C5%9Fcami%20Uzunharmanlar%20Cd.%20No%3A16-4%2C%2042040%20Meram%2FKonya&z=16&output=embed"
+                  title="Ebusadullah Hacamat & Akademi — Sahibiata Mh. Taşcami Uzunharmanlar Cd. No:16-4, Meram/Konya"
                   width="100%"
                   height="100%"
                   style={{ border: 0 }}
@@ -165,7 +166,7 @@ export default function IletisimPage() {
                 />
                 <div className="absolute bottom-4 left-4 right-4 pointer-events-none">
                   <a
-                    href="https://www.google.com/maps/dir/?api=1&destination=37.8704,32.4958"
+                    href="https://www.google.com/maps/dir/?api=1&destination=Sahibiata%20Mh.%20Ta%C5%9Fcami%20Uzunharmanlar%20Cd.%20No%3A16-4%2C%2042040%20Meram%2FKonya"
                     target="_blank" rel="noopener noreferrer nofollow"
 
                     title="Konya Hacamat Yol Tarifi"
