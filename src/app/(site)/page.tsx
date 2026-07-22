@@ -14,12 +14,12 @@ import WhatsAppWidget from "@/components/WhatsAppWidget";
  * otomatik çözülmesi için göreceli (/) olarak bırakılmıştır.
  */
 export const metadata: Metadata = {
-  title: "Konya Hacamat | Ebusadullah Hacamat & Akademi | Konyahacamat.net",
-  description: "Konya'nın en köklü hacamat merkezi. Kuru & yaş hacamat, sülük terapisi, sertifikalı hacamat kursu. 32+ yıl deneyim, CE steril malzeme. Almanya seansları. Randevu: +90 554 406 23 83",
+  title: "Konya Sülük Terapisi & Hacamat | Ebusadullah Hacamat & Akademi",
+  description: "Konya'da uzman sülük terapisi (hirudoterapi): varis, eklem, ödem ve dolaşım tedavisi. Ayrıca kuru & yaş hacamat, tıbbi sülük satışı ve sertifikalı kurslar. 32+ yıl deneyim, CE steril malzeme. Almanya seansları. Randevu: +90 554 406 23 83",
   alternates: { canonical: '/' },
   openGraph: {
-    title: "Konya Hacamat | Ebusadullah Hacamat & Akademi",
-    description: "Konya'nın köklü hacamat merkezi. Kuru & yaş hacamat, sülük terapisi, uzmanlık kursları. 32+ yıl deneyim. Almanya periyodik seansları.",
+    title: "Konya Sülük Terapisi & Hacamat | Ebusadullah Hacamat & Akademi",
+    description: "Konya'da uzman sülük terapisi (hirudoterapi), kuru & yaş hacamat ve sertifikalı kurslar. 32+ yıl deneyim, tek kullanımlık steril uygulama. Almanya periyodik seansları.",
     url: '/',
     type: "website",
     images: [{ url: "/logo.webp", width: 1200, height: 630, alt: "Konya Hacamat Ebusadullah Akademi" }],
@@ -33,7 +33,8 @@ const faqSchema = {
   "@context": "https://schema.org",
   "@type": "FAQPage",
   mainEntity: [
-    { "@type": "Question", name: "Konya'da hacamat nerede yaptırılır?", acceptedAnswer: { "@type": "Answer", text: "Konya Meram'da <a href=\"https://www.konyahacamat.net/\">Ebusadullah Hacamat & Akademi</a> olarak 32+ yıldır profesyonel hacamat hizmeti sunuyoruz. Adres: Sahibiata Mh. Taşcami Uzunharmanlar Cd. No: 16-4, 42040 Meram/Konya. Randevu için: +90 554 406 23 83" } },
+    { "@type": "Question", name: "Sülük terapisi (hirudoterapi) nedir, ne işe yarar?", acceptedAnswer: { "@type": "Answer", text: "Sülük terapisi (hirudoterapi), tıbbi sülüğün (Hirudo medicinalis) salgıladığı hirudin, doğal anestezik ve anti-inflamatuar maddelerden yararlanan doğal bir dolaşım tedavisidir. Varis, ödem, eklem iltihabı, cilt hastalıkları ve kulak çınlaması gibi durumlarda uygulanır. Konya Meram'daki <a href=\"https://www.konyahacamat.net/hizmetler/suluk\">Ebusadullah Hacamat & Akademi</a>'de tek kullanımlık steril sülüklerle uygulanır. Randevu: +90 554 406 23 83" } },
+    { "@type": "Question", name: "Konya'da sülük terapisi ve hacamat nerede yaptırılır?", acceptedAnswer: { "@type": "Answer", text: "Konya Meram'da <a href=\"https://www.konyahacamat.net/\">Ebusadullah Hacamat & Akademi</a> olarak 32+ yıldır profesyonel sülük terapisi ve hacamat hizmeti sunuyoruz. Adres: Sahibiata Mh. Taşcami Uzunharmanlar Cd. No: 16-4, 42040 Meram/Konya. Randevu için: +90 554 406 23 83" } },
     { "@type": "Question", name: "Hacamat ne işe yarar?", acceptedAnswer: { "@type": "Answer", text: "Hacamat; kronik bel ve boyun ağrıları, migren, yüksek tansiyon, uyku bozuklukları, cilt hastalıkları, bağışıklık sistemi güçlendirme ve genel detoks amacıyla geleneksel kaynaklarda 384'ten fazla rahatsızlığa faydalı olduğu belirtilmektedir." } },
     { "@type": "Question", name: "Kuru ve yaş hacamat arasındaki fark nedir?", acceptedAnswer: { "@type": "Answer", text: "Kuru hacamatta yalnızca negatif basınç uygulanır, kesi yapılmaz. Yaş hacamatta ise küçük yüzeysel kesiler açılarak metabolik atıkların uzaklaştırılması sağlanır. Yaş hacamat Hz. Peygamber'in tavsiye ettiği klasik yöntemdir." } },
     { "@type": "Question", name: "Hacamat kursu nerede verilmektedir?", acceptedAnswer: { "@type": "Answer", text: "<a href=\"https://www.konyahacamat.net/\">Ebusadullah Akademi</a>, Konya'da Temel Hacamat Uzmanlık Kursu ve Sülük Terapisi Kursu vermektedir. Yılın belirli dönemlerinde Almanya'da da eğitim düzenlenmektedir. Uluslararası geçerli sertifika verilmektedir." } },
@@ -68,9 +69,9 @@ const serviceSchema = {
   },
   medicalSpecialty: "Geleneksel Tıp",
   availableService: [
+    { "@type": "MedicalTherapy", name: "Sülük Terapisi (Hirudoterapi)", url: `${BASE}/hizmetler/suluk` },
     { "@type": "MedicalTherapy", name: "Kuru Hacamat", url: `${BASE}/hizmetler/hacamat` },
     { "@type": "MedicalTherapy", name: "Yaş Hacamat", url: `${BASE}/hizmetler/hacamat` },
-    { "@type": "MedicalTherapy", name: "Sülük Terapisi (Hirudoterapi)", url: `${BASE}/hizmetler/suluk` },
   ],
 };
 

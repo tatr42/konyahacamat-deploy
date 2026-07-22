@@ -58,6 +58,9 @@ export default function HeroSection() {
 
           {/* Başlık */}
           <div className="space-y-5">
+            <span className="block text-teal text-[11px] md:text-xs font-black uppercase tracking-[0.3em]">
+              Konya Sülük Terapisi · Hirudoterapi Merkezi
+            </span>
             <h1 className="font-display text-4xl sm:text-5xl xl:text-7xl font-bold text-white leading-[1.05] tracking-tight">
               Kadim Şifanın{" "}
               <span className="relative inline-block">
@@ -69,9 +72,9 @@ export default function HeroSection() {
             </h1>
 
             <p className="text-white/60 text-base md:text-lg leading-relaxed max-w-md font-medium">
-              Hacamat ve sülük terapisiyle <strong className="text-white">384+ rahatsızlığa</strong> şifa.
-              Profesyonel kurslarla ailenizin doktoru olun.{" "}
-              <span className="text-teal">1200+ mezun</span> başarıyla kendi merkezini kurdu.
+              Uzman <strong className="text-white">sülük terapisi (hirudoterapi)</strong> ile varis, eklem,
+              dolaşım ve cilt sorunlarına doğal çözüm. Hacamat uygulamaları ve sertifikalı eğitimlerle{" "}
+              <span className="text-teal">32+ yıl tecrübe, 1200+ mezun.</span>
             </p>
           </div>
 

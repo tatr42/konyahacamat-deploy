@@ -3,7 +3,7 @@ import React, { useState, useEffect } from 'react';
 import Link from 'next/link';
 import Image from 'next/image';
 import { usePathname } from 'next/navigation';
-import { ChevronDown, Calendar, Home, Newspaper, Building2, Stethoscope, X } from 'lucide-react';
+import { ChevronDown, Calendar, Home, Newspaper, Building2, Stethoscope, X, Phone, MessageCircle } from 'lucide-react';
 
 interface DropdownItem {
   name: string;
@@ -23,15 +23,16 @@ interface NavItem {
 
 const navLinks: NavItem[] = [
   { name: 'Ana Sayfa', href: '/', title: 'Ana Sayfa' },
+  { name: 'Sülük Terapisi', href: '/hizmetler/suluk', title: 'Konya Sülük Terapisi (Hirudoterapi)' },
   {
     name: 'Hizmetler',
     href: '#',
     dropdown: [
+      { name: 'Sülük Terapisi', sub: 'Hirudoterapi · Uzmanlık Alanımız', href: '/hizmetler/suluk', title: 'Sülük Terapisi Hirudoterapi Konya' },
       { name: 'Hacamat', sub: 'Kuru & Yaş Hacamat Tedavisi', href: '/hizmetler/hacamat', title: 'Kuru ve Yaş Hacamat Tedavisi Konya' },
-      { name: 'Sülük Terapisi', sub: 'Doğal Hirudoterapi', href: '/hizmetler/suluk', title: 'Sülük Terapisi Hirudoterapi Konya' },
-      { name: 'Kurs & Eğitim', sub: 'Sertifikalı Uzmanlık Programı', href: '/egitimler', title: 'Hacamat Kursu ve Eğitimi' },
-      { name: 'Hacamat Kursu', sub: '81 İl · Online Sertifikalı Eğitim', href: '/hacamat-kursu', title: 'İl İl Hacamat Kursu — Tüm Türkiye', group: 'Türkiye Geneli' },
-      { name: 'Sülük Satışı', sub: '81 İle Canlı Sülük Kargo', href: '/suluk-satisi', title: 'İl İl Sülük Satışı — Tüm Türkiye' },
+      { name: 'Kurs & Eğitim', sub: 'Sertifikalı Uzmanlık Programı', href: '/egitimler', title: 'Hacamat ve Sülük Kursu Eğitimi' },
+      { name: 'Sülük Satışı', sub: '81 İle Canlı Sülük Kargo', href: '/suluk-satisi', title: 'İl İl Sülük Satışı — Tüm Türkiye', group: 'Türkiye Geneli' },
+      { name: 'Hacamat Kursu', sub: '81 İl · Online Sertifikalı Eğitim', href: '/hacamat-kursu', title: 'İl İl Hacamat Kursu — Tüm Türkiye' },
       { name: 'Kupa & Malzemeler', sub: 'CE Sertifikalı Steril Setler', href: '/kupa-malzemeleri', title: 'İl İl Hacamat Malzemeleri — Tüm Türkiye' },
     ]
   },
@@ -60,11 +61,11 @@ const bottomNav = [
   {
     name: 'Hizmetler', icon: Stethoscope,
     dropdown: [
+      { name: 'Sülük Terapisi', href: '/hizmetler/suluk' },
       { name: 'Hacamat', href: '/hizmetler/hacamat' },
-      { name: 'Sülük', href: '/hizmetler/suluk' },
       { name: 'Eğitim', href: '/egitimler' },
-      { name: 'Hacamat Kursu (81 İl)', href: '/hacamat-kursu' },
       { name: 'Sülük Satışı (81 İl)', href: '/suluk-satisi' },
+      { name: 'Hacamat Kursu (81 İl)', href: '/hacamat-kursu' },
       { name: 'Kupa & Malzemeler (81 İl)', href: '/kupa-malzemeleri' },
     ]
   },
@@ -193,6 +194,18 @@ export default function Navbar() {
             </div>
           );
         })}
+
+        {/* ── STICKY CTA ŞERİDİ (mobil) — alt nav'ın hemen üstünde ── */}
+        <div className="grid grid-cols-2 border-t border-white/10 relative z-[201]">
+          <a href="tel:+905544062383" title="Hemen Ara: +90 554 406 23 83"
+            className="flex items-center justify-center gap-2 bg-teal text-anthracite-dark py-3 font-black text-[11px] uppercase tracking-widest active:opacity-90 transition-opacity">
+            <Phone size={15} fill="currentColor" /> Hemen Ara
+          </a>
+          <a href="https://wa.me/905544062383?text=Merhaba%2C%20s%C3%BCl%C3%BCk%20terapisi%20ve%20randevu%20hakk%C4%B1nda%20bilgi%20almak%20istiyorum." target="_blank" rel="noopener noreferrer nofollow" title="WhatsApp ile yazın"
+            className="flex items-center justify-center gap-2 bg-[#25D366] text-white py-3 font-black text-[11px] uppercase tracking-widest active:opacity-90 transition-opacity border-l border-black/10">
+            <MessageCircle size={15} fill="currentColor" /> WhatsApp
+          </a>
+        </div>
 
         {/* Alt Bar */}
         <div className="flex items-end bg-anthracite-dark/98 border-t border-white/10 backdrop-blur-xl relative z-[202]"

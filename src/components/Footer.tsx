@@ -42,8 +42,8 @@ export default function Footer() {
               <span className="w-4 h-[2px] bg-teal"></span> KURUMSAL
             </h4>
             <ul className="space-y-4 text-sm font-semibold">
+              <li><Link href="/hizmetler/suluk" title="Sülük Terapisi Konya" className="text-white/60 hover:text-teal transition-colors font-bold">Sülük Terapisi</Link></li>
               <li><Link href="/hizmetler" title="Hacamat Tedavisi Konya" className="text-white/60 hover:text-teal transition-colors">Hacamat Tedavisi</Link></li>
-              <li><Link href="/hizmetler/suluk" title="Sülük Terapisi Konya" className="text-white/60 hover:text-teal transition-colors">Sülük Terapisi</Link></li>
               <li><Link href="/almanya-hacamat" title="Almanya Hacamat Şubesi" className="text-white/60 hover:text-teal transition-colors font-bold">Almanya Şubemiz</Link></li>
               <li><Link href="/egitimler" title="Hacamat Eğitim ve Kursları" className="text-white/60 hover:text-teal transition-colors">Eğitim & Kurslar</Link></li>
               <li><Link href="/malzemeler" title="Hacamat Malzeme Satışı" className="text-white/60 hover:text-teal transition-colors">Malzeme Satışı</Link></li>

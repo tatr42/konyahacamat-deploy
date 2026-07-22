@@ -4,6 +4,17 @@ import { getYearsExpStr } from "@/lib/experience";
 
 const services = [
   {
+    icon: Bug,
+    title: "Sülük Terapisi",
+    linkTitle: "Sülük Terapisi Hirudoterapi Konya",
+    sub: "Hirudoterapi · Uzmanlık Alanımız",
+    desc: "Tıbbi sülüklerle (Hirudo medicinalis) doğal dolaşım tedavisi: varis, ödem, eklem iltihabı, cilt hastalıkları ve kulak çınlamasında. Tek kullanımlık steril uygulama.",
+    href: "/hizmetler/suluk",
+    badge: "Uzmanlık Alanımız",
+    gradient: "from-teal/20 via-teal/5 to-transparent",
+    accent: "bg-teal",
+  },
+  {
     icon: Droplets,
     title: "Hacamat Tedavisi",
     linkTitle: "Kuru ve Yaş Hacamat Tedavisi Konya",
@@ -11,17 +22,6 @@ const services = [
     desc: `Hz. Peygamber'in (s.a.v) tavsiye ettiği kadim tedavi yöntemi. ${getYearsExpStr()} yıllık deneyim, steril malzemeler, uzman eller. Konya ve çevre illerde hizmet.`,
     href: "/hizmetler/hacamat",
     badge: "En Çok Tercih",
-    gradient: "from-teal/20 via-teal/5 to-transparent",
-    accent: "bg-teal",
-  },
-  {
-    icon: Bug,
-    title: "Sülük Terapisi",
-    linkTitle: "Sülük Terapisi Hirudoterapi Konya",
-    sub: "Hirudoterapi",
-    desc: "Tıbbi sülüklerle doğal kan temizliği ve doku yenilenmesi. Canlı, sağlıklı, tıbbi standartlarda sülükler. Serviks ve jinekolojik uygulamalar dahil.",
-    href: "/hizmetler/suluk",
-    badge: "Doğal Tedavi",
     gradient: "from-sage/20 via-sage/5 to-transparent",
     accent: "bg-sage",
   },
@@ -70,7 +70,7 @@ export default function ServicesGrid() {
               Eğitim & <span className="text-teal italic">Tedavi</span>
             </h2>
             <p className="text-white/70 text-base max-w-md">
-              Hacamat kupaları, malzemeleri ve tıbbi sülük satışından sertifikalı kurs programlarına kadar eksiksiz hizmet.
+              Sülük terapisi (hirudoterapi) ve hacamat uygulamalarından tıbbi sülük & kupa malzemelerine, sertifikalı kurs programlarına kadar eksiksiz hizmet.
             </p>
           </div>
 

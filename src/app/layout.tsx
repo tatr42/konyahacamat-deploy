@@ -22,11 +22,11 @@ const BASE = "https://www.konyahacamat.net";
 export const metadata: Metadata = {
   metadataBase: new URL(BASE),
   title: {
-    default: "Konya Hacamat | Ebusadullah Hacamat & Akademi",
+    default: "Konya Sülük Terapisi & Hacamat | Ebusadullah Hacamat & Akademi",
     template: "%s | Konyahacamat.net",
   },
   description:
-    "Konya'da uzman hacamat ve sülük terapisi. Ebusadullah Hacamat & Akademi — 32+ yıl deneyim, steril CE sertifikalı malzeme, 384+ rahatsızlıkta şifa. Almanya seansları. Randevu: +90 554 406 23 83",
+    "Konya'da uzman sülük terapisi (hirudoterapi) ve hacamat. Ebusadullah Hacamat & Akademi — 32+ yıl deneyim, steril CE sertifikalı malzeme, tıbbi sülük & kupa satışı, sertifikalı kurslar. Almanya seansları. Randevu: +90 554 406 23 83",
   authors: [{ name: "Ebusadullah Hacamat & Akademi", url: '/' }],
   creator: "Ebusadullah Hacamat & Akademi",
   publisher: "Ebusadullah Hacamat & Akademi",
@@ -42,15 +42,15 @@ export const metadata: Metadata = {
     locale: "tr_TR",
     url: '/',
     siteName: "Konya Hacamat Ebusadullah",
-    title: "Konya Hacamat | Ebusadullah Hacamat & Akademi",
+    title: "Konya Sülük Terapisi & Hacamat | Ebusadullah Hacamat & Akademi",
     description:
-      "Konya'da profesyonel hacamat ve sülük terapisi. 32+ yıl deneyim, steril uygulama, Almanya seansları. Hicri takvime göre faziletli günlerde randevu alın.",
+      "Konya'da profesyonel sülük terapisi (hirudoterapi) ve hacamat. 32+ yıl deneyim, tek kullanımlık steril uygulama, Almanya seansları. Faziletli günlerde randevu alın.",
     images: [{ url: "/logo.webp", width: 1200, height: 630, alt: "Konya Hacamat Ebusadullah Akademi" }],
   },
   twitter: {
     card: "summary_large_image",
-    title: "Konya Hacamat | Ebusadullah Hacamat & Akademi",
-    description: "Konya'da profesyonel hacamat ve sülük terapisi. 32+ yıl deneyim. Randevu: +90 554 406 23 83",
+    title: "Konya Sülük Terapisi & Hacamat | Ebusadullah Hacamat & Akademi",
+    description: "Konya'da profesyonel sülük terapisi (hirudoterapi) ve hacamat. 32+ yıl deneyim. Randevu: +90 554 406 23 83",
     images: ["/logo.webp"],
   },
   verification: {
@@ -73,7 +73,7 @@ const localBusinessSchema = {
   name: "Ebusadullah Hacamat & Akademi",
   alternateName: "Konya Hacamat Ebusadullah",
   description:
-    "Konya'da 32+ yıldır hizmet veren profesyonel hacamat ve sülük terapisi merkezi. Uluslararası geçerli hacamat uzmanlık eğitimleri.",
+    "Konya'da 32+ yıldır hizmet veren profesyonel sülük terapisi (hirudoterapi) ve hacamat merkezi. Tıbbi sülük & kupa satışı, uluslararası geçerli uzmanlık eğitimleri.",
   url: "/",
   telephone: "+905544062383",
   email: "info@konyahacamat.net",
@@ -107,12 +107,12 @@ const localBusinessSchema = {
   ],
   hasOfferCatalog: {
     "@type": "OfferCatalog",
-    name: "Hacamat Hizmetleri",
+    name: "Sülük & Hacamat Hizmetleri",
     itemListElement: [
+      { "@type": "Offer", itemOffered: { "@type": "Service", name: "Sülük Terapisi (Hirudoterapi)", url: "/hizmetler/suluk" } },
       { "@type": "Offer", itemOffered: { "@type": "Service", name: "Kuru Hacamat", url: "/hizmetler/hacamat" } },
       { "@type": "Offer", itemOffered: { "@type": "Service", name: "Yaş Hacamat", url: "/hizmetler/hacamat" } },
-      { "@type": "Offer", itemOffered: { "@type": "Service", name: "Sülük Terapisi", url: "/hizmetler/suluk" } },
-      { "@type": "Offer", itemOffered: { "@type": "Service", name: "Hacamat Uzmanlık Kursu", url: "/egitimler" } },
+      { "@type": "Offer", itemOffered: { "@type": "Service", name: "Hacamat & Sülük Uzmanlık Kursu", url: "/egitimler" } },
     ],
   },
 };

@@ -19,7 +19,7 @@ export default function WhatsAppWidget() {
   };
 
   return (
-    <div className="fixed bottom-[88px] lg:bottom-6 right-6 z-[999]">
+    <div className="fixed bottom-[136px] lg:bottom-6 right-6 z-[999]">
       {/* WhatsApp Paneli - absolute konumlu, buton alanını etkilemez */}
       <div className={`absolute bottom-[80px] right-0 transition-all duration-500 ease-in-out transform ${
         isOpen ? 'scale-100 opacity-100 translate-y-0 pointer-events-auto' : 'scale-95 opacity-0 translate-y-4 pointer-events-none'
