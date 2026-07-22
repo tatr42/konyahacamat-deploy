@@ -33,7 +33,7 @@ export default function BlogList({ initialPosts }: { initialPosts: Post[] }) {
       <div className="text-center py-24 text-white/70">
         <BookOpen size={40} className="mx-auto mb-4 opacity-30" />
         <p className="text-lg">Henüz blog yazısı yayınlanmamış.</p>
-        <p className="text-sm mt-2">Admin panelinden yazı ekleyebilirsiniz.</p>
+        <p className="text-sm mt-2">Yakında yeni içeriklerle buradayız.</p>
       </div>
     );
   }

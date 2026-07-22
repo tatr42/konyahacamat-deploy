@@ -1,7 +1,6 @@
 import type { Metadata } from "next";
 import { Playfair_Display, DM_Sans } from "next/font/google";
 import "./globals.css";
-import Script from "next/script";
 
 const playfairDisplay = Playfair_Display({
   subsets: ["latin", "latin-ext"],
@@ -129,20 +128,6 @@ export default function RootLayout({ children }: { children: React.ReactNode }) 
       </head>
       <body className="bg-anthracite-dark antialiased">
         {children}
-        <Script
-          src={`https://www.googletagmanager.com/gtag/js?id=G-HY8VE2CQS1`}
-          strategy="lazyOnload"
-        />
-        <Script id="google-analytics" strategy="lazyOnload">
-          {`
-            window.dataLayer = window.dataLayer || [];
-            function gtag(){dataLayer.push(arguments);}
-            gtag('js', new Date());
-            gtag('config', 'G-HY8VE2CQS1', {
-              page_path: window.location.pathname,
-            });
-          `}
-        </Script>
       </body>
     </html>
   );

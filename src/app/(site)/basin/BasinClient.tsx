@@ -103,7 +103,7 @@ export default function BasinClient({ initialItems }: { initialItems: PressItem[
         {gazeteler.length === 0 ? (
           <div className="text-center py-24 text-white/70">
             <p className="text-lg">Henüz basın haberi eklenmemiş.</p>
-            <p className="text-sm mt-2">Admin panelinden ekleyebilirsiniz.</p>
+            <p className="text-sm mt-2">Yakında medyadaki haberlerimizi buraya ekleyeceğiz.</p>
           </div>
         ) : (
           <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-5">

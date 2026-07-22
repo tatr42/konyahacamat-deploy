@@ -71,7 +71,7 @@ export default async function sitemap(): Promise<MetadataRoute.Sitemap> {
         priority: 0.6,
       }));
   } catch {
-    // Firebase henüz yapılandırılmamışsa statik sayfalarla devam et
+    // İçerik dosyaları okunamazsa statik sayfalarla devam et
   }
 
   return [...staticPages, ...pseoPages, ...blogPages, ...pressPages];
