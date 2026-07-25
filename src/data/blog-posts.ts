@@ -36,6 +36,91 @@ import type { Post } from "@/lib/posts";
  */
 export const BLOG_POSTS: Post[] = [
   {
+    id: "cluster-suluk-fayda",
+    slug: "suluk-tedavisi-neye-iyi-gelir",
+    title: "Sülük Tedavisi Neye İyi Gelir? Başvuru Nedenleri ve Dürüst Beklenti",
+    excerpt:
+      "Sülük tedavisine insanlar hangi nedenlerle başvuruyor, salgısında ne var, modern tıpta nerede kabul görüyor ve ne vaat edilmez? Abartısız bir değerlendirme.",
+    seoTitle: "Sülük Tedavisi Neye İyi Gelir? Başvuru Nedenleri — Dürüst Rehber",
+    seoDescription:
+      "Sülük tedavisi neye iyi gelir sorusuna abartısız cevap: başvuru nedenleri, salgıdaki bileşenler, modern tıpta kabul gördüğü alan, kimlere uygulanmadığı.",
+    category: "Sülük Tedavisi",
+    published: true,
+    createdAt: { seconds: 1785060000 },
+    updatedAt: { seconds: 1785060000 },
+    content: `
+<p>"Sülük tedavisi neye iyi gelir?" en çok sorulan sorumuz. Dürüst cevap şu: bu soruya hastalık adı sayarak cevap veren her kaynağa temkinli yaklaşın. Bu yazıda insanların hangi nedenlerle başvurduğunu, sülük salgısında gerçekten ne bulunduğunu ve neyin vaat <em>edilemeyeceğini</em> abartısız biçimde anlatıyoruz.</p>
+
+<p>Uygulamanın ne olduğunu ve nasıl yapıldığını <a href="/blog/suluk-tedavisi-hirudoterapi-nedir">Sülük Tedavisi (Hirudoterapi) Nedir?</a> rehberimizde ayrıntılı ele aldık; bu yazı beklenti yönetimine odaklanıyor.</p>
+
+<h2>Neden Hastalık Listesi Vermiyoruz?</h2>
+<p>Sülük tedavisi geleneksel ve tamamlayıcı bir uygulamadır. Türkiye'de de dünyada da hiçbir otorite, hirudoterapinin belirli bir hastalığı tedavi ettiğini onaylamış değildir. "Şu hastalığa iyi gelir" ifadesi hem yanıltıcı hem de kişinin asıl tedavisini aksatmasına yol açabilecek bir iddiadır.</p>
+<p>1994'ten bu yana bu işi yapıyoruz ve şunu net söyleyebiliyoruz: doğru beklentiyle gelen kişi memnun ayrılır, mucize bekleyen kişi hayal kırıklığı yaşar. Bu yüzden beklentiyi baştan doğru kurmayı tercih ediyoruz.</p>
+
+<h2>Sülük Salgısında Gerçekten Ne Var?</h2>
+<p>Tıbbi sülüğün (<em>Hirudo medicinalis</em>) tükürük salgısı bilimsel literatürde tanımlanmış çok sayıda bileşen içerir:</p>
+<ul>
+  <li><strong>Hirudin</strong> — kanın pıhtılaşmasını yavaşlatır. Sülüğün en iyi bilinen bileşenidir.</li>
+  <li><strong>Kalin</strong> — trombositlerin kümelenmesini sınırlar.</li>
+  <li><strong>Hyaluronidaz</strong> — salgının doku içinde yayılmasını kolaylaştırır.</li>
+  <li><strong>Analjezik etkili bileşenler</strong> — ısırığın çoğunlukla ağrısız hissedilmesinin nedenidir.</li>
+</ul>
+<p><strong>Önemli ayrım:</strong> bu bileşenlerin varlığı laboratuvar düzeyinde gösterilmiştir. Ancak bir bileşenin tanımlanmış olması, uygulamanın herhangi bir hastalığı tedavi ettiği anlamına gelmez. Bileşen bilgisi ile klinik sonuç iddiası iki ayrı şeydir ve internette en çok bu ikisi birbirine karıştırılır.</p>
+
+<h2>Modern Tıpta Sülüğün Kabul Gördüğü Alan</h2>
+<p>Sülüğün modern tıpta net biçimde yer bulduğu bir alan vardır: <strong>rekonstrüktif ve mikrocerrahi sonrası venöz tıkanıklık</strong>. Doku nakli veya kopan uzuv dikimi sonrasında toplardamar dolaşımı yeterince açılmadığında, sülük bölgedeki kan birikimini boşaltmak amacıyla kullanılır.</p>
+<p>ABD Gıda ve İlaç Dairesi (FDA), 2004 yılında tıbbi sülüğü bu kullanım için tıbbi cihaz kapsamında sınıflandırmıştır. Bu, hirudoterapinin genel olarak onaylandığı anlamına gelmez — yalnızca bu spesifik cerrahi endikasyon için geçerlidir. Yine de sülüğün ciddiye alınan bir araç olduğunu göstermesi bakımından önemlidir.</p>
+
+<h2>İnsanlar Hangi Nedenlerle Başvuruyor?</h2>
+<p>Aşağıdakiler bizim gözlemlediğimiz <em>başvuru nedenleridir</em>; tedavi vaadi değildir:</p>
+<ul>
+  <li><strong>Bölgesel ağrı ve gerginlik hissi</strong> — özellikle sırt, boyun, omuz ve diz çevresi.</li>
+  <li><strong>Bacaklarda ağırlık ve dolaşım şikâyeti</strong> — damar görünümü ve şişlik hissi nedeniyle gelenler.</li>
+  <li><strong>Spor sonrası bölgesel toparlanma beklentisi</strong> — sporcuların ilgi gösterdiği bir kullanımdır.</li>
+  <li><strong>Genel yorgunluk ve ağırlık hissi</strong> — geleneksel çerçevede "durgunluk" olarak tarif edilen tablo.</li>
+  <li><strong>Geleneksel uygulamaya duyulan ilgi</strong> — özellikle hacamatla birlikte değerlendirenler.</li>
+</ul>
+<p>Bu maddeler kişilerin <em>neden geldiğini</em> anlatır. Sonucun kişiden kişiye değişeceğini, bazı kişilerde belirgin bir değişiklik hissedilmeyebileceğini de baştan söylüyoruz.</p>
+
+<h2>Ne Vaat Edilmez — Beklenti Yönetimi</h2>
+<ul>
+  <li>Hiçbir hastalığın tedavisi vaat edilmez.</li>
+  <li>Hekiminizin verdiği ilaçların yerine geçmez; <strong>tedavinizi kendi kararınızla bırakmayın.</strong></li>
+  <li>Tek seansta kalıcı sonuç vaat edilmez.</li>
+  <li>Kanser, diyabet, tansiyon gibi kronik hastalıklarda "çözüm" olarak sunulmaz.</li>
+  <li>Zayıflama, cilt gençleştirme gibi kozmetik sonuçlar garanti edilmez.</li>
+</ul>
+<p>Bu maddelerden birini size vaat eden bir yere gitmeyin. Sağlık alanında abartılı vaat, çoğu zaman eksik bilginin göstergesidir.</p>
+
+<h2>Kimlere Uygulanmaz?</h2>
+<p>Sülük tedavisi aşağıdaki durumlarda uygulanmaz veya özel dikkat gerektirir:</p>
+<ul>
+  <li>Gebelik ve emzirme dönemi</li>
+  <li>İleri derecede kansızlık (anemi)</li>
+  <li>Hemofili ve diğer kan pıhtılaşma bozuklukları</li>
+  <li>Kan sulandırıcı ilaç kullanımı</li>
+  <li>Bağışıklık sistemi baskılanmış kişiler</li>
+  <li>Bilinen sülük alerjisi öyküsü</li>
+  <li>Aktif enfeksiyon veya açık yara bulunan bölgeler</li>
+</ul>
+<p>Bu liste kapsayıcı değildir. Uygulama öncesi değerlendirme zorunludur; kronik bir rahatsızlığınız veya düzenli ilaç kullanımınız varsa önce hekiminize danışın.</p>
+
+<h2>Uygulama Öncesi Sormanız Gereken 4 Soru</h2>
+<p>Nerede yaptırırsanız yaptırın şunları sorun:</p>
+<ul>
+  <li>Kullanılan sülük <strong>tıbbi</strong> mi, kaynağı belli mi?</li>
+  <li><strong>Tek kişilik kullanım</strong> ilkesine uyuluyor mu, sonrasında imha ediliyor mu?</li>
+  <li>Uygulama öncesi <strong>değerlendirme</strong> yapılıyor mu?</li>
+  <li>Sonrası bakım ve takip anlatılıyor mu?</li>
+</ul>
+<p>Bu dördünden biri karşılanmıyorsa uygulamayı yaptırmayın. Sülüğün kaynağı özellikle kritiktir: doğadan toplanan sülüklerin türü ve taşıdığı mikroorganizmalar bilinmez. Kontrollü çiftlik ortamında yetiştirilen <a href="/suluk-satisi">tıbbi sülük</a> ile aradaki fark bir tercih meselesi değil, güvenlik meselesidir.</p>
+
+<h2>Sülük mü, Hacamat mı?</h2>
+<p>İkisi sık karıştırılır ama farklı uygulamalardır. Hacamatta kupa vakumu ve yüzeysel çiziklerle kontrollü kan alınır; sülükte ise canlı bir organizmanın salgısı devreye girer. <a href="/blog/hacamat-nedir-tarihi-bilimsel-temelleri-ve-nasil-uygulanir">Hacamat Nedir?</a> rehberimizde hacamatın kendi çerçevesini ayrıca ele aldık.</p>
+<p>Hangisinin size uygun olduğu; şikâyetiniz, genel durumunuz ve değerlendirme sonucuna göre belirlenir. Emin değilseniz karar vermeden önce sorun — doğru soru sormak, doğru uygulamadan önce gelir.</p>
+`.trim(),
+  },
+  {
     id: "pillar-hacamat",
     slug: "hacamat-nedir-tarihi-bilimsel-temelleri-ve-nasil-uygulanir",
     title: "Hacamat Nedir? Tarihi, Uygulaması ve Bilinmesi Gerekenler",
