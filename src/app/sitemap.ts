@@ -2,27 +2,31 @@ import type { MetadataRoute } from "next";
 import { getPressItems } from "@/lib/press";
 import { getPublishedPosts } from "@/lib/posts";
 import { PROVINCES } from "@/data/tr-locations";
-import { ALL_SERVICES } from "@/lib/pseo/content";
+import { KEPT_SERVICES } from "@/data/pseo-scope";
 
 const BASE = "https://www.konyahacamat.net";
 
 /**
- * pSEO sitemap — KADEMELİ yayın (Faz 1).
+ * pSEO sitemap — Faz 0 budaması sonrası.
  *
- * Kararla SADECE: 5 hub sayfası + 81 ilin 5 hizmeti = 5 + 405 = 410 satır.
- * 335 İLÇE BİLİNÇLİ OLARAK HARİÇ — ilçeler şimdilik yalnızca il sayfalarındaki
- * iç linkler üzerinden doğal taransın. İlçeler ileride (ör. domain birleşmesi
- * sonrası) buraya eklenebilir; sayfalar zaten build'de statik üretiliyor.
+ * SADECE: 3 hub + 81 il × 3 silo = 3 + 243 = 246 satır.
+ *
+ * Hariç tutulanlar:
+ *   - `hacamat-nedir` / `suluk-nedir` siloları: kapatıldı, 301 alıyor
+ *     (bkz. src/data/pseo-scope.ts). 301'lenen URL sitemap'e KONULMAZ.
+ *   - 49 metropol ilçesi: bilinçli olarak hariç — il sayfalarındaki iç
+ *     linkler üzerinden doğal taransın. Faz 1'de içerik derinleştikten
+ *     sonra buraya eklenmesi değerlendirilecek.
  */
 const pseoPages: MetadataRoute.Sitemap = [
-  // 5 hizmet hub sayfası (il listeleyen dizinler)
-  ...ALL_SERVICES.map((service) => ({
+  // 3 hizmet hub sayfası (il listeleyen dizinler)
+  ...KEPT_SERVICES.map((service) => ({
     url: `${BASE}/${service}`,
     changeFrequency: "weekly" as const,
     priority: 0.7,
   })),
-  // 81 il × 5 hizmet = 405 il sayfası
-  ...ALL_SERVICES.flatMap((service) =>
+  // 81 il × 3 hizmet = 243 il sayfası
+  ...KEPT_SERVICES.flatMap((service) =>
     PROVINCES.map((province) => ({
       url: `${BASE}/${service}/${province.slug}`,
       changeFrequency: "monthly" as const,

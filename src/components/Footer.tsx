@@ -112,13 +112,15 @@ export default function Footer() {
                   Hacamat Malzemeleri <span className="text-gold/70 text-[9px] font-black uppercase tracking-widest ml-1">81 İl</span>
                 </Link>
               </li>
+              {/* Faz 0: "...nedir" il siloları kapatıldı (kanibalizasyon).
+                  Linkler doğrudan pillar rehberlere gider — 301'e iç link verilmez. */}
               <li>
-                <Link href="/hacamat-nedir" title="Hacamat Nedir? İl İl Bilgi Rehberi" className="text-white/60 hover:text-teal transition-colors">
+                <Link href="/blog/hacamat-nedir-tarihi-bilimsel-temelleri-ve-nasil-uygulanir" title="Hacamat Nedir? Tarihi, Uygulaması ve Bilinmesi Gerekenler" className="text-white/60 hover:text-teal transition-colors">
                   Hacamat Nedir?
                 </Link>
               </li>
               <li>
-                <Link href="/suluk-nedir" title="Sülük Tedavisi Nedir? İl İl Bilgi Rehberi" className="text-white/60 hover:text-teal transition-colors">
+                <Link href="/blog/suluk-tedavisi-hirudoterapi-nedir" title="Sülük Tedavisi (Hirudoterapi) Nedir? Kapsamlı Rehber" className="text-white/60 hover:text-teal transition-colors">
                   Sülük Nedir?
                 </Link>
               </li>

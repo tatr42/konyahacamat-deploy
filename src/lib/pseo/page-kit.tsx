@@ -22,6 +22,11 @@ import {
   type District,
 } from "@/data/tr-locations";
 import {
+  KEPT_SERVICES,
+  isKeptDistrict,
+  keptDistrictPairs,
+} from "@/data/pseo-scope";
+import {
   buildLocationCtx,
   getServiceCopy,
   imageAlt,
@@ -39,14 +44,25 @@ const SIBLING_LIMIT = 12;
 
 type Link = { href: string; label: string };
 
+/**
+ * Faz 0 sonrası iç linkleme kapsamı — 301 alan URL'lere iç link VERİLMEZ.
+ * Kapatılan "...nedir" siloları ve budanan ilçeler link havuzundan düşer.
+ */
+const KEPT_SERVICE_SET = new Set<string>(KEPT_SERVICES);
+const LINKABLE_SERVICES = ALL_SERVICES.filter((s) => KEPT_SERVICE_SET.has(s));
+
 /** 81 il için statik parametre. */
 export const ilStaticParams = () => PROVINCES.map((p) => ({ il: p.slug }));
 
-/** Tüm il/ilçe kombinasyonları için statik parametre. */
-export const ilceStaticParams = () =>
-  PROVINCES.flatMap((p) =>
-    p.districts.map((dd) => ({ il: p.slug, ilce: dd.slug })),
-  );
+/**
+ * YAYINDA KALAN il/ilçe kombinasyonları için statik parametre (Faz 0 budaması).
+ *
+ * 335 ilçenin tamamı değil, `pseo-scope.KEPT_DISTRICTS` içindeki 49 metropol
+ * ilçesi üretilir. Budanan ilçelerin URL'leri `next.config.ts` içinde il
+ * sayfasına 301 alır; `dynamicParams = false` olduğu için buradan çıkarmak tek
+ * başına 404 üretirdi — yönlendirme kuralları o yüzden zorunludur.
+ */
+export const ilceStaticParams = () => keptDistrictPairs();
 
 function metaFor(
   service: ServiceType,
@@ -86,7 +102,7 @@ function otherServiceLinks(
   const base = district
     ? `/${province.slug}/${district.slug}`
     : `/${province.slug}`;
-  return ALL_SERVICES.filter((s) => s !== service).map((s) => ({
+  return LINKABLE_SERVICES.filter((s) => s !== service).map((s) => ({
     href: `/${s}${base}`,
     label: `${place} ${SERVICE_LABEL[s]}`,
   }));
@@ -143,6 +159,7 @@ export function ilPage(service: ServiceType) {
 
     const ctx = buildLocationCtx(province);
     const siblingLinks: Link[] = province.districts
+      .filter((dd) => isKeptDistrict(province.slug, dd.slug))
       .slice(0, SIBLING_LIMIT)
       .map((dd) => ({
         href: `/${service}/${province.slug}/${dd.slug}`,
@@ -196,7 +213,10 @@ export function ilcePage(service: ServiceType) {
         label: `${province.name} ${SERVICE_LABEL[service]}`,
       },
       ...province.districts
-        .filter((dd) => dd.slug !== district.slug)
+        .filter(
+          (dd) =>
+            dd.slug !== district.slug && isKeptDistrict(province.slug, dd.slug),
+        )
         .slice(0, SIBLING_LIMIT)
         .map((dd) => ({
           href: `/${service}/${province.slug}/${dd.slug}`,
