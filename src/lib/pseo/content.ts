@@ -16,7 +16,12 @@
  */
 
 import type { Province, District, Region } from "@/data/tr-locations";
-import { dative, locative } from "@/lib/pseo/turkish";
+import {
+  getProvinceProfile,
+  type ProvinceProfile,
+} from "@/data/province-profiles";
+import { staticFaqsFor, type FaqScope } from "@/data/faq-pool";
+import { dative, locative, ablative } from "@/lib/pseo/turkish";
 import { pickOne, pickDistinct } from "@/lib/pseo/deterministic";
 
 export type ServiceType =
@@ -333,13 +338,41 @@ export function imageTrioAlts(service: ServiceType, ctx: LocationCtx): string[] 
   return TRIO_ALT[service].map((f) => f(ctx));
 }
 
-// ─── Derin içerik blokları (600+ kelime motoru) ──────────────────────────
-// Her blok lokasyona göre GERÇEK ve değişken bilgi üretir; deterministik
-// varyantlarla komşu ilçeler bile birbirinin kopyası gibi görünmez.
+// ─── Derin içerik blokları ───────────────────────────────────────────────
+//
+// FAZ 1 TASARIMI — "tekrar eden bilgiyi metinden çıkar":
+//   Önceki motorda ~580 kelimelik gövdenin ~300'ü 81 ilde HARFİ HARFİNE
+//   aynıydı (sterilizasyon anlatımı, kargo takip süreci, güven cümleleri).
+//   Bu bilgi yanlış değildi, sadece METİN olarak tekrarlanıyordu.
+//
+//   Çözüm: aynı olan bilgi `BlockWidget` olarak YAPISAL biçimde sunulur
+//   (adım kartı, tablo, rozet listesi). Metin olarak yalnızca lokasyona
+//   göre GERÇEKTEN değişen prose kalır ve bu prose `province-profiles`
+//   verisinden beslenir. Kullanıcı bilgiyi kaybetmez; Google kopya metin
+//   görmez.
+//
+// Bu modül JSX İÇERMEZ — widget'lar veri olarak tarif edilir, render
+// `components/pseo/BlockWidgets.tsx` içinde yapılır. Böylece content.ts
+// saf TypeScript kalır ve test edilebilir olur.
+
+/** Yapısal olarak sunulacak, lokasyondan bağımsız bilgi bloğu. */
+export type BlockWidget =
+  /** Uygulama adımları — numaralı kart dizisi */
+  | { kind: "application-steps"; variant: "hacamat" | "suluk" }
+  /** Kargo süreci adımları */
+  | { kind: "shipping-steps" }
+  /** Güven/sertifika rozetleri (E-E-A-T) */
+  | { kind: "trust-badges" }
+  /** Konya'ya ulaşım seçenekleri tablosu */
+  | { kind: "konya-access"; distanceKm: number; cargoHat: string }
+  /** Tıbbi sorumluluk notu */
+  | { kind: "safety-notice" };
 
 export interface ContentBlock {
   title: string;
   paragraphs: string[];
+  /** Paragrafların ardından basılacak yapısal içerik. */
+  widgets?: BlockWidget[];
 }
 
 /** Deterministik varyant anahtarı — aynı lokasyon hep aynı varyantı alır. */
@@ -348,16 +381,140 @@ function variantKey(service: ServiceType, ctx: LocationCtx, salt: string): strin
 }
 
 /**
- * Dinamik kargo / sipariş güvencesi — coğrafi bölgeye göre kutulama ve
- * (sülükte) canlı kalma garantisi metni.
+ * Lokasyonun il profili. `assertProvinceProfilesComplete()` build sırasında
+ * eksik profili yakalar; buraya düşülüyorsa route listesiyle veri ayrışmıştır.
+ */
+function profileOf(ctx: LocationCtx): ProvinceProfile {
+  const profile = getProvinceProfile(ctx.province.slug);
+  if (!profile) {
+    throw new Error(
+      `province-profiles: "${ctx.province.slug}" için profil bulunamadı`,
+    );
+  }
+  return profile;
+}
+
+/** ["A","B","C"] → "A, B ve C" */
+function formatList(items: string[]): string {
+  if (items.length === 0) return "";
+  if (items.length === 1) return items[0];
+  return `${items.slice(0, -1).join(", ")} ve ${items[items.length - 1]}`;
+}
+
+/**
+ * Konya'ya mesafeye göre bant — metin ve seyahat tavsiyesi buna göre değişir.
+ * Eşikler sabit olduğu için aynı il her zaman aynı bandı alır.
+ */
+type DistanceBand = "cok-yakin" | "yakin" | "orta" | "uzak";
+
+function distanceBand(km: number): DistanceBand {
+  if (km <= 160) return "cok-yakin";
+  if (km <= 350) return "yakin";
+  if (km <= 700) return "orta";
+  return "uzak";
+}
+
+// ─── 1) Coğrafya bloğu — asıl benzersizlik motoru ───────────────────────
+//
+// Bu blok tamamen `province-profiles` verisinden üretilir: mesafe, bölge,
+// kargo koridoru, komşu iller ve ile özgü not. Hiçbir il diğeriyle aynı
+// metni almaz — çünkü altındaki VERİ farklıdır, sadece kelimeler değil.
+
+export function geographyBlock(service: ServiceType, c: LocationCtx): ContentBlock {
+  const p = profileOf(c);
+
+  if (c.isKonya) {
+    return {
+      title: `${c.place} — Merkezimiz Sizin Şehrinizde`,
+      paragraphs: [
+        `${c.full}, yüz yüze uygulama ve eğitim merkezimizin bulunduğu ildir. ${p.yerelNot} Bu nedenle randevu, elden teslim ve aynı gün ürün temini seçeneklerinin tamamı açıktır.`,
+        `Konya; ${formatList(p.neighbors)} illeriyle komşudur. Merkezimize günübirlik ulaşmak isteyen çevre il danışanlarımız için de en pratik buluşma noktası burasıdır.`,
+        c.isDistrict
+          ? `${c.district!.name}, Konya sınırları içindedir; merkezimize ulaşım için size en uygun saati telefonla birlikte belirleyebiliriz.`
+          : `Şehir içi ulaşım kolay olduğundan, uygulamayı ve malzeme teminini tek ziyarette tamamlayabilirsiniz.`,
+      ],
+    };
+  }
+
+  const band = distanceBand(p.distanceKm);
+
+  const opening = pickOne(
+    [
+      `${c.full}, Konya'daki merkezimize karayoluyla yaklaşık ${p.distanceKm} km uzaklıkta ve ${c.province.region} bölgesinde yer alır.`,
+      `Konya merkezimiz ile ${c.full} arasındaki karayolu mesafesi yaklaşık ${p.distanceKm} km'dir; il ${c.province.region} bölgesindedir.`,
+      `${c.province.region} bölgesinde bulunan ${c.full}, merkezimize yaklaşık ${p.distanceKm} km mesafededir.`,
+      `${c.full} için mesafe tablomuz nettir: Konya merkezimize karayoluyla yaklaşık ${p.distanceKm} km, bölge olarak ${c.province.region}.`,
+      `Merkezimizin bulunduğu Konya ile ${c.full} arası yaklaşık ${p.distanceKm} km'dir ve il ${c.province.region} bölgesinde konumlanır.`,
+      `${c.full} bölgesi ${c.province.region}'da yer alır ve Konya merkezimize yaklaşık ${p.distanceKm} km uzaklıktadır.`,
+    ],
+    variantKey(service, c, "geo-open"),
+  );
+
+  const bandLine: Record<DistanceBand, string> = {
+    "cok-yakin": `Bu yakınlık sayesinde ${dative(c.place)} gönderiler çoğunlukla ertesi iş günü teslim edilir; uygun durumlarda elden teslim de konuşulabilir.`,
+    yakin: `Kısa mesafeli bir hat olduğu için ${c.place} gönderilerinde teslim gününü önceden netleştirebiliyoruz.`,
+    orta: `Orta mesafeli bir hat olduğundan ${c.place} gönderilerinde çıkış saatini teslim gününe göre planlıyoruz.`,
+    uzak: `Uzun mesafeli bir hat olduğu için ${c.place} gönderilerinde çıkış günü ve paketleme ayrıca planlanır.`,
+  };
+
+  const neighborLine = pickOne(
+    [
+      `${c.province.name}; ${formatList(p.neighbors)} illeriyle komşudur. Bu komşu illerden gelen talepleri de aynı kargo hattı üzerinden karşılıyoruz.`,
+      `İl sınırdaşları ${formatList(p.neighbors)} olduğu için bölge genelinde tek ve tanıdık bir hat kullanıyoruz.`,
+      `${formatList(p.neighbors)} illeriyle komşu olan ${c.province.name} için gönderi planlaması bölge bütününde yapılır.`,
+      `Komşu iller ${formatList(p.neighbors)}; bu hattı düzenli kullandığımız için teslim sürelerini gerçekçi biçimde söyleyebiliyoruz.`,
+    ],
+    variantKey(service, c, "geo-neighbor"),
+  );
+
+  // İLÇE FARKLILAŞTIRMASI: aynı ilin ilçeleri aynı il profilini paylaştığı
+  // için (mesafe, iklim, kargo hattı hepsinde aynı) metinleri birbirine
+  // yaklaşıyordu. Kardeş ilçe listesi her ilçede FARKLI olduğundan burayı
+  // ilçeye özgü hâle getiriyor — ve söylenen şey doğru: aynı hat üzerinden
+  // çevre ilçelere de gönderi yapılıyor.
+  const districtLine = (() => {
+    if (!c.isDistrict) {
+      return `İl genelindeki tüm ilçelere gönderi yapıyoruz; adres detayını sipariş sırasında paylaşmanız yeterlidir.`;
+    }
+    const siblings = c.province.districts.filter((d) => d.slug !== c.district!.slug);
+    const shown = pickDistinct(
+      siblings.map((d) => d.name),
+      Math.min(3, siblings.length),
+      variantKey(service, c, "sibling"),
+    );
+    const base = `${c.district!.name}, ${c.province.name} sınırları içindedir; teslim adresi ve saat tercihinizi sipariş sırasında belirtmeniz yeterlidir.`;
+    return shown.length > 0
+      ? `${base} ${formatList(shown)} gibi çevre ilçelere de aynı hat üzerinden gönderi yapıyoruz.`
+      : base;
+  })();
+
+  return {
+    title: `${c.place} ile Konya Arası: Mesafe, Hat ve Teslimat`,
+    paragraphs: [
+      `${opening} Gönderiler ${p.cargoHat} üzerinden yola çıkar. ${bandLine[band]}`,
+      `${p.yerelNot} ${neighborLine}`,
+      districtLine,
+    ],
+  };
+}
+
+/**
+ * Kargo / sipariş güvencesi.
+ *
+ * FARKLILAŞMA KAYNAĞI: `province-profiles.sevkiyatRiski`. Bu YAPISAL alan
+ * üç tamamen farklı önlem anlatımı üretir (yaz sıcağı / kış donması /
+ * standart) ve ilin kendi `iklimNotu` cümlesiyle birleşir. Yani metin
+ * farkı kelime oyunundan değil, ilin gerçek sevkiyat koşulundan gelir.
+ *
+ * Kargo takip süreci gibi HER İLDE AYNI olan anlatım metinden çıkarıldı;
+ * `shipping-steps` widget'ı olarak yapısal biçimde sunuluyor.
  */
 export function shippingAssuranceBlock(
   service: ServiceType,
   c: LocationCtx,
 ): ContentBlock {
+  const p = profileOf(c);
   const days = c.isKonya ? "aynı gün veya ertesi iş günü" : CARGO_DAYS[c.province.region];
-  const far =
-    c.province.region === "Doğu Anadolu" || c.province.region === "Güneydoğu Anadolu";
   const isLeech = service === "suluk-satisi" || service === "suluk-nedir";
   const isMaterial = service === "kupa-malzemeleri";
   const isCourse = service === "hacamat-kursu";
@@ -367,35 +524,33 @@ export function shippingAssuranceBlock(
       `${c.full} (${c.province.region}) bölgesine gönderilerimiz Konya merkezimizden ${days} içinde ulaşır.`,
       `${c.place} için siparişler Konya'daki merkezimizden hazırlanıp ${days} içinde ${c.province.region} bölgesine teslim edilir.`,
       `Konya merkezimizden çıkan ${c.place} gönderileri ${c.province.region} hattında ortalama ${days} içinde elinize geçer.`,
+      `${ablative(c.place)} gelen siparişleri Konya'da hazırlıyor, ${p.cargoHat} üzerinden ortalama ${days} içinde teslim ediyoruz.`,
+      `${dative(c.place)} teslimat süremiz ortalama ${days}; gönderi ${p.cargoHat} boyunca tek aktarmayla ilerler.`,
+      `Konya merkezimizden ${dative(c.place)} yapılan sevkiyat ${p.cargoHat} üzerinden ilerler ve ortalama ${days} sürer.`,
     ],
     variantKey(service, c, "ship"),
   );
 
-  const packaging = isLeech
-    ? `Canlı sülükler; oksijen tutan klorsuz su, sızdırmaz iç kap ve yalıtımlı strafor kutu ile paketlenir. ${
-        far
-          ? "Uzak bölgelere gönderimde mevsime göre ilave termal yalıtım (jel-buz veya ısı koruması) uygulayarak canlı kalmayı güvence altına alıyoruz."
-          : "Mevsim koşullarına göre ısı dengeleyici ekleyerek sülüklerin yolculuk boyunca canlı ve dinç kalmasını sağlıyoruz."
-      }`
-    : isMaterial
-      ? `Steril ürünler ambalajı bozulmadan, cam kupalar ise darbeye dayanıklı köpük ve çift katmanlı kutulama ile korunur. ${
-          far
-            ? "Uzak mesafeli gönderilerde kırılma riskine karşı ekstra dolgu kullanıyoruz."
-            : "Kısa mesafede bile hasarsız teslim için standart olarak koruyucu kutulama yapıyoruz."
-        }`
-      : isCourse
-        ? `Kursla birlikte gönderdiğimiz uygulama seti; steril malzemeler ve kesici uçlar zarar görmeyecek şekilde ayrı ayrı ambalajlanır. Böylece eğitime ilk günden uygulamalı başlayabilirsiniz.`
-        : `Ürün gönderimlerimizde steril ambalaj bütünlüğü korunur; cam ve kesici parçalar ayrı koruma ile paketlenir.`;
+  // İlin gerçek mevsimsel kısıtı → farklı önlem anlatımı.
+  const climateMeasure: Record<ProvinceProfile["sevkiyatRiski"], string> = {
+    "yaz-sicak": isLeech
+      ? `Yaz aylarında sevkiyatı günün serin saatlerine alıyor, kutuya jel-buz ve ilave termal yalıtım ekleyerek sülüklerin yol boyunca canlı ve dinç kalmasını sağlıyoruz.`
+      : `Yaz aylarında paketleri doğrudan güneş görmeyecek şekilde sevk ediyor, steril ambalajın sıcaktan etkilenmemesi için yalıtımlı kutu kullanıyoruz.`,
+    "kis-donma": isLeech
+      ? `Kış aylarında donma riskine karşı ısı koruması uyguluyor, gönderi gününü hava durumuna göre sizinle birlikte belirliyoruz; gerekirse sevkiyatı birkaç gün öteliyoruz.`
+      : `Kış aylarında yol koşulları teslimi uzatabildiği için gönderi gününü önceden planlıyor, sıvı içerikli ürünlerde donmaya karşı koruma uyguluyoruz.`,
+    standart: isLeech
+      ? `Bu hatta mevsimsel aşırılık görülmediği için standart ısı dengeleyici paketleme yeterli oluyor; yine de her gönderide mevsim koşulunu ayrıca kontrol ediyoruz.`
+      : `Bu hatta mevsimsel aşırılık görülmediği için yıl boyu standart koruyucu paketleme yeterli oluyor.`,
+  };
 
-  const guarantee = pickOne(
-    [
-      `${
-        far ? "Uzak bölge olmasına rağmen " : ""
-      }kapıda ödeme ve anlaşmalı kargo seçenekleriyle ${c.place} için güvenli teslimat sunuyoruz. Teslim anında paketi kontrol etmeniz yeterlidir.`,
-      `${c.place} için kapıda ödeme, havale/EFT ve anlaşmalı kargo seçenekleri mevcuttur; olası bir sorunda hızlıca çözüm sağlıyoruz.`,
-    ],
-    variantKey(service, c, "guar"),
-  );
+  const packaging = isLeech
+    ? `Canlı sülükler; oksijen tutan klorsuz su, sızdırmaz iç kap ve yalıtımlı strafor kutu ile paketlenir.`
+    : isMaterial
+      ? `Steril ürünler ambalajı bozulmadan, cam kupalar ise darbeye dayanıklı köpük ve çift katmanlı kutulama ile korunur.`
+      : isCourse
+        ? `Kursla birlikte gönderdiğimiz uygulama seti; steril malzemeler ve kesici uçlar zarar görmeyecek şekilde ayrı ayrı ambalajlanır.`
+        : `Gönderilerimizde steril ambalaj bütünlüğü korunur; cam ve kesici parçalar ayrı koruma ile paketlenir.`;
 
   const title = isLeech
     ? `${c.place} Sülük Kargosu & Canlı Kalma Güvencesi`
@@ -403,9 +558,14 @@ export function shippingAssuranceBlock(
       ? `${c.place} Eğitim Seti Kargosu`
       : `${c.place} Kargo & Kutulama Güvencesi`;
 
-  const tracking = `Gönderi hazırlandığında kargo takip numarasını sizinle paylaşıyoruz; ${c.place} için tahmini teslim gününü önceden bildiriyor, gerektiğinde kurye ile koordinasyonu biz sağlıyoruz. Böylece paketinizin nerede olduğunu adım adım takip edebilirsiniz.`;
-
-  return { title, paragraphs: [`${geoIntro} ${packaging}`, tracking, guarantee] };
+  return {
+    title,
+    paragraphs: [
+      `${geoIntro} ${packaging}`,
+      `${p.iklimNotu} ${climateMeasure[p.sevkiyatRiski]}`,
+    ],
+    widgets: [{ kind: "shipping-steps" }],
+  };
 }
 
 /**
@@ -414,27 +574,43 @@ export function shippingAssuranceBlock(
  */
 export function pointsAtlasBlock(service: ServiceType, c: LocationCtx): ContentBlock {
   const isLeech = service === "suluk-satisi" || service === "suluk-nedir";
+
+  // Uygulama adımları ve tıbbi uyarı HER İLDE AYNI bilgidir — metin olarak
+  // 81 kez tekrarlamak yerine yapısal widget olarak sunuluyor.
+  const widgets: BlockWidget[] = [
+    { kind: "application-steps", variant: isLeech ? "suluk" : "hacamat" },
+    { kind: "safety-notice" },
+  ];
+
   if (isLeech) {
     const intro = pickOne(
       [
         `Sülük tedavisi (hirudoterapi), tıbbi sülüğün şikâyete göre belirlenen bölgesel noktalara uygulanmasıyla yapılır.`,
         `Hirudoterapide sülük, uygulama planına göre seçilen bölgesel noktalara yerleştirilir.`,
+        `Sülük uygulamasında bölge seçimi; şikâyet, kişinin genel durumu ve uzman değerlendirmesiyle belirlenir.`,
+        `Hirudoterapi, tıbbi sülüğün uygun bölgeye tutundurulup kontrollü emmesi esasına dayanır.`,
+        `Sülük uygulaması, önceden yapılan bir değerlendirmenin ardından seçilen bölgesel noktalara uygulanır.`,
+        `Tıbbi sülük, uygulama planına göre belirlenen bölgeye yerleştirilir ve kendiliğinden tutunması beklenir.`,
       ],
       variantKey(service, c, "pts"),
     );
     return {
       title: `${c.place} İçin Sülük Uygulama Bölgeleri — Ön Bilgi`,
       paragraphs: [
-        `${intro} Uygulama bölgeleri; hedeflenen etki, kişinin durumu ve uzman değerlendirmesine göre değişir. ${c.full} bölgesinden gelen sorularda genel çerçeveyi paylaşıyor, kişiye özel planı ise değerlendirmeyle belirliyoruz.`,
-        `Uygulamada her sülük tek kullanımlıktır ve steril koşullarda çalışılır. İşlem sonrası bölgede küçük bir emme izi ve hafif kaşıntı olması normaldir; bunlar genellikle kısa sürede geçer. İlk kez deneyecek olanlara süreci adım adım anlatıyor, öncesi ve sonrasında dikkat edilmesi gerekenleri paylaşıyoruz.`,
-        `Bu bilgi yalnızca ön bilgilendirme amaçlıdır; tıbbi tanı veya tedavi yerine geçmez. Uygulama, steril koşullarda ve eğitimli kişilerce yapılmalıdır.`,
+        `${intro} Uygulama bölgeleri kişiye göre değişir. ${c.full} bölgesinden gelen sorularda genel çerçeveyi paylaşıyor, kişiye özel planı ise değerlendirmeyle belirliyoruz.`,
       ],
+      widgets,
     };
   }
+
   const intro = pickOne(
     [
       `Hacamat uygulamasında noktalar rastgele değil; sünnette bildirilen kâhil (ense-omuz) bölgesi başta olmak üzere bir "harita" mantığıyla belirlenir.`,
       `Hacamat noktaları; kâhil (ense-omuz) bölgesi, sırt ve bele ek olarak şikâyete göre seçilen bölgesel noktalardan oluşan bir atlas mantığıyla çalışır.`,
+      `Uygulamada nokta seçimi klasik hacamat atlasına dayanır; merkezinde sünnette bildirilen kâhil bölgesi bulunur.`,
+      `Hacamatta hangi noktanın seçileceği; şikâyet, kişinin durumu ve uygulayıcının değerlendirmesiyle belirlenir.`,
+      `Kâhil bölgesi başta olmak üzere sırt ve bel noktaları, hacamat uygulamasının klasik çerçevesini oluşturur.`,
+      `Nokta seçimi bir harita mantığıyla çalışır: klasik bölgeler sabit, şikâyete göre eklenen noktalar kişiye özeldir.`,
     ],
     variantKey(service, c, "pts"),
   );
@@ -442,9 +618,8 @@ export function pointsAtlasBlock(service: ServiceType, c: LocationCtx): ContentB
     title: `${c.place} İçin Hacamat Noktaları — Ön Bilgi`,
     paragraphs: [
       `${intro} Doğru nokta seçimi, hijyen ve vakum-çizik tekniği uygulamanın en kritik parçalarıdır. ${c.full} için danışmada, ilgilendiğiniz konuya göre uygun noktalar ve dikkat edilecekler hakkında genel bilgi veriyoruz.`,
-      `Uygulama öncesinde bölge steril edilir, işlem sonrasında ise basit bir bakım yapılır. İlk kez hacamat yaptıracaklar için süreci baştan sona anlatıyor, hangi noktaların neden seçildiğini ve sonrasında nelere dikkat edilmesi gerektiğini ${c.place} özelinde önceden yanıtlıyoruz.`,
-      `Bu içerik ön bilgilendirme amaçlıdır ve tıbbi tavsiye yerine geçmez. Hacamat, endikasyon-kontrendikasyon değerlendirmesiyle ve eğitimli kişilerce steril koşullarda yapılmalıdır.`,
     ],
+    widgets,
   };
 }
 
@@ -453,29 +628,48 @@ export function pointsAtlasBlock(service: ServiceType, c: LocationCtx): ContentB
  * gelecek kursiyerlere ulaşım ve konaklama rehberi.
  */
 export function konyaTravelBlock(service: ServiceType, c: LocationCtx): ContentBlock {
+  const p = profileOf(c);
+
   if (c.isKonya) {
     return {
-      title: `${c.place} — Merkezimiz Şehrinizde`,
+      title: `Konya İçinden Merkezimize Ulaşım`,
       paragraphs: [
-        `Yüz yüze uygulama ve eğitim merkezimiz Konya'da olduğu için ${c.place} bölgesindeki misafirlerimiz randevuyla kolayca merkezimize ulaşabilir. Aynı gün randevu ve elden teslim seçeneklerini telefonla konuşabiliriz.`,
-        `${c.place} içinden gelen danışanlarımıza esnek randevu saatleri sunuyor; ürün ve malzeme taleplerinde elden teslim ya da aynı gün kargo seçeneklerini değerlendiriyoruz. Şehir merkezine yakın konumumuz sayesinde ulaşım da kolaydır.`,
-        `Merkezimizden ${c.place} için hacamat ve sülük uygulaması, malzeme temini ve eğitim taleplerinizi tek noktadan karşılayabiliyoruz. Hangi hizmete ihtiyaç duyduğunuzu belirtmeniz yeterli; size en uygun günü ve seçeneği birlikte planlıyoruz.`,
+        `Yüz yüze uygulama ve eğitim merkezimiz Konya'da olduğu için ${c.place} bölgesindeki misafirlerimiz randevuyla kolayca ulaşabilir. Uygulama, malzeme temini ve eğitim taleplerini tek ziyarette karşılayabiliyoruz.`,
+      ],
+      widgets: [
+        { kind: "konya-access", distanceKm: 0, cargoHat: p.cargoHat },
       ],
     };
   }
+
+  const band = distanceBand(p.distanceKm);
+
   const intro = pickOne(
     [
       `Yüz yüze uygulama ve uygulamalı eğitim için merkezimiz Konya'dadır.`,
       `Uygulamalı eğitim ve yüz yüze seanslar Konya'daki merkezimizde yapılır.`,
+      `Uygulamalı bölüm ve birebir seanslar için tek adresimiz Konya merkezdir.`,
+      `Yüz yüze görüşme, uygulama ve uygulamalı eğitim Konya'daki merkezimizde yürütülür.`,
     ],
     variantKey(service, c, "konya"),
   );
+
+  // Seyahat tavsiyesi mesafe bandına göre GERÇEKTEN değişir.
+  const planLine: Record<DistanceBand, string> = {
+    "cok-yakin": `${c.place} merkezimize yakın olduğu için günübirlik gidiş-dönüş rahatlıkla planlanabilir; konaklamaya çoğunlukla gerek kalmaz.`,
+    yakin: `Yaklaşık ${p.distanceKm} km'lik mesafe, ${ablative(c.place)} sabah çıkıp aynı gün dönmenize imkân verir.`,
+    orta: `Yaklaşık ${p.distanceKm} km'lik mesafede erken çıkışla tek günde tamamlamak mümkündür; programı rahat tutmak isteyenler için bir gecelik konaklama öneriyoruz.`,
+    uzak: `Yaklaşık ${p.distanceKm} km'lik mesafe nedeniyle ${ablative(c.place)} gelecek misafirlerimize en az bir gece konaklamalı bir program öneriyoruz; böylece uygulamalı bölüm aceleye gelmez.`,
+  };
+
   return {
-    title: `${c.place}'den Konya'ya Ulaşım & Konaklama`,
+    title: `${ablative(c.place)} Konya'ya Ulaşım & Konaklama`,
     paragraphs: [
-      `${intro} ${c.full} bölgesinden gelecek kursiyerler için Konya; YHT (yüksek hızlı tren) ile Ankara ve İstanbul bağlantısı, Konya Havalimanı ve şehirlerarası otobüs hatlarıyla kolay ulaşılabilir bir şehirdir.`,
-      `Şehir dışından gelen misafirlerimize merkezimize yakın konaklama ve randevu planlaması konusunda yol gösteriyoruz. Böylece ${c.place} bölgesinden tek günlük veya kısa konaklamalı bir ziyaretle uygulamalı eğitimi tamamlayabilirsiniz.`,
-      `${c.full} bölgesinden gelen yoğun ilgi nedeniyle randevu ve gönderi planlamasını önceden yapmanızı öneriyoruz. Böylece hem size uygun tarihi ayırabiliyor hem de ${c.place} için en hızlı teslimat ve erişim seçeneğini önceden netleştirebiliyoruz. Yol tarifi, ulaşım ve program konusunda tüm sorularınızı arayarak sorabilirsiniz.`,
+      `${intro} ${planLine[band]}`,
+      `Şehir dışından gelen misafirlerimize merkezimize yakın konaklama ve randevu planlaması konusunda yol gösteriyoruz. Uygun tarihi ayırabilmemiz için ${c.place} bölgesinden gelecekseniz önceden haber vermenizi rica ediyoruz.`,
+    ],
+    widgets: [
+      { kind: "konya-access", distanceKm: p.distanceKm, cargoHat: p.cargoHat },
     ],
   };
 }
@@ -486,34 +680,126 @@ export function konyaTravelBlock(service: ServiceType, c: LocationCtx): ContentB
  */
 export function experienceBlock(service: ServiceType, c: LocationCtx): ContentBlock {
   const label = SERVICE_LABEL[service].toLocaleLowerCase("tr-TR");
+  const p = profileOf(c);
+
   const intro = pickOne(
     [
       `Ebusadullah Hacamat & Akademi, 1994'ten bu yana hacamat ve sülük alanında uygulama ve eğitim veriyor.`,
       `1994'ten beri süregelen tecrübemizle hacamat ve sülük alanında ${c.place} dâhil pek çok bölgeye hizmet veriyoruz.`,
+      `Kurucumuz Ebusadullah Hoca'nın 1994'te başlayan uygulama ve eğitim birikimi bugün de aynı çizgide sürüyor.`,
+      `Hacamat ve sülük alanındaki tecrübemiz 1994'e uzanır; bu birikimi hem uygulamaya hem eğitime taşıyoruz.`,
     ],
     variantKey(service, c, "exp"),
   );
+
+  // Erişim cümlesi, ilin merkeze mesafesine göre gerçekten değişir.
+  const reach = c.isKonya
+    ? `${c.place} merkezimizin bulunduğu il olduğu için uygulama, eğitim ve malzeme temini tek noktadan yürür.`
+    : distanceBand(p.distanceKm) === "uzak"
+      ? `${c.place} merkezimize uzak bir hatta bulunduğu için online eğitim ve kargo kanallarını özellikle güçlü tutuyoruz; uygulamalı bölüm için Konya ziyareti önceden planlanır.`
+      : `${c.place} için online eğitim ve kargo kanallarının yanı sıra Konya merkezimize günübirlik ziyaret de gerçekçi bir seçenektir.`;
+
   return {
     title: `${c.place} İçin Neden Ebusadullah Hacamat & Akademi?`,
     paragraphs: [
-      `${intro} ${c.full} bölgesindeki danışanlarımıza; CE sertifikalı ve steril malzeme, tek kullanımlık ekipman ve hijyen standartlarına tam uyum ile güvenli bir ${label} deneyimi sunuyoruz. Kalite ve güven, ilk günden bu yana en önemli önceliğimiz olmaya devam ediyor.`,
-      `Tecrübemizi hem yüz yüze (Konya merkez ve Almanya seansları) hem de online eğitim ve Türkiye geneli kargo ile erişilebilir kılıyoruz. Aklınıza takılan her soruda ${c.place} için WhatsApp veya telefonla aynı gün dönüş yapıyor, kararınızı bilgiyle vermenize yardımcı oluyoruz.`,
-      `${c.place} bölgesinden bize ulaşan herkese ürün, fiyat, uygulama ve eğitim süreçleriyle ilgili net ve anlaşılır bilgi vermeyi ilke ediniyoruz. Aceleye getirmeden, ihtiyacınıza en uygun seçeneği birlikte belirliyoruz; ister tek bir ürün ister kapsamlı bir eğitim söz konusu olsun, ilk günkü aynı özenle ilgileniyor ve sonrasında da yanınızda oluyoruz.`,
+      `${intro} ${c.full} bölgesindeki danışanlarımıza CE sertifikalı, steril ve tek kullanımlık malzemeyle güvenli bir ${label} deneyimi sunuyoruz.`,
+      `${reach} Aklınıza takılan her soruda WhatsApp veya telefonla aynı gün dönüş yapıyoruz.`,
+    ],
+    widgets: [{ kind: "trust-badges" }],
+  };
+}
+
+/**
+ * İLÇE ODAK BLOĞU — yalnızca ilçe sayfalarında kullanılır.
+ *
+ * NEDEN: `geographyBlock` ve `konyaTravelBlock` tamamen İL seviyesi veriden
+ * beslenir (mesafe, iklim, kargo koridoru, komşu iller). Bir ilin ilçelerinde
+ * bu veri AYNI olduğu için ilçe sayfaları hem birbirine hem de kendi il
+ * sayfasına yaklaşıyordu (ölçüm: ilçe-ilçe %34, il-ilçe %35, tepe %50).
+ *
+ * Çözüm ilçeye ayrı bir AÇI vermek: il sayfası coğrafya/lojistik derinliğini
+ * taşır, ilçe sayfası yerel pratiğe odaklanır. Kardeş ilçe listesi her ilçede
+ * farklı olduğu için metin de doğal olarak farklılaşır.
+ */
+export function districtFocusBlock(
+  service: ServiceType,
+  c: LocationCtx,
+): ContentBlock {
+  const p = profileOf(c);
+  const d = c.district!;
+  const siblings = c.province.districts.filter((x) => x.slug !== d.slug);
+  const near = pickDistinct(
+    siblings.map((x) => x.name),
+    Math.min(4, siblings.length),
+    variantKey(service, c, "dist-near"),
+  );
+
+  const opening = pickOne(
+    [
+      `${d.name} için siparişleriniz Konya merkezimizden hazırlanıp doğrudan adresinize gönderilir; ayrıca bir aktarma noktasına uğramanız gerekmez.`,
+      `${d.name} adresine teslimat, ${c.province.name} geneliyle aynı hat üzerinden yapılır ve kapınıza kadar gelir.`,
+      `${dative(d.name)} gönderilerde teslim adresi ve tercih ettiğiniz saat aralığını sipariş sırasında belirtebilirsiniz.`,
+      `${d.name} bölgesindeki siparişler için teslim saatini kurye ile önceden koordine edebiliyoruz.`,
+      `${d.name} için ürün teslimi ve bilgi desteği tek hat üzerinden yürür; sipariş sonrası süreci WhatsApp'tan takip edebilirsiniz.`,
+      `${dative(d.name)} yapılan gönderilerde adres detayı ve iletişim numarası dışında ek bir işlem gerekmez.`,
+    ],
+    variantKey(service, c, "dist-open"),
+  );
+
+  const coverage =
+    near.length > 0
+      ? `${formatList(near)} gibi çevre ilçelere de aynı gün içinde hazırlanan gönderilerle hizmet veriyoruz. ${d.name} çevresindeki uygulayıcı ve kurumlar için toplu tedarik seçeneği de mevcuttur.`
+      : `${c.province.name} genelindeki tüm ilçelere aynı hat üzerinden hizmet veriyoruz.`;
+
+  const provincePointer = `${c.province.name} geneli için mesafe, kargo koridoru ve mevsimsel sevkiyat koşullarını ${c.province.name} sayfamızda ayrıntılı olarak anlattık; ${d.name} teslimatları da aynı ${p.cargoHat} üzerinden ilerler.`;
+
+  return {
+    title: `${d.name} İçin Teslimat ve Hizmet Pratiği`,
+    paragraphs: [`${opening} ${coverage}`, provincePointer],
+    widgets: [
+      { kind: "konya-access", distanceKm: p.distanceKm, cargoHat: p.cargoHat },
     ],
   };
 }
 
-/** Şablona sırayla basılacak derin içerik blokları. */
+/**
+ * Şablona basılacak derin içerik blokları.
+ *
+ * KOMPOZİSYON İL ve İLÇE İÇİN FARKLIDIR (kanibalizasyon önlemi):
+ *   - İl sayfası:   coğrafya derinliği + Konya ulaşım → "bölge" sayfası
+ *   - İlçe sayfası: yerel teslimat pratiği           → "adres" sayfası
+ *   Ortak olan yalnızca uygulama/kargo/güven blokları; onların tekrar eden
+ *   kısmı da zaten metin değil widget.
+ *
+ * SIRA: en benzersiz blok başta, güven bloğu sonda (dönüşüme yakın).
+ * Aradaki bloklar DETERMİNİSTİK permüte edilir — aynı lokasyon hep aynı
+ * sırayı alır, komşular farklı sıra gösterir; blok sınırlarındaki n-gram
+ * eşleşmeleri de böylece kırılır.
+ */
 export function deepContentBlocks(
   service: ServiceType,
   ctx: LocationCtx,
 ): ContentBlock[] {
-  return [
-    pointsAtlasBlock(service, ctx),
-    shippingAssuranceBlock(service, ctx),
-    konyaTravelBlock(service, ctx),
-    experienceBlock(service, ctx),
-  ];
+  const lead = ctx.isDistrict
+    ? districtFocusBlock(service, ctx)
+    : geographyBlock(service, ctx);
+
+  const middle = ctx.isDistrict
+    ? [pointsAtlasBlock(service, ctx), shippingAssuranceBlock(service, ctx)]
+    : [
+        pointsAtlasBlock(service, ctx),
+        shippingAssuranceBlock(service, ctx),
+        konyaTravelBlock(service, ctx),
+      ];
+
+  // pickDistinct havuzun tamamını istediğimizde deterministik bir permütasyon verir.
+  const order = pickDistinct(
+    middle.map((_, i) => i),
+    middle.length,
+    variantKey(service, ctx, "block-order"),
+  );
+
+  return [lead, ...order.map((i) => middle[i]), experienceBlock(service, ctx)];
 }
 
 // ─── Dinamik SSS havuzu (15 soru → deterministik 4) ──────────────────────
@@ -617,14 +903,10 @@ const SERVICE_FAQS: Record<ServiceType, (c: LocationCtx) => FaqItem[]> = {
       q: "Kaç adet sipariş verebilirim?",
       a: `Bireysel ve toplu (uygulayıcı/kurum) siparişler mümkündür. ${c.place} için adet ve fiyat detayını WhatsApp'tan ${PHONE_DISPLAY} paylaşıyoruz.`,
     },
-    {
-      q: "Sülükleri nasıl saklamalıyım?",
-      a: "Temiz, klorsuz su içinde; serin ve ışık almayan bir ortamda saklanmalıdır. Siparişle birlikte kısa bir bakım notu iletiyoruz.",
-    },
-    {
-      q: "Tıbbi sülük ile doğadan toplanan sülük farkı nedir?",
-      a: "Uygulamada kontrollü koşullarda bakılan Hirudo türü tıbbi sülük kullanılır. Doğadan toplanan sülükler hijyen ve tür güvenliği açısından önerilmez.",
-    },
+    // NOT: "Sülükleri nasıl saklamalıyım?" ve "Tıbbi sülük ile doğadan
+    // toplanan sülük farkı" soruları data/faq-pool.ts içindeki daha ayrıntılı
+    // sürümleriyle değiştirildi — ikisi aynı sayfada görünmesin diye buradan
+    // kaldırıldı.
     {
       q: `${c.place} için hangi kargoyla gönderiyorsunuz?`,
       a: "Bölgeye en hızlı ulaşan anlaşmalı kargoyu seçiyoruz; canlı gönderi tecrübemiz olan hatları tercih ediyoruz.",
@@ -673,10 +955,8 @@ const SERVICE_FAQS: Record<ServiceType, (c: LocationCtx) => FaqItem[]> = {
       q: "Hacamat noktaları nelerdir?",
       a: `Sünnette bildirilen kâhil (ense-omuz) bölgesi başta olmak üzere sırt, bel ve şikâyete göre belirlenen bölgesel noktalar kullanılır. ${c.place} için danışmada ayrıntı veriyoruz.`,
     },
-    {
-      q: "Hacamat kimlere yapılmaz?",
-      a: "Gebeler, kan sulandırıcı kullananlar, ileri anemi ve bazı kronik durumlarda dikkat gerekir. Uygulama öncesi mutlaka değerlendirme yapılmalıdır.",
-    },
+    // NOT: "Hacamat kimlere yapılmaz?" sorusu data/faq-pool.ts içindeki
+    // "genel" kapsamlı, daha ayrıntılı kontrendikasyon sorusuyla değiştirildi.
     {
       q: "Hacamat ne sıklıkla yapılır?",
       a: "Kişiye ve amaca göre değişir; genellikle mevsimsel/periyodik uygulanır. Uygun aralık bireysel değerlendirmeyle belirlenir.",
@@ -703,14 +983,9 @@ const SERVICE_FAQS: Record<ServiceType, (c: LocationCtx) => FaqItem[]> = {
       q: "Sülük hangi bölgelere uygulanır?",
       a: `Şikâyete göre belirlenen bölgesel noktalara uygulanır. ${c.place} için uygulama ayrıntılarını danışmada paylaşıyoruz.`,
     },
-    {
-      q: "Sülük tedavisi kimlere uygulanmaz?",
-      a: "Gebelik, kansızlık, kan pıhtılaşma bozuklukları ve kan sulandırıcı kullanımı gibi durumlarda uygulanmaz veya dikkat gerektirir. Öncesinde değerlendirme şarttır.",
-    },
-    {
-      q: "Sülük tekrar kullanılır mı?",
-      a: "Hayır. Tıbbi sülük tek kişiliktir; hijyen açısından farklı kişilerde kullanılması sakıncalıdır.",
-    },
+    // NOT: "Sülük tedavisi kimlere uygulanmaz?" ve "Sülük tekrar kullanılır
+    // mı?" soruları data/faq-pool.ts içindeki ayrıntılı sürümlerine taşındı
+    // (kontrendikasyon sorusu artık "genel" kapsamda, tüm hizmetlerde geçerli).
     {
       q: "Sülük uygulaması iz bırakır mı?",
       a: "Küçük bir emme izi ve hafif kaşıntı olabilir; genellikle kısa sürede geçer. Uygulama sonrası bakım önerileri verilir.",
@@ -722,20 +997,41 @@ const SERVICE_FAQS: Record<ServiceType, (c: LocationCtx) => FaqItem[]> = {
   ],
 };
 
-/** Bir hizmet+lokasyon için 15 soruluk tam SSS havuzu. */
+/** Hizmetin hangi statik SSS kapsamlarını çektiği. */
+const FAQ_SCOPES: Record<ServiceType, FaqScope[]> = {
+  "hacamat-kursu": ["genel", "hacamat"],
+  "hacamat-nedir": ["genel", "hacamat"],
+  // Malzemeler hacamat uygulaması için kullanıldığından hacamat kapsamı da alınır.
+  "kupa-malzemeleri": ["genel", "malzeme", "hacamat"],
+  "suluk-satisi": ["genel", "suluk"],
+  "suluk-nedir": ["genel", "suluk"],
+};
+
+/**
+ * Bir hizmet+lokasyon için tam SSS havuzu.
+ *
+ * Üç kaynak birleşir:
+ *   1. `commonFaqs`      — lokasyona duyarlı, tüm hizmetlerde ortak
+ *   2. `SERVICE_FAQS`    — lokasyona duyarlı, hizmete özel
+ *   3. `data/faq-pool`   — statik, konuya özel (kapsam süzgeciyle)
+ *
+ * Havuz ne kadar büyükse sayfa başına düşen kombinasyon o kadar çeşitlenir;
+ * komşu ilçelerin aynı SSS setini almasını engelleyen kaldıraç budur.
+ */
 export function faqPool(service: ServiceType, ctx: LocationCtx): FaqItem[] {
-  return [...commonFaqs(service, ctx), ...SERVICE_FAQS[service](ctx)];
+  const staticItems = staticFaqsFor(FAQ_SCOPES[service]).map(({ q, a }) => ({ q, a }));
+  return [...commonFaqs(service, ctx), ...SERVICE_FAQS[service](ctx), ...staticItems];
 }
 
 /**
- * Sayfa için deterministik SSS seçimi: 15'lik havuzdan lokasyona özel `count`
- * adet FARKLI soru. Aynı lokasyon hep aynı soruları alır; komşu ilçeler farklı
+ * Sayfa için deterministik SSS seçimi: havuzdan lokasyona özel `count` adet
+ * FARKLI soru. Aynı lokasyon hep aynı soruları alır; komşu ilçeler farklı
  * kombinasyon gösterir (anti-doorway).
  */
 export function selectFaqs(
   service: ServiceType,
   ctx: LocationCtx,
-  count = 4,
+  count = 6,
 ): FaqItem[] {
   const pool = faqPool(service, ctx);
   const key = `faq|${service}|${ctx.province.plate}|${ctx.district?.slug ?? ""}`;

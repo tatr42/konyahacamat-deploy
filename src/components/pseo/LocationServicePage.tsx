@@ -39,6 +39,7 @@ import {
 import { pickImage, pickTrio } from "@/lib/pseo/images";
 import { dative } from "@/lib/pseo/turkish";
 import LocalContactCta from "@/components/pseo/LocalContactCta";
+import { BlockWidgetView, widgetKey } from "@/components/pseo/BlockWidgets";
 import { TableOfContents } from "@/components/blog/BlogEnrichment";
 import type { TocItem } from "@/lib/blog/enrich";
 import { slugify } from "@/data/tr-locations";
@@ -290,6 +291,10 @@ export default function LocationServicePage({
                   </p>
                 ))}
               </div>
+              {/* Her ilde AYNI olan bilgi: metin değil, yapısal sunum */}
+              {block.widgets?.map((w) => (
+                <BlockWidgetView key={widgetKey(w)} widget={w} />
+              ))}
             </article>
           ))}
         </div>

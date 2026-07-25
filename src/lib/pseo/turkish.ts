@@ -50,3 +50,11 @@ export function locative(name: string): string {
   const suffix = hard ? (back ? "ta" : "te") : back ? "da" : "de";
   return `${name}'${suffix}`;
 }
+
+/** Ayrılma hâli: "-den/-dan", sert ünsüzden sonra "-ten/-tan". */
+export function ablative(name: string): string {
+  const back = lastVowelIsBack(name);
+  const hard = !endsWithVowel(name) && lastCharVoiceless(name);
+  const suffix = hard ? (back ? "tan" : "ten") : back ? "dan" : "den";
+  return `${name}'${suffix}`;
+}

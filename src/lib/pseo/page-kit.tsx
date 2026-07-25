@@ -64,6 +64,31 @@ export const ilStaticParams = () => PROVINCES.map((p) => ({ il: p.slug }));
  */
 export const ilceStaticParams = () => keptDistrictPairs();
 
+/**
+ * İLÇE SAYFALARI İÇİN `noindex, follow` (Faz 1 kapanış kararı).
+ *
+ * Gerekçe — ölçüme dayalı: Faz 1 sonunda il sayfaları %18-22 benzerliğe indi
+ * (hedef <%25 tuttu), ancak ilçe-ilçe benzerlik %33'te kaldı. Kök neden, bir
+ * ilin ilçelerinin AYNI il profilini paylaşması (mesafe, iklim, kargo
+ * koridoru). Jaccard bir oran olduğu için tekrarlanan metni silmek payda ile
+ * birlikte payı da küçültüyor ve oranı düşürmüyor; oranı düşürmenin tek yolu
+ * benzersiz metin EKLEMEK, o da ilçe seviyesinde veri gerektiriyor (elimizde
+ * yok, uydurmak da veri dürüstlüğü kuralımıza aykırı).
+ *
+ * `follow` bilinçli: iç link mimarisi ve PageRank akışı korunur, sayfalar
+ * kullanıcıya hizmet vermeye devam eder; yalnızca indekslenmezler. İlçe
+ * sayfaları zaten Faz 0'da sitemap dışı bırakılmıştı — bu, o kararın
+ * tamamlayıcısıdır.
+ *
+ * GERİ ALMA KOŞULU: ilçe seviyesinde gerçek veri eklenirse (semt, ilçe
+ * merkezine mesafe, kargo şubesi) benzerlik yeniden ölçülüp bu kaldırılabilir.
+ */
+const DISTRICT_ROBOTS: Metadata["robots"] = {
+  index: false,
+  follow: true,
+  googleBot: { index: false, follow: true },
+};
+
 function metaFor(
   service: ServiceType,
   ctx: LocationCtx,
@@ -76,6 +101,7 @@ function metaFor(
     title: copy.seoTitle(ctx),
     description: copy.seoDescription(ctx),
     alternates: { canonical },
+    ...(ctx.isDistrict ? { robots: DISTRICT_ROBOTS } : {}),
     openGraph: {
       title: copy.seoTitle(ctx),
       description: copy.seoDescription(ctx),
