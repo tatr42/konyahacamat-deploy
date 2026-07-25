@@ -105,14 +105,31 @@ const localBusinessSchema = {
     "https://www.instagram.com/konyahacamat",
     "https://www.facebook.com/konyahacamat",
   ],
+  // Hizmet alanı: yüz yüze uygulama Konya'da, ürün satışı kargoyla tüm
+  // Türkiye'ye. İki kapsamı ayrı ayrı bildirmek, adresli LocalBusiness'ı
+  // ServiceAreaBusiness'a çevirmeden ülke çapı e-ticareti anlatır.
+  areaServed: [
+    {
+      "@type": "City",
+      name: "Konya",
+      description: "Yüz yüze sülük terapisi, hacamat uygulaması ve uygulamalı eğitim",
+    },
+    {
+      "@type": "Country",
+      name: "Türkiye",
+      description: "Tıbbi sülük, kupa ve hacamat malzemelerinde kargo ile satış",
+    },
+  ],
   hasOfferCatalog: {
     "@type": "OfferCatalog",
     name: "Sülük & Hacamat Hizmetleri",
     itemListElement: [
-      { "@type": "Offer", itemOffered: { "@type": "Service", name: "Sülük Terapisi (Hirudoterapi)", url: "/hizmetler/suluk" } },
-      { "@type": "Offer", itemOffered: { "@type": "Service", name: "Kuru Hacamat", url: "/hizmetler/hacamat" } },
-      { "@type": "Offer", itemOffered: { "@type": "Service", name: "Yaş Hacamat", url: "/hizmetler/hacamat" } },
-      { "@type": "Offer", itemOffered: { "@type": "Service", name: "Hacamat & Sülük Uzmanlık Kursu", url: "/egitimler" } },
+      { "@type": "Offer", itemOffered: { "@type": "Service", name: "Sülük Terapisi (Hirudoterapi)", url: `${BASE}/hizmetler/suluk` } },
+      { "@type": "Offer", itemOffered: { "@type": "Service", name: "Kuru Hacamat", url: `${BASE}/hizmetler/hacamat` } },
+      { "@type": "Offer", itemOffered: { "@type": "Service", name: "Yaş Hacamat", url: `${BASE}/hizmetler/hacamat` } },
+      { "@type": "Offer", itemOffered: { "@type": "Service", name: "Hacamat & Sülük Uzmanlık Kursu", url: `${BASE}/egitimler` } },
+      { "@type": "Offer", itemOffered: { "@type": "Product", name: "Tıbbi Sülük (Hirudo verbana)", url: `${BASE}/suluk-satisi` } },
+      { "@type": "Offer", itemOffered: { "@type": "Product", name: "Hacamat Kupası & Malzeme Setleri", url: `${BASE}/kupa-malzemeleri` } },
     ],
   },
 };

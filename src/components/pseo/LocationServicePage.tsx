@@ -39,6 +39,9 @@ import {
 import { pickImage, pickTrio } from "@/lib/pseo/images";
 import { dative } from "@/lib/pseo/turkish";
 import LocalContactCta from "@/components/pseo/LocalContactCta";
+import { TableOfContents } from "@/components/blog/BlogEnrichment";
+import type { TocItem } from "@/lib/blog/enrich";
+import { slugify } from "@/data/tr-locations";
 
 const BASE = "https://www.konyahacamat.net";
 
@@ -70,6 +73,18 @@ export default function LocationServicePage({
   // Derin içerik blokları (kargo güvencesi, noktalar, Konya ulaşım)
   const blocks = deepContentBlocks(service, ctx);
   const cta = localCtaCopy(service, ctx);
+
+  // İçindekiler: derin içerik blokları + SSS. Sunucuda, blok başlıklarından
+  // üretilir — id'ler build çıktısında hazır olduğundan botlar JS olmadan görür.
+  const faqHeadingId = "sik-sorulan-sorular";
+  const toc: TocItem[] = [
+    ...blocks.map((block) => ({
+      id: slugify(block.title),
+      text: block.title,
+      level: 2 as const,
+    })),
+    { id: faqHeadingId, text: `${ctx.place} Sık Sorulan Sorular`, level: 2 },
+  ];
 
   const path = ctx.isDistrict
     ? `/${service}/${ctx.province.slug}/${ctx.district!.slug}`
@@ -256,10 +271,16 @@ export default function LocationServicePage({
 
       {/* DERİN İÇERİK — lokasyona özel bilgi blokları (600+ kelime motoru) */}
       <section className="py-16 lg:py-24 bg-anthracite border-t border-white/5">
+        <div className="container-site max-w-4xl">
+          <TableOfContents toc={toc} />
+        </div>
         <div className="container-site max-w-4xl space-y-12">
           {blocks.map((block) => (
             <article key={block.title}>
-              <h2 className="text-2xl lg:text-3xl font-display font-bold text-white mb-5">
+              <h2
+                id={slugify(block.title)}
+                className="scroll-mt-32 text-2xl lg:text-3xl font-display font-bold text-white mb-5"
+              >
                 {block.title}
               </h2>
               <div className="space-y-4">
@@ -277,7 +298,10 @@ export default function LocationServicePage({
       {/* SSS */}
       <section className="py-16 lg:py-24 bg-anthracite-dark border-t border-white/5">
         <div className="container-site max-w-3xl">
-          <h2 className="text-3xl lg:text-4xl font-display font-bold text-white mb-10">
+          <h2
+            id={faqHeadingId}
+            className="scroll-mt-32 text-3xl lg:text-4xl font-display font-bold text-white mb-10"
+          >
             {ctx.place} <span className="text-teal">Sık Sorulan Sorular</span>
           </h2>
           <div className="space-y-4">
