@@ -204,9 +204,18 @@
   /* Dinamik Container Yapısı */
   .container-site {
     width: 100%;
-    max-width: 1280px;
     margin-inline: auto;
     padding-inline: 1.25rem;
+  }
+
+  /* max-width'i :where() ile 0-ÖZGÜLLÜKTE tanımlıyoruz. Aksi halde bu kural
+     utilities katmanında Tailwind'in `max-w-*` sınıflarından sonra geldiği için
+     `<div class="container-site max-w-3xl">` gibi kullanımlarda max-w-3xl'i
+     eziyor ve uzun-metin sayfaları 768px yerine 1280px akıyordu. :where() ile
+     yan yana yazılan herhangi bir `max-w-*` utility'si artık kazanır; tek başına
+     `.container-site` kullanıldığında ise 1280px sınırı korunur. */
+  :where(.container-site) {
+    max-width: 1280px;
   }
 
   @media (min-width: 1024px) {
