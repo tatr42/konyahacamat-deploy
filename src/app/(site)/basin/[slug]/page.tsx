@@ -107,11 +107,7 @@ export default async function BasinDetayPage({ params }: { params: Promise<{ slu
         <script type="application/ld+json" dangerouslySetInnerHTML={{ __html: JSON.stringify(faqSchema) }} />
       )}
 
-      {/* NOT: `container-site max-w-3xl` çalışmıyor — .container-site kendi
-          max-width'ini (1280px) aynı utility katmanında sonra tanımladığı için
-          max-w-3xl'i eziyor. Okunabilir satır uzunluğu iç sarmalayıcıyla alınıyor. */}
-      <div className="container-site">
-        <div className="max-w-3xl mx-auto">
+      <div className="container-site max-w-3xl">
 
         {/* Breadcrumb */}
         <div className="flex items-center gap-2 text-white/70 text-sm mb-8">
@@ -214,7 +210,6 @@ export default async function BasinDetayPage({ params }: { params: Promise<{ slu
           </div>
         </div>
 
-        </div>
       </div>
     </main>
   );
