@@ -10,6 +10,16 @@ export interface PressItem {
   icerik?: string;
   seoTitle?: string;
   seoDescription?: string;
+  /** Tam yayın tarihi (ISO, ör. "2015-09-02"). Yoksa `yil` kullanılır. */
+  tarih?: string;
+  /** Küpür görselinin altına yazılan açıklama. */
+  imgCaption?: string;
+  /**
+   * Detay sayfasının sonunda görünür SSS bölümü olarak basılır ve aynı
+   * veriden FAQPage JSON-LD üretilir. Google, şemadaki cevabın sayfada
+   * görünür olmasını şart koştuğu için tek kaynak buradadır.
+   */
+  faq?: { soru: string; cevap: string }[];
 }
 
 /**

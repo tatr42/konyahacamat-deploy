@@ -71,10 +71,15 @@ export default function BasinClient({ initialItems }: { initialItems: PressItem[
           <p className="text-white/70 text-lg max-w-xl">{getYearsExpStr()} yılı aşkın sürede Türkiye'nin önde gelen gazetelerinde yer aldık.</p>
         </div>
 
-        {/* STATS */}
+        {/* STATS
+            Not: kutular merkezin GENEL medya varlığını özetler, yalnızca
+            dijitalleştirilmiş haber sayısını değil. Az sayıda haber eklenmişken
+            kart sayısını ("1") göstermek "50+ Haber" ifadesiyle çelişip
+            güvenilirliği zedeliyordu; bu yüzden yeterli haber eklenene dek
+            arşiv tahmini ("25+") gösterilir, eşik aşılınca gerçek sayıya geçer. */}
         <div className="grid grid-cols-3 gap-4 mb-14 max-w-xl">
           {[
-            { sayi: gazeteler.length || '25+', label: 'Gazete & Dergi' },
+            { sayi: gazeteler.length >= 10 ? `${gazeteler.length}` : '25+', label: 'Gazete & Dergi' },
             { sayi: getYearsExpStr(), label: 'Yıl Medyada' },
             { sayi: '50+', label: 'Haber & Röportaj' },
           ].map(s => (

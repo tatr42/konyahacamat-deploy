@@ -2,19 +2,31 @@
 import { useState } from "react";
 import { X, ZoomIn } from "lucide-react";
 
-export default function ImageLightbox({ src, alt }: { src: string; alt: string }) {
+export default function ImageLightbox({
+  src,
+  alt,
+  /** Küçük hâlin sarmalayıcı sınıfları — float'lı yerleşimde boşluk/yükseklik ayarı için. */
+  thumbClassName = "mb-10",
+  /** Küçük hâlin görsel yüksekliği. Büyütülmüş hâli bundan etkilenmez. */
+  thumbMaxHeight = "max-h-[600px]",
+}: {
+  src: string;
+  alt: string;
+  thumbClassName?: string;
+  thumbMaxHeight?: string;
+}) {
   const [open, setOpen] = useState(false);
 
   return (
     <>
       <div
-        className="rounded-2xl overflow-hidden border border-white/10 mb-10 cursor-zoom-in relative group"
+        className={`rounded-2xl overflow-hidden border border-white/10 cursor-zoom-in relative group ${thumbClassName}`}
         onClick={() => setOpen(true)}
       >
         <img
           src={src}
           alt={alt}
-          className="w-full object-contain max-h-[600px] bg-white/5"
+          className={`w-full object-contain object-top bg-white/5 ${thumbMaxHeight}`}
         />
         <div className="absolute inset-0 bg-black/0 group-hover:bg-black/20 transition-colors flex items-center justify-center">
           <div className="w-12 h-12 rounded-full bg-black/50 flex items-center justify-center opacity-0 group-hover:opacity-100 transition-opacity">
