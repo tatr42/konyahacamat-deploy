@@ -153,6 +153,29 @@ export default function Footer() {
             <Link href="/kvkk" title="KVKK Aydınlatma Metni" className="text-white/70 hover:text-teal transition-colors">KVKK</Link>
           </div>
         </div>
+
+        {/* Görsel atıfları (CC BY gereği) */}
+        <p className="mt-6 text-[9px] text-white/30 leading-relaxed text-center md:text-left">
+          Sülük görseli:{" "}
+          <a
+            href="https://commons.wikimedia.org/wiki/File:European_medicinal_leech_(Hirudo_medicinalis)_at_the_California_Academy_of_Sciences_02.jpg"
+            target="_blank"
+            rel="noopener noreferrer nofollow"
+            className="hover:text-teal transition-colors"
+          >
+            EvanBaldonado
+          </a>{" "}
+          /{" "}
+          <a
+            href="https://creativecommons.org/licenses/by/4.0"
+            target="_blank"
+            rel="noopener noreferrer nofollow"
+            className="hover:text-teal transition-colors"
+          >
+            CC BY 4.0
+          </a>{" "}
+          — Wikimedia Commons.
+        </p>
       </div>
     </footer>
   );

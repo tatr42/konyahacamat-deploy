@@ -57,6 +57,10 @@ export default function DiseaseTabs() {
             Hangi Rahatsızlığa <br />
             <span className="text-teal italic">Şifa Sunuyoruz?</span>
           </h2>
+          <p className="text-white/50 text-sm md:text-base max-w-xl">
+            <strong className="text-white/70">Sülük terapisi (hirudoterapi)</strong> ve hacamat
+            uygulamalarıyla dolaşım, ağrı, ödem ve cilt sorunlarında destekleyici doğal çözümler.
+          </p>
         </div>
 
         {/* Kategori Seçimi */}
