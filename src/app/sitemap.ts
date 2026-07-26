@@ -52,6 +52,13 @@ const staticPages = [
   { url: `${BASE}/gizlilik`, priority: 0.3, changeFrequency: "yearly" as const },
 ];
 
+/** Unix saniyesini `lastModified` alanına çevirir; yoksa/gelecekteyse budar. */
+function lastModifiedFor(seconds?: number): { lastModified?: Date } {
+  if (!seconds) return {};
+  const ts = Math.min(seconds * 1000, Date.now());
+  return { lastModified: new Date(ts) };
+}
+
 export default async function sitemap(): Promise<MetadataRoute.Sitemap> {
   let blogPages: MetadataRoute.Sitemap = [];
   let pressPages: MetadataRoute.Sitemap = [];
@@ -60,7 +67,12 @@ export default async function sitemap(): Promise<MetadataRoute.Sitemap> {
     const posts = await getPublishedPosts();
     blogPages = posts.map(post => ({
       url: `${BASE}/blog/${post.slug}`,
-      lastModified: post.updatedAt ? new Date(post.updatedAt.seconds * 1000) : new Date(),
+      // `lastmod` YOK'sa Google onu yok sayar; GELECEK tarihliyse tüm sitemap
+      // boyunca `lastmod` sinyalini güvenilmez sayıp iskonto eder. blog-posts.ts
+      // içindeki damgalar elle atandığı için ileri kayabiliyor — bu yüzden
+      // "şimdi" ile sınırlanır. Damga yoksa alan hiç yazılmaz: her build'de
+      // değişen `new Date()` fallback'i sahte tazelik sinyali üretiyordu.
+      ...lastModifiedFor(post.updatedAt?.seconds),
       changeFrequency: "monthly" as const,
       priority: 0.7,
     }));

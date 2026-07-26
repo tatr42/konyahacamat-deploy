@@ -2,8 +2,14 @@
  * Hizmet dizin (hub) sayfası — bir hizmetin tüm il/ilçe sayfalarına köprü.
  *
  * Amaç: (1) `/{hizmet}` kök URL'inin 404 vermemesi, (2) yetim sayfa kalmaması
- * — 81 il ve altındaki ilçeler buradan linklenerek iç linkleme tamamlanır,
+ * — 81 il ve YAYINDA KALAN ilçeler buradan linklenerek iç linkleme tamamlanır,
  * (3) tamamen statik (SSG) — dinamik veri yok.
+ *
+ * İlçe listesi `isKeptDistrict` ile SÜZÜLÜR. Süzülmediğinde her hub, budanan
+ * 286 ilçenin tamamına link veriyordu (3 hub × 286 = 858 iç link) ve bunların
+ * hepsi 301'e gidiyordu: tarama bütçesi ziyan olur, GSC'de "Yönlendirmeli
+ * sayfa" şişer, link değeri ölü URL'lere dağılır. Yönlendirme tablosu doğru
+ * olsa bile link grafiği onu takip etmezse budama yarım kalır.
  *
  * Server component; sadece sunum + yapısal veri (BreadcrumbList + ItemList).
  */
@@ -11,6 +17,7 @@
 import Link from "next/link";
 import { MapPin, Phone, ChevronRight } from "lucide-react";
 import { provincesByRegion } from "@/data/tr-locations";
+import { isKeptDistrict } from "@/data/pseo-scope";
 import {
   type ServiceType,
   HUB_COPY,
@@ -150,15 +157,17 @@ export default function ServiceHubPage({ service }: { service: ServiceType }) {
                       />
                     </Link>
                     <div className="flex flex-wrap gap-2">
-                      {p.districts.map((dd) => (
-                        <Link
-                          key={dd.slug}
-                          href={`/${service}/${p.slug}/${dd.slug}`}
-                          className="px-3 py-1.5 rounded-lg bg-white/5 text-white/60 text-xs hover:bg-teal/10 hover:text-teal transition-all"
-                        >
-                          {dd.name}
-                        </Link>
-                      ))}
+                      {p.districts
+                        .filter((dd) => isKeptDistrict(p.slug, dd.slug))
+                        .map((dd) => (
+                          <Link
+                            key={dd.slug}
+                            href={`/${service}/${p.slug}/${dd.slug}`}
+                            className="px-3 py-1.5 rounded-lg bg-white/5 text-white/60 text-xs hover:bg-teal/10 hover:text-teal transition-all"
+                          >
+                            {dd.name}
+                          </Link>
+                        ))}
                     </div>
                   </div>
                 ))}

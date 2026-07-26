@@ -23,6 +23,13 @@ import type { Post } from "@/lib/posts";
  * Unix saniyeyi bulmak için: Math.floor(Date.now()/1000) veya
  * https://www.unixtimestamp.com adresini kullanabilirsiniz.
  *
+ * ASLA GELECEK TARİH YAZMAYIN. `updatedAt` doğrudan sitemap'teki `lastmod`
+ * alanına gider; Google gelecek tarihli bir `lastmod` gördüğünde o sitemap'in
+ * TÜM `lastmod` sinyalini güvenilmez sayıp iskonto eder. Yazılar elle eklenirken
+ * damgalar sayaç gibi artırıldığı için bir kez 4 saat ileri kaymıştı.
+ * `sitemap.ts` artık "şimdi" ile buduyor, ama o emniyet supabıdır — burada
+ * doğru tarihi yazmak asıl çözümdür.
+ *
  * ─────────────────────────────────────────────────────────────────────────
  * DİL KURALI (E-E-A-T / YMYL): Bu yazılar sağlık konusundadır. "Tedavi eder",
  * "iyileştirir", "şifa verir" gibi kesin tıbbi iddia KULLANILMAZ. Bunun yerine
@@ -46,8 +53,8 @@ export const BLOG_POSTS: Post[] = [
       "Sülük tedavisi nasıl uygulanır? İlk seansta hazırlık, süre, hissedilenler ve sonrasında yaşananlar adım adım anlatıldı. Uygulamaya gitmeden önce okuyun.",
     category: "Sülük Tedavisi",
     published: true,
-    createdAt: { seconds: 1785069000 },
-    updatedAt: { seconds: 1785069000 },
+    createdAt: { seconds: 1785049000 },
+    updatedAt: { seconds: 1785049000 },
     content: `
 <p>Uygulamanın teknik tarifini <a href="/blog/suluk-tedavisi-hirudoterapi-nedir">Sülük Tedavisi (Hirudoterapi) Nedir?</a> rehberimizde verdik. Bu yazı farklı bir soruya cevap veriyor: <strong>ilk kez gidiyorsanız o gün ne yaşayacaksınız?</strong> Çoğu kişinin çekincesi işlemin kendisinden değil, bilinmezlikten kaynaklanır.</p>
 
@@ -98,8 +105,8 @@ export const BLOG_POSTS: Post[] = [
       "Sülük tedavisi hangi durumlarda uygulanmaz ve neden? Kan sulandırıcılar, anemi, gebelik, pıhtılaşma bozuklukları ve alerji riski nedenleriyle açıklandı.",
     category: "Sülük Tedavisi",
     published: true,
-    createdAt: { seconds: 1785068000 },
-    updatedAt: { seconds: 1785068000 },
+    createdAt: { seconds: 1785048000 },
+    updatedAt: { seconds: 1785048000 },
     content: `
 <p>Sülük uygulamasının en kritik aşaması sülüğün yerleştirilmesi değil, <strong>öncesindeki değerlendirmedir</strong>. Bu yazıda uygulamanın yapılmadığı durumları tek tek ve <em>nedenleriyle</em> ele alıyoruz. Amaç liste ezberletmek değil; mantığını anladığınızda kendi durumunuzu doğru değerlendirebilirsiniz.</p>
 <p>Uygulamanın genel çerçevesi için <a href="/blog/suluk-tedavisi-hirudoterapi-nedir">Sülük Tedavisi (Hirudoterapi) Nedir?</a> rehberimize bakabilirsiniz.</p>
@@ -161,8 +168,8 @@ export const BLOG_POSTS: Post[] = [
       "Sülük uygulaması sonrası ilk 24 saat, kanama süresi, kaşıntı, iz bakımı ve hekime başvurmayı gerektiren belirtiler. Beklenen ile alarm arasındaki fark.",
     category: "Sülük Tedavisi",
     published: true,
-    createdAt: { seconds: 1785067000 },
-    updatedAt: { seconds: 1785067000 },
+    createdAt: { seconds: 1785047000 },
+    updatedAt: { seconds: 1785047000 },
     content: `
 <p>Sülük uygulamasında en çok soru alan konu işlemin kendisi değil, <strong>sonrasıdır</strong>. Sızıntı tarzında kanamanın beklenen olduğunu bilmeyen kişi paniğe kapılabilir; gerçekten sorun olan bir belirtiyi ise "normaldir" diye geçiştirebilir. Bu yazı ikisini ayırmanız için.</p>
 <p>Seansın kendisinde ne olduğunu <a href="/blog/suluk-tedavisi-nasil-uygulanir">ilk seans rehberimizde</a> anlattık.</p>
@@ -239,8 +246,8 @@ export const BLOG_POSTS: Post[] = [
       "Tıbbi sülük (Hirudo medicinalis) ile doğadan toplanan sülük arasındaki fark: tür güvenliği, hijyen, açlık durumu ve taşıdığı riskler nedenleriyle açıklandı.",
     category: "Sülük Tedavisi",
     published: true,
-    createdAt: { seconds: 1785066000 },
-    updatedAt: { seconds: 1785066000 },
+    createdAt: { seconds: 1785046000 },
+    updatedAt: { seconds: 1785046000 },
     content: `
 <p>Sülük uygulamasında en çok göz ardı edilen konu, kullanılan sülüğün <em>kendisidir</em>. "Sülük sülüktür" yaklaşımı, uygulamanın en ciddi güvenlik açığıdır. Bu yazıda farkı nedenleriyle açıklıyoruz.</p>
 <p>Uygulamanın genel çerçevesi için <a href="/blog/suluk-tedavisi-hirudoterapi-nedir">Sülük Tedavisi (Hirudoterapi) Nedir?</a> rehberimize bakabilirsiniz.</p>
@@ -312,8 +319,8 @@ export const BLOG_POSTS: Post[] = [
       "Sülük fiyatlarını belirleyen etkenler: adet, boy, mevsim, kargo mesafesi, üretim ve karantina maliyeti. Ucuz sülüğün riskleri ve fiyat sorarken dikkat edilecekler.",
     category: "Sülük Tedavisi",
     published: true,
-    createdAt: { seconds: 1785065000 },
-    updatedAt: { seconds: 1785065000 },
+    createdAt: { seconds: 1785045000 },
+    updatedAt: { seconds: 1785045000 },
     content: `
 <p>"Sülük ne kadar?" sorusuna internette sabit bir rakam görürseniz temkinli olun. Sülük fiyatı; canlı bir ürün olması, mevsime ve mesafeye bağlı taşıma koşulları ve boy farkı nedeniyle değişkendir. Bu yazıda <strong>fiyatı neyin belirlediğini</strong> açıklıyoruz ki teklif aldığınızda neye baktığınızı bilin.</p>
 <p>Güncel fiyat için doğrudan iletişime geçmeniz gerekir; aşağıdaki etkenler teklifin nasıl oluştuğunu anlatır.</p>
@@ -379,8 +386,8 @@ export const BLOG_POSTS: Post[] = [
       "Tıbbi sülük nasıl saklanır? Klorsuz su, cam kavanoz, sıcaklık, su değişimi ve sık yapılan hatalar. Sipariş sonrası pratik bakım rehberi.",
     category: "Sülük Tedavisi",
     published: true,
-    createdAt: { seconds: 1785064000 },
-    updatedAt: { seconds: 1785064000 },
+    createdAt: { seconds: 1785044000 },
+    updatedAt: { seconds: 1785044000 },
     content: `
 <p>Sülük canlı bir üründür ve elinize ulaştıktan sonraki bakımı doğrudan sizin sorumluluğunuzdadır. İyi bakılan sülük haftalarca canlı ve uygulamaya hazır kalır; yanlış koşullarda ise birkaç günde kaybedilebilir. Bu rehber pratik kurallar üzerine.</p>
 
@@ -449,8 +456,8 @@ export const BLOG_POSTS: Post[] = [
       "Hacamat günleri Hicri ayın 17, 19 ve 21'i olarak bilinir. Bu günlerin kaynağı nedir, neden seçilmiştir, diğer günlerde hacamat yaptırılabilir mi?",
     category: "Hacamat Nedir?",
     published: true,
-    createdAt: { seconds: 1785063000 },
-    updatedAt: { seconds: 1785063000 },
+    createdAt: { seconds: 1785043000 },
+    updatedAt: { seconds: 1785043000 },
     content: `
 <p>Hacamat hakkında en çok sorulan sorulardan biri zamanlamadır: "Ayın kaçında yaptırmalıyım?" Bu sorunun cevabı geleneğe dayanır ve pratikte esneklik taşır. İkisini birbirine karıştırmadan anlatalım.</p>
 <p>Hacamatın ne olduğunu ve nasıl uygulandığını <a href="/blog/hacamat-nedir-tarihi-bilimsel-temelleri-ve-nasil-uygulanir">Hacamat Nedir?</a> rehberimizde ele aldık.</p>
@@ -504,8 +511,8 @@ export const BLOG_POSTS: Post[] = [
       "Hacamat noktaları nasıl seçilir? Kâhil (ense-omuz) bölgesi, sırt ve bel noktaları, bölgesel seçim mantığı ve kaçınılması gereken alanlar.",
     category: "Hacamat Nedir?",
     published: true,
-    createdAt: { seconds: 1785062000 },
-    updatedAt: { seconds: 1785062000 },
+    createdAt: { seconds: 1785042000 },
+    updatedAt: { seconds: 1785042000 },
     content: `
 <p>Hacamatta en çok merak edilen konulardan biri nokta seçimidir. İnternette dolaşan "hacamat noktaları haritası" görselleri yol gösterici olabilir; ancak bir haritanın gösterebileceği ile bir değerlendirmenin belirleyebileceği farklı şeylerdir. Bu yazıda ikisinin sınırını çiziyoruz.</p>
 <p>Uygulamanın bütününü <a href="/blog/hacamat-nedir-tarihi-bilimsel-temelleri-ve-nasil-uygulanir">Hacamat Nedir?</a> rehberimizde anlattık.</p>
@@ -580,8 +587,8 @@ export const BLOG_POSTS: Post[] = [
       "Hacamat sonrası banyo, spor, beslenme kuralları; morarma ve iz ne zaman geçer; hangi belirtilerde hekime başvurmalı? Uygulama sonrası bakım rehberi.",
     category: "Hacamat Nedir?",
     published: true,
-    createdAt: { seconds: 1785061000 },
-    updatedAt: { seconds: 1785061000 },
+    createdAt: { seconds: 1785041000 },
+    updatedAt: { seconds: 1785041000 },
     content: `
 <p>Hacamatın sonucu kadar önemli olan, uygulama sonrası bakımdır. Bu yazıda ilk 24 saatten izin tamamen solmasına kadar geçen süreci ve <strong>neyin beklenen, neyin alarm olduğunu</strong> ayırıyoruz.</p>
 <p>Uygulamanın kendisini <a href="/blog/hacamat-nedir-tarihi-bilimsel-temelleri-ve-nasil-uygulanir">Hacamat Nedir?</a> rehberimizde anlattık.</p>
@@ -663,8 +670,8 @@ export const BLOG_POSTS: Post[] = [
       "Sülük tedavisi neye iyi gelir sorusuna abartısız cevap: başvuru nedenleri, salgıdaki bileşenler, modern tıpta kabul gördüğü alan, kimlere uygulanmadığı.",
     category: "Sülük Tedavisi",
     published: true,
-    createdAt: { seconds: 1785060000 },
-    updatedAt: { seconds: 1785060000 },
+    createdAt: { seconds: 1785040000 },
+    updatedAt: { seconds: 1785040000 },
     content: `
 <p>"Sülük tedavisi neye iyi gelir?" en çok sorulan sorumuz. Dürüst cevap şu: bu soruya hastalık adı sayarak cevap veren her kaynağa temkinli yaklaşın. Bu yazıda insanların hangi nedenlerle başvurduğunu, sülük salgısında gerçekten ne bulunduğunu ve neyin vaat <em>edilemeyeceğini</em> abartısız biçimde anlatıyoruz.</p>
 
