@@ -10,7 +10,7 @@ export const revalidate = 300;
 
 const currentYear = new Date().getFullYear();
 
-export const metadata: Metadata = {
+const BASE_METADATA: Metadata = {
   title: `Hacamat Blog ${currentYear} | Hacamat Faydaları, Nasıl Yapılır & Sülük Terapisi`,
   description: "Hacamat nedir, nasıl yapılır, kimlere yapılmaz? Sülük terapisi faydaları, İslam tıbbı ve doğal şifa yöntemleri. Ebusadullah Akademi Konya uzman blog içerikleri.",
   alternates: { canonical: '/blog' },
@@ -23,12 +23,42 @@ export const metadata: Metadata = {
   },
 };
 
-const topics = [
-  { icon: Stethoscope, label: "Hacamat Nedir?" },
-  { icon: Users,       label: "Sülük Terapisi" },
-  { icon: BookOpen,    label: "İslam Tıbbı" },
-  { icon: Feather,     label: "Doğal Şifa" },
-];
+/**
+ * Konu etiketleri GERÇEK kategorilerden türetilir.
+ *
+ * Önceden sabit bir liste vardı ("Sülük Terapisi", "İslam Tıbbı", "Doğal
+ * Şifa") ve hiçbiri yazıların gerçek kategorileriyle eşleşmiyordu — dördünün
+ * üçü boş sonuç veren çıkmaz linklerdi. Kategori filtresi sunucuya taşınıp
+ * taranabilir hale geldiği için bu, boş ve indekslenebilir sayfalar demekti.
+ */
+const TOPIC_ICONS = [Stethoscope, Users, BookOpen, Feather];
+
+function buildTopics(categories: string[]) {
+  return categories.map((label, i) => ({
+    icon: TOPIC_ICONS[i % TOPIC_ICONS.length],
+    label,
+  }));
+}
+
+/**
+ * Filtrelenmiş görünümler (`/blog?kategori=...`) indekslenmez.
+ * İçerikleri /blog'un alt kümesidir; ayrı sayfa olarak indekslenmeleri
+ * kopya/ince içerik sinyali üretir. `follow` ile link akışı korunur.
+ */
+export async function generateMetadata({
+  searchParams,
+}: {
+  searchParams: Promise<{ kategori?: string }>;
+}): Promise<Metadata> {
+  const { kategori } = await searchParams;
+  if (!kategori) return BASE_METADATA;
+  return {
+    ...BASE_METADATA,
+    title: `${kategori} Yazıları | Hacamat Blog`,
+    // canonical zaten /blog — filtreli görünüm kendi başına indekslenmez
+    robots: { index: false, follow: true, googleBot: { index: false, follow: true } },
+  };
+}
 
 // Türkiye geneli hizmet dizinleri (pSEO hub sayfaları)
 const hubLinks = [
@@ -37,8 +67,19 @@ const hubLinks = [
   { label: "Hacamat Malzemeleri", href: "/kupa-malzemeleri", title: "İl İl Hacamat Malzemeleri — Tüm Türkiye" },
 ];
 
-export default async function BlogPage() {
+export default async function BlogPage({
+  searchParams,
+}: {
+  searchParams: Promise<{ kategori?: string }>;
+}) {
   const posts = await getPublishedPosts();
+  // Kategori filtresi SUNUCUDA uygulanır. Daha önce BlogList içinde
+  // useSearchParams() ile okunuyordu; bu, listenin tamamını client-side
+  // render'a düşürüp sunucu HTML'inden tüm yazı linklerini siliyordu.
+  const { kategori } = await searchParams;
+  const topics = buildTopics(
+    Array.from(new Set(posts.map((p) => p.category).filter(Boolean))),
+  );
   return (
     <main className="min-h-screen bg-anthracite-dark pt-20 pb-24">
       <div className="container-site">
@@ -91,7 +132,7 @@ export default async function BlogPage() {
 
         {/* ── Yazı listesi ── */}
         <Suspense>
-          <BlogList initialPosts={posts} />
+          <BlogList initialPosts={posts} aktifKategori={kategori || "Tümü"} />
         </Suspense>
 
       </div>

@@ -1,11 +1,32 @@
-"use client";
-import { useState } from "react";
+/**
+ * Blog yazı listesi — SUNUCU bileşeni.
+ *
+ * NEDEN CLIENT DEĞİL (2026-07-26 düzeltmesi):
+ *   Bu bileşen önce `"use client"` + `useSearchParams()` kullanıyordu.
+ *   Next.js, statik render edilen bir route'ta `useSearchParams()` gören en
+ *   yakın Suspense sınırını TAMAMEN client-side render'a düşürür. Sonuç:
+ *   sunucudan gelen HTML'de tek bir yazı linki bile bulunmuyordu — yazı
+ *   slug'ları yalnızca RSC payload'ında veri olarak yer alıyordu.
+ *
+ *   Blog listesi sitenin en önemli iç linkleme merkezidir; JS çalıştırmayan
+ *   bir istemcinin burada 12 yazıdan hiçbirini görememesi kabul edilemez.
+ *
+ *   Çözüm: kategori filtresi artık URL üzerinden (`/blog?kategori=...`)
+ *   çalışır ve sunucuda uygulanır. Filtre düğmeleri gerçek <a> etiketidir;
+ *   hem taranabilir hem paylaşılabilir hem de JS'siz çalışır.
+ */
 import Link from "next/link";
 import Image from "next/image";
-import { useSearchParams } from "next/navigation";
 import { BookOpen, Clock, Eye, ArrowRight, ChevronRight } from "lucide-react";
 import type { Post } from "@/lib/posts";
 import { pickImageByKey, themeForCategory } from "@/lib/pseo/images";
+
+/** Kategori filtresi için URL üretir; "Tümü" filtresizdir. */
+function kategoriHref(kategori: string): string {
+  return kategori === "Tümü"
+    ? "/blog"
+    : `/blog?kategori=${encodeURIComponent(kategori)}`;
+}
 
 function readingTime(content = "", excerpt = "") {
   const text = content.replace(/<[^>]+>/g, "") + " " + excerpt;
@@ -19,14 +40,15 @@ function formatDate(seconds: number) {
   });
 }
 
-export default function BlogList({ initialPosts }: { initialPosts: Post[] }) {
+export default function BlogList({
+  initialPosts,
+  aktifKategori = "Tümü",
+}: {
+  initialPosts: Post[];
+  /** Sunucuda `searchParams.kategori`'den okunur. */
+  aktifKategori?: string;
+}) {
   const posts = initialPosts;
-  // Hero'daki konu etiketleri /blog?kategori=... linkleridir; başlangıç
-  // filtresi URL'den okunur ki etiketler gerçekten "aktif" çalışsın.
-  const searchParams = useSearchParams();
-  const [aktifKategori, setAktifKategori] = useState(
-    searchParams.get("kategori") || "Tümü",
-  );
 
   if (posts.length === 0) {
     return (
@@ -56,9 +78,11 @@ export default function BlogList({ initialPosts }: { initialPosts: Post[] }) {
       {kategoriler.length > 2 && (
         <div className="flex flex-wrap gap-2 mb-10">
           {kategoriler.map(k => (
-            <button
+            <Link
               key={k}
-              onClick={() => setAktifKategori(k)}
+              href={kategoriHref(k)}
+              scroll={false}
+              aria-current={aktifKategori === k ? "page" : undefined}
               className={`text-[11px] font-black uppercase tracking-widest px-4 py-2 rounded-full border transition-all ${
                 aktifKategori === k
                   ? "bg-teal text-black border-teal"
@@ -66,7 +90,7 @@ export default function BlogList({ initialPosts }: { initialPosts: Post[] }) {
               }`}
             >
               {k}
-            </button>
+            </Link>
           ))}
         </div>
       )}
@@ -78,12 +102,12 @@ export default function BlogList({ initialPosts }: { initialPosts: Post[] }) {
           <p className="text-base">
             &ldquo;{aktifKategori}&rdquo; kategorisinde henüz yazı yok.
           </p>
-          <button
-            onClick={() => setAktifKategori("Tümü")}
-            className="mt-4 text-[11px] font-black uppercase tracking-widest px-5 py-2.5 rounded-full bg-teal text-black hover:scale-105 transition-all"
+          <Link
+            href="/blog"
+            className="inline-block mt-4 text-[11px] font-black uppercase tracking-widest px-5 py-2.5 rounded-full bg-teal text-black hover:scale-105 transition-all"
           >
             Tüm Yazıları Göster
-          </button>
+          </Link>
         </div>
       )}
 
