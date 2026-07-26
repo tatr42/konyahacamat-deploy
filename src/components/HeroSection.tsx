@@ -73,7 +73,8 @@ export default function HeroSection() {
 
             <p className="text-white/60 text-base md:text-lg leading-relaxed max-w-md font-medium">
               Uzman <strong className="text-white">sülük terapisi (hirudoterapi)</strong> ile varis, eklem,
-              dolaşım ve cilt sorunlarına doğal çözüm. Hacamat uygulamaları ve sertifikalı eğitimlerle{" "}
+              ödem ve dolaşım sorunlarına doğal çözüm. Tek kullanımlık steril tıbbi sülük, canlı{" "}
+              <strong className="text-white">sülük satışı</strong> ve hacamat uygulamalarıyla{" "}
               <span className="text-teal">32+ yıl tecrübe, 1200+ mezun.</span>
             </p>
           </div>
@@ -101,10 +102,10 @@ export default function HeroSection() {
           {/* Güven sinyalleri */}
           <div className="flex flex-wrap gap-5 pt-4 border-t border-white/5">
             {[
-              "Steril Malzeme",
+              "Tek Kullanımlık Sülük",
+              "Hirudoterapi Uzmanı",
               "Uluslararası Sertifika",
               "1200+ Mezun",
-              "Ücretsiz Danışmanlık",
               `${new Date().getFullYear() - 1994} Yıllık Deneyim`,
             ].map((item) => (
               <div key={item} className="flex items-center gap-2">
@@ -120,7 +121,7 @@ export default function HeroSection() {
           <div className="absolute inset-y-0 left-0 w-40 bg-gradient-to-r from-anthracite to-transparent z-10 pointer-events-none" />
           <div className="absolute top-0 left-0 right-0 h-40 bg-gradient-to-b from-anthracite via-anthracite/80 to-transparent z-10 pointer-events-none" />
           <div className="absolute bottom-0 left-0 right-0 h-32 bg-gradient-to-t from-anthracite to-transparent z-10 pointer-events-none" />
-          <Image src="/16.webp" alt="Hacamat kupası" fill priority fetchPriority="high"
+          <Image src="/hero-suluk.webp" alt="Tıbbi sülük ile sülük terapisi (hirudoterapi) uygulaması — Konya Ebusadullah Hacamat & Akademi" fill priority fetchPriority="high"
             className="object-cover object-center"
             sizes="50vw" />
         </div>
