@@ -18,14 +18,52 @@ export const metadata: Metadata = {
 
 const BASE = "https://www.konyahacamat.net";
 
+/** SSS — hem görünür bölümde hem FAQPage şemasında TEK kaynak (Google, şemadaki
+ *  cevabın sayfada görünür olmasını şart koşar). Tedavi/seans odaklı sorular. */
+const SSS: { s: string; c: string }[] = [
+  { s: "Sülük terapisi ağrılı mıdır?", c: "Sülük tutunduğunda hafif bir ısırma hissi olur ancak sülüğün doğal anestezik salgısı sayesinde bu his birkaç saniye içinde geçer. Çoğu hasta seanstan keyifle çıkar." },
+  { s: "Bir seans ne kadar sürer?", c: "Sülük terapisi seansı, uygulama bölgesine ve sülük sayısına göre genellikle 30 ile 60 dakika arasında sürer. Ön değerlendirme ve sonrası bakımla birlikte toplam süre biraz daha uzayabilir." },
+  { s: "Kaç sülük kullanılır?", c: "Uygulama bölgesi ve rahatsızlığın durumuna göre 2 ile 10 arasında sülük kullanılabilir. Bu sayıyı uzmanımız yüz yüze değerlendirme sonrasında belirler." },
+  { s: "Sülükler tekrar kullanılıyor mu?", c: "Hayır. Her hastada kullanılan tıbbi sülükler bir daha kullanılmaz. Tek kullanımlık sülük politikamız enfeksiyon riskini sıfıra indirir." },
+  { s: "Seans sonrası morluk olur mu?", c: "Uygulama bölgesinde 3–7 gün içinde geçen küçük morluklar görülebilir. Bu, yüzeydeki durgun kanın tahliye edildiğinin göstergesidir ve normaldir." },
+  { s: "Sülük terapisi kimlere uygulanmaz?", c: "Hamilelere, kan sulandırıcı ilaç kullananlara, ileri anemisi veya kanama bozukluğu olanlara ve bazı kronik hastalığı bulunanlara uygulanmaz. Uygulama öncesi mutlaka ön değerlendirme yapılır." },
+  { s: "Hacamat ile birlikte uygulanabilir mi?", c: "Evet. Kombine hacamat + sülük terapisi protokolleri bazı durumlarda çok daha etkili sonuçlar verir. Uzmanımız bireysel programınızı belirler." },
+  { s: "Konya dışından geliyorum, nasıl randevu alırım?", c: "WhatsApp veya telefonla ulaşarak uygun günü birlikte belirleyebiliriz. Konya merkez kliniğimizin yanı sıra yılın belirli dönemlerinde Almanya seanslarımız da mevcuttur." },
+];
+
 const medicalTherapySchema = {
   "@context": "https://schema.org",
   "@type": "MedicalTherapy",
   name: "Sülük Terapisi (Hirudoterapi)",
-  alternateName: ["Hirudoterapi", "Leech Therapy"],
+  alternateName: ["Hirudoterapi", "Leech Therapy", "Sülük Tedavisi"],
   description:
     "Tıbbi sülük (Hirudo medicinalis) ile uygulanan, varis, ödem, eklem iltihabı, cilt hastalıkları ve kulak çınlaması gibi rahatsızlıklarda kullanılan doğal dolaşım tedavisi. Seanslar 30–60 dakika sürer.",
+  howPerformed:
+    "Uygulama bölgesi antiseptikle temizlenir; tıbbi sülükler belirlenen noktalara yerleştirilir ve 20–45 dakika boyunca kontrollü emme sağlanır. Seans sonunda bölge yeniden temizlenerek antiseptik uygulanır.",
+  bodyLocation: ["Bacak (varis)", "Eklem bölgeleri", "Sırt", "Kulak çevresi"],
+  relevantSpecialty: "Geleneksel ve Tamamlayıcı Tıp",
   url: `${BASE}/hizmetler/suluk`,
+};
+
+const faqSchema = {
+  "@context": "https://schema.org",
+  "@type": "FAQPage",
+  inLanguage: "tr-TR",
+  mainEntity: SSS.map(({ s, c }) => ({
+    "@type": "Question",
+    name: s,
+    acceptedAnswer: { "@type": "Answer", text: c },
+  })),
+};
+
+const breadcrumbSchema = {
+  "@context": "https://schema.org",
+  "@type": "BreadcrumbList",
+  itemListElement: [
+    { "@type": "ListItem", position: 1, name: "Ana Sayfa", item: BASE },
+    { "@type": "ListItem", position: 2, name: "Hizmetler", item: `${BASE}/hizmetler` },
+    { "@type": "ListItem", position: 3, name: "Sülük Terapisi", item: `${BASE}/hizmetler/suluk` },
+  ],
 };
 
 function HeroSection() {
@@ -92,9 +130,13 @@ function SeansGorselleriSection() {
     <section className="py-10">
       <div className="container-site">
         <div className="grid grid-cols-3 gap-3 md:gap-4">
-          {["/6.webp", "/7.webp", "/9.webp"].map((src, i) => (
+          {[
+            { src: "/6.webp", alt: "Tıbbi sülük (Hirudo medicinalis) ile hirudoterapi uygulaması" },
+            { src: "/7.webp", alt: "Yüz bölgesine sülük terapisi seansı — Konya Ebusadullah" },
+            { src: "/9.webp", alt: "Steril, tek kullanımlık tıbbi sülük hazırlığı" },
+          ].map((g, i) => (
             <div key={i} className="relative aspect-[4/3] rounded-2xl overflow-hidden border border-white/10">
-              <Image src={src} alt={`Sülük terapisi ${i + 1}`} fill className="object-cover hover:scale-105 transition-transform duration-500" sizes="33vw" />
+              <Image src={g.src} alt={g.alt} fill className="object-cover hover:scale-105 transition-transform duration-500" sizes="33vw" />
             </div>
           ))}
         </div>
@@ -109,7 +151,7 @@ function UygulamaAlanlariSection() {
       <div className="container-site">
         <h2 className="font-display text-3xl font-bold text-white mb-10">
           <span className="w-4 h-[3px] bg-teal inline-block mr-3 mb-1" />
-          Uygulama Alanları
+          Hangi Rahatsızlıklarda Uygulanır?
         </h2>
         <div className="grid grid-cols-1 sm:grid-cols-2 gap-6">
           {[
@@ -129,6 +171,13 @@ function UygulamaAlanlariSection() {
             </div>
           ))}
         </div>
+        <p className="text-white/50 text-sm mt-6">
+          Sülük tedavisinin ne olduğu, bilimsel temeli ve faydaları hakkında kapsamlı bilgi için{" "}
+          <Link href="/blog/suluk-tedavisi-hirudoterapi-nedir" className="text-teal hover:underline" title="Sülük Tedavisi (Hirudoterapi) Nedir?">
+            Sülük Tedavisi (Hirudoterapi) Nedir?
+          </Link>{" "}
+          rehberimizi okuyabilirsiniz.
+        </p>
       </div>
     </section>
   );
@@ -184,21 +233,50 @@ function UyariSection() {
   );
 }
 
+function NedenBizSection() {
+  return (
+    <section className="py-20">
+      <div className="container-site">
+        <span className="text-teal text-[11px] font-black uppercase tracking-[0.3em]">Güven & Deneyim</span>
+        <h2 className="font-display text-3xl font-bold text-white mt-3 mb-10">
+          Neden Ebusadullah Hacamat &amp; Akademi?
+        </h2>
+        <div className="grid grid-cols-2 lg:grid-cols-4 gap-4">
+          {[
+            { sayi: `${new Date().getFullYear() - 1994}+`, etiket: "Yıllık Deneyim", alt: "1994'ten beri hirudoterapi" },
+            { sayi: "1200+", etiket: "Sertifikalı Mezun", alt: "Kendi merkezini kurdu" },
+            { sayi: "Tek", etiket: "Kullanımlık Sülük", alt: "Enfeksiyon riski sıfır" },
+            { sayi: "TR + DE", etiket: "Konya & Almanya", alt: "Periyodik seanslar" },
+          ].map((s) => (
+            <div key={s.etiket} className="bg-white/5 border border-white/10 rounded-2xl p-6 text-center">
+              <div className="font-display text-3xl font-bold text-teal">{s.sayi}</div>
+              <div className="text-white font-bold text-sm mt-2">{s.etiket}</div>
+              <div className="text-white/50 text-xs mt-1 leading-snug">{s.alt}</div>
+            </div>
+          ))}
+        </div>
+        <p className="text-white/60 text-sm leading-relaxed mt-8 max-w-2xl">
+          Ulusal ve yerel basında 50+ kez yer aldık.{" "}
+          <Link href="/basin" className="text-teal hover:underline" title="Medyada Biz — Basın Odası">Basın odamızı</Link>{" "}
+          ve{" "}
+          <Link href="/hakkimizda" className="text-teal hover:underline" title="Hakkımızda">kurumsal hikâyemizi</Link>{" "}
+          inceleyebilirsiniz. Sülüğü kendiniz uygulamak için satın almak isterseniz{" "}
+          <Link href="/suluk-satisi" className="text-teal hover:underline" title="Tıbbi Sülük Satışı">tıbbi sülük satışı</Link>{" "}
+          sayfamıza göz atın.
+        </p>
+      </div>
+    </section>
+  );
+}
+
 function SssSection() {
   return (
     <section className="py-20 bg-white/3">
       <div className="container-site max-w-3xl">
         <span className="text-teal text-[11px] font-black uppercase tracking-[0.3em]">Merak Edilenler</span>
-        <h2 className="font-display text-3xl font-bold text-white mt-3 mb-10">Sık Sorulan Sorular</h2>
+        <h2 className="font-display text-3xl font-bold text-white mt-3 mb-10">Sülük Terapisi Hakkında Sık Sorulan Sorular</h2>
         <div className="space-y-4">
-          {[
-            { s: "Sülük terapisi ağrılı mıdır?", c: "Sülük tutunduğunda hafif bir ısırma hissi olur ancak sülüğün doğal anestezik salgısı sayesinde bu his birkaç saniye içinde geçer. Çoğu hasta seanstan keyifle çıkar." },
-            { s: "Kaç sülük kullanılır?", c: "Uygulama bölgesi ve rahatsızlığın durumuna göre 2 ile 10 arasında sülük kullanılabilir. Bu sayıyı uzmanımız değerlendirme sonrasında belirler." },
-            { s: "Sülükler tekrar kullanılıyor mu?", c: "Hayır. Her hastada kullanılan sülükler bir daha kullanılmaz. Tek kullanımlık sülük politikamız enfeksiyon riskini sıfıra indirir." },
-            { s: "Seans sonrası morluk olur mu?", c: "Uygulama bölgesinde 3–7 gün içinde geçen küçük morluklar görülebilir. Bu, yüzeydeki kanın tahliye edildiğinin göstergesidir ve normaldir." },
-            { s: "Hacamat ile birlikte uygulanabilir mi?", c: "Evet. Kombine hacamat + sülük terapisi protokolleri bazı durumlarda çok daha etkili sonuçlar verir. Uzmanımız bireysel programınızı belirler." },
-            { s: "Sülük terapisi eğitimi alabilir miyim?", c: "Evet. Ebusadullah Akademi'de Sülük Terapisi (Hirudoterapi) Uzmanlık Kursu verilmektedir. 2 günlük uygulama odaklı kurs sonunda sertifika verilir." },
-          ].map((q, i) => (
+          {SSS.map((q, i) => (
             <div key={i} className="bg-white/5 border border-white/10 rounded-2xl p-6 hover:border-teal/20 transition-colors">
               <div className="flex items-start gap-3">
                 <span className="text-teal font-black text-lg shrink-0 mt-0.5">S.</span>
@@ -223,10 +301,10 @@ function IlgiliSayfalarSection() {
         <h2 className="font-display text-2xl font-bold text-white mt-3 mb-8">İlgili Sayfalar</h2>
         <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-4 gap-4">
           {[
+            { href: "/suluk-satisi", baslik: "Tıbbi Sülük Satışı", aciklama: "Canlı sülük, tüm Türkiye'ye kargo", emoji: "🪱" },
             { href: "/hizmetler/hacamat", baslik: "Hacamat Tedavisi", aciklama: "Kuru ve yaş hacamat uygulamaları", emoji: "🩸" },
-            { href: "/takvim", baslik: "Randevu Takvimi", aciklama: "Faziletli günlerde randevu alın", emoji: "📅" },
             { href: "/egitimler", baslik: "Sülük Terapisi Kursu", aciklama: "Hirudoterapi uzmanlık eğitimi", emoji: "🎓" },
-            { href: "/hakkimizda", baslik: "Hakkımızda", aciklama: "32+ yıl deneyim, 1200+ mezun", emoji: "🏛️" },
+            { href: "/takvim", baslik: "Randevu Takvimi", aciklama: "Faziletli günlerde randevu alın", emoji: "📅" },
           ].map(l => (
             <Link key={l.href} href={l.href} title={(l as any).baslik || (l as any).title || (l as any).isim || "Bağlantı Detayı"}
               className="bg-white/5 border border-white/10 rounded-2xl p-5 hover:border-teal/30 hover:bg-white/8 transition-all group">
@@ -277,11 +355,14 @@ export default function SulukPage() {
   return (
     <main className="min-h-screen bg-anthracite-dark">
       <script type="application/ld+json" dangerouslySetInnerHTML={{ __html: JSON.stringify(medicalTherapySchema) }} />
+      <script type="application/ld+json" dangerouslySetInnerHTML={{ __html: JSON.stringify(faqSchema) }} />
+      <script type="application/ld+json" dangerouslySetInnerHTML={{ __html: JSON.stringify(breadcrumbSchema) }} />
       <HeroSection />
       <EtkiMekanizmasiSection />
       <SeansGorselleriSection />
       <UygulamaAlanlariSection />
       <SeansSureciSection />
+      <NedenBizSection />
       <UyariSection />
       <SssSection />
       <IlgiliSayfalarSection />

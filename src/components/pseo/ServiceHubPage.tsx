@@ -15,12 +15,13 @@
  */
 
 import Link from "next/link";
-import { MapPin, Phone, ChevronRight } from "lucide-react";
+import { MapPin, Phone, ChevronRight, Droplet, Truck, Tag, ArrowRight } from "lucide-react";
 import { provincesByRegion } from "@/data/tr-locations";
 import { isKeptDistrict } from "@/data/pseo-scope";
 import {
   type ServiceType,
   HUB_COPY,
+  HUB_BODY,
   SERVICE_LABEL,
   PHONE_DISPLAY,
   WHATSAPP,
@@ -30,6 +31,7 @@ const BASE = "https://www.konyahacamat.net";
 
 export default function ServiceHubPage({ service }: { service: ServiceType }) {
   const copy = HUB_COPY[service];
+  const body = HUB_BODY[service];
   const groups = provincesByRegion();
 
   const wa = `https://wa.me/${WHATSAPP}?text=${encodeURIComponent(
@@ -65,6 +67,36 @@ export default function ServiceHubPage({ service }: { service: ServiceType }) {
       })),
   };
 
+  // Product + FAQPage — yalnızca HUB_BODY dolu servislerde (ör. suluk-satisi).
+  // Product FİYATSIZ: uydurma fiyat yok; Offer yalnızca availability + url taşır.
+  const productSchema = body && {
+    "@context": "https://schema.org",
+    "@type": "Product",
+    name: body.product.name,
+    description: body.product.description,
+    brand: { "@type": "Brand", name: "Ebusadullah Hacamat & Akademi" },
+    category: "Tıbbi Sülük / Hirudoterapi",
+    offers: {
+      "@type": "Offer",
+      availability: "https://schema.org/InStock",
+      areaServed: "TR",
+      priceCurrency: "TRY",
+      url: `${BASE}/${service}`,
+      seller: { "@type": "Organization", name: "Ebusadullah Hacamat & Akademi" },
+    },
+  };
+
+  const faqSchema = body && {
+    "@context": "https://schema.org",
+    "@type": "FAQPage",
+    inLanguage: "tr-TR",
+    mainEntity: body.faq.map(({ q, a }) => ({
+      "@type": "Question",
+      name: q,
+      acceptedAnswer: { "@type": "Answer", text: a },
+    })),
+  };
+
   return (
     <>
       <script
@@ -75,6 +107,18 @@ export default function ServiceHubPage({ service }: { service: ServiceType }) {
         type="application/ld+json"
         dangerouslySetInnerHTML={{ __html: JSON.stringify(itemListSchema) }}
       />
+      {productSchema && (
+        <script
+          type="application/ld+json"
+          dangerouslySetInnerHTML={{ __html: JSON.stringify(productSchema) }}
+        />
+      )}
+      {faqSchema && (
+        <script
+          type="application/ld+json"
+          dangerouslySetInnerHTML={{ __html: JSON.stringify(faqSchema) }}
+        />
+      )}
 
       {/* HERO */}
       <section className="relative pt-32 pb-16 lg:pt-44 lg:pb-24 bg-anthracite-dark overflow-hidden">
@@ -122,9 +166,116 @@ export default function ServiceHubPage({ service }: { service: ServiceType }) {
         </div>
       </section>
 
+      {/* ZENGİN GÖVDE — yalnızca HUB_BODY dolu servislerde (satış/dönüşüm) */}
+      {body && (
+        <>
+          {/* Ürün değeri: Tıbbi Sülük Nedir, Neden Bizden? */}
+          <section className="py-16 lg:py-20 bg-anthracite border-t border-white/5">
+            <div className="container-site">
+              <div className="inline-flex items-center gap-2 text-teal mb-4">
+                <Droplet size={18} />
+                <span className="text-[11px] font-black uppercase tracking-[0.3em]">Ürün</span>
+              </div>
+              <h2 className="text-2xl lg:text-4xl font-display font-bold text-white mb-5 max-w-3xl">
+                {body.value.heading}
+              </h2>
+              <p className="text-white/70 leading-relaxed max-w-3xl mb-4">{body.value.intro}</p>
+              <p className="text-white/50 text-sm mb-10">
+                Sülük tedavisinin ne olduğu ve faydaları için{" "}
+                <Link href={body.value.blogHref} className="text-teal hover:underline" title={body.value.blogLabel}>
+                  {body.value.blogLabel}
+                </Link>{" "}
+                rehberimizi okuyabilirsiniz.
+              </p>
+              <div className="grid grid-cols-1 md:grid-cols-3 gap-6">
+                {body.value.cards.map((c) => (
+                  <div key={c.title} className="bg-anthracite-dark/50 border border-white/10 rounded-3xl p-6 hover:border-teal/30 transition-colors">
+                    <h3 className="text-white font-bold text-lg mb-2">{c.title}</h3>
+                    <p className="text-white/60 text-sm leading-relaxed">{c.desc}</p>
+                  </div>
+                ))}
+              </div>
+            </div>
+          </section>
+
+          {/* Canlı kargo — dönüşüm engelini çözen bölüm */}
+          <section className="py-16 lg:py-20 bg-anthracite-dark">
+            <div className="container-site">
+              <div className="inline-flex items-center gap-2 text-teal mb-4">
+                <Truck size={18} />
+                <span className="text-[11px] font-black uppercase tracking-[0.3em]">Kargo</span>
+              </div>
+              <h2 className="text-2xl lg:text-4xl font-display font-bold text-white mb-5 max-w-3xl">
+                {body.shipping.heading}
+              </h2>
+              <p className="text-white/70 leading-relaxed max-w-3xl mb-10">{body.shipping.intro}</p>
+              <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-4 gap-5">
+                {body.shipping.steps.map((s, i) => (
+                  <div key={s.title} className="bg-white/5 border border-white/10 rounded-2xl p-6">
+                    <div className="text-teal font-black text-3xl font-display mb-3 opacity-30">
+                      {String(i + 1).padStart(2, "0")}
+                    </div>
+                    <h3 className="text-white font-bold text-base mb-2">{s.title}</h3>
+                    <p className="text-white/60 text-sm leading-relaxed">{s.desc}</p>
+                  </div>
+                ))}
+              </div>
+            </div>
+          </section>
+
+          {/* Fiyat & Sipariş — ticari CTA */}
+          <section className="py-16 lg:py-20 bg-anthracite border-t border-white/5">
+            <div className="container-site">
+              <div className="bg-gradient-to-br from-teal/10 to-white/5 border border-teal/20 rounded-3xl p-8 lg:p-10 flex flex-col lg:flex-row lg:items-center gap-8">
+                <div className="flex-1">
+                  <div className="inline-flex items-center gap-2 text-teal mb-4">
+                    <Tag size={18} />
+                    <span className="text-[11px] font-black uppercase tracking-[0.3em]">Fiyat</span>
+                  </div>
+                  <h2 className="text-2xl lg:text-3xl font-display font-bold text-white mb-4">
+                    {body.order.heading}
+                  </h2>
+                  {body.order.paragraphs.map((p) => (
+                    <p key={p} className="text-white/70 leading-relaxed mb-4 max-w-2xl">{p}</p>
+                  ))}
+                  <ul className="space-y-2">
+                    {body.order.bullets.map((b) => (
+                      <li key={b} className="flex items-start gap-2 text-white/70 text-sm">
+                        <span className="text-teal mt-0.5 shrink-0">•</span>{b}
+                      </li>
+                    ))}
+                  </ul>
+                </div>
+                <div className="flex flex-col gap-3 shrink-0 w-full lg:w-auto">
+                  <a
+                    href={wa}
+                    target="_blank"
+                    rel="noopener noreferrer nofollow"
+                    className="flex items-center justify-center gap-2 bg-teal text-anthracite-dark px-6 py-4 rounded-2xl font-black text-sm uppercase tracking-widest hover:scale-105 transition-all"
+                  >
+                    <Phone size={16} /> WhatsApp'tan Fiyat Al
+                  </a>
+                  <a
+                    href={`tel:+${WHATSAPP}`}
+                    className="flex items-center justify-center gap-2 bg-white/10 text-white border border-white/10 px-6 py-4 rounded-2xl font-black text-sm uppercase tracking-widest hover:bg-white/15 transition-all"
+                  >
+                    {PHONE_DISPLAY}
+                  </a>
+                </div>
+              </div>
+            </div>
+          </section>
+        </>
+      )}
+
       {/* İL / İLÇE DİZİNİ — bölgelere göre */}
       <section className="py-16 lg:py-24 bg-anthracite border-t border-white/5">
         <div className="container-site space-y-16">
+          {body?.directoryHeading && (
+            <h2 className="text-2xl lg:text-4xl font-display font-bold text-white max-w-3xl">
+              {body.directoryHeading}
+            </h2>
+          )}
           {groups.map((group) => (
             <div key={group.region}>
               <div className="flex items-center gap-4 mb-8">
@@ -176,6 +327,41 @@ export default function ServiceHubPage({ service }: { service: ServiceType }) {
           ))}
         </div>
       </section>
+
+      {/* SSS + tedavi çapraz-link bandı — yalnızca HUB_BODY dolu servislerde */}
+      {body && (
+        <section className="py-16 lg:py-24 bg-anthracite-dark border-t border-white/5">
+          <div className="container-site max-w-3xl">
+            <span className="text-teal text-[11px] font-black uppercase tracking-[0.3em]">Merak Edilenler</span>
+            <h2 className="text-2xl lg:text-4xl font-display font-bold text-white mt-3 mb-10">
+              {SERVICE_LABEL[service]} Hakkında Sık Sorulan Sorular
+            </h2>
+            <div className="space-y-4">
+              {body.faq.map(({ q, a }) => (
+                <div key={q} className="bg-white/5 border border-white/10 rounded-2xl p-6 hover:border-teal/20 transition-colors">
+                  <h3 className="text-white font-bold mb-2">{q}</h3>
+                  <p className="text-white/60 text-sm leading-relaxed">{a}</p>
+                </div>
+              ))}
+            </div>
+
+            {/* Tedavi niyetini /hizmetler/suluk'a yönlendir (anti-kanibalizasyon) */}
+            <div className="mt-12 bg-teal/5 border border-teal/20 rounded-3xl p-8 flex flex-col sm:flex-row sm:items-center gap-6">
+              <div className="flex-1">
+                <h3 className="text-white font-bold text-lg mb-2">{body.crossLink.title}</h3>
+                <p className="text-white/60 text-sm leading-relaxed">{body.crossLink.desc}</p>
+              </div>
+              <Link
+                href={body.crossLink.href}
+                title={body.crossLink.label}
+                className="flex items-center justify-center gap-2 bg-white/10 text-white border border-white/10 px-6 py-3 rounded-xl font-black text-sm uppercase tracking-widest hover:bg-white/15 transition-all shrink-0"
+              >
+                {body.crossLink.label} <ArrowRight size={16} />
+              </Link>
+            </div>
+          </div>
+        </section>
+      )}
     </>
   );
 }

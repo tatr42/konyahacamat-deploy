@@ -106,6 +106,105 @@ export const HUB_COPY: Record<ServiceType, HubCopy> = {
   },
 };
 
+/**
+ * Hub sayfasının OPSİYONEL zengin gövdesi (dizinin dışındaki dönüşüm içeriği).
+ *
+ * Neden config: `ServiceHubPage` 3 siloyu birden besliyor. Zengin içerik bu
+ * config'ten okunur; yalnızca doldurulan servis için render edilir. Böylece
+ * `suluk-satisi` zenginleşirken `hacamat-kursu` / `kupa-malzemeleri` hublarına
+ * dokunulmaz. Sonra istenirse onlar da doldurulabilir.
+ *
+ * Kanibalizasyon notu: burası SATIŞ/ÜRÜN niyetlidir. "Sülük tedavisi nedir"
+ * derinliği bilinçli olarak yok — o blog pillar'ın işi (value.blogHref ile
+ * linklenir). Tedavi niyetli ziyaretçi `crossLink` ile /hizmetler/suluk'a
+ * yönlendirilir.
+ */
+export interface HubBody {
+  /** "Tıbbi Sülük Nedir, Neden Bizden?" — ürün değeri (kısa, tedavi değil). */
+  value: {
+    heading: string;
+    intro: string;
+    blogHref: string;
+    blogLabel: string;
+    cards: { title: string; desc: string }[];
+  };
+  /** "Canlı Sülük Kargosu" — canlı hayvan satışında #1 dönüşüm engeli. */
+  shipping: {
+    heading: string;
+    intro: string;
+    steps: { title: string; desc: string }[];
+  };
+  /** "Fiyat & Sipariş" — ticari blok. Fiyat WhatsApp'tan (uydurma yok). */
+  order: { heading: string; paragraphs: string[]; bullets: string[] };
+  /** Dizin başlığı (dizinin üstüne yazılır). */
+  directoryHeading: string;
+  /** Hub-seviyesi SSS — ULUSAL/ürün odaklı; il sayfası SSS'iyle birebir değil. */
+  faq: { q: string; a: string }[];
+  /** Tedavi niyetini yönlendiren çapraz band (anti-kanibalizasyon). */
+  crossLink: { title: string; desc: string; href: string; label: string };
+  /** Product şeması için — FİYATSIZ (availability + url yalnızca). */
+  product: { name: string; description: string };
+}
+
+export const HUB_BODY: Partial<Record<ServiceType, HubBody>> = {
+  "suluk-satisi": {
+    value: {
+      heading: "Tıbbi Sülük Nedir, Neden Bizden Almalısınız?",
+      intro:
+        "Sattığımız sülükler, hirudoterapide kullanılan tıbbi sülük (Hirudo medicinalis) türüdür. Kontrollü ortamda bakılır, uygulamaya hazır ve aç olarak gönderilir. 1994'ten bu yana süregelen tecrübeyle, doğadan gelişigüzel toplanan sülüklerin taşıdığı hastalık ve güvenlik riskini ortadan kaldırırız.",
+      blogHref: "/blog/suluk-tedavisi-hirudoterapi-nedir",
+      blogLabel: "Sülük Tedavisi (Hirudoterapi) Nedir?",
+      cards: [
+        { title: "Tıbbi Sülük (Hirudo medicinalis)", desc: "Hirudoterapi için uygun, doğru türden sülük. Gölet/doğa sülüğü değil, kontrollü koşullarda bakılan tıbbi tür." },
+        { title: "Bakımlı & Uygulamaya Hazır", desc: "Aç, dinç ve tutunmaya hazır sülükler. Sağlıklı bir uygulama için en kritik koşul canlının durumudur." },
+        { title: "Doğadan Toplanandan Farkı", desc: "Doğal sülük, tür ve hijyen belirsizliği taşır. Tıbbi sülük ise tür güvencesi ve tek kullanımlık uygulama esasıyla gelir." },
+      ],
+    },
+    shipping: {
+      heading: "Canlı Sülük Kargosu — Nasıl Gönderiyoruz?",
+      intro:
+        "Canlı sülük göndermenin püf noktası, yol boyunca sülüğün dinç kalmasıdır. Konya merkezimizden Türkiye'nin her iline, canlı taşımaya uygun özel paketlemeyle gönderiyoruz.",
+      steps: [
+        { title: "Oksijenli Su", desc: "Klorsuz, oksijeni korunan su ve sızdırmaz iç kap ile sülükler yol boyunca nefes alır." },
+        { title: "Yalıtımlı Kutu", desc: "Strafor kutu ve mevsime göre jel-buz ile sıcaklık dengelenir; yaz sıcağı ve kış donmasına karşı korunur." },
+        { title: "Canlı Kalma Güvencesi", desc: "Gönderiyi canlı kalma güvencesiyle hazırlarız; teslimde ambalajı kontrol etmeniz yeterlidir." },
+        { title: "1–3 İş Günü Teslim", desc: "Bölgeye göre 1–3 iş günü. Anlaşmalı hızlı kargo ve kapıda ödeme seçeneği mevcuttur." },
+      ],
+    },
+    order: {
+      heading: "Fiyat & Sipariş",
+      paragraphs: [
+        "Sülük fiyatları adede ve sipariş büyüklüğüne göre değişir. Güncel fiyatı ve kargo dâhil net tutarı WhatsApp veya telefonla dakikalar içinde paylaşıyoruz.",
+      ],
+      bullets: [
+        "Bireysel sipariş — ihtiyacınız kadar adet",
+        "Toplu / kurumsal — uygulayıcı ve klinikler için özel fiyat",
+        "Kapıda ödeme, havale/EFT ve anlaşmalı kargo",
+      ],
+    },
+    directoryHeading: "Bulunduğunuz İlden Sülük Sipariş Edin",
+    faq: [
+      { q: "Sipariş ettiğim sülükler canlı mı geliyor?", a: "Evet. Sülükleri, oksijeni korunan klorsuz su ve yalıtımlı kutuyla canlı taşımaya uygun şekilde gönderiyoruz. Gönderi canlı kalma güvencesiyle hazırlanır; teslimde ambalajı kontrol etmeniz yeterlidir." },
+      { q: "Tıbbi sülük ile doğadan toplanan sülüğün farkı nedir?", a: "Tıbbi sülük (Hirudo medicinalis), hirudoterapi için uygun, doğru türden ve kontrollü koşullarda bakılan sülüktür. Doğadan/gölden toplanan sülükler ise tür ve hijyen belirsizliği taşır, uygulamada güvenli değildir." },
+      { q: "Gelen sülükleri nasıl saklamalıyım?", a: "Klorsuz (dinlendirilmiş) su içinde, ağzı hava alan bir kapta, serin ve doğrudan güneş görmeyen bir yerde saklayın. Suyu düzenli tazeleyin. Ayrıntılı bakım notunu siparişle birlikte paylaşıyoruz." },
+      { q: "Toplu veya kurumsal sipariş verebilir miyim?", a: "Evet. Uygulayıcılar, klinikler ve kurumlar için toplu tedarik ve özel fiyat sunuyoruz. İhtiyacınızı WhatsApp'tan iletin, size uygun bir tedarik planı oluşturalım." },
+      { q: "Sülüğü kendim mi uygulayacağım?", a: "Sülük satışı, uygulamayı kendisi yapacak veya uygulatacak kişilere yöneliktir. Uygulamayı bize yaptırmak isterseniz Konya'daki kliniğimizde sülük terapisi hizmetimiz mevcuttur." },
+      { q: "Fiyat bilgisini nasıl öğrenirim?", a: "Güncel fiyatları WhatsApp veya telefonla paylaşıyoruz. Adet ve teslimat ilinizi belirtin; kargo dâhil net tutarı dakikalar içinde iletelim." },
+    ],
+    crossLink: {
+      title: "Sülük Uygulaması / Terapisi mi Arıyorsunuz?",
+      desc: "Sülüğü kendiniz uygulamayacaksanız, Konya kliniğimizde uzman sülük terapisi (hirudoterapi) hizmeti veriyoruz.",
+      href: "/hizmetler/suluk",
+      label: "Sülük Terapisi Hizmeti",
+    },
+    product: {
+      name: "Tıbbi Sülük (Hirudo medicinalis)",
+      description:
+        "Hirudoterapiye uygun, bakımlı ve uygulamaya hazır tıbbi sülük. Konya'dan tüm Türkiye'ye canlı kalma güvenceli kargo.",
+    },
+  },
+};
+
 export const WHATSAPP = "905544062383";
 export const PHONE_DISPLAY = "+90 554 406 23 83";
 
