@@ -18,13 +18,45 @@
  */
 
 import { PROVINCES } from "./tr-locations";
+import { COMTR_LIVE, COMTR_BASE } from "./ecosystem";
 
-/** Yayında kalan pSEO siloları. */
+/**
+ * Bu depoda TANIMLI pSEO siloları (tip kaynağı).
+ * "Tanımlı" ile "yayında" aynı şey değildir — bkz. `PUBLISHED_SERVICES`.
+ */
 export const KEPT_SERVICES = [
   "hacamat-kursu",
   "suluk-satisi",
   "kupa-malzemeleri",
 ] as const;
+
+/**
+ * KARDEŞ DOMAINE DEVREDİLEN SİLOLAR (2026-08-03 kararı).
+ *
+ * Eğitim/akademi niyeti konyahacamat.com.tr'ye toplandı. `hacamat-kursu`
+ * silosunun tamamı (hub + 81 il + 49 ilçe) oradaki eşleşen sayfalara
+ * 301'lenir. İlçe sayfalarının com.tr'de karşılığı YOKTUR — bu bilinçlidir;
+ * ilçe kırılımı için gerçek veri bulunmadığı için o sayfalar il sayfasına
+ * toplanır (zaten burada da `noindex` idiler).
+ *
+ * Devir, `ecosystem.ts` içindeki `COMTR_LIVE` bayrağı açılana kadar
+ * ETKİSİZDİR: liste boş döner, hiçbir yönlendirme üretilmez.
+ */
+export const TRANSFERRED_SERVICES = ["hacamat-kursu"] as const;
+
+const TRANSFERRED_SET = new Set<string>(COMTR_LIVE ? TRANSFERRED_SERVICES : []);
+
+/**
+ * Bu depoda GERÇEKTEN yayınlanan silolar.
+ * Sitemap ve iç link üretimi bunu kullanmalıdır; `KEPT_SERVICES` kullanmak,
+ * devir açıldığında 301'lenen URL'leri sitemap'e koyar.
+ */
+export const PUBLISHED_SERVICES = KEPT_SERVICES.filter((s) => !TRANSFERRED_SET.has(s));
+
+/** Devredilen bir silo mu? */
+export function isTransferredService(service: string): boolean {
+  return TRANSFERRED_SET.has(service);
+}
 
 /**
  * Kapatılan siloların 301 hedefleri.
@@ -148,6 +180,22 @@ export interface RedirectRule {
 }
 
 /**
+ * ÇAPRAZ DOMAIN yönlendirme kuralı — `permanent` yerine AÇIK `statusCode`.
+ *
+ * Next.js'te `permanent: true` 308 üretir. Google 308'i 301 ile eşdeğer sayar,
+ * ancak site taşımasında kullanılan üçüncü parti tarayıcılar ve bazı eski
+ * istemciler 301'i daha güvenilir işler. Domain içi kurallar (308) bugün canlı
+ * ve sorunsuz çalıştığı için DEĞİŞTİRİLMEDİ; yalnızca yeni eklenen çapraz
+ * domain devri açıkça 301 verir. Kardeş depo (com.tr) da aynı gerekçeyle 301
+ * kullanıyor — iki tarafta aynı davranış olsun diye.
+ */
+export interface CrossDomainRedirectRule {
+  source: string;
+  destination: string;
+  statusCode: 301;
+}
+
+/**
  * Kapatılan "...nedir" silolarının yönlendirmeleri.
  * Hub (`/hacamat-nedir`) ve altındaki HER şey (`/hacamat-nedir/konya/meram`)
  * tek pillar yazıya gider. `:path*` sıfır segmenti de eşlediği için hub ayrıca
@@ -172,13 +220,74 @@ export function retiredServiceRedirects(): RedirectRule[] {
  */
 export function prunedDistrictRedirects(): RedirectRule[] {
   const pruned = prunedDistrictPairs();
-  return KEPT_SERVICES.flatMap((service) =>
+  // Devredilen silo için kural üretilmez: o silonun TAMAMI zaten kardeş
+  // domaine gidiyor. Üretilseydi `/hacamat-kursu/x/y` → `/hacamat-kursu/x`
+  // → com.tr biçiminde iki adımlı bir 301 zinciri oluşurdu.
+  return PUBLISHED_SERVICES.flatMap((service) =>
     pruned.map(({ il, ilce }) => ({
       source: `/${service}/${il}/${ilce}`,
       destination: `/${service}/${il}`,
       permanent: true as const,
     })),
   );
+}
+
+/**
+ * DEVREDİLEN SİLONUN YÖNLENDİRMELERİ → konyahacamat.com.tr
+ *
+ * `COMTR_LIVE` kapalıyken BOŞ dizi döner; yani bu fonksiyon yayına alınsa
+ * bile bayrak açılmadan hiçbir şey değişmez.
+ *
+ * Eşleme, her seviyede en yakın karşılığa yapılır:
+ *   /hacamat-kursu                → com.tr/hacamat-kursu        (hub → hub)
+ *   /hacamat-kursu/{il}           → com.tr/hacamat-kursu/{il}   (birebir)
+ *   /hacamat-kursu/{il}/{ilce}    → com.tr/hacamat-kursu/{il}   (ilçe → il)
+ *   /egitimler                    → com.tr/hacamat-egitimi      (program)
+ *
+ * İl kuralları AÇIK yazılır (wildcard değil): `:il` yakalayan tek bir kural
+ * ilçe yollarını da yutar ve ilçeleri yanlış hedefe gönderirdi. Açık kural
+ * sayısı 81 il + 335 ilçe + 2 = 418'dir; derleme anında veriden türer.
+ */
+export function transferredServiceRedirects(): CrossDomainRedirectRule[] {
+  if (!COMTR_LIVE) return [];
+
+  const rules: CrossDomainRedirectRule[] = [];
+
+  for (const service of TRANSFERRED_SERVICES) {
+    // Hub
+    rules.push({
+      source: `/${service}`,
+      destination: `${COMTR_BASE}/${service}`,
+      statusCode: 301,
+    });
+
+    for (const p of PROVINCES) {
+      // İlçeler önce gelmeli — Next.js ilk eşleşen kuralı uygular ve il
+      // kuralı `/{il}` biçiminde olduğu için ilçeyi zaten yakalamaz, ancak
+      // sıralamayı açık tutmak ileride wildcard eklenirse kazayı önler.
+      for (const d of p.districts) {
+        rules.push({
+          source: `/${service}/${p.slug}/${d.slug}`,
+          destination: `${COMTR_BASE}/${service}/${p.slug}`,
+          statusCode: 301,
+        });
+      }
+      rules.push({
+        source: `/${service}/${p.slug}`,
+        destination: `${COMTR_BASE}/${service}/${p.slug}`,
+        statusCode: 301,
+      });
+    }
+  }
+
+  // Statik eğitim sayfası → Akademi'nin program sayfası
+  rules.push({
+    source: "/egitimler",
+    destination: `${COMTR_BASE}/hacamat-egitimi`,
+    statusCode: 301,
+  });
+
+  return rules;
 }
 
 /**

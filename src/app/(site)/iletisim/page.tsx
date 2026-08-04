@@ -2,6 +2,7 @@ import type { Metadata } from "next";
 import { MapPin, Phone, Mail, Clock, MessageCircle, Globe } from "lucide-react";
 import { getYearsExpStr } from "@/lib/experience";
 import Image from "next/image";
+import { academyHref } from "@/data/ecosystem";
 
 export const metadata: Metadata = {
   title: "İletişim & Randevu | Konya Hacamat | Ebusadullah Akademi",
@@ -196,7 +197,7 @@ export default function IletisimPage() {
             {[
               { href: "/hizmetler/hacamat", baslik: "Hacamat Tedavisi", aciklama: "Kuru & yaş hacamat seansları", emoji: "🩸" },
               { href: "/hizmetler/suluk", baslik: "Sülük Terapisi", aciklama: "Hirudoterapi randevusu", emoji: "🐛" },
-              { href: "/egitimler", baslik: "Eğitim Kursları", aciklama: "Sertifikalı uzmanlık programları", emoji: "🎓" },
+              { href: academyHref(), baslik: "Eğitim Kursları", aciklama: "Sertifikalı uzmanlık programları", emoji: "🎓" },
               { href: "/takvim", baslik: "Randevu Takvimi", aciklama: "Faziletli günlerde seans planla", emoji: "📅" },
             ].map(l => (
               <a key={l.href} href={l.href} title={(l as any).baslik || (l as any).title || (l as any).isim || "Bağlantı Detayı"}

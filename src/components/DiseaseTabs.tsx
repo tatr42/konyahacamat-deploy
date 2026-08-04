@@ -4,6 +4,7 @@ import Image from "next/image";
 
 import { ArrowRight, ChevronDown } from "lucide-react";
 import { categories } from "@/constants/diseases";
+import { academyHref } from "@/data/ecosystem";
 
 const VISIBLE_CATS = 2;   // mobilde görünen kategori sayısı
 const VISIBLE_DISEASES = 6; // başta görünen hastalık sayısı
@@ -211,11 +212,11 @@ export default function DiseaseTabs() {
               Hacamat, Sülük & Akupunktur Kursları
             </h3>
             <p className="text-white/40 text-xs mt-1">
-              384+ hastalığı tedavi etmeyi öğrenin. 1200+ mezun, kendi merkezini kurdu.
+              Uygulamayı, hijyen disiplinini ve sınırlarını kaynağından öğrenin. 1200+ mezun.
             </p>
           </div>
           <a
-            href="/egitimler"
+            href={academyHref()}
             title="Hacamat Kurs Programı"
             className="inline-flex items-center gap-2 bg-teal text-black px-6 py-3 rounded-xl font-black text-xs uppercase tracking-widest hover:opacity-90 transition-all shrink-0"
           >

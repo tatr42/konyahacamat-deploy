@@ -5,7 +5,7 @@ import { BookOpen, CheckCircle, Clock, Users, Award, MessageCircle, Phone, Globe
 
 export const metadata: Metadata = {
   title: "Hacamat Kursu Konya | Sertifikalı Hacamat Eğitimi | Ebusadullah Akademi",
-  description: "Konya Ebusadullah Akademi'de sertifikalı hacamat ve sülük terapisi uzmanlık kursları. Küçük gruplar, birebir uygulama, uluslararası geçerli sertifika. Almanya'da da eğitim verilmektedir.",
+  description: "Konya Ebusadullah Akademi'de hacamat ve sülük terapisi uzmanlık kursları. Küçük gruplar, birebir uygulama, program sonunda kurum sertifikası. Almanya'da da eğitim verilmektedir.",
 
   alternates: { canonical: '/egitimler' },
   openGraph: {
@@ -74,7 +74,7 @@ const kurslar = [
 ];
 
 const avantajlar = [
-  { icon: Award, baslik: "Uluslararası Sertifika", aciklama: "Türkiye ve Avrupa'da geçerli, akredite sertifika programı." },
+  { icon: Award, baslik: "Kurum Sertifikası", aciklama: "Program sonunda Akademi'nin kendi kurum sertifikası düzenlenir; kapsamı belgede açıkça yazar." },
   { icon: Users, baslik: "Küçük Gruplar", aciklama: "Maks. 6–8 kişilik gruplarla birebir pratik fırsatı." },
   { icon: BookOpen, baslik: "Materyal Dahil", aciklama: "Eğitim el kitabı, uygulama seti ve dijital kaynaklar dahildir." },
   { icon: Globe, baslik: "TR & Almanya", aciklama: "Konya'da ve yılın belirli dönemlerinde Almanya'da eğitim." },
@@ -238,7 +238,7 @@ export default function EgitimlerPage() {
           <div className="space-y-4">
             {[
               { s: "Eğitime katılmak için ön koşul var mı?", c: "Hayır. Temel kursumuz herhangi bir tıp veya sağlık bilgisi gerektirmez. Meraklı ve öğrenmeye istekli olan herkes katılabilir." },
-              { s: "Sertifika hangi ülkelerde geçerli?", c: "Ebusadullah Akademi sertifikası Türkiye ve Avrupa başta olmak üzere uluslararası düzeyde tanınmaktadır. Mezunlarımız 10'dan fazla ülkede aktif olarak çalışmaktadır." },
+              { s: "Verilen sertifikanın kapsamı nedir?", c: "Düzenlenen belge Ebusadullah Akademi'nin kendi kurum sertifikasıdır; programa katılımı ve içerikte gösterilen yeterliği belgeler. Herhangi bir resmî yetki, akreditasyon veya sağlık mesleği icra hakkı ifade etmez. Geleneksel ve tamamlayıcı uygulamaların yasal çerçevesini resmî kaynaklardan doğrulamanızı öneririz." },
               { s: "Kurs sonrası destek var mı?", c: "Evet. Kombine pakette 1 aylık danışmanlık desteği dahildir. Tüm mezunlarımız WhatsApp destek grubuna üye olur ve soru sorabilir." },
               { s: "Online eğitim seçeneği mevcut mu?", c: "Teorik modüller online olarak da sunulabilmektedir. Ancak pratik uygulama bölümü zorunlu olarak yüz yüze gerçekleştirilir." },
               { s: "Almanya'da da kurs verilmekte midir?", c: "Evet. Yılda 1–2 kez Almanya'da da eğitim programı düzenlenmektedir. Tarihler için WhatsApp üzerinden bilgi alabilirsiniz." },

@@ -2,6 +2,7 @@ import type { Metadata } from "next";
 import Link from "next/link";
 import Image from "next/image";
 import { Clock, MessageCircle, Phone, ChevronRight, AlertTriangle } from "lucide-react";
+import { academyHref } from "@/data/ecosystem";
 
 export const metadata: Metadata = {
   title: "Sülük Terapisi Konya | Hirudoterapi | Ebusadullah Hacamat Akademi",
@@ -303,7 +304,7 @@ function IlgiliSayfalarSection() {
           {[
             { href: "/suluk-satisi", baslik: "Tıbbi Sülük Satışı", aciklama: "Canlı sülük, tüm Türkiye'ye kargo", emoji: "🪱" },
             { href: "/hizmetler/hacamat", baslik: "Hacamat Tedavisi", aciklama: "Kuru ve yaş hacamat uygulamaları", emoji: "🩸" },
-            { href: "/egitimler", baslik: "Sülük Terapisi Kursu", aciklama: "Hirudoterapi uzmanlık eğitimi", emoji: "🎓" },
+            { href: academyHref(), baslik: "Sülük Terapisi Kursu", aciklama: "Hirudoterapi uzmanlık eğitimi", emoji: "🎓" },
             { href: "/takvim", baslik: "Randevu Takvimi", aciklama: "Faziletli günlerde randevu alın", emoji: "📅" },
           ].map(l => (
             <Link key={l.href} href={l.href} title={(l as any).baslik || (l as any).title || (l as any).isim || "Bağlantı Detayı"}

@@ -3,6 +3,7 @@ import Link from "next/link";
 import Image from "next/image";
 import { CheckCircle, Clock, Shield, AlertTriangle, Phone, MessageCircle, ChevronRight } from "lucide-react";
 import { getYearsExpStr } from "@/lib/experience";
+import { academyHref } from "@/data/ecosystem";
 
 export const metadata: Metadata = {
   title: "Hacamat Tedavisi Konya | Kuru & Yaş Hacamat | Ebusadullah Akademi",
@@ -250,7 +251,7 @@ export default function HacamatPage() {
               { s: "Seans öncesi hazırlık gerekli mi?", c: "Seansa aç veya tok olarak gelmeyin. Seans öncesi 2–3 saat hafif beslenin. Giysilerin rahat olmasına dikkat edin. Kan sulandırıcı ilaç kullanıyorsanız önceden bildirim yapın." },
               { s: "Kaç seans gerekir?", c: "Akut sorunlarda 1–3 seans yeterli olabilir. Kronik hastalıklarda 6–12 seanslık program uygulanır. Her hasta bireysel değerlendirilir; kişiye özel protokol belirlenir." },
               { s: "Almanya'da da yaptırabilir miyim?", c: "Evet. Ebusadullah Hoca yılda 2–3 kez Almanya'ya giderek Frankfurt, Köln ve Stuttgart başta olmak üzere çevre şehirlerde seans düzenlemektedir. Tarihler için WhatsApp üzerinden ulaşabilirsiniz." },
-              { s: "Hacamat eğitimi alabilir miyim?", c: "Evet. Ebusadullah Akademi'de Temel Hacamat Uzmanlık Kursu ile Sülük Terapisi Kursu verilmektedir. Kurslar küçük gruplarla, birebir süpervizyon altında gerçekleşir. Uluslararası geçerli sertifika verilir." },
+              { s: "Hacamat eğitimi alabilir miyim?", c: "Evet. Ebusadullah Akademi'de Temel Hacamat Uzmanlık Kursu ile Sülük Terapisi Kursu verilmektedir. Kurslar küçük gruplarla, birebir süpervizyon altında gerçekleşir. Program sonunda Akademi'nin kendi kurum sertifikası düzenlenir." },
             ].map((q, i) => (
               <div key={i} className="bg-white/5 border border-white/10 rounded-2xl p-6 hover:border-teal/20 transition-colors">
                 <div className="flex items-start gap-3">
@@ -275,7 +276,7 @@ export default function HacamatPage() {
             {[
               { href: "/hizmetler/suluk", baslik: "Sülük Terapisi", aciklama: "Hirudoterapi ile varis, ödem ve eklem tedavisi", emoji: "🐛" },
               { href: "/takvim", baslik: "Randevu Takvimi", aciklama: "Faziletli günlerde randevu alın", emoji: "📅" },
-              { href: "/egitimler", baslik: "Eğitim Kursları", aciklama: "Sertifikalı hacamat uzmanlık programları", emoji: "🎓" },
+              { href: academyHref(), baslik: "Eğitim Kursları", aciklama: "Sertifikalı hacamat uzmanlık programları", emoji: "🎓" },
               { href: "/malzemeler", baslik: "Hacamat Malzemeleri", aciklama: "Steril ve sertifikalı ekipmanlar", emoji: "🛒" },
             ].map(l => (
               <Link key={l.href} href={l.href} title={(l as any).baslik || (l as any).title || (l as any).isim || "Bağlantı Detayı"}

@@ -2,6 +2,7 @@ import type { Metadata } from "next";
 import Link from "next/link";
 import Image from "next/image";
 import GalleryGrid from "./GalleryGrid";
+import { academyHref } from "@/data/ecosystem";
 
 export const metadata: Metadata = {
   title: "Galeri | Hacamat Seansı & Kurs Fotoğrafları | Ebusadullah Akademi Konya",
@@ -62,7 +63,7 @@ export default function GaleriPage() {
             {[
               { href: "/hizmetler/hacamat", baslik: "Hacamat Tedavisi", aciklama: "Seans bilgisi ve randevu alın", emoji: "🩸" },
               { href: "/hizmetler/suluk", baslik: "Sülük Terapisi", aciklama: "Hirudoterapi seansları", emoji: "🐛" },
-              { href: "/egitimler", baslik: "Eğitim Kursları", aciklama: "Hacamat uzmanlık sertifikası", emoji: "🎓" },
+              { href: academyHref(), baslik: "Eğitim Kursları", aciklama: "Hacamat uzmanlık sertifikası", emoji: "🎓" },
               { href: "/takvim", baslik: "Randevu Takvimi", aciklama: "Faziletli günlerde randevu", emoji: "📅" },
             ].map(l => (
               <Link key={l.href} href={l.href} title={(l as any).baslik || (l as any).title || (l as any).isim || "Bağlantı Detayı"}

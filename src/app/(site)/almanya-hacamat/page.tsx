@@ -172,14 +172,14 @@ export default function AlmanyaHacamatPage() {
             <div className="space-y-8 lg:order-2">
               <div className="inline-flex items-center gap-2 px-4 py-2 rounded-full bg-teal/10 border border-teal/20 text-teal font-bold text-sm">
                 <Award size={16} />
-                <span>Uluslararası Sertifikalı</span>
+                <span>Kurum Sertifikalı Program</span>
               </div>
               <h2 className="text-3xl lg:text-5xl font-display font-bold text-white leading-tight">
                 Almanya Hacamat <br/>
                 <span className="text-teal">Eğitimi ve Kursu</span>
               </h2>
               <p className="text-white/70 text-lg leading-relaxed">
-                Avrupa standartlarında, alanında uzman hocalardan <strong>Almanya hacamat eğitimi</strong> alarak siz de sertifikalı bir haccâm/haccâme olabilirsiniz.
+                Alanında tecrübeli hocalardan <strong>Almanya hacamat eğitimi</strong> alarak uygulamayı kaynağından öğrenebilirsiniz. Program sonunda Akademi&apos;nin kurum sertifikası düzenlenir.
               </p>
 
               <div className="bg-anthracite-dark/50 border border-white/5 p-6 rounded-2xl space-y-4">
@@ -193,8 +193,8 @@ export default function AlmanyaHacamatPage() {
                 <div className="flex items-center gap-3 pt-2">
                   <Award className="text-teal" size={24} />
                   <div>
-                    <h4 className="text-white font-bold">Geçerli Sertifika</h4>
-                    <p className="text-sm text-white/70">Eğitim sonrasında uluslararası geçerliliği olan belge.</p>
+                    <h4 className="text-white font-bold">Kurum Sertifikası</h4>
+                    <p className="text-sm text-white/70">Eğitim sonunda Akademi&apos;nin kendi kurum belgesi düzenlenir; resmî yetki iddiası taşımaz.</p>
                   </div>
                 </div>
               </div>

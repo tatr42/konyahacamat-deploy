@@ -1,6 +1,7 @@
 "use client";
 import { Droplets, Bug, GraduationCap, ShoppingBag, ArrowRight, Shield, Globe, Clock } from "lucide-react";
 import { getYearsExpStr } from "@/lib/experience";
+import { academyHref } from "@/data/ecosystem";
 
 const services = [
   {
@@ -29,9 +30,9 @@ const services = [
     icon: GraduationCap,
     title: "Hacamat & Sülük Kursu",
     linkTitle: "Sertifikalı Hacamat ve Sülük Kursu",
-    sub: "Uluslararası Sertifika",
+    sub: "Kurum Sertifikalı Program",
     desc: "Uygulamalı eğitim. 1200+ mezun. Hacamat, sülük, akupunktur ve manuel sınıkçı kursları. Mezunlar kendi merkezlerini kuruyor.",
-    href: "/egitimler",
+    href: academyHref(),
     badge: "Sertifikalı",
     gradient: "from-gold/20 via-gold/5 to-transparent",
     accent: "bg-gold",
@@ -51,7 +52,7 @@ const services = [
 
 const badges = [
   { icon: Shield, text: "Steril & Hijyenik" },
-  { icon: Globe, text: "Uluslararası Standartlar" },
+  { icon: Globe, text: "Konya & Almanya" },
   { icon: Clock, text: `${getYearsExpStr()} Yıl Deneyim` },
 ];
 

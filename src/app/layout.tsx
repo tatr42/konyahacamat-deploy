@@ -73,7 +73,7 @@ const localBusinessSchema = {
   name: "Ebusadullah Hacamat & Akademi",
   alternateName: "Konya Hacamat Ebusadullah",
   description:
-    "Konya'da 32+ yıldır hizmet veren profesyonel sülük terapisi (hirudoterapi) ve hacamat merkezi. Tıbbi sülük & kupa satışı, uluslararası geçerli uzmanlık eğitimleri.",
+    "Konya'da 32+ yıldır hizmet veren profesyonel sülük terapisi (hirudoterapi) ve hacamat merkezi. Tıbbi sülük & kupa satışı, kurum sertifikalı uzmanlık eğitimleri.",
   url: "/",
   telephone: "+905544062383",
   email: "info@konyahacamat.net",

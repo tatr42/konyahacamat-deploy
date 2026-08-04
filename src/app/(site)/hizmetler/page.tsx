@@ -116,7 +116,7 @@ export default function HizmetlerPage() {
           <div className="mb-10">
             <span className="text-teal text-[11px] font-black uppercase tracking-[0.3em]">Hijyen Protokolü</span>
             <h2 className="font-display text-3xl font-bold text-white mt-3">Güvenliğiniz Önceliğimizdir</h2>
-            <p className="text-white/70 mt-2 text-sm max-w-xl">Sıfır enfeksiyon riski için her seansta uluslararası sterilizasyon standartlarını uyguluyoruz.</p>
+            <p className="text-white/70 mt-2 text-sm max-w-xl">Enfeksiyon riskini en aza indirmek için her seansta tek kullanımlık malzeme ve yazılı sterilizasyon protokolümüzü uyguluyoruz.</p>
           </div>
           <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-4">
             {hijyen.map(h => (

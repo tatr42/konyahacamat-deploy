@@ -2,6 +2,7 @@
 import React from 'react';
 import Link from 'next/link';
 import { MapPin, Instagram, Facebook, HeartPulse, Globe } from 'lucide-react';
+import { academyHref, academyHubHref } from "@/data/ecosystem";
 
 export default function Footer() {
   const currentYear = new Date().getFullYear();
@@ -45,7 +46,7 @@ export default function Footer() {
               <li><Link href="/hizmetler/suluk" title="Sülük Terapisi Konya" className="text-white/60 hover:text-teal transition-colors font-bold">Sülük Terapisi</Link></li>
               <li><Link href="/hizmetler" title="Hacamat Tedavisi Konya" className="text-white/60 hover:text-teal transition-colors">Hacamat Tedavisi</Link></li>
               <li><Link href="/almanya-hacamat" title="Almanya Hacamat Şubesi" className="text-white/60 hover:text-teal transition-colors font-bold">Almanya Şubemiz</Link></li>
-              <li><Link href="/egitimler" title="Hacamat Eğitim ve Kursları" className="text-white/60 hover:text-teal transition-colors">Eğitim & Kurslar</Link></li>
+              <li><Link href={academyHref()} title="Hacamat Eğitim ve Kursları" className="text-white/60 hover:text-teal transition-colors">Eğitim & Kurslar</Link></li>
               <li><Link href="/malzemeler" title="Hacamat Malzeme Satışı" className="text-white/60 hover:text-teal transition-colors">Malzeme Satışı</Link></li>
               <li><Link href="/takvim" title="Hacamat Sünnet Takvimi" className="text-white/60 hover:text-teal transition-colors">Sünnet Takvimi</Link></li>
               <li><Link href="/iletisim" title="Konya Hacamat İletişim" className="text-white/60 hover:text-teal transition-colors">Bize Ulaşın</Link></li>
@@ -98,7 +99,7 @@ export default function Footer() {
             </h4>
             <ul className="space-y-4 text-sm font-semibold mb-8">
               <li>
-                <Link href="/hacamat-kursu" title="İl İl Hacamat Kursu — Tüm Türkiye" className="text-white/60 hover:text-teal transition-colors">
+                <Link href={academyHubHref()} title="İl İl Hacamat Kursu — Tüm Türkiye" className="text-white/60 hover:text-teal transition-colors">
                   Hacamat Kursu <span className="text-gold/70 text-[9px] font-black uppercase tracking-widest ml-1">81 İl</span>
                 </Link>
               </li>
@@ -128,7 +129,7 @@ export default function Footer() {
             <div className="p-4 rounded-2xl bg-teal/5 border border-teal/10 flex items-center gap-3">
               <Globe className="text-teal shrink-0" size={20} />
               <p className="text-[10px] text-white/70 leading-tight font-medium">
-                Uzman kadromuzla tüm eğitimlerde <br/><span className="text-white font-bold">Uluslararası Standartlarda Sertifika</span> desteği.
+                Tüm eğitimlerde program sonunda <br/><span className="text-white font-bold">Akademi Kurum Sertifikası</span> düzenlenir.
               </p>
             </div>
             <div className="mt-4 p-4 rounded-2xl bg-white/5 border border-white/10 flex items-center gap-3">

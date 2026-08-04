@@ -2,7 +2,8 @@ import type { MetadataRoute } from "next";
 import { getPressItems } from "@/lib/press";
 import { getPublishedPosts } from "@/lib/posts";
 import { PROVINCES } from "@/data/tr-locations";
-import { KEPT_SERVICES } from "@/data/pseo-scope";
+import { PUBLISHED_SERVICES } from "@/data/pseo-scope";
+import { COMTR_LIVE } from "@/data/ecosystem";
 
 const BASE = "https://www.konyahacamat.net";
 
@@ -17,16 +18,18 @@ const BASE = "https://www.konyahacamat.net";
  *   - 49 metropol ilçesi: bilinçli olarak hariç — il sayfalarındaki iç
  *     linkler üzerinden doğal taransın. Faz 1'de içerik derinleştikten
  *     sonra buraya eklenmesi değerlendirilecek.
+ *   - `hacamat-kursu` silosu: COMTR_LIVE açıldığında kardeş domaine
+ *     devredilir ve `PUBLISHED_SERVICES` üzerinden otomatik olarak düşer.
  */
 const pseoPages: MetadataRoute.Sitemap = [
-  // 3 hizmet hub sayfası (il listeleyen dizinler)
-  ...KEPT_SERVICES.map((service) => ({
+  // Yayında kalan hizmet hub sayfaları (il listeleyen dizinler)
+  ...PUBLISHED_SERVICES.map((service) => ({
     url: `${BASE}/${service}`,
     changeFrequency: "weekly" as const,
     priority: 0.7,
   })),
-  // 81 il × 3 hizmet = 243 il sayfası
-  ...KEPT_SERVICES.flatMap((service) =>
+  // 81 il × yayında kalan her silo
+  ...PUBLISHED_SERVICES.flatMap((service) =>
     PROVINCES.map((province) => ({
       url: `${BASE}/${service}/${province.slug}`,
       changeFrequency: "monthly" as const,
@@ -35,13 +38,17 @@ const pseoPages: MetadataRoute.Sitemap = [
   ),
 ];
 
-const staticPages = [
+const staticPages: MetadataRoute.Sitemap = [
   { url: BASE, priority: 1.0, changeFrequency: "weekly" as const },
   { url: `${BASE}/hizmetler`, priority: 0.9, changeFrequency: "monthly" as const },
   { url: `${BASE}/hizmetler/hacamat`, priority: 0.9, changeFrequency: "monthly" as const },
   { url: `${BASE}/hizmetler/suluk`, priority: 0.8, changeFrequency: "monthly" as const },
   { url: `${BASE}/almanya-hacamat`, priority: 0.9, changeFrequency: "monthly" as const },
-  { url: `${BASE}/egitimler`, priority: 0.8, changeFrequency: "monthly" as const },
+  // Eğitim sayfası kardeş domaine devredildiğinde 301 alır — 301'lenen URL
+  // sitemap'e konulmaz.
+  ...(COMTR_LIVE
+    ? []
+    : [{ url: `${BASE}/egitimler`, priority: 0.8, changeFrequency: "monthly" as const }]),
   { url: `${BASE}/takvim`, priority: 0.7, changeFrequency: "weekly" as const },
   { url: `${BASE}/blog`, priority: 0.8, changeFrequency: "weekly" as const },
   { url: `${BASE}/basin`, priority: 0.6, changeFrequency: "monthly" as const },

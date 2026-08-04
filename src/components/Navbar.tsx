@@ -4,6 +4,7 @@ import Link from 'next/link';
 import Image from 'next/image';
 import { usePathname } from 'next/navigation';
 import { ChevronDown, Calendar, Home, Newspaper, Building2, Stethoscope, X, Phone, MessageCircle } from 'lucide-react';
+import { academyHref, academyHubHref } from "@/data/ecosystem";
 
 interface DropdownItem {
   name: string;
@@ -30,9 +31,9 @@ const navLinks: NavItem[] = [
     dropdown: [
       { name: 'Sülük Terapisi', sub: 'Hirudoterapi · Uzmanlık Alanımız', href: '/hizmetler/suluk', title: 'Sülük Terapisi Hirudoterapi Konya' },
       { name: 'Hacamat', sub: 'Kuru & Yaş Hacamat Tedavisi', href: '/hizmetler/hacamat', title: 'Kuru ve Yaş Hacamat Tedavisi Konya' },
-      { name: 'Kurs & Eğitim', sub: 'Sertifikalı Uzmanlık Programı', href: '/egitimler', title: 'Hacamat ve Sülük Kursu Eğitimi' },
+      { name: 'Kurs & Eğitim', sub: 'Sertifikalı Uzmanlık Programı', href: academyHref(), title: 'Hacamat ve Sülük Kursu Eğitimi' },
       { name: 'Sülük Satışı', sub: '81 İle Canlı Sülük Kargo', href: '/suluk-satisi', title: 'İl İl Sülük Satışı — Tüm Türkiye', group: 'Türkiye Geneli' },
-      { name: 'Hacamat Kursu', sub: '81 İl · Online Sertifikalı Eğitim', href: '/hacamat-kursu', title: 'İl İl Hacamat Kursu — Tüm Türkiye' },
+      { name: 'Hacamat Kursu', sub: '81 İl · Online Sertifikalı Eğitim', href: academyHubHref(), title: 'İl İl Hacamat Kursu — Tüm Türkiye' },
       { name: 'Kupa & Malzemeler', sub: 'CE Sertifikalı Steril Setler', href: '/kupa-malzemeleri', title: 'İl İl Hacamat Malzemeleri — Tüm Türkiye' },
     ]
   },
@@ -63,9 +64,9 @@ const bottomNav = [
     dropdown: [
       { name: 'Sülük Terapisi', href: '/hizmetler/suluk' },
       { name: 'Hacamat', href: '/hizmetler/hacamat' },
-      { name: 'Eğitim', href: '/egitimler' },
+      { name: 'Eğitim', href: academyHref() },
       { name: 'Sülük Satışı (81 İl)', href: '/suluk-satisi' },
-      { name: 'Hacamat Kursu (81 İl)', href: '/hacamat-kursu' },
+      { name: 'Hacamat Kursu (81 İl)', href: academyHubHref() },
       { name: 'Kupa & Malzemeler (81 İl)', href: '/kupa-malzemeleri' },
     ]
   },

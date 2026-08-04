@@ -3,6 +3,7 @@ import {
   assertKeptDistrictsValid,
   prunedDistrictRedirects,
   retiredServiceRedirects,
+  transferredServiceRedirects,
 } from "./src/data/pseo-scope";
 
 // Yol takma adı (@/) burada çözülmez — bu yüzden göreli import.
@@ -62,7 +63,15 @@ const nextConfig: NextConfig = {
       // Kanibalizasyon gerekçesi ve hedefler: src/data/pseo-scope.ts
       ...retiredServiceRedirects(),
 
-      // ── 3. BUDANAN İLÇELER (858 kural → ait olduğu il sayfası) ──────────
+      // ── 3. KARDEŞ DOMAINE DEVREDİLEN EĞİTİM SİLOSU ──────────────────────
+      // `/hacamat-kursu/**` ve `/egitimler` → konyahacamat.com.tr
+      // ecosystem.ts içindeki COMTR_LIVE bayrağı KAPALIYKEN boş dizi döner,
+      // yani bugün hiçbir etkisi yoktur. Budanan ilçe kurallarından ÖNCE
+      // gelmelidir: aksi halde ilçe önce il sayfasına, oradan com.tr'ye
+      // giden iki adımlı bir zincir oluşurdu.
+      ...transferredServiceRedirects(),
+
+      // ── 4. BUDANAN İLÇELER (kural → ait olduğu il sayfası) ──────────────
       // tr-locations'tan derleme anında türetilir; elle bakım gerektirmez.
       ...prunedDistrictRedirects(),
     ];

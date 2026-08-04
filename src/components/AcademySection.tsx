@@ -34,8 +34,8 @@ export default function AcademySection() {
                   <Globe className="text-anthracite-dark" size={24} />
                 </div>
                 <div>
-                  <h4 className="text-white font-bold text-sm leading-tight tracking-tight">Uluslararası Standartlarda</h4>
-                  <p className="text-teal text-[10px] font-black uppercase mt-1 tracking-widest">Sertifika Programı</p>
+                  <h4 className="text-white font-bold text-sm leading-tight tracking-tight">Eğitmen Gözetiminde Uygulama</h4>
+                  <p className="text-teal text-[10px] font-black uppercase mt-1 tracking-widest">Kurum Sertifika Programı</p>
                 </div>
               </div>
             </div>
@@ -75,7 +75,7 @@ export default function AcademySection() {
             {[
               "Uygulamalı Eğitim",
               "Hijyen Sertifikası",
-              "Uluslararası Standartlar",
+              "Steril Çalışma Disiplini",
               "Süresiz Destek",
               "Kadim Tıp Bilgisi",
               "Mezunlar Kendi Merkezini Kuruyor",

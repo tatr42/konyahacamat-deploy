@@ -3,6 +3,7 @@ import { Moon, Shield, Clock, MessageCircle, Phone } from "lucide-react";
 import HacamatCalendar from "@/components/HacamatCalendar";
 import Link from "next/link";
 import Image from "next/image";
+import { academyHref } from "@/data/ecosystem";
 
 const currentYear = new Date().getFullYear();
 
@@ -193,7 +194,7 @@ export default function TakvimPage() {
             {[
               { href: "/hizmetler/hacamat", baslik: "Hacamat Tedavisi", aciklama: "Kuru & yaş hacamat hakkında detaylı bilgi", emoji: "🩸" },
               { href: "/hizmetler/suluk", baslik: "Sülük Terapisi", aciklama: "Hirudoterapi seansı ve süreç", emoji: "🐛" },
-              { href: "/egitimler", baslik: "Eğitim Kursları", aciklama: "Hacamat uzmanlık programları", emoji: "🎓" },
+              { href: academyHref(), baslik: "Eğitim Kursları", aciklama: "Hacamat uzmanlık programları", emoji: "🎓" },
               { href: "/iletisim", baslik: "İletişim", aciklama: "Konya & Almanya hattı", emoji: "📞" },
             ].map(l => (
               <Link key={l.href} href={l.href} title={(l as any).baslik || (l as any).title || (l as any).isim || "Bağlantı Detayı"}

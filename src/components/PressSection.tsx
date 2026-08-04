@@ -101,7 +101,7 @@ export default function PressSection({ items }: { items: PressItem[] }) {
           <p className="text-white/70 text-sm leading-relaxed max-w-3xl">
             Hacamat tedavisinin uzman kişiler tarafından yapılması ve hijyenik koşulların sağlanması son derece önemlidir.
             Ebusadullah Akademi olarak tüm uygulamalarımızda steril malzeme kullanıyor,
-            uluslararası hijyen standartlarına uygun çalışıyoruz. Bu nedenle ulusal medyanın güvenilir kaynağı olarak yer alıyoruz.
+            hijyen protokollerimize bağlı kalarak çalışıyoruz. Bu nedenle ulusal medyada zaman zaman kaynak olarak yer aldık.
           </p>
         </div>
 

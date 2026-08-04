@@ -962,7 +962,10 @@ const SERVICE_FAQS: Record<ServiceType, (c: LocationCtx) => FaqItem[]> = {
     },
     {
       q: "Kurs sonunda sertifika veriliyor mu?",
-      a: "Evet, eğitimi tamamlayan katılımcılara katılım/başarı belgesi verilir.",
+      // YMYL: belge KURUM belgesidir. "Resmî/akredite/uluslararası geçerli"
+      // ifadeleri bu sitede hiçbir yerde kullanılmaz — kardeş domaindeki
+      // akademi sitesiyle aynı dil korunur.
+      a: "Evet, eğitimi tamamlayan katılımcılara Akademi'nin kendi kurum belgesi (katılım/başarı sertifikası) verilir. Bu belge resmî bir yetki, akreditasyon ya da sağlık mesleği icra hakkı ifade etmez.",
     },
     {
       q: `${dative(c.place)} eğitim seti kargolanıyor mu?`,

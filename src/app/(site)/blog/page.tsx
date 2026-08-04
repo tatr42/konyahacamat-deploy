@@ -4,6 +4,7 @@ import Link from "next/link";
 import BlogList from "./BlogList";
 import { getPublishedPosts } from "@/lib/posts";
 import { Feather, BookOpen, Users, Stethoscope, MapPin } from "lucide-react";
+import { academyHubHref } from "@/data/ecosystem";
 
 // ISR: yazı listesi sunucuda render edilir (SEO), 5 dakikada bir yenilenir.
 export const revalidate = 300;
@@ -62,7 +63,7 @@ export async function generateMetadata({
 
 // Türkiye geneli hizmet dizinleri (pSEO hub sayfaları)
 const hubLinks = [
-  { label: "Hacamat Kursu",       href: "/hacamat-kursu",   title: "İl İl Hacamat Kursu — Tüm Türkiye" },
+  { label: "Hacamat Kursu",       href: academyHubHref(),   title: "İl İl Hacamat Kursu — Tüm Türkiye" },
   { label: "Sülük Satışı",        href: "/suluk-satisi",    title: "İl İl Sülük Satışı — Tüm Türkiye" },
   { label: "Hacamat Malzemeleri", href: "/kupa-malzemeleri", title: "İl İl Hacamat Malzemeleri — Tüm Türkiye" },
 ];

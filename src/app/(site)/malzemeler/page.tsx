@@ -1,6 +1,7 @@
 import type { Metadata } from "next";
 import { ShieldCheck, Package, MessageCircle, Phone, CheckCircle } from "lucide-react";
 import Image from "next/image";
+import { academyHref } from "@/data/ecosystem";
 
 export const metadata: Metadata = {
   title: "Hacamat Malzemeleri | Steril Set, Vantuz, Bistüri | Konya Kargo",
@@ -174,7 +175,7 @@ export default function MalzemelePage() {
           <div className="grid grid-cols-1 sm:grid-cols-3 gap-4">
             {[
               { href: "/hizmetler/hacamat", baslik: "Hacamat Tedavisi", aciklama: "Profesyonel hacamat seansı randevusu alın", emoji: "🩸" },
-              { href: "/egitimler", baslik: "Eğitim Kursları", aciklama: "Malzeme kullanımını kursta öğrenin", emoji: "🎓" },
+              { href: academyHref(), baslik: "Eğitim Kursları", aciklama: "Malzeme kullanımını kursta öğrenin", emoji: "🎓" },
               { href: "/hizmetler/suluk", baslik: "Sülük Terapisi", aciklama: "Sülük bakım setleri hakkında bilgi alın", emoji: "🐛" },
             ].map(l => (
               <a key={l.href} href={l.href} title={(l as any).baslik || (l as any).title || (l as any).isim || "Bağlantı Detayı"}

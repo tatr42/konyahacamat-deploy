@@ -22,8 +22,9 @@ import {
   type District,
 } from "@/data/tr-locations";
 import {
-  KEPT_SERVICES,
+  PUBLISHED_SERVICES,
   isKeptDistrict,
+  isTransferredService,
   keptDistrictPairs,
 } from "@/data/pseo-scope";
 import {
@@ -45,14 +46,29 @@ const SIBLING_LIMIT = 12;
 type Link = { href: string; label: string };
 
 /**
- * Faz 0 sonrası iç linkleme kapsamı — 301 alan URL'lere iç link VERİLMEZ.
- * Kapatılan "...nedir" siloları ve budanan ilçeler link havuzundan düşer.
+ * İç linkleme kapsamı — 301 alan URL'lere iç link VERİLMEZ.
+ * Kapatılan "...nedir" siloları, budanan ilçeler ve kardeş domaine
+ * DEVREDİLEN silolar (COMTR_LIVE açıkken `hacamat-kursu`) link havuzundan düşer.
  */
-const KEPT_SERVICE_SET = new Set<string>(KEPT_SERVICES);
-const LINKABLE_SERVICES = ALL_SERVICES.filter((s) => KEPT_SERVICE_SET.has(s));
+const PUBLISHED_SERVICE_SET = new Set<string>(PUBLISHED_SERVICES);
+const LINKABLE_SERVICES = ALL_SERVICES.filter((s) => PUBLISHED_SERVICE_SET.has(s));
 
 /** 81 il için statik parametre. */
 export const ilStaticParams = () => PROVINCES.map((p) => ({ il: p.slug }));
+
+/**
+ * Silo-farkında statik parametre üreticileri.
+ *
+ * Devredilen silo için BOŞ dizi döner: o yolların tamamı next.config'te
+ * kardeş domaine 301'lenir ve yönlendirmeler dosya sistemi route'larından
+ * önce değerlendirilir. Sayfaları yine de üretmek, hiçbir zaman servis
+ * edilmeyecek 130 HTML dosyası anlamına gelirdi.
+ */
+export const makeIlStaticParams = (service: string) => () =>
+  isTransferredService(service) ? [] : ilStaticParams();
+
+export const makeIlceStaticParams = (service: string) => () =>
+  isTransferredService(service) ? [] : ilceStaticParams();
 
 /**
  * YAYINDA KALAN il/ilçe kombinasyonları için statik parametre (Faz 0 budaması).

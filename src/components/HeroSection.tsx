@@ -38,7 +38,7 @@ export default function HeroSection() {
             <div className="inline-flex items-center gap-2 bg-teal/10 border border-teal/20 px-4 py-2 rounded-full shrink-0 whitespace-nowrap">
               <Award size={12} className="text-teal shrink-0" />
               <span className="text-[11px] font-black text-teal uppercase tracking-[0.2em]">
-                Uluslararası Sertifika
+                Kurum Sertifikalı Eğitim
               </span>
             </div>
             <div className="inline-flex items-center gap-2 bg-white/5 border border-white/10 px-3 py-2 rounded-full shrink-0">
@@ -104,7 +104,7 @@ export default function HeroSection() {
             {[
               "Tek Kullanımlık Sülük",
               "Hirudoterapi Uzmanı",
-              "Uluslararası Sertifika",
+              "Kurum Sertifikalı Eğitim",
               "1200+ Mezun",
               `${new Date().getFullYear() - 1994} Yıllık Deneyim`,
             ].map((item) => (

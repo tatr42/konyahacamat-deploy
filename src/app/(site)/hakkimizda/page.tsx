@@ -3,6 +3,7 @@ import Link from "next/link";
 import Image from "next/image";
 import { Award, Users, Globe, Heart, CheckCircle, MessageCircle } from "lucide-react";
 import { getYearsExpStr } from "@/lib/experience";
+import { academyHref } from "@/data/ecosystem";
 
 export const metadata: Metadata = {
   title: "Hakkımızda | Ebusadullah Hacamat & Akademi Konya | 32+ Yıl Deneyim",
@@ -20,8 +21,8 @@ export const metadata: Metadata = {
 const degerler = [
   { icon: Heart, baslik: "Şifa Önce Gelir", aciklama: "Her kararımızda hastanın iyileşmesi temel önceliğimizdir. Ticari kaygıdan önce şifa gelir." },
   { icon: Award, baslik: "Bilim & Gelenek", aciklama: "Hz. Peygamberin sünnetine dayanan geleneksel yöntemleri modern bilimsel verilerle harmanlıyoruz." },
-  { icon: CheckCircle, baslik: "Sterilizasyon", aciklama: "Sıfır enfeksiyon riski için her seansta tek kullanımlık, CE sertifikalı malzeme kullanıyoruz." },
-  { icon: Globe, baslik: "Uluslararası Standart", aciklama: "Uluslararası geçerlilikte sertifika programlarımız mezunlarımızı dünyanın her yerinde yetkili kılmaktadır." },
+  { icon: CheckCircle, baslik: "Sterilizasyon", aciklama: "Enfeksiyon riskini en aza indirmek için her seansta tek kullanımlık, CE işaretli malzeme kullanıyoruz." },
+  { icon: Globe, baslik: "Şeffaf Belgelendirme", aciklama: "Program sonunda düzenlenen belge Akademi'nin kendi kurum sertifikasıdır; kapsamını açıkça yazar, resmî yetki iddiası taşımaz." },
 ];
 
 export default function HakkimizdaPage() {
@@ -38,8 +39,8 @@ export default function HakkimizdaPage() {
           </h1>
           <p className="text-white/60 text-xl leading-relaxed">
             1990'ların sonunda kadim şifa geleneğine duyulan derin merak ile başlayan bu yolculuk;
-            bugün Türkiye'nin en köklü hacamat merkezlerinden birine ve 1200'den fazla mezun
-            yetiştiren uluslararası bir akademiye dönüştü.
+            bugün 1200'den fazla mezun yetiştiren, Konya&apos;da ve yılın belirli dönemlerinde
+            Almanya&apos;da eğitim veren bir akademiye dönüştü.
           </p>
         </div>
       </section>
@@ -233,13 +234,13 @@ export default function HakkimizdaPage() {
             sertifikalı uzmanlar yetiştiriyoruz.
           </p>
           <div className="grid grid-cols-2 gap-4 mb-8">
-            {["Temel & İleri Hacamat Kursları", "Sülük Terapisi (Hirudoterapi)", "Online Teorik Eğitimler", "Uluslararası Geçerli Sertifika"].map(e => (
+            {["Temel & İleri Hacamat Kursları", "Sülük Terapisi (Hirudoterapi)", "Online Teorik Eğitimler", "Akademi Kurum Sertifikası"].map(e => (
               <div key={e} className="flex items-center gap-2 bg-white/5 rounded-xl px-4 py-3 text-sm text-white/70">
                 <CheckCircle size={14} className="text-teal shrink-0" /> {e}
               </div>
             ))}
           </div>
-          <Link href="/egitimler" title="Eğitim Programları" className="inline-flex items-center gap-2 bg-teal text-anthracite-dark px-6 py-3 rounded-xl font-black text-sm uppercase tracking-widest hover:opacity-90 transition-opacity">
+          <Link href={academyHref()} title="Eğitim Programları" className="inline-flex items-center gap-2 bg-teal text-anthracite-dark px-6 py-3 rounded-xl font-black text-sm uppercase tracking-widest hover:opacity-90 transition-opacity">
             Eğitim Programları →
           </Link>
         </div>
@@ -254,7 +255,7 @@ export default function HakkimizdaPage() {
             {[
               { href: "/hizmetler/hacamat", baslik: "Hacamat Tedavisi", aciklama: "Kuru & yaş hacamat, detoks, kronik ağrı", emoji: "🩸" },
               { href: "/hizmetler/suluk", baslik: "Sülük Terapisi", aciklama: "Hirudoterapi, varis, eklem tedavisi", emoji: "🐛" },
-              { href: "/egitimler", baslik: "Uzmanlık Kursları", aciklama: "Sertifikalı hacamat & sülük eğitimleri", emoji: "🎓" },
+              { href: academyHref(), baslik: "Uzmanlık Kursları", aciklama: "Sertifikalı hacamat & sülük eğitimleri", emoji: "🎓" },
               { href: "/takvim", baslik: "Randevu Al", aciklama: "Hicri faziletli günlerde seans planla", emoji: "📅" },
             ].map(l => (
               <Link key={l.href} href={l.href} title={(l as any).baslik || (l as any).title || (l as any).isim || "Bağlantı Detayı"}
