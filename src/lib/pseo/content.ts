@@ -23,6 +23,7 @@ import {
 import { staticFaqsFor, type FaqScope } from "@/data/faq-pool";
 import { dative, locative, ablative } from "@/lib/pseo/turkish";
 import { pickOne, pickDistinct } from "@/lib/pseo/deterministic";
+import { abs, BUSINESS, BUSINESS_ID } from "@/lib/business";
 
 export type ServiceType =
   | "hacamat-kursu"
@@ -1138,4 +1139,150 @@ export function selectFaqs(
   const pool = faqPool(service, ctx);
   const key = `faq|${service}|${ctx.province.plate}|${ctx.district?.slug ?? ""}`;
   return pickDistinct(pool, count, key);
+}
+
+// ─── AI-özet ("Kısa Cevap") bloğu ────────────────────────────────────────
+//
+// NEDEN: AI Overviews / ChatGPT / Perplexity gibi cevap motorları, sayfanın
+// TEPESİNDEKİ net soru-cevap paragrafını alıntılamaya eğilimlidir; aynı blok
+// Google öne çıkan snippet'i için de idealdir. Her il sayfasının başına, o
+// hizmet+lokasyon için 40–55 kelimelik, doğrudan ve GERÇEK bilgiye dayanan
+// bir özet basıyoruz (uydurma fiyat/istatistik yok — telefonla yönlendirme).
+//
+// Not: metin lokasyona göre değişir ama KISA olduğu için doorway riski
+// taşımaz; asıl benzersizlik derin içerik bloklarındadır.
+
+/** İl/ilçe sayfası için tepe "Kısa Cevap" özeti (40–55 kelime hedefli). */
+export function aiSummary(service: ServiceType, ctx: LocationCtx): string {
+  const place = ctx.place;
+  const k = ctx.isKonya;
+
+  switch (service) {
+    case "suluk-satisi":
+      return k
+        ? `${place}'da tıbbi sülük (Hirudo medicinalis) satışını Ebusadullah Hacamat & Akademi yürütür. Bakımlı, uygulamaya hazır sülükler merkezimizden elden teslim ya da aynı gün/ertesi gün kargoyla verilir. Güncel fiyat, adet ve stok bilgisi için telefon veya WhatsApp: ${PHONE_DISPLAY}.`
+        : `${ctx.full} için tıbbi sülük (Hirudo medicinalis), Konya merkezimizden canlı kalma güvenceli özel paketlemeyle gönderilir ve bölgeye göre ortalama 1–3 iş gününde teslim edilir. Kapıda ödeme seçeneği vardır; güncel fiyat ile stok bilgisini telefon veya WhatsApp'tan iletiyoruz: ${PHONE_DISPLAY}.`;
+
+    case "kupa-malzemeleri":
+      return k
+        ? `${place}'da CE sertifikalı, steril hacamat ve kupa (vantuz) malzemelerini — tek kullanımlık bistüri ve pompa dâhil — merkezimizden temin edebilirsiniz; elden teslim ya da aynı gün kargo mümkündür. Toplu/kurumsal siparişte özel fiyat sunulur. Sipariş ve güncel fiyat için: ${PHONE_DISPLAY}.`
+        : `${ctx.full} için CE sertifikalı, steril hacamat ve kupa (vantuz) malzemelerini — tek kullanımlık bistüri ve pompa dâhil — Konya'dan kargoluyoruz; teslim bölgeye göre ortalama 1–3 iş günüdür. Uygulayıcı ve klinikler için toplu tedarik seçeneği vardır. Sipariş: ${PHONE_DISPLAY}.`;
+
+    case "hacamat-kursu":
+      return k
+        ? `${place}'da hacamat (kupa terapisi) eğitimimiz hem online hem Konya merkezimizde yüz yüze verilir. Uygulamalı içerik ve malzeme desteği bulunur; program sonunda Akademi'nin kurum sertifikası düzenlenir. 32+ yıl tecrübeyle yürütülür. Kayıt, tarih ve içerik bilgisi için: ${PHONE_DISPLAY}.`
+        : `${ctx.full} için hacamat (kupa terapisi) kursumuz sertifikalı ve online/uzaktan yürütülür; her şehirden erişilebilir. Uygulama seti adresinize kargolanır, yüz yüze bölüm için Konya merkezimiz kullanılır. Program sonunda Akademi'nin kurum sertifikası düzenlenir. Kayıt ve içerik bilgisi için: ${PHONE_DISPLAY}.`;
+
+    case "hacamat-nedir":
+      return `Hacamat (kupa terapisi / hijama), belirli noktalara negatif basınç ve —yaş hacamatta— yüzeysel kesilerle kontrollü kan alma esasına dayanan geleneksel bir uygulamadır. ${ctx.full} bölgesindeki okuyucular için hizmet ve eğitim seçeneklerimizi bu sayfada topladık. Bilgi ve danışma için: ${PHONE_DISPLAY}.`;
+
+    case "suluk-nedir":
+      return `Sülük tedavisi (hirudoterapi), tıbbi sülüğün salgıladığı doğal maddelerden yararlanan geleneksel bir uygulamadır; şikâyete göre belirlenen bölgesel noktalara uzman gözetiminde uygulanır. ${ctx.full} için sülük temini ve bilgi seçeneklerini bu sayfada bulabilirsiniz. Danışma için telefon veya WhatsApp: ${PHONE_DISPLAY}.`;
+  }
+}
+
+// ─── İl/ilçe hizmet şeması (Product / Course) ────────────────────────────
+//
+// NEDEN: İl sayfaları şimdiye dek yalnızca FAQ + Breadcrumb şeması basıyordu;
+// hizmetin TİCARİ/EĞİTİM niteliği yapısal olarak bildirilmiyordu. Satış
+// niyetli silolar (`suluk-satisi`, `kupa-malzemeleri`) `Product`, eğitim
+// niyetli silo (`hacamat-kursu`) `Course` olarak işaretlenir.
+//
+// FİYAT BİLİNÇLİ OLARAK YOKTUR: fiyat WhatsApp/telefonla veriliyor ve veri
+// dürüstlüğü kuralı gereği uydurulmaz (bkz. province-profiles başlığı). Bu
+// yüzden `Offer.price` hiç yazılmaz; yalnızca `availability`, `priceCurrency`,
+// `url` ve satıcı referansı verilir. Google bunu "eksik fiyat" uyarısıyla
+// zengin sonuç dışı bırakabilir — bu, sahte fiyattan iyidir.
+
+/** Görsel yolunu mutlaklaştırır (http ise dokunmaz). */
+function absImage(imageUrl: string): string {
+  return imageUrl.startsWith("http") ? imageUrl : abs(imageUrl);
+}
+
+/** İl/ilçe sayfasının kanonik URL'i. */
+function locationUrl(service: ServiceType, ctx: LocationCtx): string {
+  return abs(
+    ctx.isDistrict
+      ? `/${service}/${ctx.province.slug}/${ctx.district!.slug}`
+      : `/${service}/${ctx.province.slug}`,
+  );
+}
+
+/**
+ * Lokasyon + hizmet için JSON-LD nesnesi.
+ * `hacamat-nedir` / `suluk-nedir` bilgi silolarıdır → şema üretilmez (null).
+ */
+export function locationServiceSchema(
+  service: ServiceType,
+  ctx: LocationCtx,
+  imageUrl: string,
+): Record<string, unknown> | null {
+  const copy = getServiceCopy(service);
+  const url = locationUrl(service, ctx);
+  const image = absImage(imageUrl);
+
+  if (service === "hacamat-kursu") {
+    return {
+      "@context": "https://schema.org",
+      "@type": "Course",
+      name: copy.h1(ctx),
+      description: copy.seoDescription(ctx),
+      url,
+      image,
+      inLanguage: "tr",
+      provider: {
+        "@type": "Organization",
+        "@id": BUSINESS_ID,
+        name: BUSINESS.name,
+        url: abs("/"),
+      },
+      hasCourseInstance: [
+        {
+          "@type": "CourseInstance",
+          // Kurs Türkiye geneline online/uzaktan sunulur; Konya'da ayrıca yüz yüze.
+          courseMode: ctx.isKonya ? ["online", "onsite"] : "online",
+          location: ctx.isKonya
+            ? {
+                "@type": "Place",
+                name: BUSINESS.name,
+                address: {
+                  "@type": "PostalAddress",
+                  addressLocality: BUSINESS.address.district,
+                  addressRegion: BUSINESS.address.city,
+                  addressCountry: BUSINESS.address.country,
+                },
+              }
+            : { "@type": "VirtualLocation", url: abs("/egitimler") },
+        },
+      ],
+    };
+  }
+
+  if (service === "suluk-satisi" || service === "kupa-malzemeleri") {
+    const isLeech = service === "suluk-satisi";
+    return {
+      "@context": "https://schema.org",
+      "@type": "Product",
+      name: isLeech
+        ? `Tıbbi Sülük (Hirudo medicinalis) — ${ctx.place}`
+        : `Hacamat & Kupa Malzemeleri — ${ctx.place}`,
+      description: copy.seoDescription(ctx),
+      image,
+      category: isLeech
+        ? "Geleneksel Tıp / Tıbbi Sülük"
+        : "Medikal Malzeme / Hacamat Seti",
+      brand: { "@type": "Brand", name: BUSINESS.name },
+      offers: {
+        "@type": "Offer",
+        availability: "https://schema.org/InStock",
+        priceCurrency: "TRY",
+        url,
+        seller: { "@id": BUSINESS_ID },
+        areaServed: { "@type": "Country", name: "Türkiye" },
+        // `price` BİLİNÇLİ OLARAK YOK — bkz. blok başlığı.
+      },
+    };
+  }
+
+  return null;
 }

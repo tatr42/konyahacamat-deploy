@@ -19,6 +19,7 @@ import {
   GraduationCap,
   ShieldCheck,
   ChevronRight,
+  Sparkles,
 } from "lucide-react";
 import {
   type ServiceType,
@@ -32,6 +33,8 @@ import {
   imageTrioAlts,
   deepContentBlocks,
   selectFaqs,
+  locationServiceSchema,
+  aiSummary,
   SERVICE_LABEL,
   PHONE_DISPLAY,
   WHATSAPP,
@@ -74,6 +77,8 @@ export default function LocationServicePage({
   // Derin içerik blokları (kargo güvencesi, noktalar, Konya ulaşım)
   const blocks = deepContentBlocks(service, ctx);
   const cta = localCtaCopy(service, ctx);
+  // AI/öne-çıkan-snippet için tepe "Kısa Cevap" özeti (40–55 kelime).
+  const summary = aiSummary(service, ctx);
 
   // İçindekiler: derin içerik blokları + SSS. Sunucuda, blok başlıklarından
   // üretilir — id'ler build çıktısında hazır olduğundan botlar JS olmadan görür.
@@ -100,6 +105,10 @@ export default function LocationServicePage({
       acceptedAnswer: { "@type": "Answer", text: item.a },
     })),
   };
+
+  // Hizmet niteliğine göre Product (satış) veya Course (eğitim) şeması.
+  // Bilgi siloları (hacamat-nedir/suluk-nedir) için null döner.
+  const serviceSchema = locationServiceSchema(service, ctx, cover.src);
 
   const breadcrumbSchema = {
     "@context": "https://schema.org",
@@ -141,6 +150,12 @@ export default function LocationServicePage({
         type="application/ld+json"
         dangerouslySetInnerHTML={{ __html: JSON.stringify(breadcrumbSchema) }}
       />
+      {serviceSchema && (
+        <script
+          type="application/ld+json"
+          dangerouslySetInnerHTML={{ __html: JSON.stringify(serviceSchema) }}
+        />
+      )}
 
       {/* HERO */}
       <section className="relative pt-32 pb-16 lg:pt-44 lg:pb-24 bg-anthracite-dark overflow-hidden">
@@ -215,6 +230,23 @@ export default function LocationServicePage({
           </div>
         </div>
       </section>
+
+      {/* KISA CEVAP — AI/öne çıkan snippet için sayfa tepesinde net özet */}
+      {summary && (
+        <section className="py-10 lg:py-12 bg-anthracite-dark border-t border-white/5">
+          <div className="container-site max-w-4xl">
+            <div className="bg-teal/[0.06] border border-teal/20 rounded-3xl p-6 lg:p-8">
+              <div className="flex items-center gap-2 mb-3">
+                <Sparkles size={16} className="text-teal" />
+                <span className="text-teal text-[11px] font-black uppercase tracking-[0.25em]">
+                  Kısa Cevap
+                </span>
+              </div>
+              <p className="text-white/85 text-lg leading-relaxed">{summary}</p>
+            </div>
+          </div>
+        </section>
+      )}
 
       {/* LOKASYONA ÖZEL BİLGİ KARTLARI */}
       <section className="py-16 lg:py-24 bg-anthracite border-t border-white/5">

@@ -936,4 +936,159 @@ export const BLOG_POSTS: Post[] = [
 </ul>
 `.trim(),
   },
+  {
+    id: "cluster-hacamat-kontrendikasyon",
+    slug: "hacamat-kimlere-yapilmaz",
+    title: "Hacamat Kimlere Yapılmaz? Nedenleriyle Kontrendikasyonlar",
+    excerpt:
+      "Hacamatın uygulanmadığı durumlar ve her birinin ardındaki neden. Liste ezberlemek yerine mantığını anlayın; emin değilseniz ne yapmalısınız?",
+    seoTitle: "Hacamat Kimlere Yapılmaz? Riskler ve Nedenleri — Rehber",
+    seoDescription:
+      "Hacamat hangi durumlarda uygulanmaz ve neden? Kan sulandırıcılar, ileri anemi, gebelik, pıhtılaşma bozuklukları ve kontrolsüz kronik tablolar nedenleriyle açıklandı.",
+    category: "Hacamat Nedir?",
+    published: true,
+    createdAt: { seconds: 1785500000 },
+    updatedAt: { seconds: 1785500000 },
+    content: `
+<p>Hacamatın en kritik aşaması kupanın yerleştirilmesi değil, <strong>öncesindeki değerlendirmedir</strong>. Bu yazıda yaş hacamatın (kesili uygulama) yapılmadığı durumları tek tek ve <em>nedenleriyle</em> ele alıyoruz. Amaç liste ezberletmek değil; mantığını anladığınızda kendi durumunuzu doğru değerlendirebilirsiniz.</p>
+<p>Uygulamanın genel çerçevesi için <a href="/blog/hacamat-nedir-tarihi-bilimsel-temelleri-ve-nasil-uygulanir">Hacamat Nedir?</a> rehberimize bakabilirsiniz.</p>
+
+<h2>Mantığı Tek Cümlede</h2>
+<p>Yaş hacamatta cilde küçük yüzeysel kesiler açılır ve kupayla kan alınır. Dolayısıyla <strong>kanamayı artıran ya da kan kaybını tolere edemeyecek her tablo</strong> risk oluşturur. Aşağıdaki maddelerin çoğu bu tek mantıktan türer. Kuru hacamatta (kesisiz) risk daha düşüktür ama değerlendirme yine gereklidir.</p>
+
+<h2>Kan Sulandırıcı İlaç Kullanımı</h2>
+<p>Varfarin, yeni nesil oral antikoagülanlar ve düzenli aspirin kullanımı bu başlığa girer. Kesili uygulama bu ilaçların etkisiyle birleşince kanama beklenenden uzun sürebilir. <strong>İlacınızı uygulama için kendi kararınızla bırakmayın</strong> — bu, hacamattan çok daha ciddi bir risktir. Karar hekiminize aittir.</p>
+
+<h2>Pıhtılaşma Bozuklukları</h2>
+<p>Bilinen bir pıhtılaşma/kanama bozukluğu varsa yaş hacamat uygulanmaz. Küçük bir kesi bile bu tabloda kontrol edilmesi güç bir kanamaya dönüşebilir.</p>
+
+<h2>İleri Anemi ve Genel Halsizlik</h2>
+<p>Kan değerleri düşük, halsiz veya yeni ciddi bir hastalık geçirmiş kişilerde kan alma esasına dayanan bir uygulama uygun değildir; mevcut yorgunluğu artırabilir. Böyle bir durumda önce genel durumun düzelmesi beklenir.</p>
+
+<h2>Gebelik ve Lohusalık</h2>
+<p>Gebelikte, özellikle bel-karın bölgesine yönelik uygulamalar tercih edilmez. Bu dönemde uygulama kararı ve bölge seçimi ancak hekim onayıyla ve çok sınırlı biçimde konuşulabilir; genel yaklaşımımız uygulamamaktır.</p>
+
+<h2>Kontrolsüz Kronik Tablolar</h2>
+<p>Şeker veya tansiyonu kontrol altında olmayan, yaraları geç iyileşen kişilerde kesili uygulama enfeksiyon ve iyileşme sorunları açısından risklidir. Önce tablonun hekim tarafından dengelenmesi gerekir.</p>
+
+<h2>Yerel Cilt Sorunları</h2>
+<p>Uygulama yapılacak bölgede yara, egzama, falanma, döküntü, ben veya varis varsa o bölgeye uygulama yapılmaz. Kupa ve kesi sağlam, temiz cilde uygulanır.</p>
+
+<h2>Çocuklar ve Çok İleri Yaş</h2>
+<p>Küçük çocuklarda ve genel durumu kırılgan çok ileri yaştaki kişilerde kan alma esaslı uygulamalardan kaçınılır; fayda-risk dengesi lehte değildir.</p>
+
+<h2>Emin Değilseniz Ne Yapmalısınız?</h2>
+<p>Bu yazı bir tanı veya tıbbi tavsiye değildir. Yukarıdaki başlıklardan biri sizde varsa ya da kullandığınız bir ilaçtan emin değilseniz, uygulamadan önce mutlaka <strong>hekiminize danışın</strong>. İyi bir uygulayıcı, uygulama öncesi bu soruları zaten sorar ve gerektiğinde uygulamayı yapmaz — bu bir formalite değil, işin en önemli adımıdır.</p>
+<p>Hacamat, mevcut bir tedavinin alternatifi değildir. Hekiminizin verdiği tedaviyi kendi kararınızla bırakmayın.</p>
+
+<h2>İlgili Rehberler</h2>
+<ul>
+  <li><a href="/blog/hacamat-nedir-tarihi-bilimsel-temelleri-ve-nasil-uygulanir">Hacamat Nedir?</a> — tarihçe, çeşitler ve nasıl uygulanır</li>
+  <li><a href="/blog/hacamat-noktalari-haritasi">Hacamat Noktaları Haritası</a> — nokta seçiminin mantığı</li>
+  <li><a href="/blog/hacamat-sonrasi-nelere-dikkat-edilmeli">Hacamat Sonrası Nelere Dikkat Edilmeli?</a> — ilk 24 saat ve bakım</li>
+  <li><a href="/blog/suluk-tedavisi-kimlere-uygulanmaz">Sülük Tedavisi Kimlere Uygulanmaz?</a> — sülük tarafındaki kontrendikasyonlar</li>
+</ul>
+`.trim(),
+  },
+  {
+    id: "cluster-hacamat-fiyat",
+    slug: "hacamat-fiyatlari-neye-gore-degisir",
+    title: "Hacamat Fiyatları Neye Göre Değişir? Fiyatı Belirleyen Etkenler",
+    excerpt:
+      "Hacamat fiyatını belirleyen gerçek etkenler: uygulama tipi, bölge sayısı, malzeme kalitesi ve uygulayıcı tecrübesi. Neden tek bir 'liste fiyatı' yok?",
+    seoTitle: "Hacamat Fiyatları Neye Göre Değişir? — Etkenler ve Rehber",
+    seoDescription:
+      "Hacamat fiyatı neye göre değişir? Kuru/yaş uygulama, bölge sayısı, tek kullanımlık steril malzeme ve uygulayıcı tecrübesi fiyatı nasıl etkiler? Dürüst rehber.",
+    category: "Hacamat Nedir?",
+    published: true,
+    createdAt: { seconds: 1785500600 },
+    updatedAt: { seconds: 1785500600 },
+    content: `
+<p>"Hacamat ne kadar?" sorusunun tek bir cevabı yoktur ve size sabit bir liste fiyatı söyleyen her yeri biraz temkinli karşılayın. Fiyat, uygulamanın kapsamına göre değişir. Bu yazıda fiyatı gerçekte neyin belirlediğini açıklıyoruz ki neye ödeme yaptığınızı bilerek karar verin.</p>
+<p>Uygulamanın ne olduğunu <a href="/blog/hacamat-nedir-tarihi-bilimsel-temelleri-ve-nasil-uygulanir">Hacamat Nedir?</a> yazımızda anlattık; burada odak <strong>fiyatı belirleyen etkenler</strong>.</p>
+
+<h2>1. Uygulama Tipi: Kuru mu, Yaş mı?</h2>
+<p>Kuru hacamatta yalnızca vakum uygulanır, kesi yapılmaz; malzeme ve süre olarak daha hafiftir. Yaş hacamatta ise steril kesi, ilave sarf malzemesi ve daha uzun bir uygulama-pansuman süreci vardır. Bu ikisi doğal olarak farklı fiyatlanır.</p>
+
+<h2>2. Uygulanan Bölge Sayısı</h2>
+<p>Tek bir bölgeye yapılan uygulama ile sırt, bel ve ense dâhil geniş bir uygulama aynı değildir. Bölge sayısı arttıkça kullanılan kupa, kesici uç ve pansuman malzemesi; dolayısıyla süre ve maliyet artar.</p>
+
+<h2>3. Malzeme Kalitesi ve Sterilizasyon</h2>
+<p>Fiyatı belirleyen en önemli ve çoğu kişinin gözden kaçırdığı kalem budur. <strong>Tek kullanımlık, CE sertifikalı steril malzeme</strong> ile tekrar kullanılan ekipman arasında hem güvenlik hem maliyet açısından ciddi fark vardır. Ucuz fiyatın arkasında bazen malzemeden kısmak yatar — ve bu, tasarruf edilecek yer değildir. Hangi malzemenin kullanıldığını sormaktan çekinmeyin.</p>
+
+<h2>4. Uygulayıcının Tecrübesi</h2>
+<p>Doğru nokta seçimi, hijyen ve vakum-çizik tekniği uygulamanın en kritik parçalarıdır. Yılların getirdiği tecrübe, hem güvenlik hem de uygulama konforu açısından fark yaratır ve fiyata yansır.</p>
+
+<h2>5. Konum ve Şehir</h2>
+<p>Uygulamanın yapıldığı şehir ve merkezin genel maliyetleri de fiyata etki eder. Aynı hizmet farklı şehirlerde farklı fiyatlanabilir.</p>
+
+<h2>Neden Size Telefonda Net Fiyat Veriyoruz?</h2>
+<p>Yukarıdaki etkenler kişiye göre değiştiği için gerçekçi bir fiyat, ancak neye ihtiyacınız olduğunu konuştuktan sonra verilebilir. Biz güncel ve <strong>net</strong> fiyatı; uygulama tipi, bölge ve durumunuzu öğrendikten sonra telefon veya WhatsApp'tan dakikalar içinde paylaşıyoruz. Böylece sürpriz ek ücret olmaz.</p>
+
+<h2>Fiyata Bakarken Nelere Dikkat Etmeli?</h2>
+<ul>
+  <li>Malzeme <strong>tek kullanımlık ve steril</strong> mi? Yanınızda açılıyor mu?</li>
+  <li>Uygulama öncesi bir <strong>değerlendirme</strong> yapılıyor mu?</li>
+  <li>Fiyat, uygulama sonrası pansuman ve bilgilendirmeyi kapsıyor mu?</li>
+  <li>Çok düşük fiyat, hangi kalemden kısıldığını düşündürüyor mu?</li>
+</ul>
+<p>En ucuz seçenek değil, <strong>güvenli ve şeffaf</strong> olan seçenek doğru seçimdir.</p>
+
+<h2>İlgili Rehberler</h2>
+<ul>
+  <li><a href="/blog/hacamat-nedir-tarihi-bilimsel-temelleri-ve-nasil-uygulanir">Hacamat Nedir?</a> — çeşitler ve uygulama</li>
+  <li><a href="/blog/hacamat-sonrasi-nelere-dikkat-edilmeli">Hacamat Sonrası Nelere Dikkat Edilmeli?</a></li>
+  <li><a href="/kupa-malzemeleri">Hacamat & Kupa Malzemeleri</a> — steril set ve ekipman</li>
+</ul>
+`.trim(),
+  },
+  {
+    id: "cluster-suluk-vs-hacamat",
+    slug: "suluk-mu-hacamat-mi-hangisi",
+    title: "Sülük mü Hacamat mı? Hangisi Hangi Durumda Tercih Edilir",
+    excerpt:
+      "Sülük tedavisi ile hacamat arasındaki farklar, benzerlikler ve tercih mantığı. İkisi rakip değil; hangisinin ne zaman öne çıktığını açıklıyoruz.",
+    seoTitle: "Sülük mü Hacamat mı? Farkları ve Hangisi Ne Zaman — Rehber",
+    seoDescription:
+      "Sülük tedavisi (hirudoterapi) ile hacamat arasındaki fark nedir, hangisi hangi durumda tercih edilir? İki geleneksel yöntem nesnel biçimde karşılaştırıldı.",
+    category: "Hacamat Nedir?",
+    published: true,
+    createdAt: { seconds: 1785501200 },
+    updatedAt: { seconds: 1785501200 },
+    content: `
+<p>Sık gelen bir soru: "Bana sülük mü iyi gelir, hacamat mı?" İkisi de kadim, kan dolaşımıyla ilişkili geleneksel uygulamalardır ama farklı çalışırlar. Bu yazıda ikisini <strong>rakip gibi değil</strong>, farklı araçlar gibi ele alıp hangisinin ne zaman öne çıktığını açıklıyoruz.</p>
+<p>Ayrıntı için: <a href="/blog/hacamat-nedir-tarihi-bilimsel-temelleri-ve-nasil-uygulanir">Hacamat Nedir?</a> ve <a href="/blog/suluk-tedavisi-hirudoterapi-nedir">Sülük Tedavisi (Hirudoterapi) Nedir?</a></p>
+
+<h2>Temel Fark: Nasıl Çalışırlar?</h2>
+<p><strong>Hacamat</strong>, ciltte vakum (kuru) ya da yüzeysel kesilerle (yaş) belirli noktalardan kontrollü kan alma esasına dayanır. Etki, mekanik ve bölgeseldir.</p>
+<p><strong>Sülük tedavisi (hirudoterapi)</strong> ise tıbbi sülüğün emerken salgıladığı doğal maddelerin (hirudin gibi) bölgeye geçmesi esasına dayanır. Yani sülükte yalnızca kan alma değil, salgının <em>biyokimyasal</em> etkisi de vardır.</p>
+
+<h2>Yan Yana Karşılaştırma</h2>
+<ul>
+  <li><strong>Yöntem:</strong> Hacamat — kupa/kesi; Sülük — canlı tıbbi sülük.</li>
+  <li><strong>Ana etki:</strong> Hacamat — mekanik, bölgesel kan alma; Sülük — kan alma + salgının etkisi.</li>
+  <li><strong>Uygulama bölgesi:</strong> Hacamat — sırt, bel, ense gibi geniş klasik noktalar; Sülük — şikâyete göre daha nokta-hedefli bölgeler.</li>
+  <li><strong>Süre:</strong> Hacamat — genellikle daha kısa; Sülük — sülüğün doyması beklendiği için daha uzun.</li>
+  <li><strong>His:</strong> İkisinde de hafif; sülük tutunurken sinek ısırığına benzer bir batma olur.</li>
+  <li><strong>Sonrası:</strong> İkisinde de kısa süreli sızıntı tarzı kanama <em>beklenendir</em>.</li>
+</ul>
+
+<h2>Ortak Noktaları</h2>
+<p>Her ikisi de tek kullanımlık, steril ve hijyenik koşullarda uygulanmalıdır. Her ikisinde de kan sulandırıcı kullanımı, pıhtılaşma bozukluğu, ileri anemi ve gebelik gibi durumlar önce değerlendirilir. Kontrendikasyonları ayrı ayrı okuyun: <a href="/blog/hacamat-kimlere-yapilmaz">Hacamat kimlere yapılmaz?</a> ve <a href="/blog/suluk-tedavisi-kimlere-uygulanmaz">Sülük kimlere uygulanmaz?</a></p>
+
+<h2>Hangisi Ne Zaman Öne Çıkar?</h2>
+<p>Dürüst cevap: bu ikisi arasında "her zaman şu daha iyidir" denemez. Seçim; şikâyetin türüne, bölgeye, kişinin genel durumuna ve tercihine göre bir <strong>değerlendirmeyle</strong> belirlenir. Bazen ikisi bir program içinde birbirini tamamlayacak şekilde de düşünülebilir. Kimi kişi sülüğün nokta-hedefli yapısını, kimi hacamatın geniş bölgesel uygulamasını daha uygun bulur.</p>
+<p>Önemli olan, size "şu hastalığı kesin geçirir" diyen değil, durumunuzu dinleyip gerçekçi bir çerçeve çizen bir yaklaşımdır. Hangi yöntem seçilirse seçilsin, bu uygulamalar mevcut bir tedavinin yerini tutmaz; hekiminizin tedavisini kendi kararınızla bırakmayın.</p>
+
+<h2>Karar İçin Ne Yapmalısınız?</h2>
+<p>Şikâyetinizi ve varsa kullandığınız ilaçları belirterek bize danışın; hangi yöntemin sizin için daha uygun olabileceğini, neden-sonucuyla birlikte konuşalım. İster uygulamayı merkezimizde yaptırın, ister ürünü kendiniz temin edin — sizi doğru bilgiyle yönlendiririz.</p>
+
+<h2>İlgili Rehberler</h2>
+<ul>
+  <li><a href="/blog/suluk-tedavisi-neye-iyi-gelir">Sülük Tedavisi Neye İyi Gelir?</a> — başvuru nedenleri ve dürüst beklenti</li>
+  <li><a href="/blog/hacamat-noktalari-haritasi">Hacamat Noktaları Haritası</a></li>
+  <li><a href="/hizmetler/suluk">Sülük Terapisi Hizmeti</a> · <a href="/hizmetler/hacamat">Hacamat Hizmeti</a></li>
+</ul>
+`.trim(),
+  },
 ];
