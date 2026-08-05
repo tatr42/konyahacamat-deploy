@@ -10,6 +10,7 @@
     "test": "node --test --experimental-strip-types \"src/**/*.test.ts\""
   },
   "dependencies": {
+    "@vercel/analytics": "^2.0.1",
     "lucide-react": "^0.511.0",
     "next": "^16.2.4",
     "react": "^19.0.0",
