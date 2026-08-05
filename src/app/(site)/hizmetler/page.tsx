@@ -1,4 +1,5 @@
 import type { Metadata } from "next";
+import { ogImages } from "@/lib/og";
 import Link from "next/link";
 import { Droplets, ShieldCheck, Clock, CheckCircle, ChevronRight, MessageCircle } from "lucide-react";
 import { getYearsExpStr } from "@/lib/experience";
@@ -12,7 +13,7 @@ export const metadata: Metadata = {
     title: "Hacamat & Sülük Terapisi Konya | Ebusadullah Akademi",
     description: "Kuru hacamat, yaş hacamat ve sülük terapisi. Steril uygulama, 32+ yıl deneyim. Konya ve Almanya'da hizmet.",
     url: '/hizmetler',
-    images: [{ url: "/logo.webp", width: 1200, height: 630, alt: "Konya Hacamat Hizmetleri" }],
+    images: ogImages({ title: "Hizmetlerimiz", eyebrow: "Sülük · Hacamat · Eğitim", alt: "Konya Hacamat Hizmetleri" }),
   },
 };
 
@@ -54,7 +55,7 @@ const hijyen = [
 
 export default function HizmetlerPage() {
   return (
-    <main className="min-h-screen bg-anthracite-dark">
+    <div className="min-h-screen bg-anthracite-dark">
 
       {/* HERO */}
       <section className="pt-20 pb-20 relative overflow-hidden">
@@ -179,6 +180,6 @@ export default function HizmetlerPage() {
         </div>
       </section>
 
-    </main>
+    </div>
   );
 }

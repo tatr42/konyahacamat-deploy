@@ -1,4 +1,5 @@
 import type { Metadata } from "next";
+import { ogImages } from "@/lib/og";
 import Link from "next/link";
 import Image from "next/image";
 import { CheckCircle, Clock, Shield, AlertTriangle, Phone, MessageCircle, ChevronRight } from "lucide-react";
@@ -14,7 +15,7 @@ export const metadata: Metadata = {
     title: "Hacamat Tedavisi Konya | Kuru & Yaş Hacamat | Ebusadullah Akademi",
     description: "Konya'da profesyonel kuru ve yaş hacamat tedavisi. 32+ yıl deneyim, steril uygulama, Almanya seansları. Randevu için WhatsApp'tan yazın.",
     url: '/hizmetler/hacamat',
-    images: [{ url: "/logo.webp", width: 1200, height: 630, alt: "Hacamat Tedavisi Konya Ebusadullah" }],
+    images: ogImages({ title: "Hacamat — Kuru & Yaş Uygulama", eyebrow: "Geleneksel Kupa Terapisi", alt: "Hacamat Tedavisi Konya Ebusadullah" }),
   },
 };
 
@@ -48,7 +49,7 @@ const endikasyonlar = [
 
 export default function HacamatPage() {
   return (
-    <main className="min-h-screen bg-anthracite-dark">
+    <div className="min-h-screen bg-anthracite-dark">
       <script type="application/ld+json" dangerouslySetInnerHTML={{ __html: JSON.stringify(medicalTherapySchema) }} />
 
       {/* HERO */}
@@ -319,6 +320,6 @@ export default function HacamatPage() {
         </div>
       </section>
 
-    </main>
+    </div>
   );
 }

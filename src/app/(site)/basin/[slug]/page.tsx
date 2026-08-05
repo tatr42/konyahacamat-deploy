@@ -1,4 +1,5 @@
 import type { Metadata } from "next";
+import { ogImages } from "@/lib/og";
 import { notFound } from "next/navigation";
 import { getPressItemBySlug, getPressItems } from "@/lib/press";
 import { Newspaper, Calendar, ArrowLeft, MessageCircle } from "lucide-react";
@@ -31,7 +32,7 @@ export async function generateMetadata({ params }: { params: Promise<{ slug: str
     openGraph: {
       title,
       description,
-      images: item.img ? [{ url: item.img, width: 1200, height: 630, alt: item.baslik }] : [{ url: "/logo.webp" }],
+      images: item.img ? [{ url: item.img, width: 1200, height: 630, alt: item.baslik }] : ogImages({ title: item.baslik, eyebrow: "Basında Biz", alt: item.baslik }),
       url: `/basin/${slug}`,
       type: "article",
       locale: "tr_TR",
@@ -100,7 +101,7 @@ export default async function BasinDetayPage({ params }: { params: Promise<{ slu
     : null;
 
   return (
-    <main className="min-h-screen bg-anthracite-dark pt-20 pb-24">
+    <div className="min-h-screen bg-anthracite-dark pt-20 pb-24">
       <script type="application/ld+json" dangerouslySetInnerHTML={{ __html: JSON.stringify(articleSchema) }} />
       <script type="application/ld+json" dangerouslySetInnerHTML={{ __html: JSON.stringify(breadcrumbSchema) }} />
       {faqSchema && (
@@ -211,6 +212,6 @@ export default async function BasinDetayPage({ params }: { params: Promise<{ slu
         </div>
 
       </div>
-    </main>
+    </div>
   );
 }

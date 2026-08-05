@@ -1,4 +1,5 @@
 import type { Metadata } from "next";
+import { ogImages } from "@/lib/og";
 import { ShieldCheck, Package, MessageCircle, Phone, CheckCircle } from "lucide-react";
 import Image from "next/image";
 import { academyHref } from "@/data/ecosystem";
@@ -12,7 +13,7 @@ export const metadata: Metadata = {
     title: "Hacamat Malzemeleri | CE Sertifikalı Steril Set | Konya",
     description: "Profesyonel hacamat malzemeleri ve sülük bakım seti. CE sertifikalı, steril ambalaj. Türkiye geneli kargo. WhatsApp: +90 554 406 23 83",
     url: '/malzemeler',
-    images: [{ url: "/logo.webp", width: 1200, height: 630, alt: "Hacamat Malzemeleri Konya" }],
+    images: ogImages({ title: "Hacamat & Kupa Malzemeleri", eyebrow: "CE Sertifikalı Steril Set", alt: "Hacamat Malzemeleri Konya" }),
   },
 };
 
@@ -63,7 +64,7 @@ const urunler = [
 
 export default function MalzemelePage() {
   return (
-    <main className="min-h-screen bg-anthracite-dark">
+    <div className="min-h-screen bg-anthracite-dark">
 
       {/* HERO */}
       <section className="pt-20 pb-20 relative overflow-hidden">
@@ -218,6 +219,6 @@ export default function MalzemelePage() {
         </div>
       </section>
 
-    </main>
+    </div>
   );
 }

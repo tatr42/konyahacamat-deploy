@@ -1,4 +1,5 @@
 import type { Metadata } from "next";
+import { ogImages } from "@/lib/og";
 import Link from "next/link";
 import Image from "next/image";
 import GalleryGrid from "./GalleryGrid";
@@ -12,13 +13,13 @@ export const metadata: Metadata = {
     title: "Galeri | Hacamat Seansı & Kurs Fotoğrafları | Ebusadullah Konya",
     description: "Hacamat seansları, kurs eğitimleri ve Almanya faaliyetlerinden fotoğraflar. Ebusadullah Hacamat & Akademi.",
     url: '/galeri',
-    images: [{ url: "/logo.webp", width: 1200, height: 630, alt: "Hacamat Galeri Konya" }],
+    images: ogImages({ title: "Galeri — Uygulama & Eğitim", eyebrow: "Fotoğraf & Video", alt: "Hacamat Galeri Konya" }),
   },
 };
 
 export default function GaleriPage() {
   return (
-    <main className="min-h-screen bg-anthracite-dark">
+    <div className="min-h-screen bg-anthracite-dark">
       <section className="pt-20 pb-16">
         <div className="container-site">
           <span className="text-teal text-[11px] font-black uppercase tracking-[0.3em]">Görseller</span>
@@ -76,6 +77,6 @@ export default function GaleriPage() {
           </div>
         </div>
       </section>
-    </main>
+    </div>
   );
 }

@@ -1,4 +1,5 @@
 import type { Metadata } from "next";
+import { ogImages } from "@/lib/og";
 import { getPressItems } from "@/lib/press";
 import HeroSection from "@/components/HeroSection";
 import ServicesGrid from "@/components/ServicesGrid";
@@ -6,7 +7,6 @@ import DiseaseTabs from "@/components/DiseaseTabs";
 import AcademySection from "@/components/AcademySection";
 import PressSection from "@/components/PressSection";
 import Testimonials from "@/components/Testimonials";
-import WhatsAppWidget from "@/components/WhatsAppWidget";
 
 /**
  * Ana Sayfa Metadata Yapısı
@@ -22,7 +22,7 @@ export const metadata: Metadata = {
     description: "Konya'da uzman sülük terapisi (hirudoterapi), kuru & yaş hacamat ve sertifikalı kurslar. 32+ yıl deneyim, tek kullanımlık steril uygulama. Almanya periyodik seansları.",
     url: '/',
     type: "website",
-    images: [{ url: "/logo.webp", width: 1200, height: 630, alt: "Konya Hacamat Ebusadullah Akademi" }],
+    images: ogImages({ title: "Konya Sülük Terapisi & Hacamat", eyebrow: "Ebusadullah Hacamat & Akademi", alt: "Konya Hacamat Ebusadullah Akademi" }),
   },
 };
 
@@ -42,38 +42,11 @@ const faqSchema = {
   ],
 };
 
-
-const BASE = "https://www.konyahacamat.net";
-
-
-/**
- * İşletme ve Hizmet Şeması (MedicalBusiness Schema)
- * Şema verilerinde (JSON-LD) mutlak URL kullanımı SEO açısından zorunludur.
- */
-
-const serviceSchema = {
-  "@context": "https://schema.org",
-  "@type": "MedicalBusiness",
-  name: "Ebusadullah Hacamat & Akademi",
-
-  url: BASE,
- 
-  telephone: "+905544062383",
-  address: { 
-    "@type": "PostalAddress", 
-    streetAddress: "Sahibiata Mh. Taşcami Uzunharmanlar Cd. No: 16-4",
-    addressLocality: "Meram",
-    postalCode: "42040",
-    addressRegion: "Konya", 
-    addressCountry: "TR" 
-  },
-  medicalSpecialty: "Geleneksel Tıp",
-  availableService: [
-    { "@type": "MedicalTherapy", name: "Sülük Terapisi (Hirudoterapi)", url: `${BASE}/hizmetler/suluk` },
-    { "@type": "MedicalTherapy", name: "Kuru Hacamat", url: `${BASE}/hizmetler/hacamat` },
-    { "@type": "MedicalTherapy", name: "Yaş Hacamat", url: `${BASE}/hizmetler/hacamat` },
-  ],
-};
+// NOT: Buradaki ikinci `MedicalBusiness` şeması KALDIRILDI.
+// `@id`'si olmadığı için root layout'taki işletme varlığına bağlanmıyor ve
+// Google iki ayrı işletme görüyordu. Adres/telefon/`availableService` alanları
+// artık tek kanonik şemada: src/app/layout.tsx (`@id` = .../#localbusiness),
+// verisi src/lib/business.ts'ten geliyor.
 
 // ISR: basın kartları sunucuda render edilir (SEO), 5 dakikada bir yenilenir.
 export const revalidate = 300;
@@ -83,14 +56,12 @@ export default async function Home() {
   return (
     <>
       <script type="application/ld+json" dangerouslySetInnerHTML={{ __html: JSON.stringify(faqSchema) }} />
-      <script type="application/ld+json" dangerouslySetInnerHTML={{ __html: JSON.stringify(serviceSchema) }} />
       <HeroSection />
       <ServicesGrid />
       <DiseaseTabs />
       <AcademySection />
       <Testimonials />
       <PressSection items={pressItems} />
-      <WhatsAppWidget />
     </>
   );
 }

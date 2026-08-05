@@ -1,4 +1,5 @@
 import type { Metadata } from "next";
+import { ogImages } from "@/lib/og";
 import Link from "next/link";
 import Image from "next/image";
 import { BookOpen, CheckCircle, Clock, Users, Award, MessageCircle, Phone, Globe, ChevronRight } from "lucide-react";
@@ -12,7 +13,7 @@ export const metadata: Metadata = {
     title: "Hacamat Kursu Konya | Sertifikalı Eğitim | Ebusadullah Akademi",
     description: "Sertifikalı hacamat ve sülük terapisi uzmanlık kursları. Küçük gruplar, birebir uygulama. 1200+ mezun. Konya ve Almanya'da eğitim.",
     url: '/egitimler',
-    images: [{ url: "/logo.webp", width: 1200, height: 630, alt: "Hacamat Kursu Ebusadullah Akademi Konya" }],
+    images: ogImages({ title: "Hacamat & Sülük Uzmanlık Kursu", eyebrow: "Sertifikalı Eğitim", alt: "Hacamat Kursu Ebusadullah Akademi Konya" }),
   },
 };
 
@@ -82,7 +83,7 @@ const avantajlar = [
 
 export default function EgitimlerPage() {
   return (
-    <main className="min-h-screen bg-anthracite-dark">
+    <div className="min-h-screen bg-anthracite-dark">
 
       {/* HERO */}
       <section className="pt-20 pb-20 relative overflow-hidden">
@@ -316,6 +317,6 @@ export default function EgitimlerPage() {
         </div>
       </section>
 
-    </main>
+    </div>
   );
 }

@@ -27,7 +27,7 @@ export default function BasinClient({ initialItems }: { initialItems: PressItem[
   };
 
   return (
-    <main className="min-h-screen bg-anthracite-dark pt-20 pb-24">
+    <div className="min-h-screen bg-anthracite-dark pt-20 pb-24">
 
       {/* LIGHTBOX */}
       {lightbox && aktifGazete && (
@@ -188,6 +188,6 @@ export default function BasinClient({ initialItems }: { initialItems: PressItem[
         </div>
 
       </div>
-    </main>
+    </div>
   );
 }

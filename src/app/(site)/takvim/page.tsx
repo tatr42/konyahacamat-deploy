@@ -1,4 +1,5 @@
 import type { Metadata } from "next";
+import { ogImages } from "@/lib/og";
 import { Moon, Shield, Clock, MessageCircle, Phone } from "lucide-react";
 import HacamatCalendar from "@/components/HacamatCalendar";
 import Link from "next/link";
@@ -16,7 +17,7 @@ export const metadata: Metadata = {
     title: `Hacamat Takvimi ${currentYear} | Hicri Faziletli Günler | Konya Randevu`,
     description: "Hicri takvime göre işaretli faziletli hacamat günleri. Gün seçin, WhatsApp ile anında randevu alın. Konya ve Almanya.",
     url: '/takvim',
-    images: [{ url: "/logo.webp", width: 1200, height: 630, alt: "Hacamat Takvimi Konya" }],
+    images: ogImages({ title: "Hacamat Randevu Takvimi", eyebrow: "Faziletli Günler", alt: "Hacamat Takvimi Konya" }),
   },
 };
 
@@ -28,7 +29,7 @@ const adimlar = [
 
 export default function TakvimPage() {
   return (
-    <main className="min-h-screen bg-anthracite-dark">
+    <div className="min-h-screen bg-anthracite-dark">
 
       {/* HERO */}
       <section className="pt-20 pb-16 relative overflow-hidden">
@@ -237,6 +238,6 @@ export default function TakvimPage() {
         </div>
       </section>
 
-    </main>
+    </div>
   );
 }

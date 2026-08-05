@@ -1,4 +1,5 @@
 import type { Metadata } from "next";
+import { ogImages } from "@/lib/og";
 import Link from "next/link";
 import Image from "next/image";
 import { Clock, MessageCircle, Phone, ChevronRight, AlertTriangle } from "lucide-react";
@@ -13,7 +14,7 @@ export const metadata: Metadata = {
     title: "Sülük Terapisi Konya | Hirudoterapi | Ebusadullah Hacamat Akademi",
     description: "Konya'da uzman sülük terapisi. Varis, eklem ve dolaşım bozukluklarında doğal tedavi. Tek kullanımlık tıbbi sülük ile steril uygulama.",
     url: '/hizmetler/suluk',
-    images: [{ url: "/logo.webp", width: 1200, height: 630, alt: "Sülük Terapisi Konya Ebusadullah" }],
+    images: ogImages({ title: "Sülük Terapisi (Hirudoterapi)", eyebrow: "Uzmanlık Alanımız", alt: "Sülük Terapisi Konya Ebusadullah" }),
   },
 };
 
@@ -354,7 +355,7 @@ function CtaSection() {
 
 export default function SulukPage() {
   return (
-    <main className="min-h-screen bg-anthracite-dark">
+    <div className="min-h-screen bg-anthracite-dark">
       <script type="application/ld+json" dangerouslySetInnerHTML={{ __html: JSON.stringify(medicalTherapySchema) }} />
       <script type="application/ld+json" dangerouslySetInnerHTML={{ __html: JSON.stringify(faqSchema) }} />
       <script type="application/ld+json" dangerouslySetInnerHTML={{ __html: JSON.stringify(breadcrumbSchema) }} />
@@ -368,6 +369,6 @@ export default function SulukPage() {
       <SssSection />
       <IlgiliSayfalarSection />
       <CtaSection />
-    </main>
+    </div>
   );
 }

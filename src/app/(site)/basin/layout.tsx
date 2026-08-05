@@ -1,4 +1,5 @@
 import type { Metadata } from "next";
+import { ogImages } from "@/lib/og";
 
 export const metadata: Metadata = {
   title: "Basın Odası | Medyada Hacamat & Ebusadullah Akademi | Konya",
@@ -9,7 +10,7 @@ export const metadata: Metadata = {
     description: "50+ ulusal ve yerel gazetede yer alan hacamat haberleri. Ebusadullah Hacamat & Akademi Konya basın odası.",
     url: '/basin',
     type: "website",
-    images: [{ url: "/logo.webp", width: 1200, height: 630, alt: "Konya Hacamat Basın Haberleri" }],
+    images: ogImages({ title: "Basında Biz", eyebrow: "Medya & Haberler", alt: "Konya Hacamat Basın Haberleri" }),
   },
 };
 

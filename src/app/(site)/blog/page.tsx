@@ -1,4 +1,5 @@
 import type { Metadata } from "next";
+import { ogImages } from "@/lib/og";
 import { Suspense } from "react";
 import Link from "next/link";
 import BlogList from "./BlogList";
@@ -20,7 +21,7 @@ const BASE_METADATA: Metadata = {
     description: "Hacamat nedir, nasıl yapılır, faydaları nelerdir? Uzman içeriklerle geleneksel tıp rehberi. Ebusadullah Akademi Konya.",
     url: '/blog',
     type: "website",
-    images: [{ url: "/logo.webp", width: 1200, height: 630, alt: "Hacamat Blog Konya Ebusadullah" }],
+    images: ogImages({ title: "Hacamat & Sağlık Blogu", eyebrow: "Rehberler & Yazılar", alt: "Hacamat Blog Konya Ebusadullah" }),
   },
 };
 
@@ -82,7 +83,7 @@ export default async function BlogPage({
     Array.from(new Set(posts.map((p) => p.category).filter(Boolean))),
   );
   return (
-    <main className="min-h-screen bg-anthracite-dark pt-20 pb-24">
+    <div className="min-h-screen bg-anthracite-dark pt-20 pb-24">
       <div className="container-site">
 
         {/* ── Hero ── */}
@@ -137,6 +138,6 @@ export default async function BlogPage({
         </Suspense>
 
       </div>
-    </main>
+    </div>
   );
 }

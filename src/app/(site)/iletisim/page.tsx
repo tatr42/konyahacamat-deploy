@@ -1,6 +1,8 @@
 import type { Metadata } from "next";
+import { ogImages } from "@/lib/og";
 import { MapPin, Phone, Mail, Clock, MessageCircle, Globe } from "lucide-react";
 import { getYearsExpStr } from "@/lib/experience";
+import { mapEmbedSrc, mapDirectionsHref, mapPlaceHref } from "@/lib/business";
 import Image from "next/image";
 import { academyHref } from "@/data/ecosystem";
 
@@ -13,13 +15,13 @@ export const metadata: Metadata = {
     title: "İletişim & Randevu | Konya Hacamat Ebusadullah",
     description: "Hacamat randevusu için: +90 554 406 23 83 | Almanya: +49 163 449 28 70 | Sahibiata Mh. Meram/Konya. WhatsApp 7/24.",
     url: '/iletisim',
-    images: [{ url: "/logo.webp", width: 1200, height: 630, alt: "Konya Hacamat İletişim" }],
+    images: ogImages({ title: "İletişim & Randevu", eyebrow: "Konya · Almanya Hattı", alt: "Konya Hacamat İletişim" }),
   },
 };
 
 export default function IletisimPage() {
   return (
-    <main className="min-h-screen bg-anthracite-dark">
+    <div className="min-h-screen bg-anthracite-dark">
       <section className="pt-20 pb-20 relative overflow-hidden">
         <div className="absolute top-0 right-0 w-[500px] h-[500px] bg-teal/5 rounded-full blur-[120px]" />
         <div className="container-site relative z-10">
@@ -155,8 +157,8 @@ export default function IletisimPage() {
               {/* Harita */}
               <div className="rounded-2xl overflow-hidden border border-white/10 h-72 group relative">
                 <iframe
-                  src="https://maps.google.com/maps?q=Sahibiata%20Mh.%20Ta%C5%9Fcami%20Uzunharmanlar%20Cd.%20No%3A16-4%2C%2042040%20Meram%2FKonya&z=16&output=embed"
-                  title="Ebusadullah Hacamat & Akademi — Sahibiata Mh. Taşcami Uzunharmanlar Cd. No:16-4, Meram/Konya"
+                  src={mapEmbedSrc()}
+                  title="Ebusadullah Hacamat & Akademi — Google Haritalar'daki işletme konumu, Sahibiata Mh. Taşcami Uzunharmanlar Cd., Meram/Konya"
                   width="100%"
                   height="100%"
                   style={{ border: 0 }}
@@ -165,15 +167,22 @@ export default function IletisimPage() {
                   referrerPolicy="no-referrer-when-downgrade"
                   className="grayscale invert contrast-[0.9] opacity-80 group-hover:opacity-100 group-hover:grayscale-0 group-hover:invert-0 transition-all duration-700"
                 />
-                <div className="absolute bottom-4 left-4 right-4 pointer-events-none">
+                <div className="absolute bottom-4 left-4 right-4 flex flex-wrap gap-2 pointer-events-none">
                   <a
-                    href="https://www.google.com/maps/dir/?api=1&destination=Sahibiata%20Mh.%20Ta%C5%9Fcami%20Uzunharmanlar%20Cd.%20No%3A16-4%2C%2042040%20Meram%2FKonya"
+                    href={mapDirectionsHref()}
                     target="_blank" rel="noopener noreferrer nofollow"
-
                     title="Konya Hacamat Yol Tarifi"
                     className="inline-flex items-center gap-2 bg-anthracite-dark/90 backdrop-blur-md border border-white/10 px-4 py-2 rounded-xl text-[11px] font-bold text-teal uppercase tracking-widest pointer-events-auto hover:bg-teal hover:text-black transition-all shadow-2xl"
                   >
                     <MapPin size={12} /> Yol Tarifi Al
+                  </a>
+                  <a
+                    href={mapPlaceHref()}
+                    target="_blank" rel="noopener noreferrer nofollow"
+                    title="Google Haritalar'daki işletme profilimiz — yorumlar ve fotoğraflar"
+                    className="inline-flex items-center gap-2 bg-anthracite-dark/90 backdrop-blur-md border border-white/10 px-4 py-2 rounded-xl text-[11px] font-bold text-white/70 uppercase tracking-widest pointer-events-auto hover:text-teal transition-all shadow-2xl"
+                  >
+                    Google'da Gör
                   </a>
                 </div>
               </div>
@@ -211,6 +220,6 @@ export default function IletisimPage() {
         </div>
       </section>
 
-    </main>
+    </div>
   );
 }
