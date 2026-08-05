@@ -3,10 +3,14 @@ import Image from 'next/image';
 import { CheckCircle2, Calendar, Info, Globe } from 'lucide-react';
 import { getYearsExpStr } from '@/lib/experience';
 
+// YMYL: "384 Tedavi Alanı" istatistiği kaldırıldı — sayısal bir tedavi
+// kapsamı beyanıydı ve doğrulanabilir bir dayanağı yok. Yerine gerçekten
+// sayılabilen ve doğrulanabilir bir metrik konuldu.
+// Dil kuralı: src/constants/diseases.ts başındaki nota bakın.
 const stats = [
   { num: "1200+", label: "Mezun" },
   { num: getYearsExpStr(), label: "Yıl Deneyim" },
-  { num: "384", label: "Tedavi Alanı" },
+  { num: "4", label: "Kurs Programı" },
   { num: "6+", label: "Şehir" },
 ];
 
@@ -58,8 +62,13 @@ export default function AcademySection() {
             <span className="text-xs font-black text-teal uppercase tracking-[0.2em]">Kariyer Fırsatı</span>
           </div>
 
+          {/* YMYL: "Ailenizin Doktoru Olun" ve "384+ hastalığı tedavi etmeyi
+              öğrenin" ifadeleri kaldırıldı. Birincisi hekimlik icra edilebileceği
+              imasını, ikincisi sayısal bir tedavi kapsamı beyanını taşıyordu —
+              ikisi de sitenin kendi "kurum sertifikası" diliyle (lib/pseo/content.ts:965)
+              ve sağlık reklam mevzuatıyla çelişiyordu. */}
           <h2 className="text-4xl md:text-6xl font-display text-white leading-[1.1] font-bold">
-            Ailenizin <span className="text-teal italic">Doktoru Olun:</span> <br /> 
+            Uygulamayı <span className="text-teal italic">Kaynağından Öğrenin:</span> <br />
             <span className="relative">
               Ebusadullah Akademi
               <span className="absolute bottom-2 left-0 w-full h-1 bg-teal/20 -z-10"></span>
@@ -67,14 +76,18 @@ export default function AcademySection() {
           </h2>
 
           <p className="text-white/60 text-lg leading-relaxed max-w-xl">
-            Hacamat, sülük terapisi, akupunktur ve manuel sınıkçı kurslarımızla 384+ hastalığı tedavi etmeyi öğrenin. 
-            Mezunlarımız kendi merkezlerini kurarak bağımsız çalışıyor. 1200'den fazla mezunumuzun arasına katılın.
+            Hacamat, sülük terapisi, akupunktur ve manuel sınıkçı kurslarımızda uygulama tekniğini,
+            hijyen ve sterilizasyon disiplinini, endikasyon–kontrendikasyon sınırlarını kaynağından
+            öğrenin. Mezunlarımız kendi merkezlerini kurarak bağımsız çalışıyor;
+            1200&apos;den fazla mezunumuzun arasına katılın.
           </p>
 
           <ul className="grid grid-cols-1 sm:grid-cols-2 gap-y-4 gap-x-8 w-full">
             {[
               "Uygulamalı Eğitim",
-              "Hijyen Sertifikası",
+              // "Hijyen Sertifikası" → resmî bir belge (MEB hijyen belgesi) ile
+              // karıştırılabiliyordu; verilen belge Akademi'nin KURUM belgesidir.
+              "Hijyen & Sterilizasyon Modülü",
               "Steril Çalışma Disiplini",
               "Süresiz Destek",
               "Kadim Tıp Bilgisi",

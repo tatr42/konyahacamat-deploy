@@ -1,4 +1,5 @@
 import type { Metadata } from "next";
+import { ogImages } from "@/lib/og";
 import Link from "next/link";
 import Image from "next/image";
 import { Award, Users, Globe, Heart, CheckCircle, MessageCircle } from "lucide-react";
@@ -7,14 +8,14 @@ import { academyHref } from "@/data/ecosystem";
 
 export const metadata: Metadata = {
   title: "Hakkımızda | Ebusadullah Hacamat & Akademi Konya | 32+ Yıl Deneyim",
-  description: "Ebusadullah Hacamat & Akademi hakkında. 32+ yıl deneyim, 1200+ sertifikalı mezun, 384+ rahatsızlık kategorisi. Konya merkezli, Almanya dahil Avrupa'da hizmet.",
+  description: "Ebusadullah Hacamat & Akademi hakkında. 32+ yıl deneyim, 1200+ sertifikalı mezun, Konya merkezli uygulama ve eğitim akademisi. Almanya dahil Avrupa'da periyodik seanslar.",
 
   alternates: { canonical: '/hakkimizda' },
   openGraph: {
     title: "Hakkımızda | Ebusadullah Hacamat & Akademi Konya",
     description: "32+ yıl deneyim, 1200+ mezun. Konya'nın köklü hacamat ve akademi merkezi. Almanya dahil Avrupa'da hizmet.",
     url: '/hakkimizda',
-    images: [{ url: "/logo.webp", width: 1200, height: 630, alt: "Ebusadullah Hacamat Akademi Konya" }],
+    images: ogImages({ title: "Hakkımızda — Ebusadullah Hoca", eyebrow: "32+ Yıllık Tecrübe", alt: "Ebusadullah Hacamat Akademi Konya" }),
   },
 };
 
@@ -27,7 +28,7 @@ const degerler = [
 
 export default function HakkimizdaPage() {
   return (
-    <main className="min-h-screen bg-anthracite-dark">
+    <div className="min-h-screen bg-anthracite-dark">
 
       {/* HERO */}
       <section className="pt-20 pb-20 relative overflow-hidden">
@@ -91,7 +92,10 @@ export default function HakkimizdaPage() {
                 {[
                   { sayi: getYearsExpStr(), label: "Yıl Deneyim" },
                   { sayi: "1200+", label: "Akademi Mezunu" },
-                  { sayi: "384+", label: "Rahatsızlık Kategorisi" },
+                  // YMYL: "384+ / Rahatsızlık Kategorisi" kaldırıldı — çıplak
+                  // sayı olarak tedavi kapsamı beyanı oluyordu.
+                  // Bkz. src/constants/diseases.ts başındaki dil kuralı.
+                  { sayi: "4", label: "Kurs Programı" },
                   { sayi: "10+", label: "Ülkede Mezun" },
                 ].map(s => (
                   <div key={s.label} className="bg-white/5 border border-white/10 rounded-2xl p-4 text-center hover:border-teal/30 transition-colors">
@@ -298,6 +302,6 @@ export default function HakkimizdaPage() {
         </div>
       </section>
 
-    </main>
+    </div>
   );
 }

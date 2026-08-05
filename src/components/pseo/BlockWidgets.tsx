@@ -16,7 +16,6 @@
  */
 
 import {
-  ShieldAlert,
   ShieldCheck,
   Award,
   Recycle,
@@ -30,6 +29,7 @@ import {
   Car,
 } from "lucide-react";
 import type { BlockWidget } from "@/lib/pseo/content";
+import SafetyNotice from "@/components/SafetyNotice";
 
 // ─── Ortak kabuk ──────────────────────────────────────────────────────────
 
@@ -218,22 +218,8 @@ function KonyaAccess({
   );
 }
 
-// ─── Tıbbi sorumluluk notu ────────────────────────────────────────────────
-
-function SafetyNotice() {
-  return (
-    <div className="mt-6 p-5 rounded-2xl bg-gold/5 border border-gold/20 flex items-start gap-4">
-      <ShieldAlert size={20} className="text-gold shrink-0 mt-0.5" />
-      <p className="text-white/55 text-sm leading-relaxed">
-        <strong className="text-white">Tıbbi uyarı:</strong> Bu içerik ön
-        bilgilendirme amaçlıdır ve tıbbi tanı veya tedavi yerine geçmez. Hacamat
-        ve sülük geleneksel/tamamlayıcı yöntemlerdir. Gebelik, kan sulandırıcı
-        kullanımı, pıhtılaşma bozukluğu ve ileri anemi gibi durumlarda uygulama
-        yapılmaz veya özel dikkat gerektirir; öncesinde hekiminize danışın.
-      </p>
-    </div>
-  );
-}
+// Tıbbi sorumluluk notu artık `components/SafetyNotice.tsx` içinde —
+// ana sayfadaki şikâyet listesi de aynı metni kullanabilsin diye ayrıldı.
 
 // ─── Dağıtıcı ─────────────────────────────────────────────────────────────
 

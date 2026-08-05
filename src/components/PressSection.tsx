@@ -110,7 +110,12 @@ export default function PressSection({ items }: { items: PressItem[] }) {
           {[
             { num: "50+", label: "Gazete & Dergi" },
             { num: "1200+", label: "Sertifikalı Mezun" },
-            { num: "384", label: "Tedavi Alanı" },
+            // YMYL: "384 / Tedavi Alanı" kaldırıldı — çıplak bir sayı olarak
+            // basıldığında doğrudan tedavi kapsamı beyanıdır. Aynı bilgi
+            // /hizmetler ve /hizmetler/hacamat sayfalarında ATIFLI biçimde
+            // ("geleneksel kaynaklarda ... belirtilmektedir") duruyor; kabul
+            // edilebilir olan o kullanımdır. Bkz. src/constants/diseases.ts
+            { num: "6+", label: "Hizmet Verilen Şehir" },
             { num: getYearsExpStr(), label: "Yıllık Deneyim" },
           ].map((stat) => (
             <div key={stat.label} className="flex flex-col items-center text-center group">

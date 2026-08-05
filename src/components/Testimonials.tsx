@@ -3,20 +3,33 @@ import { Star, Quote, ChevronLeft, ChevronRight } from "lucide-react";
 import { useState, useEffect } from "react";
 import Image from "next/image";
 
+/**
+ * ⚠️ PLACEHOLDER YORUMLAR — GERÇEK YORUMLARLA DEĞİŞTİRİLMELİ.
+ *
+ * HUKUKİ/YMYL KURALI: Bu metinler HİZMET DENEYİMİNE (hijyen, ilgi, ortam,
+ * iletişim) odaklıdır. Sağlık reklam mevzuatı ve E-E-A-T gereği "tedavi ettim",
+ * "%X iyileşti", "ağrım geçti", "hastalığım düzeldi" gibi TIBBİ SONUÇ İDDİASI
+ * içeren HASTA DENEYİMİ paylaşımı YASAKTIR — buraya eklemeyin.
+ *
+ * Doğrusu: Google İşletme Profili'ndeki GERÇEK yorumlardan, izinli ve yalnızca
+ * deneyim/hizmet temalı olanları (isim kısaltmalı) buraya taşıyın. Gerçek ve
+ * doğrulanabilir yorumlara geçilene kadar Review/AggregateRating ŞEMASI
+ * BAĞLANMAMALIDIR (uydurma yıldız/derecelendirme daha ağır risktir).
+ */
 const reviews = [
   {
     id: 1,
     author: "Mehmet Y.",
-    role: "Bel Fıtığı Tedavisi",
-    text: "Ebusadullah Hocam'a bel fıtığı şikayetiyle geldim. 3 seans hacamat ve sülük sonrası ağrılarımda %90 azalma oldu. Allah razı olsun, herkese tavsiye ederim.",
+    role: "Sülük & Hacamat Uygulaması",
+    text: "Karşılama, bilgilendirme ve hijyen konusunda çok titizler. Uygulama öncesi her adım tek tek anlatıldı, tek kullanımlık malzeme benim yanımda açıldı. Kendimi güvende hissettim.",
     stars: 5,
     date: "2 hafta önce"
   },
   {
     id: 2,
     author: "Ayşe K.",
-    role: "Migren Şikayeti",
-    text: "Yıllardır bitmeyen migren ağrılarım için hacamat yaptırdım. İlk seanstan sonra bile farkı hissettim. Steril ve profesyonel bir ortam.",
+    role: "İlk Kez Gelen Danışan",
+    text: "İlk kez geliyordum ve çekiniyordum. Hoca ve ekibi çok sakin, sorularımın hepsine sabırla cevap verdiler. Ortam steril ve profesyoneldi, acele ettirilmeden ilgilendiler.",
     stars: 5,
     date: "1 ay önce"
   },
@@ -24,15 +37,15 @@ const reviews = [
     id: 3,
     author: "Hüseyin B.",
     role: "Kurs Kursiyeri",
-    text: "Ebusadullah Akademi'den hacamat eğitimi aldım. Hocamızın tecrübesi ve anlatımı harika. Şimdi kendi merkezimi açma hazırlığındayım.",
+    text: "Ebusadullah Akademi'den eğitim aldım. Hocamızın tecrübesi ve anlatımı çok net; uygulamalı bölüm özenliydi. Öğrenme sürecinden ve ilgiden memnun kaldım.",
     stars: 5,
     date: "2 ay önce"
   },
   {
     id: 4,
     author: "Fatma T.",
-    role: "Genel Detoks",
-    text: "Mevsim geçişlerinde mutlaka gelirim. Vücudumun hafiflediğini hissediyorum. Temizliğe ve hijyene verilen önem beni çok etkiledi.",
+    role: "Düzenli Danışan",
+    text: "Temizliğe ve hijyene verilen önem beni çok etkiledi. Randevu düzeni ve iletişim kusursuz; her seferinde aynı özenle karşılanıyorum. Gönül rahatlığıyla gelinecek bir yer.",
     stars: 5,
     date: "3 hafta önce"
   }
@@ -60,11 +73,15 @@ export default function Testimonials() {
             <span className="text-[11px] font-black text-teal uppercase tracking-[0.2em]">Müşteri Deneyimleri</span>
           </div>
           <h2 className="font-display text-4xl md:text-6xl font-bold text-white leading-tight">
-            Şifaya Kavuşanların <br /><span className="text-teal italic">Yorumları</span>
+            Danışanlarımızın <br /><span className="text-teal italic">Yorumları</span>
           </h2>
+          {/* NOT: Görünür ortalama puan, GERÇEK Google İşletme Profili puanıyla
+              bire bir eşleşmelidir. Doğrulanamayan bir sayı (ör. sabit "4.9")
+              göstermek sahte güven sinyalidir; puanı Google'daki güncel değerle
+              güncelleyin veya bu bloğu kaldırın. */}
           <div className="flex items-center justify-center gap-1 text-teal">
              {[...Array(5)].map((_, i) => <Star key={i} size={16} fill="currentColor" />)}
-             <span className="ml-2 text-white/70 font-bold text-sm">4.9/5 Ortalama</span>
+             <span className="ml-2 text-white/70 font-bold text-sm">Google Yorumları</span>
           </div>
         </div>
 
@@ -151,7 +168,7 @@ export default function Testimonials() {
             title="Ebusadullah Hacamat Google Yorumları"
             className="inline-flex items-center gap-3 bg-white/5 hover:bg-white/10 border border-white/10 px-8 py-4 rounded-2xl font-bold text-white text-sm transition-all active:scale-95"
           >
-            <Image src="/logo.webp" alt="Google" width={20} height={20} className="w-5 h-5 object-contain grayscale brightness-200" />
+            <Image src="/logo.webp" alt="" aria-hidden="true" width={20} height={20} className="w-5 h-5 object-contain grayscale brightness-200" />
             TÜM GOOGLE YORUMLARINI GÖR
           </a>
         </div>

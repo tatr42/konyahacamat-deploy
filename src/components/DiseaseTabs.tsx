@@ -5,12 +5,13 @@ import Image from "next/image";
 import { ArrowRight, ChevronDown } from "lucide-react";
 import { categories } from "@/constants/diseases";
 import { academyHref } from "@/data/ecosystem";
+import SafetyNotice from "@/components/SafetyNotice";
 
-const VISIBLE_CATS = 2;   // mobilde görünen kategori sayısı
-const VISIBLE_DISEASES = 6; // başta görünen hastalık sayısı
+const VISIBLE_CATS = 2;      // mobilde görünen kategori sayısı
+const VISIBLE_COMPLAINTS = 6; // başta görünen şikâyet sayısı
 
 export default function DiseaseTabs() {
-  const [active, setActive] = useState("noroloji");
+  const [active, setActive] = useState(categories[0].id);
   const [catOpen, setCatOpen] = useState(false);
   const [diseasesExpanded, setDiseasesExpanded] = useState(false);
   const dropRef = useRef<HTMLDivElement>(null);
@@ -28,7 +29,7 @@ export default function DiseaseTabs() {
     return () => document.removeEventListener("mousedown", handler);
   }, []);
 
-  // Kategori değişince hastalık listesini sıfırla
+  // Kategori değişince şikâyet listesini sıfırla
   const selectCat = (id: string) => {
     setActive(id);
     setDiseasesExpanded(false);
@@ -39,8 +40,8 @@ export default function DiseaseTabs() {
   const hiddenCats = categories.slice(VISIBLE_CATS);
   const activeIsHidden = hiddenCats.some(c => c.id === active);
 
-  const visibleDiseases = diseasesExpanded ? current.diseases : current.diseases.slice(0, VISIBLE_DISEASES);
-  const hasMore = current.diseases.length > VISIBLE_DISEASES;
+  const visibleComplaints = diseasesExpanded ? current.complaints : current.complaints.slice(0, VISIBLE_COMPLAINTS);
+  const hasMore = current.complaints.length > VISIBLE_COMPLAINTS;
 
   return (
     <section className="py-12 md:py-24 bg-anthracite-dark relative overflow-hidden">
@@ -50,17 +51,21 @@ export default function DiseaseTabs() {
 
         {/* Başlık */}
         <div className="max-w-2xl mb-8 space-y-3">
+          {/* YMYL: rozet ve başlık, TEDAVİ İDDİASI değil BAŞVURU NEDENİ anlatır.
+              Önceki hali ("384+ Hastalık" / "Hangi Rahatsızlığa Şifa Sunuyoruz?")
+              tanı listesiyle birleşince doğrudan tedavi beyanı oluyordu. */}
           <div className="inline-flex items-center gap-3 bg-teal/10 border border-teal/20 px-5 py-2 rounded-full">
             <span className="flex h-2 w-2 rounded-full bg-teal animate-pulse" />
-            <span className="text-xs font-black text-teal uppercase tracking-[0.2em]">384+ Hastalık</span>
+            <span className="text-xs font-black text-teal uppercase tracking-[0.2em]">Sık Gelen Şikâyetler</span>
           </div>
           <h2 className="font-display text-3xl md:text-6xl font-bold text-white leading-[1.1]">
-            Hangi Rahatsızlığa <br />
-            <span className="text-teal italic">Şifa Sunuyoruz?</span>
+            Hangi Şikâyetlerle <br />
+            <span className="text-teal italic">Başvuruluyor?</span>
           </h2>
           <p className="text-white/50 text-sm md:text-base max-w-xl">
-            <strong className="text-white/70">Sülük terapisi (hirudoterapi)</strong> ve hacamat
-            uygulamalarıyla dolaşım, ağrı, ödem ve cilt sorunlarında destekleyici doğal çözümler.
+            Danışanlarımızın <strong className="text-white/70">sülük terapisi (hirudoterapi)</strong> ve
+            hacamat için en sık dile getirdiği şikâyetler aşağıdadır. Bu bir tedavi listesi değildir;
+            uygulamalar geleneksel ve tamamlayıcı yöntemlerdir.
           </p>
         </div>
 
@@ -166,12 +171,12 @@ export default function DiseaseTabs() {
             {/* Sağ: hastalık etiketleri + genişlet */}
             <div className="flex-1 min-w-0">
               <div className="flex flex-wrap gap-2">
-                {visibleDiseases.map((disease) => (
+                {visibleComplaints.map((complaint) => (
                   <span
-                    key={disease}
+                    key={complaint}
                     className="bg-white/5 border border-white/10 text-white/70 text-xs font-semibold px-3 py-1.5 rounded-lg"
                   >
-                    {disease}
+                    {complaint}
                   </span>
                 ))}
               </div>
@@ -180,7 +185,7 @@ export default function DiseaseTabs() {
                   onClick={() => setDiseasesExpanded(e => !e)}
                   className="mt-4 flex items-center gap-1.5 text-teal text-xs font-black uppercase tracking-widest"
                 >
-                  {diseasesExpanded ? "Daha Az Göster" : `+${current.diseases.length - VISIBLE_DISEASES} Daha Fazlasını Gör`}
+                  {diseasesExpanded ? "Daha Az Göster" : `+${current.complaints.length - VISIBLE_COMPLAINTS} Daha Fazlasını Gör`}
                   <ChevronDown size={13} className={`transition-transform ${diseasesExpanded ? "rotate-180" : ""}`} />
                 </button>
               )}
@@ -204,10 +209,17 @@ export default function DiseaseTabs() {
           </div>
         </div>
 
+        {/* TIBBİ UYARI — şikâyet listesinin hemen altında, göz ardı edilemeyecek
+            yerde. pSEO ve blog sayfalarında zaten vardı; ana sayfada YOKTU ve
+            en riskli içerik buradaydı. Metin tek kaynak: components/SafetyNotice */}
+        <SafetyNotice className="mt-6" />
+
         {/* Kurs CTA */}
         <div className="mt-8 bg-teal/5 border border-teal/10 rounded-2xl p-6 flex flex-col md:flex-row items-start md:items-center justify-between gap-5">
           <div>
-            <p className="text-teal text-xs font-black uppercase tracking-widest mb-1">Ailenizin Doktoru Olun</p>
+            {/* "Ailenizin Doktoru Olun" kaldırıldı: hekimlik icra edilebileceği
+                imasını taşıyordu — kurum sertifikası dilimizle de çelişiyordu. */}
+            <p className="text-teal text-xs font-black uppercase tracking-widest mb-1">Uygulamayı Kaynağından Öğrenin</p>
             <h3 className="font-display text-xl md:text-2xl font-bold text-white">
               Hacamat, Sülük & Akupunktur Kursları
             </h3>

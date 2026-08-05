@@ -1,60 +1,118 @@
 import { Brain, Heart, Bone, Leaf, Users, Zap, LucideIcon } from "lucide-react";
 
+/**
+ * ANA SAYFA ŞİKÂYET LİSTESİ — hastalık listesi DEĞİL.
+ *
+ * ═══════════════════════════════════════════════════════════════════════
+ * DİL KURALI (YMYL / sağlık reklam mevzuatı) — DEĞİŞTİRMEDEN ÖNCE OKUYUN
+ * ═══════════════════════════════════════════════════════════════════════
+ *
+ * Bu liste "hangi hastalıkları tedavi ediyoruz" değil, "insanlar bize hangi
+ * ŞİKÂYETLE geliyor" sorusunu yanıtlar. Aradaki fark hukuki:
+ *
+ *   ✗ YASAK — TANI ADI:  "Epilepsi", "Parkinson", "Alzheimer", "Bipolar
+ *     Bozukluk", "Sedef", "Romatoid Artrit", "Kısırlık", "Göz Tansiyonu",
+ *     "Tansiyon", "Uyku Apnesi", "Serviks Tedavisi"...
+ *     Bir tanıyı listelemek, o hastalığa yönelik hizmet verildiği beyanıdır.
+ *     Geleneksel ve Tamamlayıcı Tıp Uygulamaları Yönetmeliği ile Sağlık
+ *     Bakanlığı reklam kuralları bunu yasaklar; Google'ın YMYL/tıbbi kalite
+ *     değerlendirmesinde de en sert cezalandırılan kalıptır.
+ *
+ *   ✓ SERBEST — ŞİKÂYET/SEMPTOM:  "bel ağrısı", "eklem tutukluğu",
+ *     "bacaklarda ağırlık hissi", "uykuya dalmakta zorlanma"...
+ *     Kişinin kendi ifadesiyle söylediği durumdur, tanı içermez.
+ *
+ * EK KURAL — CİDDİ HASTALIK YÖNLENDİRMESİ:
+ *   Geciktirilmesi zarar veren tanılar (kanser, glokom, epilepsi, kısırlık,
+ *   psikiyatrik tanılar) buraya ŞİKÂYET BİÇİMİNDE BİLE eklenmez. Böyle bir
+ *   ziyaretçinin hekime gitmesini geciktirmek, sıralama kaybından çok daha
+ *   ağır bir sorumluluktur.
+ *
+ * Bu kural `data/blog-posts.ts:34` ve `data/faq-pool.ts:12` içindeki dil
+ * kuralıyla aynıdır — orada uygulanıyordu, burada uygulanmıyordu.
+ *
+ * Listenin gösterildiği yer: `components/DiseaseTabs.tsx`. O bileşen bu
+ * listenin altına `SafetyNotice` basar; kaldırmayın.
+ */
+
 export interface DiseaseCategory {
   id: string;
   label: string;
   icon: LucideIcon;
   color: string;
   img?: string;
-  diseases: string[];
+  /** Şikâyet/semptom ifadeleri — tanı adı YAZILMAZ (yukarıdaki kurala bakın). */
+  complaints: string[];
 }
 
 export const categories: DiseaseCategory[] = [
   {
-    id: "noroloji",
-    label: "Nöroloji",
+    id: "bas-boyun",
+    label: "Baş & Boyun",
     icon: Brain,
     color: "from-purple-500/20 to-teal/10",
     img: "/11.webp",
-    diseases: [
-      "Migren", "Vertigo", "Epilepsi", "Parkinson", "Alzheimer",
-      "Dikkat Kaybı", "Unutkanlık", "Hafıza Bozukluğu", "Tinnitus",
-      "Sinir Sıkışması", "Trigeminal Nevralji", "Karpal Tünel",
-      "Kol Uyuşması", "Baş Dönmesi", "Konsantrasyon Bozukluğu",
+    complaints: [
+      "Baş ağrısı",
+      "Ense ve boyun tutukluğu",
+      "Baş dönmesi hissi",
+      "Kulak çınlaması",
+      "Omuz-boyun gerginliği",
+      "Kol ve elde uyuşma hissi",
+      "Göz çevresinde baskı hissi",
+      "Yoğunlaşmada zorlanma",
+      "Gün içi zihinsel yorgunluk",
     ],
   },
   {
-    id: "kas-iskelet",
-    label: "Kas & İskelet",
+    id: "kas-eklem",
+    label: "Kas & Eklem",
     icon: Bone,
     color: "from-amber-500/20 to-teal/10",
     img: "/10.webp",
-    diseases: [
-      "Boyun Fıtığı", "Bel Fıtığı", "Romatizma", "Gut Hastalığı",
-      "Fibromiyalji", "Adale Yırtılması", "Kramp", "Eklem Ağrısı",
-      "Romatoid Artrit", "Sırt Ağrısı", "Omuz Ağrısı", "Diz Ağrısı",
+    complaints: [
+      "Bel ağrısı",
+      "Sırt ağrısı",
+      "Boyun ağrısı",
+      "Omuz ağrısı",
+      "Diz ve bacak ağrısı",
+      "Eklemlerde tutukluk",
+      "Sabah tutukluğu hissi",
+      "Kas kasılması ve kramp",
+      "Uzun oturmaya bağlı bel yorgunluğu",
+      "Ağır kaldırma sonrası sırt gerginliği",
     ],
   },
   {
-    id: "dahiliye",
-    label: "Dahiliye",
+    id: "dolasim",
+    label: "Dolaşım & Genel",
     icon: Heart,
     color: "from-red-500/20 to-teal/10",
-    diseases: [
-      "Tansiyon", "Karaciğer Temizliği", "Hemoroid (Basur)", "Varis",
-      "Kronik Yorgunluk", "Uyku Apnesi", "Çok Uyumak", "Uyuyamamak",
-      "Sinüzit", "Meniere Sendromu", "Gece Terlemesi", "Ayak Üşümesi",
+    complaints: [
+      "Bacaklarda ağırlık hissi",
+      "Ayak ve bacaklarda şişlik (ödem) hissi",
+      "Bacaklarda varis görünümü",
+      "Ellerde ve ayaklarda üşüme",
+      "Gün boyu süren halsizlik hissi",
+      "Gece terlemesi",
+      "Uzun süre ayakta kalmaya bağlı yorgunluk",
+      "Vücutta ağırlık ve durgunluk hissi",
     ],
   },
   {
-    id: "dermatoloji",
-    label: "Deri & Göz",
+    id: "cilt-goz",
+    label: "Cilt & Göz",
     icon: Leaf,
     color: "from-green-500/20 to-teal/10",
-    diseases: [
-      "Saç Dökülmesi", "Sedef (Psöriyazis)", "Egzama", "Kurdeşen",
-      "Göz Kuruluğu", "Göz Tansiyonu", "Üveyt", "Dil Yanması",
-      "Aft (Ağız Yarası)", "Ayak Terlemesi", "Ayak Kokusu", "Cilt Hastalıkları",
+    complaints: [
+      "Ciltte kuruluk",
+      "Ciltte kaşıntı hissi",
+      "Ciltte matlık ve donukluk",
+      "Saç dökülmesi şikâyeti",
+      "Göz kuruluğu hissi",
+      "Göz yorgunluğu",
+      "Ağızda aft şikâyeti",
+      "Ayak terlemesi",
     ],
   },
   {
@@ -62,21 +120,29 @@ export const categories: DiseaseCategory[] = [
     label: "Kadın & Erkek",
     icon: Users,
     color: "from-pink-500/20 to-teal/10",
-    diseases: [
-      "Kısırlık", "Sperm Azlığı", "Adet Düzensizliği", "Menopoz",
-      "Jinekolojik Hastalıklar", "Genital Siğil", "Serviks Tedavisi",
-      "Pelviks Fertilite", "Performans", "Rahim Ağzı Rahatsızlıkları",
+    // NOT: Bu kategori bilinçli olarak KISA tutulmuştur. Doğurganlık, jinekolojik
+    // tanılar ve cinsel sağlık iddiaları buraya EKLENMEZ — hem mevzuat gereği
+    // hem de bu şikâyetlerle gelen kişinin hekime yönlendirilmesi gerektiği için.
+    complaints: [
+      "Adet dönemi bel ve kasık ağrısı",
+      "Menopoz döneminde sıcak basması şikâyeti",
+      "Dönemsel gerginlik ve huzursuzluk hissi",
+      "Genel halsizlik ve isteksizlik",
     ],
   },
   {
-    id: "psikoloji",
-    label: "Psikoloji",
+    id: "stres-uyku",
+    label: "Stres & Uyku",
     icon: Zap,
     color: "from-blue-500/20 to-teal/10",
-    diseases: [
-      "Anksiyete", "Manik Atak", "Bipolar Bozukluk", "Alt Islatma",
-      "Titreme", "Panik Atak", "Stres", "Depresyon",
-      "Dikkat Dağınıklığı", "OKB", "Uyku Bozukluğu",
+    complaints: [
+      "Stres ve gerginlik hissi",
+      "Uykuya dalmakta zorlanma",
+      "Gece sık uyanma",
+      "Sabah yorgun uyanma",
+      "Huzursuzluk hissi",
+      "Gün içi enerji düşüklüğü",
+      "Zihinsel yorgunluk",
     ],
   },
 ];
