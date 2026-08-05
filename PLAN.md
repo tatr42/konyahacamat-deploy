@@ -40,9 +40,14 @@ kırıklarını gidermek için önceliklendirilmiş eylem planıdır.
       **Kalan (bloke değil, iyileştirme):** `BUSINESS.legalName` boş olduğu için veri
       sorumlusu ticari adla anılıyor. Yasal ünvan `src/lib/business.ts`'e yazıldığında
       sayfa otomatik günceller — tek satırlık iş.
-- [!] **8. Geo koordinatları** — `layout.tsx` içinde TODO olarak duruyor. Yerel paket
-      sıralaması için kritik. **Gerekli veri:** Google İşletme Profili pin'inden
-      alınan KESİN lat/lng. *Şehir merkezi koordinatı kullanılmayacak.*
+- [x] **8. Geo koordinatları** — Google İşletme Profili pin'inden alınan kesin
+      lat/lng (37.866483, 32.493991) `business.ts`'e girildi; şemada canlı
+      doğrulandı. Harita da adres metni yerine CID ile gömülüyor (pin artık
+      sokağın tahmini bir noktasına değil işletme kaydına düşüyor).
+      **AÇIK RİSK — NAP tutarsızlığı:** Google kaydı kapı no "16-2" / posta kodu
+      "42100", site "16-4" / "42040" diyor. Yerel SEO'da adresin Google profili
+      ve tüm sitelerde BİREBİR aynı olması gerekir; hangisinin doğru olduğu
+      işletmeye teyit ettirilmeli.
 - [!] **9. GA4 / dönüşüm takibi** — sitede hiç ölçüm yok; tek dönüşüm kanalı olan
       WhatsApp ve `tel:` tıklamaları ölçülmüyor. **Gerekli veri:** GA4 Measurement ID.
 
