@@ -3,6 +3,7 @@ import React from 'react';
 import Link from 'next/link';
 import { MapPin, Instagram, Facebook, HeartPulse, Globe } from 'lucide-react';
 import { academyHref, academyHubHref } from "@/data/ecosystem";
+import { BUSINESS, telHref, yearsOfExperience } from "@/lib/business";
 
 export default function Footer() {
   const currentYear = new Date().getFullYear();
@@ -25,13 +26,16 @@ export default function Footer() {
               </h3>
             </Link>
             <p className="text-white/70 text-sm leading-relaxed max-w-xs">
-              Kadim şifa geleneklerini modern sterilizasyon ve uzmanlık eğitimiyle harmanlayarak geleceğe taşıyoruz. {new Date().getFullYear() - 1994}+ yıl, 1200+ mezun.
+              Kadim şifa geleneklerini modern sterilizasyon ve uzmanlık eğitimiyle harmanlayarak geleceğe taşıyoruz. {yearsOfExperience()}+ yıl, {BUSINESS.graduates}+ mezun.
             </p>
+            {/* Sosyal hesaplar: JSON-LD `sameAs` ile AYNI kaynaktan (lib/business.ts)
+                beslenir. Daha önce şema ile footer farklı adresler kullanıyor ve
+                sameAs doğrulaması bu yüzden kırılıyordu. */}
             <div className="flex gap-4">
-              <a href="https://www.instagram.com/konya_hacamat" target="_blank" rel="noopener noreferrer nofollow" aria-label="Konya Hacamat Instagram" title="Konya Hacamat Instagram" className="w-11 h-11 rounded-2xl bg-white/5 flex items-center justify-center hover:bg-teal hover:text-anthracite-dark transition-all duration-300 border border-white/10">
+              <a href={BUSINESS.social.instagram} target="_blank" rel="noopener noreferrer nofollow" aria-label="Konya Hacamat Instagram" title="Konya Hacamat Instagram" className="w-11 h-11 rounded-2xl bg-white/5 flex items-center justify-center hover:bg-teal hover:text-anthracite-dark transition-all duration-300 border border-white/10">
                 <Instagram size={20} />
               </a>
-              <a href="https://www.facebook.com/konyahacamat.com.tr/" target="_blank" rel="noopener noreferrer nofollow" aria-label="Konya Hacamat Facebook" title="Konya Hacamat Facebook" className="w-11 h-11 rounded-2xl bg-white/5 flex items-center justify-center hover:bg-teal hover:text-anthracite-dark transition-all duration-300 border border-white/10">
+              <a href={BUSINESS.social.facebook} target="_blank" rel="noopener noreferrer nofollow" aria-label="Konya Hacamat Facebook" title="Konya Hacamat Facebook" className="w-11 h-11 rounded-2xl bg-white/5 flex items-center justify-center hover:bg-teal hover:text-anthracite-dark transition-all duration-300 border border-white/10">
                 <Facebook size={20} />
               </a>
             </div>
@@ -64,29 +68,29 @@ export default function Footer() {
                   <MapPin size={18} className="text-teal group-hover:text-anthracite-dark" />
                 </div>
                 <span className="text-sm text-white/60 leading-snug">
-                  Sahibiata Mh. Taşcami Uzunharmanlar Cd. No: 16-4<br />
-                  <strong className="text-white">Meram / KONYA</strong>
+                  {BUSINESS.address.street}<br />
+                  <strong className="text-white">{BUSINESS.address.district} / {BUSINESS.address.city.toLocaleUpperCase('tr-TR')}</strong>
                 </span>
               </div>
               <div className="pt-2 space-y-2">
                 <span className="text-[10px] text-teal font-black uppercase tracking-widest block mb-2">Randevu & Bilgi</span>
                 <div>
                   <span className="text-[9px] text-white/70 uppercase tracking-widest">🇹🇷 Türkiye</span>
-                  <a href="tel:+905544062383" title="Konya Hacamat Türkiye: +90 554 406 23 83" className="block text-xl font-display font-bold text-white hover:text-teal transition-colors">
-                    +90 554 406 23 83
+                  <a href={telHref(BUSINESS.phone.tr)} title={`Konya Hacamat Türkiye: ${BUSINESS.phone.tr.display}`} className="block text-xl font-display font-bold text-white hover:text-teal transition-colors">
+                    {BUSINESS.phone.tr.display}
                   </a>
                 </div>
                 <div>
                   <span className="text-[9px] text-white/70 uppercase tracking-widest">🇩🇪 Almanya</span>
-                  <a href="tel:+491634492870" title="Konya Hacamat Almanya: +49 163 449 28 70" className="block text-xl font-display font-bold text-white hover:text-teal transition-colors">
-                    +49 163 449 28 70
+                  <a href={telHref(BUSINESS.phone.de)} title={`Konya Hacamat Almanya: ${BUSINESS.phone.de.display}`} className="block text-xl font-display font-bold text-white hover:text-teal transition-colors">
+                    {BUSINESS.phone.de.display}
                   </a>
                 </div>
               </div>
               <div>
-                <span className="text-[10px] text-white/70 font-bold uppercase tracking-widest block mb-1">Web</span>
-                <a href="https://www.konyahacamat.net" target="_blank" rel="noopener noreferrer nofollow" title="Konya Hacamat Resmi Web Sitesi" className="text-teal text-sm hover:underline font-bold">
-                  www.konyahacamat.net
+                <span className="text-[10px] text-white/70 font-bold uppercase tracking-widest block mb-1">E-Posta</span>
+                <a href={`mailto:${BUSINESS.email}`} title="E-posta gönderin" className="text-teal text-sm hover:underline font-bold">
+                  {BUSINESS.email}
                 </a>
               </div>
             </div>
@@ -135,7 +139,7 @@ export default function Footer() {
             <div className="mt-4 p-4 rounded-2xl bg-white/5 border border-white/10 flex items-center gap-3">
               <HeartPulse className="text-teal shrink-0" size={20} />
               <p className="text-[10px] text-white/70 leading-tight font-medium">
-                Türkiye genelinde <span className="text-white font-bold">1200+ aktif mezun</span> kendi merkezinde hizmet veriyor.
+                Türkiye genelinde <span className="text-white font-bold">{BUSINESS.graduates}+ aktif mezun</span> kendi merkezinde hizmet veriyor.
               </p>
             </div>
           </div>

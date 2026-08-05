@@ -1,6 +1,24 @@
 import type { Metadata } from "next";
 import { Playfair_Display, DM_Sans } from "next/font/google";
+import { Analytics } from "@vercel/analytics/next";
 import "./globals.css";
+import {
+  BASE_URL,
+  BUSINESS,
+  BUSINESS_ID,
+  abs,
+  geoSchema,
+  mapPlaceHref,
+  openingHoursSchema,
+  postalAddressSchema,
+} from "@/lib/business";
+import { ogCardUrl } from "@/lib/og";
+
+/** Marka geneli varsayılan OG kartı — sayfalar kendi başlıklarıyla ezebilir. */
+const DEFAULT_OG = ogCardUrl({
+  title: "Konya Sülük Terapisi & Hacamat",
+  eyebrow: "Ebusadullah Hacamat & Akademi",
+});
 
 const playfairDisplay = Playfair_Display({
   subsets: ["latin", "latin-ext"],
@@ -17,7 +35,7 @@ const dmSans = DM_Sans({
   display: "swap",
 });
 
-const BASE = "https://www.konyahacamat.net";
+const BASE = BASE_URL;
 
 export const metadata: Metadata = {
   metadataBase: new URL(BASE),
@@ -45,13 +63,13 @@ export const metadata: Metadata = {
     title: "Konya Sülük Terapisi & Hacamat | Ebusadullah Hacamat & Akademi",
     description:
       "Konya'da profesyonel sülük terapisi (hirudoterapi) ve hacamat. 32+ yıl deneyim, tek kullanımlık steril uygulama, Almanya seansları. Faziletli günlerde randevu alın.",
-    images: [{ url: "/logo.webp", width: 1200, height: 630, alt: "Konya Hacamat Ebusadullah Akademi" }],
+    images: [{ url: DEFAULT_OG, width: 1200, height: 630, alt: "Konya Hacamat Ebusadullah Akademi" }],
   },
   twitter: {
     card: "summary_large_image",
     title: "Konya Sülük Terapisi & Hacamat | Ebusadullah Hacamat & Akademi",
     description: "Konya'da profesyonel sülük terapisi (hirudoterapi) ve hacamat. 32+ yıl deneyim. Randevu: +90 554 406 23 83",
-    images: ["/logo.webp"],
+    images: [DEFAULT_OG],
   },
   verification: {
     google: "204ADYzUeUBHfuGRAFRrBFUrOvWq1WCJtsUvI-mIi6c",
@@ -66,45 +84,44 @@ export const metadata: Metadata = {
   },
 };
 
+/**
+ * İŞLETME ŞEMASI — sitedeki TEK işletme varlığı.
+ *
+ * Daha önce iki ayrı şema basılıyordu: burada `LocalBusiness` (@id'li) ve ana
+ * sayfada ayrıca `MedicalBusiness` (@id'siz). İkisi birbirine bağlı olmadığı
+ * için Google bunları İKİ FARKLI İŞLETME olarak görüyordu. Artık tek varlık
+ * var: `MedicalBusiness` (LocalBusiness'ın alt tipi) + kanonik `@id`.
+ * Ana sayfadaki tedavi listesi buraya `availableService` olarak taşındı.
+ *
+ * URL'ler MUTLAK — `metadataBase` yalnızca Next metadata'sına uygulanır,
+ * ham JSON-LD'ye uygulanmaz; göreli yollar Google tarafından geçersiz sayılır.
+ */
 const localBusinessSchema = {
   "@context": "https://schema.org",
-  "@type": "LocalBusiness",
-  "@id": `${BASE}/#localbusiness`,
-  name: "Ebusadullah Hacamat & Akademi",
-  alternateName: "Konya Hacamat Ebusadullah",
+  "@type": "MedicalBusiness",
+  "@id": BUSINESS_ID,
+  name: BUSINESS.name,
+  alternateName: BUSINESS.alternateName,
   description:
     "Konya'da 32+ yıldır hizmet veren profesyonel sülük terapisi (hirudoterapi) ve hacamat merkezi. Tıbbi sülük & kupa satışı, kurum sertifikalı uzmanlık eğitimleri.",
-  url: "/",
-  telephone: "+905544062383",
-  email: "info@konyahacamat.net",
-  image: "/logo.webp",
-  logo: "/fav.webp",
+  url: BASE,
+  telephone: `+${BUSINESS.phone.tr.raw}`,
+  email: BUSINESS.email,
+  image: abs("/logo.webp"),
+  logo: abs("/fav.webp"),
   priceRange: "₺₺",
   currenciesAccepted: "TRY",
   paymentAccepted: "Nakit, Havale",
-  address: {
-    "@type": "PostalAddress",
-    streetAddress: "Sahibiata Mh. Taşcami Uzunharmanlar Cd. No: 16-4",
-    addressLocality: "Meram",
-    addressRegion: "Konya",
-    postalCode: "42040",
-    addressCountry: "TR",
-  },
-  // TODO(adres): Yeni Meram adresinin KESİN koordinatlarını Google İşletme
-  // Profili pin'inden alıp aşağıdaki bloğu güncelleyip yorumdan çıkarın.
-  // Eski Selçuklu koordinatları kaldırıldı — yanlış konum yerel SEO'ya zarar verir.
-  // geo: {
-  //   "@type": "GeoCoordinates",
-  //   latitude: 0,
-  //   longitude: 0,
-  // },
-  openingHoursSpecification: [
-    { "@type": "OpeningHoursSpecification", dayOfWeek: ["Monday","Tuesday","Wednesday","Thursday","Friday","Saturday"], opens: "09:00", closes: "18:00" },
-  ],
-  sameAs: [
-    "https://www.instagram.com/konyahacamat",
-    "https://www.facebook.com/konyahacamat",
-  ],
+  medicalSpecialty: "Geleneksel Tıp",
+  address: postalAddressSchema(),
+  // Koordinat doğrulanana kadar `undefined` döner ve JSON.stringify alanı atar.
+  // Yanlış konum, eksik konumdan daha çok zarar verir (bkz. lib/business.ts).
+  geo: geoSchema(),
+  // Şemadaki varlığı Google İşletme Profili kaydına bağlar — sayfadaki
+  // gömülü harita ile aynı CID'yi işaret eder.
+  hasMap: mapPlaceHref(),
+  openingHoursSpecification: openingHoursSchema(),
+  sameAs: [BUSINESS.social.instagram, BUSINESS.social.facebook],
   // Hizmet alanı: yüz yüze uygulama Konya'da, ürün satışı kargoyla tüm
   // Türkiye'ye. İki kapsamı ayrı ayrı bildirmek, adresli LocalBusiness'ı
   // ServiceAreaBusiness'a çevirmeden ülke çapı e-ticareti anlatır.
@@ -120,16 +137,22 @@ const localBusinessSchema = {
       description: "Tıbbi sülük, kupa ve hacamat malzemelerinde kargo ile satış",
     },
   ],
+  // Ana sayfadaki mükerrer `MedicalBusiness` şemasından devralındı.
+  availableService: [
+    { "@type": "MedicalTherapy", name: "Sülük Terapisi (Hirudoterapi)", url: abs("/hizmetler/suluk") },
+    { "@type": "MedicalTherapy", name: "Kuru Hacamat", url: abs("/hizmetler/hacamat") },
+    { "@type": "MedicalTherapy", name: "Yaş Hacamat", url: abs("/hizmetler/hacamat") },
+  ],
   hasOfferCatalog: {
     "@type": "OfferCatalog",
     name: "Sülük & Hacamat Hizmetleri",
     itemListElement: [
-      { "@type": "Offer", itemOffered: { "@type": "Service", name: "Sülük Terapisi (Hirudoterapi)", url: `${BASE}/hizmetler/suluk` } },
-      { "@type": "Offer", itemOffered: { "@type": "Service", name: "Kuru Hacamat", url: `${BASE}/hizmetler/hacamat` } },
-      { "@type": "Offer", itemOffered: { "@type": "Service", name: "Yaş Hacamat", url: `${BASE}/hizmetler/hacamat` } },
-      { "@type": "Offer", itemOffered: { "@type": "Service", name: "Hacamat & Sülük Uzmanlık Kursu", url: `${BASE}/egitimler` } },
-      { "@type": "Offer", itemOffered: { "@type": "Product", name: "Tıbbi Sülük (Hirudo verbana)", url: `${BASE}/suluk-satisi` } },
-      { "@type": "Offer", itemOffered: { "@type": "Product", name: "Hacamat Kupası & Malzeme Setleri", url: `${BASE}/kupa-malzemeleri` } },
+      { "@type": "Offer", itemOffered: { "@type": "Service", name: "Sülük Terapisi (Hirudoterapi)", url: abs("/hizmetler/suluk") } },
+      { "@type": "Offer", itemOffered: { "@type": "Service", name: "Kuru Hacamat", url: abs("/hizmetler/hacamat") } },
+      { "@type": "Offer", itemOffered: { "@type": "Service", name: "Yaş Hacamat", url: abs("/hizmetler/hacamat") } },
+      { "@type": "Offer", itemOffered: { "@type": "Service", name: "Hacamat & Sülük Uzmanlık Kursu", url: abs("/egitimler") } },
+      { "@type": "Offer", itemOffered: { "@type": "Product", name: "Tıbbi Sülük (Hirudo verbana)", url: abs("/suluk-satisi") } },
+      { "@type": "Offer", itemOffered: { "@type": "Product", name: "Hacamat Kupası & Malzeme Setleri", url: abs("/kupa-malzemeleri") } },
     ],
   },
 };
@@ -145,6 +168,7 @@ export default function RootLayout({ children }: { children: React.ReactNode }) 
       </head>
       <body className="bg-anthracite-dark antialiased">
         {children}
+        <Analytics />
       </body>
     </html>
   );
