@@ -2,6 +2,7 @@ import React from 'react';
 import Image from 'next/image';
 import { CheckCircle2, Calendar, Info, Globe } from 'lucide-react';
 import { getYearsExpStr } from '@/lib/experience';
+import CertificateShowcase from '@/components/CertificateShowcase';
 
 // YMYL: "384 Tedavi Alanı" istatistiği kaldırıldı — sayısal bir tedavi
 // kapsamı beyanıydı ve doğrulanabilir bir dayanağı yok. Yerine gerçekten
@@ -52,6 +53,11 @@ export default function AcademySection() {
                 <p className="text-white/40 text-[10px] font-black uppercase tracking-wider mt-1">{s.label}</p>
               </div>
             ))}
+          </div>
+
+          {/* Güven rozeti: kurucunun uluslararası hijama eğitim belgesi */}
+          <div className="mt-4 max-w-[400px] mx-auto">
+            <CertificateShowcase mode="badge" />
           </div>
         </div>
 

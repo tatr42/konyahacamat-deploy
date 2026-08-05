@@ -5,6 +5,7 @@ import Image from "next/image";
 import { Award, Users, Globe, Heart, CheckCircle, MessageCircle } from "lucide-react";
 import { getYearsExpStr } from "@/lib/experience";
 import { academyHref } from "@/data/ecosystem";
+import CertificateShowcase from "@/components/CertificateShowcase";
 
 export const metadata: Metadata = {
   title: "Hakkımızda | Ebusadullah Hacamat & Akademi Konya | 32+ Yıl Deneyim",
@@ -52,7 +53,8 @@ export default function HakkimizdaPage() {
           <div className="grid grid-cols-1 lg:grid-cols-2 gap-16 items-center">
             <div>
               <span className="text-teal text-[11px] font-black uppercase tracking-widest">Kurucu</span>
-              <h2 className="font-display text-4xl font-bold text-white mt-3 mb-6">Ebusadullah Hoca</h2>
+              <h2 className="font-display text-4xl font-bold text-white mt-3 mb-1">Ebusadullah Hoca</h2>
+              <p className="text-white/40 text-sm font-medium mb-6">Abdullah Keskinoğlu</p>
               <div className="space-y-4 text-white/60 text-base leading-relaxed">
                 <p>
                   Hacamat ile tanışması, ailesindeki kronik hastalıkların geleneksel yöntemlerle iyileştirilmesi
@@ -108,6 +110,9 @@ export default function HakkimizdaPage() {
           </div>
         </div>
       </section>
+
+      {/* BELGELER */}
+      <CertificateShowcase />
 
       {/* HACAMAT & EBUSADULLAH GELENEĞİ */}
       <section className="py-20">

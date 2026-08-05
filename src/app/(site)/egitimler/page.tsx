@@ -3,6 +3,7 @@ import { ogImages } from "@/lib/og";
 import Link from "next/link";
 import Image from "next/image";
 import { BookOpen, CheckCircle, Clock, Users, Award, MessageCircle, Phone, Globe, ChevronRight } from "lucide-react";
+import CertificateShowcase from "@/components/CertificateShowcase";
 
 export const metadata: Metadata = {
   title: "Hacamat Kursu Konya | Sertifikalı Hacamat Eğitimi | Ebusadullah Akademi",
@@ -195,6 +196,9 @@ export default function EgitimlerPage() {
           </div>
         </div>
       </section>
+
+      {/* EĞİTMEN BELGESİ */}
+      <CertificateShowcase />
 
       {/* YORUM */}
       <section className="py-20 bg-white/3 border-y border-white/5">
