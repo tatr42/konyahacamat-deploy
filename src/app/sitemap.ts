@@ -57,6 +57,7 @@ const staticPages: MetadataRoute.Sitemap = [
   { url: `${BASE}/iletisim`, priority: 0.7, changeFrequency: "yearly" as const },
   { url: `${BASE}/malzemeler`, priority: 0.6, changeFrequency: "monthly" as const },
   { url: `${BASE}/gizlilik`, priority: 0.3, changeFrequency: "yearly" as const },
+  { url: `${BASE}/kvkk`, priority: 0.3, changeFrequency: "yearly" as const },
 ];
 
 /** Unix saniyesini `lastModified` alanına çevirir; yoksa/gelecekteyse budar. */

@@ -17,8 +17,11 @@ const bolumler = [
   },
   {
     baslik: "2. Toplanan Veriler",
+    // DÜZELTME: Burada "Google Analytics çerezleri kullanılmaktadır" yazıyordu;
+    // sitede Google Analytics YOK. Ölçüm Vercel Web Analytics ile yapılıyor ve
+    // kimliklendirme çerezi kullanmıyor. Yasal metinde yanlış beyan bırakılamaz.
     icerik:
-      "Web sitemiz üzerinden doğrudan kişisel veri toplayan bir üyelik veya form sistemi bulunmamaktadır. Bize WhatsApp veya telefon üzerinden ulaştığınızda paylaştığınız ad, telefon numarası ve randevu talebine ilişkin bilgiler yalnızca randevu oluşturma ve iletişim amacıyla kullanılır. Sitemizde ziyaret istatistikleri için Google Analytics çerezleri kullanılmaktadır; bu veriler anonim olup kimliğinizi doğrudan tanımlamaz.",
+      "Web sitemiz üzerinden doğrudan kişisel veri toplayan bir üyelik veya form sistemi bulunmamaktadır. Sitedeki hızlı bilgi formu girdiğiniz bilgileri sunucumuza göndermez; yalnızca tarayıcınızda bir WhatsApp mesajı hazırlar. Bize WhatsApp, telefon veya e-posta ile ulaştığınızda paylaştığınız ad, telefon numarası ve talebinize ilişkin bilgiler yalnızca randevu oluşturma ve iletişim amacıyla kullanılır. Ziyaret istatistikleri için kimliklendirme çerezi kullanmayan bir analiz aracından yararlanılır; bu veriler toplu ve anonim olup kimliğinizi doğrudan tanımlamaz.",
   },
   {
     baslik: "3. Verilerin Kullanım Amacı",
@@ -38,7 +41,7 @@ const bolumler = [
   {
     baslik: "6. KVKK Kapsamındaki Haklarınız",
     icerik:
-      "KVKK'nın 11. maddesi uyarınca; kişisel verilerinizin işlenip işlenmediğini öğrenme, işlenmişse bilgi talep etme, işleme amacını öğrenme, eksik veya yanlış işlenmişse düzeltilmesini isteme, silinmesini veya yok edilmesini talep etme haklarına sahipsiniz. Bu haklarınızı kullanmak için bize aşağıdaki iletişim kanallarından ulaşabilirsiniz.",
+      "KVKK'nın 11. maddesi uyarınca; kişisel verilerinizin işlenip işlenmediğini öğrenme, işlenmişse bilgi talep etme, işleme amacını öğrenme, eksik veya yanlış işlenmişse düzeltilmesini isteme, silinmesini veya yok edilmesini talep etme haklarına sahipsiniz. Haklarınızın tam listesi, işleme amaçları, aktarım alıcıları ve başvuru usulü için KVKK Aydınlatma Metni sayfamıza bakabilirsiniz.",
   },
   {
     baslik: "7. İletişim",
@@ -49,7 +52,7 @@ const bolumler = [
 
 export default function GizlilikPage() {
   return (
-    <main className="min-h-screen bg-anthracite-dark pt-20 pb-24">
+    <div className="min-h-screen bg-anthracite-dark pt-20 pb-24">
       <div className="container-site max-w-3xl">
         <span className="text-teal text-[11px] font-black uppercase tracking-[0.3em]">Yasal</span>
         <h1 className="font-display text-4xl md:text-5xl font-bold text-white mt-3 mb-4">
@@ -79,6 +82,6 @@ export default function GizlilikPage() {
           </Link>
         </div>
       </div>
-    </main>
+    </div>
   );
 }
