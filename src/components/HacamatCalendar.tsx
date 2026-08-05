@@ -5,13 +5,71 @@ import { MessageCircle } from "lucide-react";
 // Hicri'de faziletli hacamat günleri: 13, 14, 15, 17, 19, 21
 const FAZL_GUNLER = [13, 14, 15, 17, 19, 21];
 
+/**
+ * HİCRİ TARİH DÖNÜŞÜMÜ
+ *
+ * ÖNCEKİ HESAP HATALIYDI ve düzeltilme sebebi şu: sayfanın tüm değer önerisi
+ * "faziletli günde randevu" üzerine kurulu; yanlış gün işaretlemek doğrudan
+ * yanlış bilgi üretiyordu. Eski kod
+ *   - ortalama ay uzunluğu (29.53059) ile kaba bir bölme yapıyor,
+ *   - epoch olarak `new Date(622, 6, 16)` kullanıyordu (16 Temmuz 622 JÜLYEN
+ *     tarihidir; JS Date'i proleptik Gregoryen okur, bu da ~3 günlük sistematik
+ *     kayma demektir),
+ *   - ayrıca yerel saat diliminde çalışıyordu.
+ * Ölçüm: 2026 örneklerinde gerçek tarihten 1–2 gün sapma veriyordu.
+ *
+ * Yerine platformun kendi takvim motoru kullanılıyor — sıfır bağımlılık.
+ *
+ * DİKKAT (dürüst sınır): `islamic-umalqura` Suudi Arabistan resmî (Ümmü'l-Kura)
+ * hesabi takvimidir. Diyanet'in kullandığı hesabi takvim ile ARADA BİR GÜN
+ * fark olabilir; ayrıca rü'yet (hilal gözlemi) esas alan uygulamalarda da
+ * kayma olur. Bu yüzden arayüzde "takvimler arasında bir gün fark olabilir"
+ * notu gösteriliyor — kaldırmayın.
+ */
+const hicriFormatter = new Intl.DateTimeFormat("en-u-ca-islamic-umalqura", {
+  day: "numeric",
+  month: "numeric",
+  timeZone: "UTC",
+});
+
+/** Aynı gün defalarca render edildiği için sonuç önbelleğe alınır. */
+const hicriCache = new Map<string, { gun: number; ay: number }>();
+
+function getHicri(date: Date): { gun: number; ay: number } {
+  // Yerel saat diliminin tarihi kaydırmaması için gün UTC olarak sabitlenir.
+  const key = `${date.getFullYear()}-${date.getMonth()}-${date.getDate()}`;
+  const cached = hicriCache.get(key);
+  if (cached) return cached;
+
+  const utc = Date.UTC(date.getFullYear(), date.getMonth(), date.getDate());
+  const parts = hicriFormatter.formatToParts(utc);
+  // Biçimlenmiş metin locale'e göre değişebildiği için parçalardan okunur.
+  let gun = 0;
+  let ay = 0;
+  for (const p of parts) {
+    if (p.type === "day") gun = Number(p.value);
+    else if (p.type === "month") ay = Number(p.value);
+  }
+  const sonuc = { gun, ay };
+  hicriCache.set(key, sonuc);
+  return sonuc;
+}
+
+/** Geriye dönük uyumluluk için: yalnızca hicri ayın kaçıncı günü. */
 function getHicriGun(date: Date): number {
-  const EPOCH = new Date(622, 6, 16).getTime();
-  const fark = date.getTime() - EPOCH;
-  const hicriGun = Math.floor(fark / 86400000);
-  const hicriAy = Math.floor(hicriGun / 29.53059);
-  const ayBasi = Math.floor(hicriAy * 29.53059);
-  return (hicriGun - ayBasi) + 1;
+  return getHicri(date).gun;
+}
+
+/** Hicri ay adları — seçili günde bağlam göstermek için. */
+const HICRI_AYLAR = [
+  "Muharrem", "Safer", "Rebîülevvel", "Rebîülâhir", "Cemâziyelevvel",
+  "Cemâziyelâhir", "Receb", "Şâban", "Ramazan", "Şevvâl", "Zilkade", "Zilhicce",
+];
+
+/** "22 Safer" biçiminde okunabilir hicri tarih. */
+function hicriEtiket(date: Date): string {
+  const { gun, ay } = getHicri(date);
+  return `${gun} ${HICRI_AYLAR[ay - 1] ?? ""}`.trim();
 }
 
 const AYLAR = ["Ocak","Şubat","Mart","Nisan","Mayıs","Haziran","Temmuz","Ağustos","Eylül","Ekim","Kasım","Aralık"];
@@ -161,6 +219,12 @@ export default function HacamatCalendar() {
           <div className="w-4 h-4 rounded bg-teal" />
           <span className="text-white/70">Seçili Gün</span>
         </div>
+        {/* Dürüstlük notu: hesabi takvimler arasında bir gün fark olabilir. */}
+        <p className="w-full text-white/40 text-[11px] leading-relaxed pt-1">
+          Hicri tarihler Ümmü&apos;l-Kura hesabi takvimine göre gösterilir; Diyanet
+          takvimi veya hilal gözlemine dayanan uygulamalarla arada bir gün fark
+          olabilir. Randevu öncesi teyit için bize yazabilirsiniz.
+        </p>
       </div>
 
       {/* Seçili gün CTA */}
@@ -170,6 +234,9 @@ export default function HacamatCalendar() {
             <div>
               <div className="text-white font-bold text-base">
                 {secili.toLocaleDateString("tr-TR", { day: "numeric", month: "long", year: "numeric", weekday: "long" })}
+              </div>
+              <div className="text-white/50 text-xs mt-0.5">
+                Hicri: {hicriEtiket(secili)}
               </div>
               {FAZL_GUNLER.includes(getHicriGun(secili)) && (
                 <span className="text-teal text-[10px] font-black bg-teal/10 px-2 py-0.5 rounded-full">✦ Faziletli Hacamat Günü</span>
