@@ -1,4 +1,5 @@
 import type { Metadata } from "next";
+import { ogImages, ogCardUrl } from "@/lib/og";
 import { notFound } from "next/navigation";
 import { getPostBySlug } from "@/lib/posts";
 import { Clock, Tag, Eye, ArrowLeft } from "lucide-react";
@@ -39,9 +40,9 @@ export async function generateMetadata({ params }: { params: Promise<{ slug: str
       siteName: "Konya Hacamat - Ebusadullah Akademi",
       locale: "tr_TR",
       type: "article",
-      images: [{ url: "/logo.webp", width: 1200, height: 630, alt: title }],
+      images: ogImages({ title: post.title, eyebrow: post.category, alt: title }),
     },
-    twitter: { card: "summary_large_image", title, description, images: ["/logo.webp"] },
+    twitter: { card: "summary_large_image", title, description, images: [ogCardUrl({ title: post.title, eyebrow: post.category })] },
   };
 }
 
@@ -93,7 +94,7 @@ export default async function BlogPostPage({ params }: { params: Promise<{ slug:
   };
 
   return (
-    <main className="min-h-screen bg-anthracite-dark pt-20 pb-24">
+    <div className="min-h-screen bg-anthracite-dark pt-20 pb-24">
       <script type="application/ld+json" dangerouslySetInnerHTML={{ __html: JSON.stringify(articleSchema) }} />
       <script type="application/ld+json" dangerouslySetInnerHTML={{ __html: JSON.stringify(breadcrumbSchema) }} />
       <div className="container-site max-w-3xl">
@@ -147,12 +148,12 @@ export default async function BlogPostPage({ params }: { params: Promise<{ slug:
         <TableOfContents toc={toc} />
 
         {/* Ana İçerik */}
+        {/* Tipografi `.blog-article` ile globals.css'te tanımlı.
+            Önceki `prose prose-invert ...` sınıfları HİÇBİR ŞEY yapmıyordu:
+            @tailwindcss/typography kurulu değil ve base katmanı tüm margin'leri
+            sıfırladığı için gövde boşluksuz tek blok metin olarak çıkıyordu. */}
         <article
-          className="prose prose-invert prose-lg max-w-none text-white/80 leading-relaxed
-            prose-headings:text-white prose-headings:font-bold
-            [&_h2]:scroll-mt-28 [&_h3]:scroll-mt-28
-            prose-strong:text-white prose-a:text-teal prose-a:no-underline hover:prose-a:underline
-            prose-ul:text-white/70 prose-ol:text-white/70"
+          className="blog-article"
           dangerouslySetInnerHTML={{ __html: contentHtml }}
         />
 
@@ -190,6 +191,6 @@ export default async function BlogPostPage({ params }: { params: Promise<{ slug:
         <RelatedPosts currentSlug={post.slug} category={post.category} />
 
       </div>
-    </main>
+    </div>
   );
 }
