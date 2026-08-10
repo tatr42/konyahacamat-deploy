@@ -4,6 +4,12 @@ import Link from "next/link";
 import Image from "next/image";
 import { Clock, MessageCircle, Phone, ChevronRight, AlertTriangle } from "lucide-react";
 import { academyHref } from "@/data/ecosystem";
+import PhotoMarquee from "@/components/promo/PhotoMarquee";
+import PromoGrid from "@/components/promo/PromoGrid";
+import { pickPromos } from "@/data/promos";
+
+/** Sülük sayfasının duyuru kuşağı — sayfanın kendi konusu dışlandı. */
+const sulukSayfasiPromolari = pickPromos("suluk-satis", "kurs-kayit", "randevu");
 
 export const metadata: Metadata = {
   title: "Sülük Terapisi Konya | Hirudoterapi | Ebusadullah Hacamat Akademi",
@@ -362,11 +368,25 @@ export default function SulukPage() {
       <HeroSection />
       <EtkiMekanizmasiSection />
       <SeansGorselleriSection />
+
+      {/* Uygulama/eğitim kareleri — metin bloklarının arasına görsel nefes. */}
+      <PhotoMarquee className="bg-anthracite-dark" durationSeconds={65} />
+
       <UygulamaAlanlariSection />
       <SeansSureciSection />
       <NedenBizSection />
       <UyariSection />
       <SssSection />
+
+      {/* Renkli duyuru kuşağı. Sayfanın kendi promosu ("suluk-terapi")
+          dışlanır — sülük sayfasında sülük reklamı vermek anlamsız. */}
+      <PromoGrid
+        promos={sulukSayfasiPromolari}
+        compact
+        title="Kayıtlar & Siparişler"
+        className="bg-anthracite-light"
+      />
+
       <IlgiliSayfalarSection />
       <CtaSection />
     </div>

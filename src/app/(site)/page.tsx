@@ -7,6 +7,10 @@ import DiseaseTabs from "@/components/DiseaseTabs";
 import AcademySection from "@/components/AcademySection";
 import PressSection from "@/components/PressSection";
 import Testimonials from "@/components/Testimonials";
+import AnnouncementTicker from "@/components/promo/AnnouncementTicker";
+import PhotoMarquee from "@/components/promo/PhotoMarquee";
+import PromoGrid from "@/components/promo/PromoGrid";
+import { PROMOS } from "@/data/promos";
 
 /**
  * Ana Sayfa Metadata Yapısı
@@ -57,10 +61,34 @@ export default async function Home() {
     <>
       <script type="application/ld+json" dangerouslySetInnerHTML={{ __html: JSON.stringify(faqSchema) }} />
       <HeroSection />
+
+      {/* Hero'nun hemen altında kayan duyuru bandı — "kurslar başladı,
+          kayıtlar devam ediyor" gibi kısa haberler burada döner. */}
+      <AnnouncementTicker />
+
       <ServicesGrid />
+
+      {/* Bölümler arası fotoğraf şeridi: metin yoğunluğunu kırar ve
+          uygulama/eğitim karelerini sayfanın ortasına taşır. */}
+      <PhotoMarquee className="bg-anthracite-dark" />
+
       <DiseaseTabs />
+
+      {/* Renkli duyuru panosu — sitedeki tüm kampanya/hizmet başlıklarının
+          tek ekranda toplandığı yer. */}
+      <PromoGrid
+        promos={PROMOS}
+        eyebrow="Duyurular & Kayıtlar"
+        title={<>Bu Dönem <span className="italic text-gold">Neler Var?</span></>}
+        desc="Kurs kayıtları, seans takvimi, Almanya dönemleri ve malzeme siparişi — güncel başlıkların tamamı."
+        className="bg-anthracite-light"
+      />
+
       <AcademySection />
       <Testimonials />
+
+      <PhotoMarquee reverse className="bg-anthracite-dark" durationSeconds={70} />
+
       <PressSection items={pressItems} />
     </>
   );

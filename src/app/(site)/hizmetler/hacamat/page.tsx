@@ -5,6 +5,12 @@ import Image from "next/image";
 import { CheckCircle, Clock, Shield, AlertTriangle, Phone, MessageCircle, ChevronRight } from "lucide-react";
 import { getYearsExpStr } from "@/lib/experience";
 import { academyHref } from "@/data/ecosystem";
+import PhotoMarquee from "@/components/promo/PhotoMarquee";
+import PromoGrid from "@/components/promo/PromoGrid";
+import { pickPromos } from "@/data/promos";
+
+/** Hacamat sayfasının duyuru kuşağı — sayfanın kendi konusu dışlandı. */
+const hacamatSayfasiPromolari = pickPromos("kurs-kayit", "randevu", "malzeme");
 
 export const metadata: Metadata = {
   title: "Hacamat Tedavisi Konya | Kuru & Yaş Hacamat | Ebusadullah Akademi",
@@ -290,6 +296,18 @@ export default function HacamatPage() {
           </div>
         </div>
       </section>
+
+      {/* Uygulama kareleri şeridi */}
+      <PhotoMarquee className="bg-anthracite-dark" durationSeconds={65} />
+
+      {/* Renkli duyuru kuşağı — sayfanın kendi konusu (hacamat hizmeti)
+          dışında kalan güncel başlıklar. */}
+      <PromoGrid
+        promos={hacamatSayfasiPromolari}
+        compact
+        title="Kayıtlar & Siparişler"
+        className="bg-anthracite-light"
+      />
 
       {/* CTA */}
       <section className="py-20 bg-white/3">

@@ -14,6 +14,19 @@
   --color-text-muted: #94a3b8;
   --color-gold: #d4a853;
 
+  /* ── Promo/duyuru vurgu paleti ──
+     Site gövdesi tek-vurgulu (teal) kalır; aşağıdaki renkler YALNIZCA
+     promo kartları, duyuru şeritleri ve rozet gibi "reklam alanı"
+     bileşenlerinde kullanılır. Her promo bir renge sahiplenir ki yan yana
+     dizildiklerinde eski portal sitelerdeki canlı ızgara hissi oluşsun.
+     Hepsi koyu antrasit üzerinde AA kontrast verecek şekilde seçildi. */
+  --color-coral: #ff7a66;
+  --color-amber: #fbbf24;
+  --color-indigo: #818cf8;
+  --color-rose: #fb7185;
+  --color-sky: #38bdf8;
+  --color-lime: #a3e635;
+
   --font-display: var(--font-playfair), Georgia, serif;
   --font-body: var(--font-dm-sans), system-ui, -apple-system, sans-serif;
 
@@ -393,12 +406,46 @@
   .animate-slide-up {
     animation: slideUp 0.4s cubic-bezier(0.16, 1, 0.3, 1) both;
   }
+
+  /* ── Kayan şerit (marquee) ──
+     Duyuru bandı ve fotoğraf şeridi, içeriği İKİ KEZ render edip
+     -50% kaydırarak sonsuz döngü kurar. İçeriğin tek kopyası
+     konteynerden geniş olduğu sürece dikiş görünmez.
+     `--marquee-duration` her kullanım yerinde ayarlanır. */
+  .marquee-track {
+    display: flex;
+    width: max-content;
+    animation: marquee var(--marquee-duration, 40s) linear infinite;
+  }
+
+  .marquee-track-reverse {
+    animation-direction: reverse;
+  }
+
+  /* Kullanıcı şeridi okumak için üzerine geldiğinde durur. */
+  .marquee-hover-pause:hover .marquee-track {
+    animation-play-state: paused;
+  }
 }
 
 /* ── 4. Global Animasyonlar & Scroll ── */
 @keyframes slideUp {
   from { opacity: 0; transform: translateY(20px); }
   to { opacity: 1; transform: translateY(0); }
+}
+
+@keyframes marquee {
+  from { transform: translateX(0); }
+  to { transform: translateX(-50%); }
+}
+
+/* Hareket duyarlılığı: sürekli kayan şeritler vestibüler rahatsızlık
+   tetikleyebiliyor. Sistem ayarı "azalt" ise şerit durur ve sabit
+   içerik olarak okunur. */
+@media (prefers-reduced-motion: reduce) {
+  .marquee-track {
+    animation: none;
+  }
 }
 
 ::-webkit-scrollbar {

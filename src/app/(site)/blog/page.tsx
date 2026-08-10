@@ -6,6 +6,12 @@ import BlogList from "./BlogList";
 import { getPublishedPosts } from "@/lib/posts";
 import { Feather, BookOpen, Users, Stethoscope, MapPin } from "lucide-react";
 import { academyHubHref } from "@/data/ecosystem";
+import PromoGrid from "@/components/promo/PromoGrid";
+import PhotoMarquee from "@/components/promo/PhotoMarquee";
+import { pickPromos } from "@/data/promos";
+
+/** Blog listesinin altındaki duyuru kuşağı. */
+const blogPromolari = pickPromos("kurs-kayit", "randevu", "suluk-satis");
 
 // ISR: yazı listesi sunucuda render edilir (SEO), 5 dakikada bir yenilenir.
 export const revalidate = 300;
@@ -138,6 +144,17 @@ export default async function BlogPage({
         </Suspense>
 
       </div>
+
+      {/* Liste sonrası duyuru kuşağı: okuyucu buraya kadar geldiyse konuya
+          ilgili demektir — kurs/randevu çağrısının en verimli yeri. */}
+      <PromoGrid
+        promos={blogPromolari}
+        compact
+        title="Kayıtlar & Randevu"
+        className="mt-16 bg-anthracite-light"
+      />
+
+      <PhotoMarquee className="bg-anthracite-dark" durationSeconds={70} />
     </div>
   );
 }

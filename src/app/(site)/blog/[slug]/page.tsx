@@ -14,6 +14,15 @@ import {
   AuthorBox,
   RelatedPosts,
 } from "@/components/blog/BlogEnrichment";
+import PromoRail from "@/components/promo/PromoRail";
+import PromoCard from "@/components/promo/PromoCard";
+import { pickPromos, getPromo } from "@/data/promos";
+
+/** Blog yazılarının kenar rayında sabit duran promolar. */
+const railPromos = pickPromos("kurs-kayit", "randevu", "suluk-satis", "almanya");
+
+/** Yazı sonundaki geniş promo. */
+const kursPromo = getPromo("kurs-kayit");
 
 const getPost = getPostBySlug;
 
@@ -97,7 +106,14 @@ export default async function BlogPostPage({ params }: { params: Promise<{ slug:
     <div className="min-h-screen bg-anthracite-dark pt-20 pb-24">
       <script type="application/ld+json" dangerouslySetInnerHTML={{ __html: JSON.stringify(articleSchema) }} />
       <script type="application/ld+json" dangerouslySetInnerHTML={{ __html: JSON.stringify(breadcrumbSchema) }} />
-      <div className="container-site max-w-3xl">
+      {/* Yazı gövdesi + sağda promo rayı.
+          Gövde `minmax(0,1fr)` alır: `min-width:auto` varsayılanı, içerikteki
+          geniş tablo/kod bloklarının ızgarayı esnetip rayı ekrandan taşırmasına
+          yol açıyordu. Ray masaüstünde sabit 320px, altında tamamen akışa
+          girer (PromoRail kendi içinde yatay şeride dönüşür). */}
+      <div className="container-site max-w-6xl grid grid-cols-1 gap-12 lg:grid-cols-[minmax(0,1fr)_320px]">
+
+        <div className="min-w-0 max-w-3xl">
 
         {/* Geri Dönüş ve Kategori (Breadcrumb) */}
         <div className="flex items-center gap-2 text-white/70 text-sm mb-8">
@@ -157,6 +173,10 @@ export default async function BlogPostPage({ params }: { params: Promise<{ slug:
           dangerouslySetInnerHTML={{ __html: contentHtml }}
         />
 
+        {/* Yazı sonu geniş promo — mobilde kenar rayı yatay şeride
+            döndüğü için gözden kaçabiliyor; bu kart her ekranda görünür. */}
+        {kursPromo && <PromoCard promo={kursPromo} variant="wide" className="mt-12" sizes="(max-width: 640px) 92vw, 256px" />}
+
         {/* Otorite & güven blokları (YMYL) */}
         <MedicalDisclaimer />
         <AuthorBox />
@@ -189,6 +209,15 @@ export default async function BlogPostPage({ params }: { params: Promise<{ slug:
 
         {/* Aynı kategoriden yazılar */}
         <RelatedPosts currentSlug={post.slug} category={post.category} />
+
+        </div>
+
+        {/* Kenar rayı — okuma boyunca ekranda kalır.
+            `self-start` olmadan grid öğesi tam yüksekliğe uzar ve
+            `sticky` hiç tetiklenmez. `top-28` sabit navbar payıdır. */}
+        <div className="lg:sticky lg:top-28 lg:self-start">
+          <PromoRail promos={railPromos} title="Kurs & Randevu" />
+        </div>
 
       </div>
     </div>
