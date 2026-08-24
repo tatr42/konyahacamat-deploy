@@ -24,7 +24,7 @@
  * GERİ ALMA: bayrağı `false` yapıp yeniden deploy etmek yeterlidir.
  */
 
-export const COMTR_LIVE = false;
+export const COMTR_LIVE = true;
 
 export const COMTR_BASE = "https://www.konyahacamat.com.tr";
 
