@@ -1,8 +1,16 @@
 import type { Metadata } from "next";
 import { ogImages, ogCardUrl } from "@/lib/og";
 import { notFound } from "next/navigation";
-import { getPostBySlug } from "@/lib/posts";
+import { getPostBySlug, getPublishedPosts } from "@/lib/posts";
 import { Clock, Tag, Eye, ArrowLeft } from "lucide-react";
+
+/** Blog yazıları build esnasında statik olarak üretilir. */
+export async function generateStaticParams() {
+  const posts = await getPublishedPosts();
+  return posts.map((post) => ({
+    slug: post.slug,
+  }));
+}
 import Link from "next/link";
 import Image from "next/image";
 import ViewCounter from "./ViewCounter";
