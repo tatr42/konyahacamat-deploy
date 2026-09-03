@@ -1,7 +1,17 @@
 import type { Metadata } from "next";
 import { ogImages, ogCardUrl } from "@/lib/og";
 import { notFound } from "next/navigation";
-import { getPostBySlug } from "@/lib/posts";
+import { getPostBySlug, getPublishedPosts } from "@/lib/posts";
+
+/**
+ * Derleme anında (Build-time) tüm blog slug'larını üreterek statik pre-rendering sağlar (SSG).
+ */
+export async function generateStaticParams() {
+  const posts = await getPublishedPosts();
+  return posts.map((post) => ({
+    slug: post.slug,
+  }));
+}
 import { Clock, Tag, Eye, ArrowLeft } from "lucide-react";
 import Link from "next/link";
 import Image from "next/image";
@@ -155,6 +165,7 @@ export default async function BlogPostPage({ params }: { params: Promise<{ slug:
             height={cover.height}
             alt={`${post.title} — Ebusadullah Hacamat & Akademi`}
             priority
+            sizes="(max-width: 768px) 100vw, 768px"
             className="w-full h-64 md:h-80 object-cover"
           />
           <div className="absolute inset-0 bg-gradient-to-t from-anthracite-dark/70 to-transparent" />
