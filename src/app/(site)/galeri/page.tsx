@@ -29,8 +29,6 @@ export default function GaleriPage() {
           </p>
 
           <GalleryGrid />
-
-          <p className="text-white/70 text-center text-sm mt-12">Fotoğraflar yüklenme aşamasındadır.</p>
         </div>
       </section>
 

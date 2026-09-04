@@ -140,14 +140,11 @@ export default function AlmanyaHacamatPage() {
             <div className="relative">
               <div className="aspect-[4/5] rounded-[2rem] overflow-hidden bg-anthracite border border-white/10 relative">
                 <Image
-                  src="/hacamat-suluk-1.webp"
+                  src="/hero-suluk.webp"
                   alt="Almanya Hacamat ve Sülük Tedavisi"
                   fill
                   sizes="(min-width: 1024px) 50vw, 100vw"
                   className="object-cover opacity-80 mix-blend-luminosity hover:mix-blend-normal transition-all duration-700"
-                  onError={(e) => {
-                     e.currentTarget.src = "https://images.unsplash.com/photo-1542841791-1925b02a2bfb?q=80&w=800&auto=format&fit=crop";
-                  }}
                 />
               </div>
               <div className="absolute -bottom-8 -left-8 bg-anthracite-dark p-6 rounded-3xl border border-white/10 shadow-2xl">
@@ -216,14 +213,11 @@ export default function AlmanyaHacamatPage() {
             <div className="relative lg:order-1">
               <div className="aspect-square rounded-[2rem] overflow-hidden bg-anthracite-dark border border-white/10 relative">
                  <Image
-                  src="/egitim-1.webp"
+                  src="/academy-hero.webp"
                   alt="Almanya Hacamat Eğitimi"
                   fill
                   sizes="(min-width: 1024px) 50vw, 100vw"
                   className="object-cover opacity-80 mix-blend-luminosity hover:mix-blend-normal transition-all duration-700"
-                  onError={(e) => {
-                     e.currentTarget.src = "https://images.unsplash.com/photo-1576091160399-112ba8d25d1d?q=80&w=800&auto=format&fit=crop";
-                  }}
                 />
               </div>
             </div>
