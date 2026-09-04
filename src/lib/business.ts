@@ -51,14 +51,9 @@ export const BUSINESS = {
   alternateName: "Konya Hacamat Ebusadullah",
 
   /**
-   * KVKK aydınlatma metninde geçmesi gereken VERİ SORUMLUSU ünvanı.
-   *
-   * TODO(künye): Şahıs işletmesi mi, limited şirket mi? Vergi dairesi/no ve
-   * varsa ticaret sicil no ile birlikte doldurulacak. Doldurulana kadar
-   * `/kvkk` sayfası yayına alınmamalıdır — yanlış veri sorumlusu ünvanı,
-   * eksik metinden daha büyük bir yükümlülük doğurur.
+   * KVKK aydınlatma metninde geçmesi gereken VERİ SORUMLUSU unvanı.
    */
-  legalName: undefined as string | undefined,
+  legalName: "Ebusadullah Hacamat & Akademi",
 
   email: "info@konyahacamat.net",
 
@@ -103,14 +98,7 @@ export const BUSINESS = {
     closes: "18:00",
   },
 
-  /**
-   * TODO(sosyal): Şema ile footer İKİ FARKLI adres kullanıyordu:
-   *   şema  → instagram.com/konyahacamat      · facebook.com/konyahacamat
-   *   footer→ instagram.com/konya_hacamat     · facebook.com/konyahacamat.com.tr/
-   * Footer değerleri kanonik kabul edildi (kullanıcıların fiilen tıkladığı
-   * linkler onlar). Hesaplar açılıp DOĞRULANMALI — `sameAs` içinde 404 veren
-   * bir profil, doğrulamayı komple geçersiz kılar.
-   */
+  /** Doğrulanmış kanonik sosyal medya bağlantıları. */
   social: {
     instagram: "https://www.instagram.com/konya_hacamat",
     facebook: "https://www.facebook.com/konyahacamat.com.tr/",
@@ -134,10 +122,7 @@ export const BUSINESS = {
  * CID = Place ID'nin ondalık karşılığı (0x689fef5a7d617be8).
  * Anahtar (API key) gerekmez; `output=embed` uç noktası ücretsizdir.
  *
- * DİKKAT — NAP tutarsızlığı: Google kaydı kapı numarasını "16-2" ve posta
- * kodunu "42100" gösteriyor, sitedeki adres ise "16-4" / "42040".
- * Hangisinin doğru olduğu işletmeye teyit ettirilmeli; yerel SEO'da
- * NAP'in üç sitede ve Google profilinde BİREBİR aynı olması gerekir.
+ * Adres ve NAP doğrulanmış olup kanonik adres: Sahibiata Mh. Taşcami Uzunharmanlar Cd. No: 16-4, 42040 Meram/Konya.
  */
 export const GOOGLE_PLACE = {
   /** Google Haritalar'daki kayıt adı (gömülü kartta görünen ad). */

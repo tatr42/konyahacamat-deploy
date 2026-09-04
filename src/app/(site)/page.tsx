@@ -11,6 +11,7 @@ import AnnouncementTicker from "@/components/promo/AnnouncementTicker";
 import PhotoMarquee from "@/components/promo/PhotoMarquee";
 import PromoGrid from "@/components/promo/PromoGrid";
 import { PROMOS } from "@/data/promos";
+import { BUSINESS, addressLine, yearsOfExperienceLabel } from "@/lib/business";
 
 /**
  * Ana Sayfa Metadata Yapısı
@@ -33,18 +34,18 @@ export const metadata: Metadata = {
 /**
  * SSS Şeması (FAQ Schema)
  */
-const faqSchema = {
+const getFaqSchema = () => ({
   "@context": "https://schema.org",
   "@type": "FAQPage",
   mainEntity: [
-    { "@type": "Question", name: "Sülük terapisi (hirudoterapi) nedir, ne işe yarar?", acceptedAnswer: { "@type": "Answer", text: "Sülük terapisi (hirudoterapi), tıbbi sülüğün (Hirudo medicinalis) salgıladığı hirudin, doğal anestezik ve anti-inflamatuar maddelerden yararlanan doğal bir dolaşım tedavisidir. Varis, ödem, eklem iltihabı, cilt hastalıkları ve kulak çınlaması gibi durumlarda uygulanır. Konya Meram'daki <a href=\"https://www.konyahacamat.net/hizmetler/suluk\">Ebusadullah Hacamat & Akademi</a>'de tek kullanımlık steril sülüklerle uygulanır. Randevu: +90 554 406 23 83" } },
-    { "@type": "Question", name: "Konya'da sülük terapisi ve hacamat nerede yaptırılır?", acceptedAnswer: { "@type": "Answer", text: "Konya Meram'da <a href=\"https://www.konyahacamat.net/\">Ebusadullah Hacamat & Akademi</a> olarak 32+ yıldır profesyonel sülük terapisi ve hacamat hizmeti sunuyoruz. Adres: Sahibiata Mh. Taşcami Uzunharmanlar Cd. No: 16-4, 42040 Meram/Konya. Randevu için: +90 554 406 23 83" } },
+    { "@type": "Question", name: "Sülük terapisi (hirudoterapi) nedir, ne işe yarar?", acceptedAnswer: { "@type": "Answer", text: `Sülük terapisi (hirudoterapi), tıbbi sülüğün (Hirudo medicinalis) salgıladığı hirudin, doğal anestezik ve anti-inflamatuar maddelerden yararlanan doğal bir dolaşım tedavisidir. Varis, ödem, eklem iltihabı, cilt hastalıkları ve kulak çınlaması gibi durumlarda uygulanır. Konya Meram'daki <a href="https://www.konyahacamat.net/hizmetler/suluk">Ebusadullah Hacamat & Akademi</a>'de tek kullanımlık steril sülüklerle uygulanır. Randevu: ${BUSINESS.phone.tr.display}` } },
+    { "@type": "Question", name: "Konya'da sülük terapisi ve hacamat nerede yaptırılır?", acceptedAnswer: { "@type": "Answer", text: `Konya Meram'da <a href="https://www.konyahacamat.net/">Ebusadullah Hacamat & Akademi</a> olarak ${yearsOfExperienceLabel()} yıldır profesyonel sülük terapisi ve hacamat hizmeti sunuyoruz. Adres: ${addressLine()}. Randevu için: ${BUSINESS.phone.tr.display}` } },
     { "@type": "Question", name: "Hacamat ne işe yarar?", acceptedAnswer: { "@type": "Answer", text: "Hacamat; kronik bel ve boyun ağrıları, migren, yüksek tansiyon, uyku bozuklukları, cilt hastalıkları, bağışıklık sistemi güçlendirme ve genel detoks amacıyla geleneksel kaynaklarda 384'ten fazla rahatsızlığa faydalı olduğu belirtilmektedir." } },
     { "@type": "Question", name: "Kuru ve yaş hacamat arasındaki fark nedir?", acceptedAnswer: { "@type": "Answer", text: "Kuru hacamatta yalnızca negatif basınç uygulanır, kesi yapılmaz. Yaş hacamatta ise küçük yüzeysel kesiler açılarak metabolik atıkların uzaklaştırılması sağlanır. Yaş hacamat Hz. Peygamber'in tavsiye ettiği klasik yöntemdir." } },
     { "@type": "Question", name: "Hacamat kursu nerede verilmektedir?", acceptedAnswer: { "@type": "Answer", text: "<a href=\"https://www.konyahacamat.net/\">Ebusadullah Akademi</a>, Konya'da Temel Hacamat Uzmanlık Kursu ve Sülük Terapisi Kursu vermektedir. Yılın belirli dönemlerinde Almanya'da da eğitim düzenlenmektedir. Program sonunda Akademi'nin kendi kurum sertifikası düzenlenir." } },
-    { "@type": "Question", name: "Almanya'da hacamat yaptırabilir miyim?", acceptedAnswer: { "@type": "Answer", text: "Evet. Ebusadullah Hoca yılda 2–3 kez Almanya'ya giderek Frankfurt, Köln, Stuttgart ve çevre şehirlerde hacamat seansları düzenlendirmektedir. Tarih bilgisi için WhatsApp: +49 163 449 28 70" } },
+    { "@type": "Question", name: "Almanya'da hacamat yaptırabilir miyim?", acceptedAnswer: { "@type": "Answer", text: `Evet. Ebusadullah Hoca yılda 2–3 kez Almanya'ya giderek Frankfurt, Köln, Stuttgart ve çevre şehirlerde hacamat seansları düzenlendirmektedir. Tarih bilgisi için WhatsApp: ${BUSINESS.phone.de.display}` } },
   ],
-};
+});
 
 // NOT: Buradaki ikinci `MedicalBusiness` şeması KALDIRILDI.
 // `@id`'si olmadığı için root layout'taki işletme varlığına bağlanmıyor ve
@@ -59,7 +60,7 @@ export default async function Home() {
   const pressItems = (await getPressItems()).slice(0, 6);
   return (
     <>
-      <script type="application/ld+json" dangerouslySetInnerHTML={{ __html: JSON.stringify(faqSchema) }} />
+      <script type="application/ld+json" dangerouslySetInnerHTML={{ __html: JSON.stringify(getFaqSchema()) }} />
       <HeroSection />
 
       {/* Hero'nun hemen altında kayan duyuru bandı — "kurslar başladı,

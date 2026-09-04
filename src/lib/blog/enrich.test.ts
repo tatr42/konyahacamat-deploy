@@ -1,6 +1,6 @@
 import { test } from "node:test";
 import assert from "node:assert/strict";
-import { enrichContent } from "./enrich";
+import { enrichContent } from "./enrich.ts";
 
 test("h2/h3 başlıklarına Türkçe-duyarlı id enjekte eder ve TOC çıkarır", () => {
   const html =
