@@ -143,6 +143,7 @@ export default function AlmanyaHacamatPage() {
                   src="/hacamat-suluk-1.webp"
                   alt="Almanya Hacamat ve Sülük Tedavisi"
                   fill
+                  sizes="(min-width: 1024px) 50vw, 100vw"
                   className="object-cover opacity-80 mix-blend-luminosity hover:mix-blend-normal transition-all duration-700"
                   onError={(e) => {
                      e.currentTarget.src = "https://images.unsplash.com/photo-1542841791-1925b02a2bfb?q=80&w=800&auto=format&fit=crop";
@@ -218,6 +219,7 @@ export default function AlmanyaHacamatPage() {
                   src="/egitim-1.webp"
                   alt="Almanya Hacamat Eğitimi"
                   fill
+                  sizes="(min-width: 1024px) 50vw, 100vw"
                   className="object-cover opacity-80 mix-blend-luminosity hover:mix-blend-normal transition-all duration-700"
                   onError={(e) => {
                      e.currentTarget.src = "https://images.unsplash.com/photo-1576091160399-112ba8d25d1d?q=80&w=800&auto=format&fit=crop";

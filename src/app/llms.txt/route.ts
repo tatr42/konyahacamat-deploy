@@ -1,6 +1,22 @@
-# Ebusadullah Hacamat & Akademi (Konya Hacamat)
+import { getPublishedPosts } from "@/lib/posts";
+import { getYearsExpStr } from "@/lib/experience";
 
-> Konya Meram'da 32+ yıldır hizmet veren profesyonel hacamat (kupa terapisi) ve sülük terapisi (hirudoterapi) merkezi. Steril, CE sertifikalı, tek kullanımlık malzeme. Ayrıca uluslararası geçerli sertifikalı hacamat/sülük uzmanlık kursları ve periyodik Almanya seansları.
+export const dynamic = "force-dynamic";
+
+export async function GET() {
+  const posts = await getPublishedPosts();
+  const yearsExp = getYearsExpStr();
+
+  const blogSection = posts
+    .map(
+      (post) =>
+        `- [${post.title}](https://www.konyahacamat.net/blog/${post.slug}): ${post.excerpt}`
+    )
+    .join("\n");
+
+  const content = `# Ebusadullah Hacamat & Akademi (Konya Hacamat)
+
+> Konya Meram'da ${yearsExp} yıldır hizmet veren profesyonel hacamat (kupa terapisi) ve sülük terapisi (hirudoterapi) merkezi. Steril, CE sertifikalı, tek kullanımlık malzeme. Ayrıca uluslararası geçerli sertifikalı hacamat/sülük uzmanlık kursları ve periyodik Almanya seansları.
 
 Adres: Sahibiata Mh. Taşcami Uzunharmanlar Cd. No: 16-4, 42040 Meram/Konya, Türkiye
 Telefon / WhatsApp: +90 554 406 23 83
@@ -22,11 +38,23 @@ Web: https://www.konyahacamat.net
 - [Hacamat Takvimi](https://www.konyahacamat.net/takvim): Hicri takvime göre faziletli hacamat günleri ve randevu.
 - [Almanya Hacamat Seansları](https://www.konyahacamat.net/almanya-hacamat): Periyodik Almanya (Frankfurt, Köln, Stuttgart) seansları.
 
+## Son Blog Yazıları & Rehberler
+${blogSection}
+
 ## Kurumsal
-- [Hakkımızda](https://www.konyahacamat.net/hakkimizda): Ebusadullah Hacamat & Akademi ve 32+ yıllık saha tecrübesi.
+- [Hakkımızda](https://www.konyahacamat.net/hakkimizda): Ebusadullah Hacamat & Akademi ve ${yearsExp} saha tecrübesi.
 - [İletişim & Randevu](https://www.konyahacamat.net/iletisim): Adres, telefon, WhatsApp ve harita.
 - [Basında Biz](https://www.konyahacamat.net/basin): Basın ve medya içerikleri.
 
 ## Notlar
 - Hizmet merkezi Konya Meram'dadır; malzeme siparişleri Türkiye geneline kargolanır.
 - Hacamat ve sülük geleneksel/tamamlayıcı yöntemlerdir; tıbbi teşhis veya tedavi yerine geçmez. Kronik hastalık veya düzenli ilaç kullanımı olanlar uygulamadan önce hekimine danışmalıdır.
+`;
+
+  return new Response(content, {
+    headers: {
+      "Content-Type": "text/plain; charset=utf-8",
+      "Cache-Control": "public, max-age=3600, s-maxage=86400",
+    },
+  });
+}

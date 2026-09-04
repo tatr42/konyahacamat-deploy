@@ -180,10 +180,10 @@ export default function BasinClient({ initialItems }: { initialItems: PressItem[
               className="flex items-center justify-center gap-3 bg-white/10 hover:bg-white/15 text-white border border-white/10 px-6 py-4 rounded-2xl font-black text-sm uppercase tracking-widest transition-all">
               🇩🇪 <Phone size={18} /> +49 163 449 28 70
             </a>
-            <a href="/takvim" title="Randevu Al"
+            <Link href="/takvim" title="Randevu Al"
               className="flex items-center justify-center gap-3 bg-teal/10 hover:bg-teal/20 text-teal border border-teal/20 px-6 py-4 rounded-2xl font-black text-sm uppercase tracking-widest transition-all">
               <Calendar size={18} /> Randevu Al
-            </a>
+            </Link>
           </div>
         </div>
 
