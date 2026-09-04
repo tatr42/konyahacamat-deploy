@@ -2,7 +2,7 @@ import type { Metadata } from "next";
 import { ogImages } from "@/lib/og";
 import { MapPin, Phone, Mail, Clock, MessageCircle, Globe } from "lucide-react";
 import { getYearsExpStr } from "@/lib/experience";
-import { mapEmbedSrc, mapDirectionsHref, mapPlaceHref } from "@/lib/business";
+import { BUSINESS, mapEmbedSrc, mapDirectionsHref, mapPlaceHref } from "@/lib/business";
 import Image from "next/image";
 import { academyHref } from "@/data/ecosystem";
 
@@ -61,8 +61,8 @@ export default function IletisimPage() {
                 </div>
                 <div>
                   <div className="text-teal text-[10px] font-black uppercase tracking-widest mb-1">Adres</div>
-                  <div className="text-white font-bold">Sahibiata Mh. Taşcami Uzunharmanlar Cd. No: 16-4</div>
-                  <div className="text-white/60 text-sm">Meram / KONYA</div>
+                  <div className="text-white font-bold">{BUSINESS.address.street}</div>
+                  <div className="text-white/60 text-sm">{BUSINESS.address.district} / {BUSINESS.address.city.toLocaleUpperCase('tr-TR')}</div>
                 </div>
               </div>
 
