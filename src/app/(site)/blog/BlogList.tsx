@@ -124,6 +124,7 @@ export default function BlogList({
                 width={1200}
                 height={800}
                 alt={`${featured.title} — Ebusadullah Hacamat & Akademi`}
+                sizes="(min-width: 768px) 40vw, 100vw"
                 className="w-full h-56 md:h-full object-cover"
               />
             </div>
@@ -182,6 +183,7 @@ export default function BlogList({
                   width={1200}
                   height={800}
                   alt={`${post.title} — Ebusadullah Hacamat & Akademi`}
+                  sizes="(min-width: 1024px) 33vw, (min-width: 640px) 50vw, 100vw"
                   className="w-full h-full object-cover"
                 />
               </div>

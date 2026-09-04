@@ -216,6 +216,7 @@ export default function LocationServicePage({
                 height={cover.height}
                 alt={alt}
                 priority
+                sizes="(min-width: 1024px) 50vw, 100vw"
                 className="w-full h-auto rounded-3xl border border-white/10 shadow-2xl object-cover"
               />
               <div className="absolute bottom-4 left-4 right-4 flex justify-between items-center">
@@ -289,6 +290,7 @@ export default function LocationServicePage({
                   width={img.width}
                   height={img.height}
                   alt={trioAlts[i]}
+                  sizes="(min-width: 640px) 33vw, 100vw"
                   className="w-full h-64 object-cover group-hover:scale-105 transition-transform duration-500"
                 />
                 <figcaption className="absolute inset-x-0 bottom-0 bg-gradient-to-t from-anthracite-dark/95 to-transparent p-4 pt-10">
