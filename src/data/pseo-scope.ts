@@ -17,8 +17,8 @@
  * Sonuç: 2.085 üretilen sayfa → 393 (81×3 il + 49×3 ilçe + 3 hub).
  */
 
-import { PROVINCES } from "./tr-locations";
-import { COMTR_LIVE, COMTR_BASE } from "./ecosystem";
+import { PROVINCES } from "./tr-locations.ts";
+import { COMTR_LIVE, COMTR_BASE } from "./ecosystem.ts";
 
 /**
  * Bu depoda TANIMLI pSEO siloları (tip kaynağı).
