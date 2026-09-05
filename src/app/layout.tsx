@@ -151,8 +151,8 @@ const localBusinessSchema = {
       { "@type": "Offer", itemOffered: { "@type": "Service", name: "Kuru Hacamat", url: abs("/hizmetler/hacamat") } },
       { "@type": "Offer", itemOffered: { "@type": "Service", name: "Yaş Hacamat", url: abs("/hizmetler/hacamat") } },
       { "@type": "Offer", itemOffered: { "@type": "Service", name: "Hacamat & Sülük Uzmanlık Kursu", url: abs("/egitimler") } },
-      { "@type": "Offer", itemOffered: { "@type": "Product", name: "Tıbbi Sülük (Hirudo verbana)", url: abs("/suluk-satisi") } },
-      { "@type": "Offer", itemOffered: { "@type": "Product", name: "Hacamat Kupası & Malzeme Setleri", url: abs("/kupa-malzemeleri") } },
+      { "@type": "Offer", itemOffered: { "@type": "Service", name: "Tıbbi Sülük (Hirudo verbana)", url: abs("/suluk-satisi") } },
+      { "@type": "Offer", itemOffered: { "@type": "Service", name: "Hacamat Kupası & Malzeme Setleri", url: abs("/kupa-malzemeleri") } },
     ],
   },
 };
