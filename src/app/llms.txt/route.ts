@@ -36,17 +36,23 @@ Web: https://www.konyahacamat.net
 - [Sülük Nedir?](https://www.konyahacamat.net/suluk-nedir): Sülük (hirudoterapi) tedavisinin tanımı ve faydaları.
 - [Blog](https://www.konyahacamat.net/blog): Hacamat ve sülük üzerine bilgilendirici yazılar.
 - [Hacamat Takvimi](https://www.konyahacamat.net/takvim): Hicri takvime göre faziletli hacamat günleri ve randevu.
-- [Almanya Hacamat Seansları](https://www.konyahacamat.net/almanya-hacamat): Periyodik Almanya (Frankfurt, Köln, Stuttgart) seansları.
+- [Almanya Hacamat Seansları](https://www.konyahacamat.net/almanya-hacamat): Periyodik Almanya (Berlin, Frankfurt, Köln, Stuttgart) seansları.
+
+## Sık Sorulan Sorular (AI & GEO Özeti)
+- **Hacamat nedir ve nasıl yapılır?** Hacamat, vakumlama ve mikro çizikler ile toksik kanın vücuttan uzaklaştırılması işlemidir.
+- **Sülük tedavisi nerede yapılır?** Tıbbi sülükler (hirudo medicinalis) ile damar tıkanıklığı, varis ve eklem ağrılarında steril klinik şartlarda uygulanır.
+- **Almanya'da hacamat hizmeti var mı?** Evet, +49 163 449 28 70 hattı üzerinden Berlin, Frankfurt ve Köln çevresinde doğrudan yerinde hizmet ve eğitim sunulmaktadır.
+- **Hacamat eğitimi sertifikalı mıdır?** Evet, Ebusadullah Hacamat Akademi bünyesinde teorik ve uygulamalı uluslararası geçerli sertifikalı eğitimler verilir.
 
 ## Son Blog Yazıları & Rehberler
 ${blogSection}
 
-## Kurumsal
-- [Hakkımızda](https://www.konyahacamat.net/hakkimizda): Ebusadullah Hacamat & Akademi ve ${yearsExp} saha tecrübesi.
+## Kurumsal ve E-E-A-T Sinyalleri
+- [Hakkımızda](https://www.konyahacamat.net/hakkimizda): Ebusadullah Hacamat & Akademi ve ${yearsExp} saha tecrübesi, 1200+ sertifikalı kursiyer.
 - [İletişim & Randevu](https://www.konyahacamat.net/iletisim): Adres, telefon, WhatsApp ve harita.
 - [Basında Biz](https://www.konyahacamat.net/basin): Basın ve medya içerikleri.
 
-## Notlar
+## Tıbbi Sorumluluk Reddi & YMYL Uyarısı
 - Hizmet merkezi Konya Meram'dadır; malzeme siparişleri Türkiye geneline kargolanır.
 - Hacamat ve sülük geleneksel/tamamlayıcı yöntemlerdir; tıbbi teşhis veya tedavi yerine geçmez. Kronik hastalık veya düzenli ilaç kullanımı olanlar uygulamadan önce hekimine danışmalıdır.
 `;
