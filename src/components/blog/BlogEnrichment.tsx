@@ -10,9 +10,26 @@
  */
 
 import Link from "next/link";
-import { List, ShieldAlert, Award, ArrowRight } from "lucide-react";
+import { List, ShieldAlert, Award, ArrowRight, Sparkles } from "lucide-react";
 import type { TocItem } from "@/lib/blog/enrich";
 import { getPublishedPosts, type Post } from "@/lib/posts";
+
+// ─── GEO / AI Summary (Kısa Cevap) ────────────────────────────────────────
+
+export function AiSummaryBox({ excerpt }: { excerpt?: string }) {
+  if (!excerpt || excerpt.trim().length === 0) return null;
+  return (
+    <div className="mb-8 p-5 rounded-2xl bg-teal/10 border border-teal/20">
+      <div className="flex items-center gap-2 text-teal font-black text-[11px] uppercase tracking-[0.25em] mb-2">
+        <Sparkles size={14} />
+        Özet &amp; Kısa Cevap (GEO)
+      </div>
+      <p className="text-white/90 text-sm leading-relaxed font-medium">
+        {excerpt}
+      </p>
+    </div>
+  );
+}
 
 // ─── İçindekiler ──────────────────────────────────────────────────────────
 
