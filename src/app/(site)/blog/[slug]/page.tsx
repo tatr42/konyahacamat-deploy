@@ -23,6 +23,7 @@ import {
   MedicalDisclaimer,
   AuthorBox,
   RelatedPosts,
+  AiSummaryBox,
 } from "@/components/blog/BlogEnrichment";
 import PromoRail from "@/components/promo/PromoRail";
 import PromoCard from "@/components/promo/PromoCard";
@@ -170,6 +171,9 @@ export default async function BlogPostPage({ params }: { params: Promise<{ slug:
           />
           <div className="absolute inset-0 bg-gradient-to-t from-anthracite-dark/70 to-transparent" />
         </div>
+
+        {/* GEO / Kısa Cevap AI Özeti */}
+        <AiSummaryBox excerpt={post.excerpt} />
 
         {/* İçindekiler (h2/h3'lerden — 2+ başlık varsa görünür) */}
         <TableOfContents toc={toc} />
