@@ -1,69 +1,66 @@
-# PLAN.md — Konyahacamat.net İyileştirme Yol Haritası ve Stratejik SEO Rehberi
+# PLAN.md — Konyahacamat.net & Ecosystem İyileştirme Yol Haritası ve Stratejik SEO Rehberi
 
-Bu doküman, sitedeki teknik borçları, yasal riskleri, SEO eksikliklerini ve UX/UI iyileştirmelerini kapsayan önceliklendirilmiş eylem planı ile **Uzun Soluklu SEO & İçerik Stratejisi Rehberi**ni içermektedir.
+Bu doküman; sitedeki teknik borçları, performans ağırlıklarını, SEO stratejilerini, iki site (`.net` vs `.com.tr`) arasındaki çakışmasız arama motoru mimarisini, yapay zeka (AI/GEO) içerik stratejisini ve içerik zenginleştirme rehberini kapsamaktadır.
 
 ---
 
-## 🟢 STRATEJİK STRATEJİ VE YOL HARİTASI (SSS & STRATEJİK SEO MİMARİSİ)
+## 🟢 STRATEJİK YOL HARİTASI VE DETAYLI SORU-CEVAP REHBERİ
 
 ### 1. Kodda Ne Eksik & Ağırlık Yapan Kodlar Nelerdir?
-* **Statik Pre-rendering (SSG) ve Dynamic Route Caching:**
-  - Blog detay ve dinamik sayfaların istemci/sunucu tarafında her istekte sıfırdan render edilmesi (SSR) sunucu yükünü artırır ve TTFB (Time to First Byte) süresini uzatır.
-  - `export async function generateStaticParams()` ile dinamik rotalar derleme (build) anında statik HTML/JSON olarak üretilmeli, veritabanı sorguları `React.cache` ile sarmalanmalıdır.
-* **Görsel Optimizasyonu & LCP (Largest Contentful Paint):**
-  - Standart HTML `<img>` veya eksik `sizes` / `priority` niteliğine sahip Next.js `<Image>` bileşenleri responsive cihazlarda aşırı büyük resim yükleyerek LCP ve CLS skorlarını düşürür.
-  - Hero ve kapak görsellerinde `priority` ve `fetchPriority="high"` kullanılmalı; grid görsellerinde doğru `sizes="(max-width: 768px) 100vw, 50vw"` tanımlanmalıdır.
 * **Ağırlık Yapan Üçüncü Parti Kodlar ve Scriptler:**
-  - `@next/third-parties/google` paketi gibi senkron yüklenen analitik ve harita scriptleri Total Blocking Time (TBT) artışına neden olur. Google Analytics ve diğer scriptler `strategy="lazyOnload"` veya Next.js `<Script>` bileşeni ile ertelenmiş modda yüklenmelidir.
-  - Ağır fontlar, kullanılmayan CSS kütüphaneleri veya devasa JS paketleri temizlenmeli, Tailwind CSS 4 JIT derleyicisi ile minimal CSS bundle korunmalıdır.
-* **Erişilebilirlik (A11y) ve İç Link Mimarisi:**
-  - Sayfalar arası geçişlerde ham `<a>` etiketleri yerine Next.js `<Link>` kullanılarak SPA yönlendirmesi sağlanmalı ve gereksiz tam sayfa yenilemelerinin önüne geçilmelidir.
-  - Mobil menülerde `aria-expanded`, butonlarda `aria-label` eksiklikleri giderilmelidir.
+  - Senkron veya hatalı yüklenen analitik, harita ve widget scriptleri Total Blocking Time (TBT) artışına sebep olur. Google Analytics ve diğer dış scriptler Next.js `<Script>` bileşeni ile `strategy="lazyOnload"` modunda yüklenmelidir (`@next/third-parties/google` paketi TBT regresyonu yarattığı için doğrudan Next.js Script kullanılmalıdır).
+* **Statik Pre-rendering (SSG) ve Dynamic Route Caching:**
+  - Blog detay (`/blog/[slug]`), hizmet sayfaları ve dinamik rotalar her istekte sunucu tarafında sıfırdan render (SSR) edilirse TTFB (Time to First Byte) süresi uzar ve sunucuya yük bindirir.
+  - `export async function generateStaticParams()` kullanılarak dinamik sayfalar derleme (build) anında statik HTML/JSON olarak üretilmeli, veritabanı/Firestore sorguları `React.cache` ile sarmalanmalıdır.
+* **Görsel Optimizasyonu & LCP (Largest Contentful Paint):**
+  - Standart HTML `<img>` kullanımı veya `sizes` / `priority` niteliği eksik olan `<Image>` bileşenleri mobil cihazlarda gereksiz büyük resimler indirerek LCP skorunu düşürür.
+  - Hero görsellerinde `priority` ve `fetchPriority="high"` kullanılmalı; liste/grid görsellerinde responsive `sizes="(max-width: 768px) 100vw, 50vw"` tanımlanmalıdır.
+* **Erişilebilirlik (A11y) ve Kod Hijyeni:**
+  - Mobil menülerde `aria-expanded`, butonlarda `aria-label`, Slider/Carousel noktalarında 44x44px minimum dokunma alanı ve kuyu/karanlık temada yeterli kontrast (`text-white/70` ve üzeri) sağlanmalıdır.
+  - HTML içi ham `<a>` etiketleri yerine Next.js `<Link>` bileşeni kullanılarak istemci taraflı SPA geçişleri sağlanmalıdır.
 
 ---
 
 ### 2. 2 Site Birbirini Aramada Nasıl Geri Çekmez? (Kanibalizasyon & Çifte Domain Önleme)
-Eğer aynı sektör/hizmet için iki farklı alan adınız varsa (Örn: `konyahacamat.net` ve `konyahacamat.com.tr`):
+Eğer iki farklı alan adınız varsa (Örn: `konyahacamat.net` ve `konyahacamat.com.tr`):
 
-1. **Net Niş ve Konumlandırma Ayrımı (Silo Mimarisi):**
-   - **Site A (`konyahacamat.net`):** Yerel Klinik ve Randevu Odaklı. Sadece Konya içi fiziksel hacamat, sülük uygulamaları, klinik konum, randevu ve yerel şikayet/semptom rehberlerine odaklanır.
-   - **Site B (`konyahacamat.com.tr`):** Akademi, Eğitim ve Tedarik Odaklı. Türkiye geneli (81 il + ilçeler) hacamat kursu, haccamlık eğitimi, sertifikasyon, kupa ve sülük malzemesi satışı/e-ticaret odağındadır.
-2. **Kopyalanmış İçerikten (Duplicate Content) Kaçınma:**
-   - İki sitede asla aynı paragrafı, makaleyi veya ürün açıklamasını yayınlamayın. Yapay zeka ile kelimeleri değiştirilmiş (spin edilmiş) metinler dahi Google SpamBrain tarafından tespit edilip her iki sitenin de sıralamasını düşürür (kanibalizasyon).
-3. **Canonical ve Cross-Domain Etiketleri:**
-   - İki site arasında bir içerik alıntılanıyorsa veya asıl kaynak diğer sitedeyse `<link rel="canonical" href="https://asıl-site.com/sayfa" />` etiketi ile asıl yetkili kaynak arama motorlarına bildirilmelidir.
-4. **Çapraz Bağlantı (Backlink) Spam'inden Kaçınma:**
-   - İki site arasında footer veya header menülerinden tüm sayfaları kapsayan karşılıklı (reciprocal) toplu linkler verilmemelidir. Linkler yalnızca içerik içerisinden doğal ve bağlamsal (contextual) olarak yönlendirilmelidir (Örn: `.net` sitesindeki "Hacamat Eğitimi" bağlantısının `COMTR_LIVE` bayrağı ile `.com.tr` akademisine 301 veya dış yönlendirme ile aktarılması).
+1. **Kesin Niş ve Konumlandırma Ayrımı (Silo Mimarisi):**
+   - **Site A (`konyahacamat.net` - Yerel Klinik & Randevu):**
+     Sadece Konya merkezli fiziksel hacamat, sülük seansları, klinik konumu, randevu alma ve yerel şikayet/semptom rehberlerine odaklanır. Ayrıca gurbetçi hastalar için Almanya (Berlin) fiziki seans bilgilerini (+49 163 449 28 70) sunar.
+   - **Site B (`konyahacamat.com.tr` - Akademi & E-Ticaret):**
+     Türkiye geneli (81 il ve ilçeler) hacamat kursu, haccamlık eğitimi, sertifikasyon, kupa ve sülük malzemeleri satışı/e-ticaret odağındadır.
+2. **Kopyalanmış İçerik (Duplicate Content) ve SpamBrain Engelleyici:**
+   - İki sitede asla aynı paragraf veya makale yayınlanmamalıdır. Kelimelerin yerleri değiştirilmiş (spin edilmiş) AI metinleri dahi Google SpamBrain tarafından tespit edilip her iki sitenin de sıralamasını düşürür.
+3. **Cross-Domain Canonical ve 301 Yönlendirmeleri:**
+   - `.net` üzerindeki eğitim/kurs içerikleri `src/data/ecosystem.ts` içindeki `COMTR_LIVE` bayrağı ile `.com.tr` alan adının ilgili sayfalarına 301 kalıcı yönlendirme ile aktarılmalı veya `<link rel="canonical" href="https://konyahacamat.com.tr/..." />` etiketi ile yetkili adres gösterilmelidir.
+4. **Çapraz Bağlantı (Backlink) Kuralları:**
+   - Header/Footer menülerinden tüm sayfaları kapsayan siteler arası toplu (reciprocal) link verilmemeli, linkler metin içinden doğal ve bağlamsal (contextual) yönlendirilmelidir.
 
 ---
 
 ### 3. Yapay Zeka (AI) İçeriklerinin Anlaşılmaması ve Öne Çıkması (GEO / Helpful Content / E-E-A-T)
-Google'ın Helpful Content Update (HCU) ve E-E-A-T (Deneyim, Uzmanlık, Otorite, Güvenilirlik) güncellemeleri, sıfatlarla dolu jenerik AI metinlerini tespit edip arama sonuçlarında geriye itmektedir:
+Google'ın Helpful Content Update (HCU) ve E-E-A-T (Deneyim, Uzmanlık, Otorite, Güvenilirlik) standartları, jenerik AI metinlerini tespit edip arama sonuçlarında geriye itmektedir:
 
 1. **Information Gain (Bilgi Kazanımı) İlkesi:**
-   - Sadece internetteki mevcut makaleleri özetleyen AI metinleri sıfır değer üretir.
-   - Metinlere **gerçek klinik tecrübeler, uygulama püf noktaları, vaka gözlemleri ve somut uzman tavsiyeleri** eklenerek makalenin internetteki diğer kaynaklardan daha fazla bilgi vermesi sağlanmalıdır.
+   - İnternetteki mevcut makaleleri özetleyen AI metinleri değer üretmez. Metinlere **gerçek klinik tecrübeler, seans gözlemleri, vaka yorumları ve uzman tavsiyeleri** eklenerek makalenin internetteki diğer kaynaklardan daha nitelikli bilgi sunması sağlanmalıdır.
 2. **GEO (Generative Engine Optimization - AI Arama Motoru Optimizasyonu):**
-   - ChatGPT, Perplexity ve Google AI Overviews gibi yapay zeka arama motorlarında kaynak gösterilmek ve ilk sırada çıkmak için:
-     - Makale başlarına veya H2 altlarına **40–50 kelimelik net, doğrudan yanıt veren "Kısa Cevap" (AI Summary) kutuları** eklenmelidir.
-     - Soru-Cevap (FAQ) formatında net ve tereddütsüz cümleler kullanılmalıdır.
+   - ChatGPT, Perplexity ve Google AI Overviews gibi yapay zeka arama motorlarında ilk kaynak olarak gösterilmek için:
+     - Makale başlarına veya H2 altlarına **40–50 kelimelik net, doğrudan yanıt veren "Kısa Cevap" (`AiSummaryBox`) kutuları** eklenmelidir.
+     - Soru-Cevap (FAQ) formatında tereddütsüz ve somut ifadeler kullanılmalıdır.
 3. **E-E-A-T Sinyalleri ve Uzman İmzası:**
-   - Tüm blog ve rehber sayfalarında makaleyi kaleme alan uzmanın biyografisi (Author Box), uzmanlık sertifikaları ve yayın tarihi yer almalıdır.
-   - YMYL (Your Money Your Life - Sağlık) kapsamında yasal tıp uyarısı (Medical Disclaimer) ve akademik/tıbbi referanslar bulunmalıdır.
+   - Makalelerde Yazar Biyografisi (`Author Box`), yayın/güncelleme tarihi ve tıp/sağlık uyarısı (Medical Disclaimer) bulunmalıdır.
 4. **Zengin Şema Markup (JSON-LD):**
-   - `MedicalBusiness`, `FAQPage`, `HowTo` ve `Article` şemaları eksiksiz yapılandırılmalı; `acceptedAnswer` metinleri içerisinde dahili linkler (`<a>`) kullanılarak arama botlarının site içi dolaşımı kolaylaştırılmalıdır.
+   - `MedicalBusiness`, `FAQPage`, `HowTo` ve `Article` şemaları eksiksiz yapılandırılmalı; `acceptedAnswer` metinleri içerisinde dahili linkler (`<a>`) kullanılarak arama botlarının site içi dolaşımı güçlendirilmelidir.
 
 ---
 
 ### 4. Eklenmesi Gereken İçerikler ve İçerik Doluluğu
 * **Şikayet ve Semptom Odaklı Rehberler:**
-  - Yasal çerçevede (tanı ve tedavi iddiası bulunmadan, "destekleyici geleneksel yaklaşım" diliyle) hazırlanan baş ağrısı, kronik yorgunluk, bel/boyun hassasiyeti rehberleri.
+  - Yasal çerçevede (tanı ve tedavi iddiası bulunmadan, "destekleyici geleneksel yaklaşım" diliyle) hazırlanan kronik yorgunluk, baş ağrısı, bel/boyun hassasiyeti rehberleri.
 * **Detaylı Sık Sorulan Sorular (FAQ Clusters):**
-  - Hacamat ve Sülük öncesi (açlık durumu, diyet) ve sonrası (banyo, beslenme, dinlenme) dikkat edilecek hususlar.
-* **Gerçek Varlık ve Görsel Kanıtlar:**
-  - Stok fotoğraflar yerine klinik ortamı, sterilizasyon ekipmanları ve gerçek seans sürecini gösteren özgün fotoğraflar ve kısa tanıtım videoları.
-* **Yurt Dışı / Almanya Hizmet Detayları:**
-  - Almanya (Berlin vb.) gurbetçi hastalar için Türkiye'ye seyahat etmeden yerinde hizmet ve eğitim alabileceklerini belirten özel sayfa ve içerikler.
+  - Hacamat ve Sülük öncesi (açlık durumu, diyet, kan sulandırıcılar) ve sonrası (banyo, beslenme, dinlenme) dikkat edilecek hususlar.
+* **Almanya / Yurt Dışı Hizmet Sayfası:**
+  - Almanya'daki (Berlin vb.) gurbetçiler için Türkiye'ye seyahat etmelerine gerek kalmadan doğrudan yerinde fiziki seans ve rehberlik alabileceklerini vurgulayan özel içerikler.
 
 ---
 
