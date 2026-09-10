@@ -10,9 +10,28 @@
  */
 
 import Link from "next/link";
-import { List, ShieldAlert, Award, ArrowRight } from "lucide-react";
+import { List, ShieldAlert, Award, ArrowRight, Sparkles } from "lucide-react";
 import type { TocItem } from "@/lib/blog/enrich";
 import { getPublishedPosts, type Post } from "@/lib/posts";
+
+// ─── AI-Özet (GEO - Generative Engine Optimization) ──────────────────────
+
+export function AiSummaryBox({ summary }: { summary?: string }) {
+  if (!summary) return null;
+  return (
+    <div className="mb-8 p-6 rounded-2xl bg-teal/10 border border-teal/20 flex items-start gap-4">
+      <Sparkles size={22} className="text-teal shrink-0 mt-0.5" />
+      <div>
+        <span className="text-[10px] font-black text-teal uppercase tracking-[0.25em]">
+          Yapay Zeka &amp; Hızlı Özet (GEO)
+        </span>
+        <p className="text-white/90 text-sm font-medium leading-relaxed mt-1">
+          {summary}
+        </p>
+      </div>
+    </div>
+  );
+}
 
 // ─── İçindekiler ──────────────────────────────────────────────────────────
 
