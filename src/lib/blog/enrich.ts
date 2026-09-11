@@ -11,7 +11,7 @@
  * panelimiz) gelir ve DOM parser bağımlılığı eklemeye değmez.
  */
 
-import { slugify } from "@/data/tr-locations";
+import { slugify } from "../../data/tr-locations.ts";
 
 export interface TocItem {
   id: string;
