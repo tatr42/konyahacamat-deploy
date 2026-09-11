@@ -9,13 +9,15 @@ Bu doküman, sitedeki teknik borçları, yasal riskleri, SEO eksikliklerini ve U
 ### 1. Kodda Ne Eksik & Ağırlık Yapan Kodlar Nelerdir?
 * **Statik Pre-rendering (SSG) ve Dynamic Route Caching:**
   - Blog detay ve dinamik sayfaların istemci/sunucu tarafında her istekte sıfırdan render edilmesi (SSR) sunucu yükünü artırır ve TTFB (Time to First Byte) süresini uzatır.
-  - `export async function generateStaticParams()` ile dinamik rotalar derleme (build) anında statik HTML/JSON olarak üretilmeli, veritabanı sorguları `React.cache` ile sarmalanmalıdır.
+  - `export async function generateStaticParams()` ile dinamik rotalar derleme (build) anında statik HTML/JSON olarak üretilmeli, veritabanı/dosya sorguları `React.cache` ile sarmalanmalıdır.
 * **Görsel Optimizasyonu & LCP (Largest Contentful Paint):**
   - Standart HTML `<img>` veya eksik `sizes` / `priority` niteliğine sahip Next.js `<Image>` bileşenleri responsive cihazlarda aşırı büyük resim yükleyerek LCP ve CLS skorlarını düşürür.
   - Hero ve kapak görsellerinde `priority` ve `fetchPriority="high"` kullanılmalı; grid görsellerinde doğru `sizes="(max-width: 768px) 100vw, 50vw"` tanımlanmalıdır.
 * **Ağırlık Yapan Üçüncü Parti Kodlar ve Scriptler:**
   - `@next/third-parties/google` paketi gibi senkron yüklenen analitik ve harita scriptleri Total Blocking Time (TBT) artışına neden olur. Google Analytics ve diğer scriptler `strategy="lazyOnload"` veya Next.js `<Script>` bileşeni ile ertelenmiş modda yüklenmelidir.
   - Ağır fontlar, kullanılmayan CSS kütüphaneleri veya devasa JS paketleri temizlenmeli, Tailwind CSS 4 JIT derleyicisi ile minimal CSS bundle korunmalıdır.
+* **Kod Hijyeni & Modül Çözümleme:**
+  - `tsconfig.json` dosyasında `"allowImportingTsExtensions": true` yapılandırması ile Node.js yerel ESM test çalıştırıcısı (`node --test`) ve Next.js derleyicisi uyumlu tutulmalıdır.
 * **Erişilebilirlik (A11y) ve İç Link Mimarisi:**
   - Sayfalar arası geçişlerde ham `<a>` etiketleri yerine Next.js `<Link>` kullanılarak SPA yönlendirmesi sağlanmalı ve gereksiz tam sayfa yenilemelerinin önüne geçilmelidir.
   - Mobil menülerde `aria-expanded`, butonlarda `aria-label` eksiklikleri giderilmelidir.
@@ -63,7 +65,7 @@ Google'ın Helpful Content Update (HCU) ve E-E-A-T (Deneyim, Uzmanlık, Otorite,
 * **Gerçek Varlık ve Görsel Kanıtlar:**
   - Stok fotoğraflar yerine klinik ortamı, sterilizasyon ekipmanları ve gerçek seans sürecini gösteren özgün fotoğraflar ve kısa tanıtım videoları.
 * **Yurt Dışı / Almanya Hizmet Detayları:**
-  - Almanya (Berlin vb.) gurbetçi hastalar için Türkiye'ye seyahat etmeden yerinde hizmet ve eğitim alabileceklerini belirten özel sayfa ve içerikler.
+  - Almanya (Berlin vb.) gurbetçi hastalar için Türkiye'ye seyahat etmeden yerinde hizmet ve eğitim alabileceklerini belirten özel sayfa ve içerikler (+49 163 449 28 70).
 
 ---
 
@@ -104,3 +106,4 @@ Google'ın Helpful Content Update (HCU) ve E-E-A-T (Deneyim, Uzmanlık, Otorite,
 - [x] **1. Eski ps1 scriptleri temizlendi**
 - [x] **2. Dahili linkler Next.js `<Link>` bileşenine dönüştürülecek / modülerize edildi**
 - [x] **3. İç içe `<main>` etiketleri tekilleştirildi**
+- [x] **4. `tsconfig.json` ESM & TS modül içe aktarımı (`allowImportingTsExtensions`) uyumluluğu sağlandı**
