@@ -83,7 +83,17 @@ export const STATIC_FAQS: StaticFaq[] = [
   {
     scope: "hacamat",
     q: "Hacamat günleri (Sünnet olan günler) dışındaki günlerde işlem yapılır mı?",
-    a: "Hacamat geleneksel olarak Hicri takvimin 17, 19 ve 21. günlerinde (sünnet günleri) tavsiye edilse de, akut bir şikayet söz konusu olduğunda haftanın herhangi bir günü de uzman kontrolünde yapılabilir.",
+    a: "Hacamat geleneksel olarak Hicri takvimin 17, 19 ve 21. günlerinde (sünnet günleri) tavsiye edilse de, akut bir şikayet söz konusu olduğunda haftanın herhangi bir günü de uzman kontrolünde yapılabilir. Hicri tarihleri incelemek için <a href='/takvim' title='Hacamat Takvimi'>Hacamat Takvimi</a> sayfamızı ziyaret edebilirsiniz.",
+  },
+  {
+    scope: "hacamat",
+    q: "Hacamat sonrasında iz kalır mı?",
+    a: "Doğru teknik, steril vakumlama ve mikro kesi derinliği ayarlandığında hacamat izleri birkaç gün ila bir hafta içerisinde tamamen kaybolur. Detaylı bilgi için <a href='/hizmetler/hacamat' title='Hacamat Hizmetimiz'>Hacamat Hizmeti</a> sayfamıza göz atabilirsiniz.",
+  },
+  {
+    scope: "suluk",
+    q: "Sülük terapisi öncesi cilt temizliği nasıl yapılmalıdır?",
+    a: "Sülükler kokuya son derece hassas canlılardır. Uygulama öncesinde parfüm, kokulu sabun veya krem sürülmemeli, bölge yalnızca ılık suyla temizlenmelidir. Ayrıntılar için <a href='/hizmetler/suluk' title='Sülük Terapisi'>Sülük Terapisi</a> rehberimizi inceleyebilirsiniz.",
   },
 ];
 
