@@ -91,7 +91,7 @@ Google'ın Helpful Content Update (HCU) ve E-E-A-T (Deneyim, Uzmanlık, Otorite,
 ### Sprint 3: Görsel Varlık Üretimi & Optimizasyon
 - [ ] **1. Stok görseller gerçek seans fotoğrafları ile değiştirilecek**
 - [x] **2. Dinamik OG kart üretimi (`src/app/og/route.tsx`) eklendi**
-- [ ] **3. `<Image>` `sizes` nitelikleri eksiksiz tamamlanacak**
+- [x] **3. `<Image>` `sizes` nitelikleri eksiksiz tamamlandı**
 - [ ] **4. Favicon ve Manifest güncellenecek**
 
 ### Sprint 4: SEO Derinleştirme & Statik Üretim
