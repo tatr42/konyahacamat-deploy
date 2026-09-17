@@ -10,9 +10,29 @@
  */
 
 import Link from "next/link";
-import { List, ShieldAlert, Award, ArrowRight } from "lucide-react";
+import { List, ShieldAlert, Award, ArrowRight, Sparkles } from "lucide-react";
 import type { TocItem } from "@/lib/blog/enrich";
 import { getPublishedPosts, type Post } from "@/lib/posts";
+
+// ─── AI Özet Kutusu (GEO / AI Direct Answer) ──────────────────────────────
+
+export function AiSummaryBox({ summary, title }: { summary?: string; title?: string }) {
+  const content = summary?.trim() || (title ? `${title} — Bu makalede konuyla ilgili uzman tecrübeleri, uygulama rehberleri ve dikkat edilmesi gereken temel hususlar özetlenmektedir.` : null);
+
+  if (!content) return null;
+
+  return (
+    <div className="mb-10 p-6 rounded-2xl bg-gradient-to-r from-teal/10 via-teal/5 to-transparent border border-teal/30">
+      <div className="flex items-center gap-2 text-teal font-black text-[11px] uppercase tracking-[0.25em] mb-3">
+        <Sparkles size={16} className="text-teal shrink-0 animate-pulse" />
+        <span>Kısa Özet &amp; Yapay Zeka Yanıtı (GEO)</span>
+      </div>
+      <p className="text-white/80 text-sm leading-relaxed font-medium">
+        {content}
+      </p>
+    </div>
+  );
+}
 
 // ─── İçindekiler ──────────────────────────────────────────────────────────
 
