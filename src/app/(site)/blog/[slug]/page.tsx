@@ -19,6 +19,7 @@ import ViewCounter from "./ViewCounter";
 import { pickImageByKey, themeForCategory } from "@/lib/pseo/images";
 import { enrichContent } from "@/lib/blog/enrich";
 import {
+  AiSummaryBox,
   TableOfContents,
   MedicalDisclaimer,
   AuthorBox,
@@ -170,6 +171,9 @@ export default async function BlogPostPage({ params }: { params: Promise<{ slug:
           />
           <div className="absolute inset-0 bg-gradient-to-t from-anthracite-dark/70 to-transparent" />
         </div>
+
+        {/* AI Özet Kutusu (GEO Optimization for AI Crawlers) */}
+        <AiSummaryBox summary={post.excerpt} title={post.title} />
 
         {/* İçindekiler (h2/h3'lerden — 2+ başlık varsa görünür) */}
         <TableOfContents toc={toc} />
