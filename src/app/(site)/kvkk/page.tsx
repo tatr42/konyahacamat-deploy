@@ -21,9 +21,7 @@ import { BUSINESS, addressLine } from "@/lib/business";
  *   - Üçüncü taraflar: Vercel (barındırma + Analytics), Google Haritalar
  *     (yalnızca /iletisim sayfasındaki gömülü harita), WhatsApp/Meta.
  *
- * BEKLEYEN VERİ: `BUSINESS.legalName` (veri sorumlusunun yasal ünvanı) henüz
- * girilmedi; girilene kadar ticari ad + adres ile kimlik belirtiliyor. Ünvan
- * `src/lib/business.ts` içine yazıldığında bu sayfa otomatik günceller.
+ * Veri sorumlusu unvanı `BUSINESS.legalName` (`src/lib/business.ts`) üzerinden dinamik olarak alınır.
  */
 
 const SON_GUNCELLEME = "5 Ağustos 2026";
