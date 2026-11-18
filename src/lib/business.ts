@@ -39,11 +39,6 @@ const phoneTr: PhoneLine = {
   raw: "905544062383",
 };
 
-const phoneDe: PhoneLine = {
-  display: "+49 163 449 28 70",
-  raw: "491634492870",
-};
-
 export const BUSINESS = {
   /** Ticari/marka adı — şemadaki `name`. */
   name: "Ebusadullah Hacamat & Akademi",
@@ -64,20 +59,18 @@ export const BUSINESS = {
 
   phone: {
     tr: phoneTr,
-    de: phoneDe,
   },
 
   /** WhatsApp hatları — `raw` ile aynı numaralar, niyet ayrımı için ayrı isim. */
   whatsapp: {
     tr: phoneTr.raw,
-    de: phoneDe.raw,
   },
 
   address: {
-    street: "Sahibiata Mh. Taşcami Uzunharmanlar Cd. No: 16-4",
+    street: "Sahibiata Mh. Taşcami Uzunharmanlar Cd. No: 16-2",
     district: "Meram",
     city: "Konya",
-    postalCode: "42040",
+    postalCode: "42100",
     country: "TR",
     /**
      * Google İşletme Profili pin'inden alınan KESİN koordinatlar.
@@ -133,11 +126,6 @@ export const BUSINESS = {
  *
  * CID = Place ID'nin ondalık karşılığı (0x689fef5a7d617be8).
  * Anahtar (API key) gerekmez; `output=embed` uç noktası ücretsizdir.
- *
- * DİKKAT — NAP tutarsızlığı: Google kaydı kapı numarasını "16-2" ve posta
- * kodunu "42100" gösteriyor, sitedeki adres ise "16-4" / "42040".
- * Hangisinin doğru olduğu işletmeye teyit ettirilmeli; yerel SEO'da
- * NAP'in üç sitede ve Google profilinde BİREBİR aynı olması gerekir.
  */
 export const GOOGLE_PLACE = {
   /** Google Haritalar'daki kayıt adı (gömülü kartta görünen ad). */
@@ -191,7 +179,7 @@ export function waHref(message: string, number: string = BUSINESS.whatsapp.tr): 
   return `https://wa.me/${number}?text=${encodeURIComponent(message)}`;
 }
 
-/** Tek satırlık adres — ör. "Sahibiata Mh. ... No: 16-4, 42040 Meram/Konya" */
+/** Tek satırlık adres — ör. "Sahibiata Mh. ... No: 16-2, 42100 Meram/Konya" */
 export function addressLine(): string {
   const a = BUSINESS.address;
   return `${a.street}, ${a.postalCode} ${a.district}/${a.city}`;

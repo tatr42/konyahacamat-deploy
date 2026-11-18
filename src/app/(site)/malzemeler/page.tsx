@@ -211,10 +211,6 @@ export default function MalzemelePage() {
               className="flex items-center gap-2 bg-white/10 text-white border border-white/20 px-6 py-4 rounded-2xl font-black text-sm uppercase tracking-widest hover:bg-white/15 transition-all">
               🇹🇷 <Phone size={18} /> +90 554 406 23 83
             </a>
-            <a href="tel:+491634492870" title="Almanya Hacamat İletişim"
-              className="flex items-center gap-2 bg-white/10 text-white border border-white/20 px-6 py-4 rounded-2xl font-black text-sm uppercase tracking-widest hover:bg-white/15 transition-all">
-              🇩🇪 <Phone size={18} /> +49 163 449 28 70
-            </a>
           </div>
         </div>
       </section>

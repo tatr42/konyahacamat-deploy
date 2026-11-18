@@ -173,11 +173,11 @@ export default function HacamatCalendar() {
   const [yil, setYil] = useState(bugun.getFullYear());
   const [secili, setSecili] = useState<Date | null>(null);
 
-  const whatsapp = (hat: "TR" | "DE") => {
+  const whatsapp = () => {
     if (!secili) return "#";
     const tarih = secili.toLocaleDateString("tr-TR", { day: "numeric", month: "long", year: "numeric" });
     const msg = encodeURIComponent(`Merhaba, ${tarih} tarihinde hacamat randevusu almak istiyorum.`);
-    return hat === "TR" ? `https://wa.me/905544062383?text=${msg}` : `https://wa.me/491634492870?text=${msg}`;
+    return `https://wa.me/905544062383?text=${msg}`;
   };
 
   return (
@@ -244,14 +244,10 @@ export default function HacamatCalendar() {
             </div>
             <button onClick={() => setSecili(null)} aria-label="Kapat" className="text-white/70 hover:text-white text-xl">✕</button>
           </div>
-          <div className="grid grid-cols-1 sm:grid-cols-2 gap-3">
-            <a href={whatsapp("TR")}  title="🇹🇷 TR Randevu" target="_blank" rel="noopener noreferrer nofollow"
+          <div className="grid grid-cols-1 gap-3">
+            <a href={whatsapp()}  title="WhatsApp Randevu" target="_blank" rel="noopener noreferrer nofollow"
               className="flex items-center justify-center gap-2 bg-[#25D366] hover:bg-[#1da851] text-white py-3 rounded-xl font-black text-xs uppercase tracking-widest transition-all hover:scale-105">
-              <MessageCircle size={14} fill="currentColor" /> 🇹🇷 TR Randevu
-            </a>
-            <a href={whatsapp("DE")}  title="🇩🇪 Almanya Randevu" target="_blank" rel="noopener noreferrer nofollow"
-              className="flex items-center justify-center gap-2 bg-white/10 hover:bg-white/15 text-white border border-white/10 py-3 rounded-xl font-black text-xs uppercase tracking-widest transition-all hover:scale-105">
-              <MessageCircle size={14} /> 🇩🇪 Almanya Randevu
+              <MessageCircle size={14} fill="currentColor" /> WhatsApp Randevu
             </a>
           </div>
         </div>

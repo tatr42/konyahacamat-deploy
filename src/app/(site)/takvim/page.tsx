@@ -23,7 +23,7 @@ export const metadata: Metadata = {
 
 const adimlar = [
   { no: "01", baslik: "Tarih Seçin", aciklama: "Takvimden size uygun bir gün seçin. Yeşil sünnet günlerini tercih edin." },
-  { no: "02", baslik: "WhatsApp'a Yönlenin", aciklama: "Seçtiğiniz tarih otomatik mesaja eklenir. Türkiye veya Almanya hattını seçin." },
+  { no: "02", baslik: "WhatsApp'a Yönlenin", aciklama: "Seçtiğiniz tarih otomatik mesaja eklenir." },
   { no: "03", baslik: "Onay Alın", aciklama: "En geç 1 saat içinde randevunuz teyit edilir." },
 ];
 
@@ -98,17 +98,9 @@ export default function TakvimPage() {
                   className="flex items-center gap-3 bg-[#25D366] hover:bg-[#1da851] text-white w-full px-4 py-3 rounded-xl font-black text-xs uppercase tracking-widest transition-all">
                   <MessageCircle size={16} fill="currentColor" /> 🇹🇷 WhatsApp TR
                 </a>
-                <a href="https://wa.me/491634492870?text=Merhaba%2C%20hacamat%20randevusu%20almak%20istiyorum." title="Almanya Hacamat İletişim" target="_blank" rel="noopener noreferrer nofollow"
-                  className="flex items-center gap-3 bg-white/10 hover:bg-white/15 text-white border border-white/10 w-full px-4 py-3 rounded-xl font-black text-xs uppercase tracking-widest transition-all">
-                  <MessageCircle size={16} /> 🇩🇪 WhatsApp Almanya
-                </a>
                 <a href="tel:+905544062383" title="Türkiye Hacamat İletişim"
                   className="flex items-center gap-3 bg-white/5 hover:bg-white/10 text-white/60 border border-white/5 w-full px-4 py-3 rounded-xl font-bold text-xs uppercase tracking-widest transition-all">
                   <Phone size={14} /> 🇹🇷 +90 554 406 23 83
-                </a>
-                <a href="tel:+491634492870" title="Almanya Hacamat İletişim"
-                  className="flex items-center gap-3 bg-white/5 hover:bg-white/10 text-white/60 border border-white/5 w-full px-4 py-3 rounded-xl font-bold text-xs uppercase tracking-widest transition-all">
-                  <Phone size={14} /> 🇩🇪 +49 163 449 28 70
                 </a>
               </div>
 
@@ -196,7 +188,7 @@ export default function TakvimPage() {
               { href: "/hizmetler/hacamat", baslik: "Hacamat Tedavisi", aciklama: "Kuru & yaş hacamat hakkında detaylı bilgi", emoji: "🩸" },
               { href: "/hizmetler/suluk", baslik: "Sülük Terapisi", aciklama: "Hirudoterapi seansı ve süreç", emoji: "🐛" },
               { href: academyHref(), baslik: "Eğitim Kursları", aciklama: "Hacamat uzmanlık programları", emoji: "🎓" },
-              { href: "/iletisim", baslik: "İletişim", aciklama: "Konya & Almanya hattı", emoji: "📞" },
+              { href: "/iletisim", baslik: "İletişim", aciklama: "Adres, telefon ve WhatsApp", emoji: "📞" },
             ].map(l => (
               <Link key={l.href} href={l.href} title={(l as any).baslik || (l as any).title || (l as any).isim || "Bağlantı Detayı"}
                 className="bg-white/5 border border-white/10 rounded-2xl p-5 hover:border-teal/30 hover:bg-white/8 transition-all group">
@@ -225,10 +217,6 @@ export default function TakvimPage() {
             <a href="https://wa.me/905544062383" title="Türkiye Hacamat İletişim" target="_blank" rel="noopener noreferrer nofollow"
               className="flex items-center gap-2 bg-[#25D366] text-white px-6 py-4 rounded-2xl font-black text-sm uppercase tracking-widest hover:scale-105 transition-all">
               <MessageCircle size={18} fill="currentColor" /> 🇹🇷 WhatsApp
-            </a>
-            <a href="https://wa.me/491634492870" title="Almanya Hacamat İletişim" target="_blank" rel="noopener noreferrer nofollow"
-              className="flex items-center gap-2 bg-white/10 text-white border border-white/20 px-6 py-4 rounded-2xl font-black text-sm uppercase tracking-widest hover:bg-white/15 transition-all">
-              <MessageCircle size={18} /> 🇩🇪 Almanya
             </a>
             <Link href="/iletisim" title="İletişim"
               className="flex items-center gap-2 bg-white/10 text-white border border-white/20 px-6 py-4 rounded-2xl font-black text-sm uppercase tracking-widest hover:bg-white/15 transition-all">

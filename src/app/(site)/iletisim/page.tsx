@@ -8,14 +8,14 @@ import { academyHref } from "@/data/ecosystem";
 
 export const metadata: Metadata = {
   title: "İletişim & Randevu | Konya Hacamat | Ebusadullah Akademi",
-  description: "Konya hacamat randevusu için bize ulaşın: +90 554 406 23 83 | Almanya: +49 163 449 28 70. Sahibiata Mh. Meram/Konya. WhatsApp ile 7/24 mesaj atabilirsiniz.",
+  description: "Konya hacamat randevusu için bize ulaşın: +90 554 406 23 83. Sahibiata Mh. Meram/Konya. WhatsApp ile 7/24 mesaj atabilirsiniz.",
 
   alternates: { canonical: '/iletisim' },
   openGraph: {
     title: "İletişim & Randevu | Konya Hacamat Ebusadullah",
-    description: "Hacamat randevusu için: +90 554 406 23 83 | Almanya: +49 163 449 28 70 | Sahibiata Mh. Meram/Konya. WhatsApp 7/24.",
+    description: "Hacamat randevusu için: +90 554 406 23 83 | Sahibiata Mh. Meram/Konya. WhatsApp 7/24.",
     url: '/iletisim',
-    images: ogImages({ title: "İletişim & Randevu", eyebrow: "Konya · Almanya Hattı", alt: "Konya Hacamat İletişim" }),
+    images: ogImages({ title: "İletişim & Randevu", eyebrow: "Konya · Almanya", alt: "Konya Hacamat İletişim" }),
   },
 };
 
@@ -42,7 +42,7 @@ export default function IletisimPage() {
               <Image src="/logo.webp" alt="Konya Hacamat Ebusadullah" width={200} height={48} className="h-12 w-auto" />
             </div>
             <p className="text-white/60 text-sm leading-relaxed">
-              <strong className="text-white">Ebusadullah Hacamat &amp; Akademi</strong> — Konya'da {getYearsExpStr()} yıldır hizmet veren geleneksel tıp merkezi. Hacamat, sülük terapisi ve uzmanlık eğitimleri için bize ulaşın. Almanya seansları için Almanya hattımızı kullanabilirsiniz.
+              <strong className="text-white">Ebusadullah Hacamat &amp; Akademi</strong> — Konya'da {getYearsExpStr()} yıldır hizmet veren geleneksel tıp merkezi. Hacamat, sülük terapisi ve uzmanlık eğitimleri için bize ulaşın. Almanya seansları için WhatsApp'tan yazabilirsiniz.
             </p>
           </div>
         </div>
@@ -61,7 +61,7 @@ export default function IletisimPage() {
                 </div>
                 <div>
                   <div className="text-teal text-[10px] font-black uppercase tracking-widest mb-1">Adres</div>
-                  <div className="text-white font-bold">Sahibiata Mh. Taşcami Uzunharmanlar Cd. No: 16-4</div>
+                  <div className="text-white font-bold">Sahibiata Mh. Taşcami Uzunharmanlar Cd. No: 16-2</div>
                   <div className="text-white/60 text-sm">Meram / KONYA</div>
                 </div>
               </div>
@@ -75,10 +75,6 @@ export default function IletisimPage() {
                   <div>
                     <a href="tel:+905544062383" title="Türkiye Hacamat İletişim" className="text-white font-bold text-xl hover:text-teal transition-colors">+90 554 406 23 83</a>
                     <div className="text-white/40 text-xs">🇹🇷 Türkiye</div>
-                  </div>
-                  <div>
-                    <a href="tel:+491634492870" title="Almanya Hacamat İletişim" className="text-white font-bold text-xl hover:text-teal transition-colors">+49 163 449 28 70</a>
-                    <div className="text-white/40 text-xs">🇩🇪 Almanya</div>
                   </div>
                 </div>
               </div>
@@ -145,11 +141,6 @@ export default function IletisimPage() {
                     target="_blank" rel="noopener noreferrer nofollow"
                     className="flex items-center gap-3 bg-white/10 hover:bg-white/15 text-white border border-white/20 w-full px-5 py-4 rounded-xl font-black text-sm uppercase tracking-widest transition-all">
                     <MessageCircle size={18} /> Eğitim Bilgisi Al
-                  </a>
-                  <a href="https://wa.me/491634492870?text=Merhaba%2C%20Almanya%20seans%20tarihleri%20hakk%C4%B1nda%20bilgi%20almak%20istiyorum." title="Almanya Hacamat İletişim"
-                    target="_blank" rel="noopener noreferrer nofollow"
-                    className="flex items-center gap-3 bg-teal/10 hover:bg-teal/20 text-teal border border-teal/20 w-full px-5 py-4 rounded-xl font-black text-sm uppercase tracking-widest transition-all">
-                    🇩🇪 Almanya: +49 163 449 28 70
                   </a>
                 </div>
               </div>

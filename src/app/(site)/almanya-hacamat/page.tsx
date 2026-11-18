@@ -32,20 +32,13 @@ export default function AlmanyaHacamatPage() {
             </p>
             <div className="flex flex-col sm:flex-row items-center justify-center gap-4 pt-6">
               <a
-                href="https://wa.me/491634492870"
+                href="https://wa.me/905544062383?text=Almanya%20hacamat%20ve%20s%C3%BCl%C3%BCk%20hizmetleri%20hakk%C4%B1nda%20bilgi%20almak%20istiyorum."
                 title="Almanya Hacamat İletişim"
                 target="_blank" rel="noopener noreferrer nofollow"
-
-                className="w-full sm:w-auto bg-teal text-anthracite-dark px-8 py-4 rounded-2xl font-black text-sm uppercase tracking-widest hover:scale-105 active:scale-95 transition-all shadow-xl shadow-teal/20 flex items-center justify-center gap-2"
+                className="w-full sm:w-auto bg-teal text-anthracite-dark px-8 py-4 rounded-2xl font-black text-sm uppercase tracking-widest hover:scale-105 active:scale-95 transition-all flex items-center justify-center gap-2"
               >
                 <Phone size={18} />
                 WhatsApp'tan Randevu Al
-              </a>
-              <a
-                href="tel:+491634492870"
-                className="w-full sm:w-auto bg-white/5 border border-white/10 text-white px-8 py-4 rounded-2xl font-black text-sm uppercase tracking-widest hover:bg-white/10 transition-all flex items-center justify-center gap-2"
-              >
-                +49 163 449 28 70
               </a>
             </div>
           </div>
@@ -198,15 +191,6 @@ export default function AlmanyaHacamatPage() {
               </div>
 
               <div className="flex flex-col sm:flex-row gap-4 pt-4">
-                <a
-                  href="https://wa.me/491634492870?text=Almanya%20Hacamat%20E%C4%9Fitimi%20hakk%C4%B1nda%20bilgi%20almak%20istiyorum."
-                  title="Almanya Hacamat Eğitim İletişim"
-                  target="_blank" rel="noopener noreferrer nofollow"
-
-                  className="bg-teal text-anthracite-dark px-8 py-4 rounded-xl font-black text-sm uppercase tracking-widest hover:scale-105 active:scale-95 transition-all text-center"
-                >
-                  Eğitim Kayıt
-                </a>
               </div>
             </div>
 
@@ -237,10 +221,15 @@ export default function AlmanyaHacamatPage() {
               Almanya, Berlin ve çevresindeki randevu, sülük tedavisi ve eğitim kurslarımız hakkında bilgi almak için bizimle WhatsApp üzerinden doğrudan iletişime geçebilirsiniz.
             </p>
             <div className="flex flex-col items-center justify-center gap-6">
-              <a href="https://wa.me/491634492870" title="Almanya Hacamat İletişim" target="_blank" rel="noopener noreferrer nofollow" className="text-4xl font-black text-teal hover:text-white transition-colors">
-                +49 163 449 28 70
+              <a
+                href="https://wa.me/905544062383?text=Almanya%20hacamat%20ve%20s%C3%BCl%C3%BCk%20hizmetleri%20hakk%C4%B1nda%20bilgi%20almak%20istiyorum."
+                title="Almanya Hacamat İletişim"
+                target="_blank" rel="noopener noreferrer nofollow"
+                className="bg-teal text-anthracite-dark px-10 py-5 rounded-2xl font-black text-sm uppercase tracking-widest hover:scale-105 active:scale-95 transition-all flex items-center justify-center gap-2"
+              >
+                <Phone size={18} />
+                WhatsApp'tan Randevu Al
               </a>
-              <span className="text-sm text-white/40 uppercase tracking-widest font-bold">Almanya İletişim Hattı</span>
             </div>
          </div>
       </section>

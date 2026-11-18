@@ -295,10 +295,6 @@ export default function HakkimizdaPage() {
               className="flex items-center gap-2 bg-[#25D366] text-white px-6 py-4 rounded-2xl font-black uppercase tracking-widest hover:scale-105 transition-all">
               <MessageCircle size={18} fill="currentColor" /> 🇹🇷 WhatsApp
             </a>
-            <a href="https://wa.me/491634492870" title="Almanya Hacamat İletişim" target="_blank" rel="noopener noreferrer nofollow"
-              className="flex items-center gap-2 bg-white/10 text-white border border-white/20 px-6 py-4 rounded-2xl font-black uppercase tracking-widest hover:bg-white/15 transition-all">
-              <MessageCircle size={18} /> 🇩🇪 Almanya
-            </a>
             <Link href="/iletisim" title="İletişim"
               className="flex items-center gap-2 bg-white/10 text-white border border-white/20 px-6 py-4 rounded-2xl font-black uppercase tracking-widest hover:bg-white/15 transition-all">
               İletişim

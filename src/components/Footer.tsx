@@ -80,12 +80,6 @@ export default function Footer() {
                     {BUSINESS.phone.tr.display}
                   </a>
                 </div>
-                <div>
-                  <span className="text-[9px] text-white/70 uppercase tracking-widest">🇩🇪 Almanya</span>
-                  <a href={telHref(BUSINESS.phone.de)} title={`Konya Hacamat Almanya: ${BUSINESS.phone.de.display}`} className="block text-xl font-display font-bold text-white hover:text-teal transition-colors">
-                    {BUSINESS.phone.de.display}
-                  </a>
-                </div>
               </div>
               <div>
                 <span className="text-[10px] text-white/70 font-bold uppercase tracking-widest block mb-1">E-Posta</span>

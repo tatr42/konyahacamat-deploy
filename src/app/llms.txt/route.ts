@@ -18,9 +18,8 @@ export async function GET() {
 
 > Konya Meram'da ${yearsExp} yıldır hizmet veren profesyonel hacamat (kupa terapisi) ve sülük terapisi (hirudoterapi) merkezi. Steril, CE sertifikalı, tek kullanımlık malzeme. Ayrıca uluslararası geçerli sertifikalı hacamat/sülük uzmanlık kursları ve periyodik Almanya seansları.
 
-Adres: Sahibiata Mh. Taşcami Uzunharmanlar Cd. No: 16-4, 42040 Meram/Konya, Türkiye
+Adres: Sahibiata Mh. Taşcami Uzunharmanlar Cd. No: 16-2, 42100 Meram/Konya, Türkiye
 Telefon / WhatsApp: +90 554 406 23 83
-Almanya hattı: +49 163 449 28 70
 E-posta: info@konyahacamat.net
 Web: https://www.konyahacamat.net
 

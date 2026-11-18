@@ -80,10 +80,6 @@ export default function HacamatPage() {
               className="flex items-center gap-2 bg-white/10 text-white border border-white/20 px-6 py-4 rounded-2xl font-black text-sm uppercase tracking-widest hover:bg-white/15 transition-all">
               🇹🇷 <Phone size={18} /> +90 554 406 23 83
             </a>
-            <a href="tel:+491634492870" title="Almanya Hacamat İletişim"
-              className="flex items-center gap-2 bg-white/10 text-white border border-white/20 px-6 py-4 rounded-2xl font-black text-sm uppercase tracking-widest hover:bg-white/15 transition-all">
-              🇩🇪 <Phone size={18} /> +49 163 449 28 70
-            </a>
           </div>
         </div>
       </section>
@@ -323,10 +319,6 @@ export default function HacamatPage() {
                 <a href="https://wa.me/905544062383?text=Hacamat%20randevusu%20almak%20istiyorum." title="Türkiye Hacamat İletişim" target="_blank" rel="noopener noreferrer nofollow"
                   className="flex items-center gap-2 bg-[#25D366] text-white px-6 py-3 rounded-xl font-black text-sm uppercase tracking-widest hover:scale-105 transition-all">
                   <MessageCircle size={16} fill="currentColor" /> 🇹🇷 WhatsApp
-                </a>
-                <a href="https://wa.me/491634492870?text=Hacamat%20randevusu%20almak%20istiyorum." title="Almanya Hacamat İletişim" target="_blank" rel="noopener noreferrer nofollow"
-                  className="flex items-center gap-2 bg-white/10 text-white border border-white/20 px-6 py-3 rounded-xl font-black text-sm uppercase tracking-widest hover:bg-white/15 transition-all">
-                  <MessageCircle size={16} /> 🇩🇪 Almanya
                 </a>
                 <Link href="/takvim" title="Randevu Al"
                   className="flex items-center gap-2 bg-teal text-anthracite-dark px-6 py-3 rounded-xl font-black text-sm uppercase tracking-widest hover:opacity-90 transition-opacity">
